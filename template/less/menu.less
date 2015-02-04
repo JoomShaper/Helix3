@@ -1,0 +1,352 @@
+/**
+ * @package Helix V3 Framework
+ * @author JoomShaper http://www.joomshaper.com
+ * @copyright Copyright (c) 2010 - 2015 JoomShaper
+ * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or later
+ */
+
+/*=========================================
+ *======= 	 Megamenu	   ============
+ *=======================================*/
+.sp-megamenu-parent {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	z-index: 9;
+	display: block;
+	float: right;
+	>li {
+		display: inline-block;
+		position: relative;
+		padding: 0;
+
+		&.menu-justify {
+			position: static;
+		}
+		
+		>a {
+			display: inline-block;
+			padding: 0 15px;
+			line-height: 90px;
+			font-size: 12px;
+			text-transform: uppercase;
+			letter-spacing: 1px;
+			color: #000;
+		}
+
+		&.sp-has-child>a:after{
+			font-family: "FontAwesome";
+			content: " \f107";
+		}
+
+		/*
+		&.active:hover>a,
+		&:hover>a {
+			background-color: @major_color;
+			color: #fff;
+		}
+		*/
+	}
+
+	.sp-module {
+		padding: 10px;
+	}
+
+	.sp-mega-group {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+
+		.sp-mega-group-child {
+			list-style: none;
+			padding: 0;
+			margin: 0;
+		}
+	}
+
+	.sp-dropdown {
+		margin: 0;
+		position: absolute;
+		z-index: 10;
+		display: none;
+
+		.sp-dropdown-inner {
+			background: #fff;
+			box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.2);
+			padding: 20px;
+		}
+
+		.sp-dropdown-items {
+			list-style: none;
+			padding: 0;
+			margin: 0;
+
+			.sp-has-child>a:after{
+				font-family: "FontAwesome";
+				content: " \f105";
+				float: right;
+			}
+		}
+
+		&.sp-menu-center {
+			margin-left: 45px;
+		}
+		
+		&.sp-dropdown-main {
+			top: 100%;
+			&.sp-menu-right,
+			&.sp-menu-full {
+				left: 0;
+			}
+
+			&.sp-menu-left {
+				right: 0;
+			}
+		}
+
+		&.sp-dropdown-sub {
+			top: 0;
+			left: 100%;
+			.sp-dropdown-inner {
+				box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+			}
+		}
+
+		//List Item
+		li.sp-menu-item { //child sub
+			display: block;
+			padding: 0;
+			position: relative;
+			>a {
+				display: block;
+				padding: 10px;
+				color: #333;
+				cursor: pointer;
+
+				&.sp-group-title {
+					text-transform: uppercase;
+					font-weight: bold;
+				}
+
+				&:hover {
+					color: #fff;
+				}
+			}
+
+			&.active>a {
+				&:hover {
+					color: #fff;
+				}
+			}
+		}
+	}
+
+	.sp-dropdown-mega {
+		>.row {
+			margin-top: 30px;
+			&:first-child {
+				margin-top: 0;
+			}
+		}
+	}
+
+	//Has Child
+	.sp-has-child {
+		&:hover {
+			>.sp-dropdown {
+				display: block;
+			}
+		}
+	}
+
+	//Fade Animation
+	&.menu-fade {
+		.sp-has-child:hover {
+			>.sp-dropdown {
+				-webkit-animation: spMenuFadeIn 400ms;
+				animation: spMenuFadeIn 400ms;
+			}
+		}
+	}
+
+	//Zoom Animation
+	&.menu-zoom {
+		.sp-has-child:hover {
+			>.sp-dropdown {
+				-webkit-animation: spMenuZoom 400ms;
+				animation: spMenuZoom 400ms;
+			}
+		}
+	}
+
+	//Fade in up Animation
+	&.menu-fade-up {
+		.sp-has-child:hover {
+			>.sp-dropdown {
+				-webkit-animation: spMenuFadeInUp 400ms;
+				animation: spMenuFadeInUp 400ms;
+			}
+		}
+	}
+}
+
+
+/*=========================================
+ *======= 	Off Canvas   ============
+ *=======================================*/
+
+#offcanvas-toggler {
+	float: right;
+	line-height: 90px;	
+	>i {
+		display: inline-block;
+		padding: 0 0 0 10px;
+		font-size: 18px;
+		background: transparent;
+		margin: 5px 0 27px 0;
+		border-radius: 3px;
+		cursor: pointer;
+		.transition(~'color 400ms, background-color 400ms');
+		&:hover {
+			color: #fff;
+		}
+	}
+}
+
+.close-offcanvas {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	z-index: 1;
+	color: #000;
+}
+
+.offcanvas-menu {
+	width:  280px;
+	height: 100%;
+	background: #fff;
+	color: #999;
+	position: fixed;
+	top: 0;
+	right: -280px;
+	opacity: 0;
+	-webkit-transition: opacity 400ms cubic-bezier(0.7,0,0.3,1), right 400ms cubic-bezier(0.7,0,0.3,1);
+	transition: opacity 400ms cubic-bezier(0.7,0,0.3,1), right 400ms cubic-bezier(0.7,0,0.3,1);
+	z-index: 9999;
+	overflow-y: scroll;
+
+	.offcanvas-inner {
+		padding: 20px;
+	}
+}
+
+.body-innerwrapper:after {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 0;
+	height: 0;
+	background: rgba(0, 0, 0, 0.8);
+	content: '';
+	opacity: 0;
+	-webkit-transition: opacity 0.5s, width 0.1s 0.5s, height 0.1s 0.5s;
+	transition: opacity 0.5s, width 0.1s 0.5s, height 0.1s 0.5s;
+	z-index: 999;
+}
+
+.offcanvas {
+	width: 100%;
+	height: 100%;
+	position: relative;
+
+	.body-innerwrapper:after {
+		width: 100%;
+		height: 100%;
+		opacity: 1;
+		-webkit-transition: opacity 0.5s;
+		transition: opacity 0.5s;
+	}
+
+	.offcanvas-menu {
+		right: 0;
+		opacity: 1;
+	}
+}
+
+.menu .nav-child.small {
+	font-size: inherit;
+}
+
+
+/*=========================================
+ *======= 	Menu Animation   ============
+ *=======================================*/
+@-webkit-keyframes spMenuFadeIn {
+  0% {
+  	opacity: 0;
+  }
+
+  100% {
+  	opacity: 1;
+  }
+}
+
+@keyframes spMenuFadeIn {
+  0% {
+  	opacity: 0;
+  }
+
+  100% {
+  	opacity: 1;
+  }
+}
+
+@-webkit-keyframes spMenuZoom {
+  0% {
+  	opacity: 0;
+  	-webkit-transform: scale(.8);
+  }
+
+  100% {
+  	opacity: 1;
+  	-webkit-transform: scale(1);
+  }
+}
+
+@keyframes spMenuZoom {
+  0% {
+  	opacity: 0;
+  	transform: scale(.8);
+  	-webkit-transform: scale(.8);
+  }
+
+  100% {
+  	opacity: 1;
+  	transform: scale(1);
+  	-webkit-transform: scale(1);
+  }
+}
+
+@-webkit-keyframes spMenuFadeInUp {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 30px, 0);
+  }
+
+  100% {
+    opacity: 1;
+    -webkit-transform: none;
+  }
+}
+
+@keyframes spMenuFadeInUp {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 30px, 0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}

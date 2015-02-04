@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<fields name="params" addfieldpath="/plugins/system/helix3/fields">
+		<fieldset name="spmoduleparam" label="HELIX_MODULE">
+			<field name="icon" type="icon" label="HELIX_MODULE_ICON" description="HELIX_MODULE_ICON_DESC" />
+			<field name="background_color" type="color" label="HELIX_MODULE_BG_COLOR" description="HELIX_MODULE_BG_COLOR_DESC" hint="#FFFFFF" />
+			<field name="color" type="color" label="HELIX_MODULE_COLOR" description="HELIX_MODULE_COLOR_DESC" hint="#333333" />
+			<field name="padding" type="text" label="HELIX_MODULE_PADDING" description="HELIX_MODULE_PADDING_DESC" hint="10px" />
+			<field name="margin" type="text" label="HELIX_MODULE_MARGIN" description="HELIX_MODULE_MARGIN_DESC" hint="10px" />
+		</fieldset>
+	</fields>
+</form>

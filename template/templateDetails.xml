@@ -297,7 +297,7 @@
                     <option value="1">HELIX_YES</option>
                     <option value="0">HELIX_NO</option>
                 </field>
-                <field name="h5_font" type="typography" class="child  h5_font h5_font_1" deafult='{"fontFamily":"Open Sans","fontWeight":"600","fontSubset":"latin","fontSize":""}' label="HELIX_SELECT_FONT" description="HELIX_SELECT_FONT_DESC" />
+                <field name="h5_font" type="typography" class="child  h5_font h5_font_1" default='{"fontFamily":"Open Sans","fontWeight":"600","fontSubset":"latin","fontSize":""}' label="HELIX_SELECT_FONT" description="HELIX_SELECT_FONT_DESC" />
 
                 <field type="group" title="HEADING6_FONT" subtitle="HEADING6_FONT_DESC" />
                 <field name="enable_h6_font" class="parent h6_font" type="radio" default="1" label="HELIX_ENABLE_FONT" description="HELIX_ENABLE_FONT_DESC">

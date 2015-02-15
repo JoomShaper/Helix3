@@ -2,7 +2,7 @@
 <extension version="3.3" type="plugin" group="system" method="upgrade">
     <name>System - Helix3 Framework</name>
     <author>JoomShaper.com</author>
-    <creationDate>March 2011</creationDate>
+    <creationDate>Jan 2015</creationDate>
     <copyright>Copyright (C) 2010 - 2015 JoomShaper. All rights reserved.</copyright>
     <license>http://www.gnu.org/licenses/gpl-2.0.html GPLv2 or later</license>
     <authorEmail>support@joomshaper.com</authorEmail>

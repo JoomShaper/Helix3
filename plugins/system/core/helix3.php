@@ -758,17 +758,33 @@
             $families = array();
             foreach ($fonts as $key => $value) {
                 $value = json_decode($value);
-                $families[$value->fontFamily]['weight'][] = $value->fontWeight;
-                $families[$value->fontFamily]['subset'][] = $value->fontSubset;
+
+                if(isset($value->fontWeight) && $value->fontWeight) {
+                    $families[$value->fontFamily]['weight'][] = $value->fontWeight;
+                }
+
+                if(isset($value->fontSubset) && $value->fontSubset) {
+                    $families[$value->fontFamily]['subset'][] = $value->fontSubset;
+                }
             }
 
             //Selectors
             $selectors = array();
             foreach ($fonts as $key => $value) {
                 $value = json_decode($value);
-                $selectors[$key]['family'] = $value->fontFamily;
-                $selectors[$key]['size'] = $value->fontSize;
-                $selectors[$key]['weight'] = $value->fontWeight;
+
+                if(isset($value->fontFamily) && $value->fontFamily) {
+                    $selectors[$key]['family'] = $value->fontFamily;   
+                }
+
+                if(isset($value->fontSize) && $value->fontSize) {
+                    $selectors[$key]['size'] = $value->fontSize;
+                }
+
+                if(isset($value->fontWeight) && $value->fontWeight) {
+                    $selectors[$key]['weight'] = $value->fontWeight;   
+                }
+
             }
 
             //Add Google Font URL
@@ -776,12 +792,12 @@
                 $output = str_replace(' ', '+', $key);
 
                 $weight = array_unique( $value['weight'] );
-                if(!empty($weight)) {
+                if(isset($weight) && $weight) {
                     $output .= ':' . implode(',', $weight);
                 }
 
                 $subset = array_unique( $value['subset'] );
-                if(!empty($subset)) {
+                if(isset($subset) && $subset) {
                     $output .= '&' . implode(',', $subset);
                 }
 
@@ -790,15 +806,26 @@
 
             //Add font to Selector
             foreach ($selectors as $key => $value) {
-                $output = 'font-family:' . $value['family'] . ', sans-serif; ';
-                if($value['size'])  $output .= 'font-size:' . $value['size'] . 'px; ';
-                if($value['weight'])  $output .= 'font-weight:' . str_replace('regular', 'normal', $value['weight']) . '; ';
 
-                $selectors = explode(',', $key);
+                if(isset($value['family']) && $value['family']) {
 
-                foreach ($selectors as $selector) {
-                    $style = $selector . '{' . $output . '}';
-                    $doc->addStyledeclaration( $style );
+                    $output = 'font-family:' . $value['family'] . ', sans-serif; ';
+
+                    if(isset($value['size']) && $value['size']) {
+                        $output .= 'font-size:' . $value['size'] . 'px; ';
+                    }
+
+                    if(isset($value['weight']) && $value['weight']) {
+                        $output .= 'font-weight:' . str_replace('regular', 'normal', $value['weight']) . '; ';
+                    }
+
+                    $selectors = explode(',', $key);
+
+                    foreach ($selectors as $selector) {
+                        $style = $selector . '{' . $output . '}';
+                        $doc->addStyledeclaration( $style );
+                    }
+
                 }
 
             }

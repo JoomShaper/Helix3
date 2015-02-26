@@ -20,7 +20,11 @@ class plgAjaxHelix3 extends JPlugin
         if ($_POST['data']) {
             $data = json_decode(json_encode($_POST['data']),true);;
             $action = $data['action'];
-            $layoutName = $data['layoutName'];
+            $layoutName = '';
+
+            if (isset($data['layoutName'])) {
+                $layoutName = $data['layoutName'];
+            }
 
             $template  = self::getTemplate();
             $layoutPath = JPATH_SITE.'/templates/'.$template.'/layout/';
@@ -38,6 +42,7 @@ class plgAjaxHelix3 extends JPlugin
                             $report['action'] = 'remove';
                             $report['status'] = 'true';
                         }
+                        $report['layout'] = JFolder::files($layoutPath, '.json');
                     break;
 
                 case 'save':
@@ -51,6 +56,7 @@ class plgAjaxHelix3 extends JPlugin
                             fwrite($file, $content);
                             fclose($file);
                         }
+                        $report['layout'] = JFolder::files($layoutPath, '.json');
                     break;
 
                 case 'load':
@@ -74,6 +80,116 @@ class plgAjaxHelix3 extends JPlugin
                 default:
                     break;
 
+                case 'voting':
+                    
+                    if (JSession::checkToken()) {
+                        return json_encode($report);
+                    }
+
+                    $rate = -1;
+                    $pk = 0;
+
+                    if (isset($data['user_rating'])) {
+                        $rate = (int)$data['user_rating'];
+                    }
+
+                    if (isset($data['id'])) {
+                        $id = str_replace('post_vote_','',$data['id']);
+                        $pk = (int)$id;
+                    }
+
+                    if ($rate >= 1 && $rate <= 5 && $id > 0)
+                    {
+                        $userIP = $_SERVER['REMOTE_ADDR'];
+
+                        $db    = JFactory::getDbo();
+                        $query = $db->getQuery(true);
+
+                        $query->select('*')
+                        ->from($db->quoteName('#__content_rating'))
+                        ->where($db->quoteName('content_id') . ' = ' . (int) $pk);
+
+                        $db->setQuery($query);
+
+                        try
+                        {
+                            $rating = $db->loadObject();
+                        }
+                        catch (RuntimeException $e)
+                        {
+                            return json_encode($report);
+                        }
+
+                        if (!$rating)
+                        {
+                            $query = $db->getQuery(true);
+
+                            $query->insert($db->quoteName('#__content_rating'))
+                            ->columns(array($db->quoteName('content_id'), $db->quoteName('lastip'), $db->quoteName('rating_sum'), $db->quoteName('rating_count')))
+                            ->values((int) $pk . ', ' . $db->quote($userIP) . ',' . (int) $rate . ', 1');
+
+                            $db->setQuery($query);
+
+                            try
+                            {
+                                $db->execute();
+
+                                $data = self::getItemRating($pk);
+                                $rating = $data->rating;
+
+                                $report['action'] = $rating;
+                                $report['status'] = 'true';
+
+                                return json_encode($report);
+                            }
+                            catch (RuntimeException $e)
+                            {
+                                return json_encode($report);;
+                            }
+                        }
+                        else
+                        {
+                            if ($userIP != ($rating->lastip))
+                            {
+                                $query = $db->getQuery(true);
+
+                                $query->update($db->quoteName('#__content_rating'))
+                                ->set($db->quoteName('rating_count') . ' = rating_count + 1')
+                                ->set($db->quoteName('rating_sum') . ' = rating_sum + ' . (int) $rate)
+                                ->set($db->quoteName('lastip') . ' = ' . $db->quote($userIP))
+                                ->where($db->quoteName('content_id') . ' = ' . (int) $pk);
+
+                                $db->setQuery($query);
+
+                                try
+                                {
+                                    $db->execute();
+
+                                    $data = self::getItemRating($pk);
+                                    $rating = $data->rating;
+
+                                    $report['action'] = $rating;
+                                    $report['status'] = 'true';
+
+                                    return json_encode($report);
+                                }
+                                catch (RuntimeException $e)
+                                {
+                                    return json_encode($report);
+                                }
+                            }
+                            else
+                            {
+
+                                $report['status'] = 'invalid';
+                                return json_encode($report);
+                            }
+                        }
+                    }
+                    $report['action'] = 'failed';
+                    $report['status'] = 'false';
+                    return json_encode($report);
+                    break;
                 //Font variant
                 case 'fontVariants':
 
@@ -145,6 +261,19 @@ class plgAjaxHelix3 extends JPlugin
             return json_encode($report);
         }
         
+    }
+
+    static public function getItemRating($pk = 0){
+        $db    = JFactory::getDbo();
+        $query = $db->getQuery(true);
+        $query->select('ROUND(rating_sum / rating_count, 0) AS rating, rating_count')
+        ->from($db->quoteName('#__content_rating'))
+        ->where($db->quoteName('content_id') . ' = ' . (int) $pk);
+
+        $db->setQuery($query);
+        $data = $db->loadObject();
+
+        return $data;
     }
 
     static public function resetMenuLayout($current_menu_id = 0){

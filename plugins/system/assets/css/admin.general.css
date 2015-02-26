@@ -485,12 +485,24 @@ a.btn-ino{color:#fff}
 	background-image: url(../images/layout/210.png);
 }
 
-.button-group > li > ul li a.column-layout-237,
-.button-group > li > ul li a.column-layout-282,
-.button-group > li > ul li a.column-layout-222222,
-.button-group > li > ul li a.column-layout-255,
+.button-group > li > ul li a.column-layout-237{
+	background-image: url(../images/layout/237.png);
+}
+
+.button-group > li > ul li a.column-layout-282{
+	background-image: url(../images/layout/282.png);
+}
+
+.button-group > li > ul li a.column-layout-222222{
+	background-image: url(../images/layout/222222.png);
+}
+
+.button-group > li > ul li a.column-layout-255{
+	background-image: url(../images/layout/255.png);
+}
+
 .button-group > li > ul li a.column-layout-2442{
-	background-image: url(../images/layout/12.png);
+	background-image: url(../images/layout/2442.png);
 }
 
 .button-group > li ul li a:hover,

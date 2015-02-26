@@ -9,9 +9,4 @@
 defined('_JEXEC') or die('Restricted Access');
 
 ?>
-<span class="twitter-share">
-	<a class="twitter-share-button" href="<?php echo $displayData['url']; ?>" data-text="<?php echo $displayData['item']->title; ?>" data-url="<?php echo $displayData['url']; ?>">Tweet</a>
-	<script>
-	window.twttr=(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return;js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);t._e=[];t.ready=function(f){t._e.push(f);};return t;}(document,"script","twitter-wjs"));
-	</script>
-</span>	
+<li><a href="//twitter.com/share" class="twitter-share-button" data-url="<?php echo $displayData['url']; ?>" data-text="<?php echo $displayData['item']->title; ?>" data-lang="en">tweet</a> <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></li>

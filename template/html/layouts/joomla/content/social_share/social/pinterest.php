@@ -7,8 +7,4 @@
 //no direct access
 defined('_JEXEC') or die('Restricted Access');
 ?>
-<span class="pinterest-share">
-	<a target="_blank" href="//www.pinterest.com/pin/create/button/" data-pin-do="buttonBookmark" data-pin-color="white"><img src="//assets.pinterest.com/images/pidgets/pinit_fg_en_rect_white_28.png" alt="" /></a>
-	<!-- Please call pinit.js only once per page -->
-	<script type="text/javascript" async defer src="//assets.pinterest.com/js/pinit.js"></script>
-</span>
+<li><script type="text/javascript" src="//assets.pinterest.com/js/pinit.js"></script><a href="//pinterest.com/pin/create/button/?url=<?php $displayData['url']; ?>" class="pin-it-button" count-layout="horizontal"><img border="0" src="//assets.pinterest.com/images/PinExt.png" title="Pin It" /></a></li>

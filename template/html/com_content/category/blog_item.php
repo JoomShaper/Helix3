@@ -54,7 +54,13 @@ $post_format = $post_attribs->get('post_format', 'standard');
 <?php if (!$params->get('show_intro')) : ?>
 	<?php echo $this->item->event->afterDisplayTitle; ?>
 <?php endif; ?>
-<?php echo $this->item->event->beforeDisplayContent; ?> <?php echo $this->item->introtext; ?>
+<?php echo $this->item->event->beforeDisplayContent; ?>
+
+<?php $rating = (int) $this->item->rating; ?>
+
+<?php echo JLayoutHelper::render('joomla.content.rating', array('params' => $params, 'item' => $this->item, 'rating_layout' => 'list')) ?>
+
+<?php echo $this->item->introtext; ?>
 
 <?php if ($useDefList && ($info == 1 || $info == 2)) : ?>
 	<?php echo JLayoutHelper::render('joomla.content.info_block.block', array('item' => $this->item, 'params' => $params, 'position' => 'below')); ?>

@@ -46,15 +46,6 @@ class  plgSystemHelix3 extends JPlugin
 
         }
 
-        //Module
-        if ($form->getName()=='com_modules.module') {
-            $module = $data->module;
-            if( $module != 'mod_news_pro_gk5' ) {
-                JForm::addFormPath(JPATH_PLUGINS.'/system/helix3/params');
-                $form->loadFile('module', false);
-            }
-        }
-
         //Article Post format
         if ($form->getName()=='com_content.article') {
             JHtml::_('jquery.framework');

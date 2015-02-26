@@ -121,6 +121,17 @@ jQuery(function($){
 
         });
 
+        //Change Preset
+        $(document).on('blur', '.preset-control', function(event){
+            event.preventDefault();
+
+            var active_preset = $('.preset.active').data('preset');
+
+            if( $(this).attr('id') == 'jform_params_' + active_preset + '_major' ) {
+              $('.preset.active').css('background-color', $(this).val())
+            }
+        });
+
         //Template Information
         $('#jform_template').closest('.control-group').appendTo( $( '.form-inline.form-inline-header' ) );
         $('#jform_home').closest('.control-group').appendTo( $( '.form-inline.form-inline-header' ) );

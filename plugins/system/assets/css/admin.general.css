@@ -534,7 +534,8 @@ a.btn-ino{color:#fff}
 	display: block;
 	padding: 5px;
 	margin: 0 20px 20px 0;
-	background: #e5e5e5;
+	width: 120px;
+	height: 80px;
 	float: left;
 	position: relative;
 	cursor: pointer;
@@ -550,17 +551,24 @@ a.btn-ino{color:#fff}
 	bottom: 0;
 	font-size: 12px;
 	line-height: 1;
-	background: #e5e5e5;
+	background: transparent;
 	padding: 5px;
-	color: #000;
+	color: #fff;
 	text-transform: uppercase;
 	letter-spacing: 2px;
 }
 
-.presets > div.active,
+.presets > div.active {
+	-webkit-box-shadow: inset 0 0 0 5px rgba(0,0,0,.4);
+	box-shadow: inset 0 0 0 5px rgba(0,0,0,.4);
+}
+
 .presets > div.active .preset-title {
-	background: #164d7d;
+	background: rgba(0,0,0,.4);
 	color: #fff;
+	padding: 5px 5px 0 0;
+	left: 5px;
+	bottom: 5px;
 }
 
 .com_templates.view-style .minicolors input[type="text"] {

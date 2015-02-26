@@ -20,6 +20,7 @@
 
         protected function getInput()
         {
+
             $template = $this->form->getValue('template');
             $templatePresetsDir = JPATH_SITE.'/templates/'.$template.'/images/presets/';
             $base_url = JURI::root(true).'/templates/'.$template.'/images/presets/';
@@ -32,30 +33,36 @@
             if( !defined('CURRENT_PRESET') ){
                 define('CURRENT_PRESET', $this->value);
                $doc->addScriptDeclaration('var current_preset = "'.$this->value.'";');
-            } 
+            }
 
-            $html = '';
-            $options = array();
+            $html       = '';
+            $app        = JFactory::getApplication();
+            $template   = $app->getTemplate('shaper_helix3');
+            $params     = $template->params;
+            $variable   = $params->get('variable');
 
             natsort($folders );
 
             foreach($folders as $folder)
             {
 
-                if(JFile::exists( $root_path . basename($folder) . '/thumbnail.jpg' )) {
-                    $image = $base_url . basename($folder) . '/thumbnail.jpg';
+                $preset = basename($folder);
+
+                $major_color = $preset . '_major';
+
+                if(isset($this->form->getValue('params')->$major_color) && $this->form->getValue('params')->$major_color) {
+                    $major = $this->form->getValue('params')->$major_color;
                 } else {
-                    $image = $base_url . basename($folder) . '/thumbnail.png';
+                    $major = '#333333';
                 }
 
-                $html .='<div data-preset="'. basename($folder) .'" class="preset' .(($this->value == basename($folder))?' active':'').'">';
+                $html .='<div style="background-color: '. $major .'" data-preset="'. basename($folder) .'" class="preset' .(($this->value == basename($folder))?' active':'').'">';
                 $html .='<div class="preset-title">';
                 $html .= basename($folder);
                 $html .='</div>';
 
                 $html .='<div class="preset-contents">';
                 $html .='<label>';
-                $html .='<img  src="'.$image.'" alt="'.basename($folder).'" />';
                 $html .='</div>';
 
                 $html .='</label>';

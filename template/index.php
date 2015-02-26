@@ -157,7 +157,11 @@ if($custom_js = $this->helix3->getParam('custom_js')) {
         <div class="offcanvas-menu">
             <a href="#" class="close-offcanvas"><i class="fa fa-remove"></i></a>
             <div class="offcanvas-inner">
-               <jdoc:include type="modules" name="offcanvas" style="sp_xhtml" />
+                <?php if ($this->helix3->countModules('offcanvas')) { ?>
+                    <jdoc:include type="modules" name="offcanvas" style="sp_xhtml" />
+                <?php } else { ?>
+                    <p class="alert alert-warning"><?php echo JText::_('HELIX_NO_MODULE_OFFCANVAS'); ?></p>
+                <?php } ?>
             </div>
         </div>
     </div>

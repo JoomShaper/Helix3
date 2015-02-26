@@ -653,13 +653,21 @@
             $cacheFile = $cachePath.'/'.basename($css.".cache");
 
             if (file_exists($cacheFile)) {
-                $cache = unserialize(file_get_contents($cacheFile));
+                $cache = unserialize(JFile::read($cacheFile));
+
+                //If root changed then do not compile
+                if(isset($cache['root']) && $cache['root']) {
+                    if($cache['root'] != $less) {
+                        return self::getInstance();
+                    }
+                }
+
             } else {
                 $cache = $less;
             }
 
             $lessInit = self::getInstance()->less();
-            $newCache = $lessInit->cachedCompile($cache);
+            $newCache = $lessInit->cachedCompile($cache, true);
 
             if (!is_array($cache) || $newCache["updated"] > $cache["updated"]) {
 
@@ -667,8 +675,8 @@
                     JFolder::create($cachePath, 0755);
                 }
 
-                file_put_contents($cacheFile, serialize($newCache));
-                file_put_contents($css, $newCache['compiled']);
+                JFile::write($cacheFile, serialize($newCache));
+                JFile::write($css, $newCache['compiled']);
             }
 
             return self::getInstance();

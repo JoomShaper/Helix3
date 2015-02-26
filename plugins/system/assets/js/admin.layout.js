@@ -45,9 +45,27 @@ jQuery(function($) {
             type   : 'POST',
             data   : request,
             beforeSend: function(){
+            	$('.layout-del-action .fa-spin').show();
             },
             success: function (response) {
-               console.log(response);
+            	var data = $.parseJSON(response.data),
+            		layouts = data.layout,
+            		tplHtml = '';
+
+            	$('#jform_params_layoutlist').find('option').remove();
+            	if (layouts.length) {
+            		for (var i = 0; i < layouts.length; i++) {
+            			tplHtml += '<option value="'+ layouts[i] +'">'+ layouts[i].replace('.json','')+'</option>';
+            		}
+
+            		$('#jform_params_layoutlist').html(tplHtml);
+            	}
+
+            	$('.layout-del-action .fa-spin').fadeOut('fast');
+            },
+            error: function(){
+            	alert('Somethings wrong, Try again');
+            	$('.layout-del-action .fa-spin').fadeOut('fast');
             }
         });
         return false;
@@ -56,7 +74,7 @@ jQuery(function($) {
 	// Save new copy of layout
 	$('.form-horizontal').on('click', '.layout-save-action', function(event) {
 		$('#layout-modal').find('.sp-modal-body').empty();
-		$('#layout-modal .sp-modal-title').text('Row Settings');
+		$('#layout-modal .sp-modal-title').text('Save New Layout');
 		$('#layout-modal #save-settings').data('flag', 'save-layout');
 
 		var $clone = $('.save-box').clone(true);
@@ -356,8 +374,23 @@ jQuery(function($) {
 						beforeSend: function(){
 						},
 						success: function (response) {
-							console.log(response);
+							var data = $.parseJSON(response.data),
+								layouts = data.layout,
+								tplHtml = '';
+
+							$('#jform_params_layoutlist').find('option').remove();
+							if (layouts.length) {
+								for (var i = 0; i < layouts.length; i++) {
+									tplHtml += '<option value="'+ layouts[i] +'">'+ layouts[i].replace('.json','')+'</option>';
+								}
+
+								$('#jform_params_layoutlist').html(tplHtml);
+							}
+						},
+						error: function(){
+							alert('Somethings wrong, Try again');
 						}
+
 					});
 				break;
 

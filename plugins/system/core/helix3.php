@@ -164,7 +164,7 @@
 
                         if( !empty($position) ) {
 
-                            self::getInstance()->loadFeature[$position] = $class->renderFeature();
+                            self::getInstance()->loadFeature[$position][] = $class->renderFeature();
 
                         }
                     }
@@ -382,8 +382,12 @@
                                         
                                         $output .= '<div class="sp-column ' . ($column->settings->custom_class) . '">';
 
-                                        if( self::hasFeature($column->settings->name) ) {
-                                            $output .= self::getInstance()->loadFeature[$column->settings->name]; //Feature
+                                        if( self::hasFeature($column->settings->name) )
+                                        {
+                                            $features = self::getInstance()->loadFeature[$column->settings->name]; //Feature
+                                            foreach ($features as $feature) {
+                                               $output .= $feature;
+                                            }
                                         }
 
                                         $output .= '<jdoc:include type="modules" name="'. $column->settings->name .'" style="sp_xhtml" />';

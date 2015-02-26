@@ -23,16 +23,21 @@ echo RowColumnSettings::getRowSettings($rowSettings);
 echo RowColumnSettings::getColumnSettings($columnSettings);
 
 $colGrid = array(
-        '12'    => '12',
-        '66'    => '6,6',
-        '444'   => '4,4,4',
-        '3333'  => '3,3,3,3',
-        '48'    => '4,8',
-        '39'    => '3,9',
-        '363'   => '3,6,3',
-        '264'   => '2,6,4',
-        '210'   => '2,10',
-        '57'    => '5,7',
+        '12'        => '12',
+        '66'        => '6,6',
+        '444'       => '4,4,4',
+        '3333'      => '3,3,3,3',
+        '48'        => '4,8',
+        '39'        => '3,9',
+        '363'       => '3,6,3',
+        '264'       => '2,6,4',
+        '210'       => '2,10',
+        '57'        => '5,7',
+        '237'       => '2,3,7',
+        '255'       => '2,5,5',
+        '282'       => '2,8,2',
+        '2442'      => '2,4,4,2',
+        '222222'    => '2,2,2,2,2,2',
     );
 
 ?>
@@ -82,7 +87,7 @@ $colGrid = array(
                             <?php
                             foreach ($colGrid as $key => $grid){
                                 $active = ($key==12) ? ' active' : '';
-                                echo '<li><a href="#" class="column-layout column-layout-' .$key. $active .'" data-layout="'.$grid.'"></a></li>';
+                                echo '<li><a href="#" class="column-layout hasTooltip column-layout-' .$key. $active .'" data-layout="'.$grid.'" data-original-title="<strong>'.$grid.'</strong>"></a></li>';
                                 $active = '';
                             }
                             ?>
@@ -139,7 +144,7 @@ $colGrid = array(
                                 if($key == $row->layout){
                                     $active = 'active';
                                 }
-                                echo '<li><a href="#" class="column-layout column-layout-' .$key. ' '.$active.'" data-layout="'.$grid.'"></a></li>';
+                                echo '<li><a href="#" class="column-layout hasTooltip column-layout-' .$key. ' '.$active.'" data-layout="'.$grid.'" data-original-title="<strong>'.$grid.'</strong>"></a></li>';
                                 $active ='';
                             } ?>
                         </ul>

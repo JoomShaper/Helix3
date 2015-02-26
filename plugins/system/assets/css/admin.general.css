@@ -32,6 +32,11 @@ a.btn-ino{color:#fff}
 	display: block;
 }
 
+.btn.btn-danger.layout-del-action .fa-spin{
+	margin-left: 5px;
+	display: none;
+}
+
 /*Basic*/
 .com_templates.view-style input[type="text"],
 .com_templates.view-style input[type="url"],
@@ -304,6 +309,10 @@ a.btn-ino{color:#fff}
 	float: left;
 }
 
+.com_templates.view-style .layoutlist select{
+	display: inline-block;
+}
+
 /* Menu Assignment */
 #assignment{padding: 15px;}
 #assignment #jform_menuselect-lbl,
@@ -396,7 +405,7 @@ a.btn-ino{color:#fff}
 	position: absolute;
 	top: -5px;
 	right: 100%;
-	width: 340px;
+	width: 505px;
 	padding: 10px 5px;
 	background: #b3b3b3;
 	border-radius: 3px;
@@ -474,6 +483,14 @@ a.btn-ino{color:#fff}
 
 .button-group > li > ul li a.column-layout-210 {
 	background-image: url(../images/layout/210.png);
+}
+
+.button-group > li > ul li a.column-layout-237,
+.button-group > li > ul li a.column-layout-282,
+.button-group > li > ul li a.column-layout-222222,
+.button-group > li > ul li a.column-layout-255,
+.button-group > li > ul li a.column-layout-2442{
+	background-image: url(../images/layout/12.png);
 }
 
 .button-group > li ul li a:hover,

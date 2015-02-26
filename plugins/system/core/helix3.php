@@ -189,6 +189,8 @@
 
         public static function generatelayout() {
 
+            self::getInstance()->addCSS('custom.css');
+
             $doc    = JFactory::getDocument();
             $app    = JFactory::getApplication();
             $option = $app->input->getCmd('option', '');
@@ -539,7 +541,7 @@
                 if( file_exists( $path . $src)) { 
                     self::getInstance()->document->addStyleSheet( JURI::base(true) . '/templates/' . $template . '/css/' . $src, 'text/css', NULL, $attribs );
                 } else {
-                    self::getInstance()->document->addStyleSheet( $src, 'text/css', NULL, $attribs );
+                    if($src != 'custom.css') self::getInstance()->document->addStyleSheet( $src, 'text/css', NULL, $attribs );
                 }      
             }
 

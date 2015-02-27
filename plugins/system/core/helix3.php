@@ -681,8 +681,8 @@
                     JFolder::create($cachePath, 0755);
                 }
 
-                JFile::write($cacheFile, serialize($newCache));
-                JFile::write($css, $newCache['compiled']);
+                file_put_contents($cacheFile, serialize($newCache));
+                file_put_contents($css, $newCache['compiled']);
             }
 
             return self::getInstance();
@@ -812,7 +812,7 @@
 
                 $subset = array_unique( $value['subset'] );
                 if(isset($subset) && $subset) {
-                    $output .= '&' . implode(',', $subset);
+                    $output .= '&amp;' . implode(',', $subset);
                 }
 
                 $doc->addStylesheet( '//fonts.googleapis.com/css?family=' . $output );

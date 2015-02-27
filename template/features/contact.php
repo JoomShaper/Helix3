@@ -24,9 +24,9 @@ class Helix3FeatureContact {
 			$output = '<ul class="sp-contact-info">';
 
 			if($this->helix3->getParam('contact_phone')) $output .= '<li class="sp-contact-phone"><i class="fa fa-phone"></i> ' . $this->helix3->getParam('contact_phone') . '</li>';
-			if($this->helix3->getParam('contact_email')) $output .= '<li class="sp-contact-email"><i class="fa fa-envelope"></i> ' . $this->helix3->getParam('contact_email') . '</li>';
+			if($this->helix3->getParam('contact_email')) $output .= '<li class="sp-contact-email"><i class="fa fa-envelope"></i> <a href="mailto:'. $this->helix3->getParam('contact_email') .'">' . $this->helix3->getParam('contact_email') . '</a></li>';
 
-			$output .= '<ul>';
+			$output .= '</ul>';
 
 			return $output;
 		}

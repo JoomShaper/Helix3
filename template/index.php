@@ -113,7 +113,7 @@ if($custom_js = $this->helix3->getParam('custom_js')) {
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo $this->language; ?>" lang="<?php echo $this->language; ?>" dir="<?php echo $this->direction; ?>">
 <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?php
     if($favicon = $this->helix3->getParam('favicon')) {
@@ -136,13 +136,22 @@ if($custom_js = $this->helix3->getParam('custom_js')) {
             'major_color'=> $this->helix3->PresetParam('_major')
             ))
         ->addLess('legacy/bootstrap', 'legacy')
-        ->addLess('master', 'template')
-        ->addLess('presets',  'presets/'.$this->helix3->Preset(), array('class'=>'preset'));
+        ->addLess('master', 'template');
+
+        //RTL
+        if($this->direction=='rtl') {
+            $this->helix3->addCSS('bootstrap-rtl.min.css')
+            ->addLess('rtl', 'rtl');
+        }
+
+        $this->helix3->addLess('presets',  'presets/'.$this->helix3->Preset(), array('class'=>'preset'));
         //Front-end Edit
         if($this->helix3->view()=='edit') {
             $this->helix3->addLess('frontend-edit', 'frontend-edit')
             ->addJS('frontend-edit.js');
         }
+
+        
 
         //Before Head
         if($before_head = $this->helix3->getParam('before_head')) {

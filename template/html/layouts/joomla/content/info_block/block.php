@@ -17,6 +17,8 @@ $blockPosition = $displayData['params']->get('info_block_position', 0);
 		<?php if ($displayData['position'] == 'above' && ($blockPosition == 0 || $blockPosition == 2)
 				|| $displayData['position'] == 'below' && ($blockPosition == 1)
 				) : ?>
+
+			<dt class="article-info-term"></dt>	
 				
 			<?php if ($displayData['params']->get('show_author') && !empty($displayData['item']->author )) : ?>
 				<?php echo JLayoutHelper::render('joomla.content.info_block.author', $displayData); ?>

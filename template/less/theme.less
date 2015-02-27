@@ -1054,12 +1054,32 @@ table.category {
 	transition: 300ms;
 }
 
+// offcanvas
+.offcanvas-menu {
+	.offcanvas-inner {
+		.sp-module ul {
+			> li{
+				border: none ;
+				a {
+					border-bottom: 1px solid #eee;
+					.transition(300ms);
+					padding:4px 20px;
+					&:hover {
+						background: #f5f5f5;
+					}
+				}
+
+				>a:before  {
+					display: none;
+				}
+			}
+		}	
+		.sp-module > ul {
+			margin:0 -20px;
+		}
+	}
+}
+
 
 /* End  Mixed CSS
  *=======================================*/
-
-
-
-
-
-

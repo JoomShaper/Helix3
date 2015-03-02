@@ -17,7 +17,7 @@ function modChrome_sp_xhtml($module, $params, $attribs) {
 	$headerClass   = htmlspecialchars($params->get('header_class', 'sp-module-title'));
 	
 	if ($module->content) {
-		echo '<' . $moduleTag . ' class="sp-module ' . htmlspecialchars($params->get('moduleclass_sfx')) . $moduleClass . '>';
+		echo '<' . $moduleTag . ' class="sp-module ' . htmlspecialchars($params->get('moduleclass_sfx')) . $moduleClass . '">';
 
 			if ($module->showtitle)
 			{

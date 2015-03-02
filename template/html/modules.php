@@ -15,9 +15,17 @@ function modChrome_sp_xhtml($module, $params, $attribs) {
 	$moduleClass   = $bootstrapSize != 0 ? ' col-sm-' . $bootstrapSize : '';
 	$headerTag     = htmlspecialchars($params->get('header_tag', 'h3'));
 	$headerClass   = htmlspecialchars($params->get('header_class', 'sp-module-title'));
+
+	// CSS
+	$module_css  = '';
+	$module_css .= ($params->get('background_color')) ? 'background-color:' . $params->get('background_color') . ';' : '';
+	$module_css .= ($params->get('color')) ? 'color:' . $params->get('color') . ';' : '';
+	$module_css .= ($params->get('padding')) ? 'padding:' . $params->get('padding') . ';' : '';
+	$module_css .= ($params->get('margin')) ? 'margin:' . $params->get('margin') . ';' : '';
+	$module_css  = ($module_css) ? ' style="' . $module_css . '"' : '';
 	
 	if ($module->content) {
-		echo '<' . $moduleTag . ' class="sp-module ' . htmlspecialchars($params->get('moduleclass_sfx')) . $moduleClass . '">';
+		echo '<' . $moduleTag . ' class="sp-module ' . htmlspecialchars($params->get('moduleclass_sfx')) . $moduleClass . '"'. $module_css .'>';
 
 			if ($module->showtitle)
 			{

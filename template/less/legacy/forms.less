@@ -345,9 +345,23 @@ select:focus:invalid {
     font-size: @baseFontSize;
   }
 
-  input,
-  select,
+  input[type="text"],
+  input[type="password"],
+  input[type="datetime"],
+  input[type="datetime-local"],
+  input[type="date"],
+  input[type="month"],
+  input[type="time"],
+  input[type="week"],
+  input[type="number"],
+  input[type="email"],
+  input[type="url"],
+  input[type="search"],
+  input[type="tel"],
+  input[type="color"],
   .uneditable-input {
+    width: auto;
+    display: inline-block;
     position: relative; // placed here by default so that on :focus we can place the input above the .add-on for full border and box-shadow goodness
     margin-bottom: 0; // prevent bottom margin from screwing up alignment in stacked forms
     *margin-left: 0;
@@ -362,6 +376,7 @@ select:focus:invalid {
     display: inline-block;
     width: auto;
     height: @baseLineHeight;
+    min-height: @baseLineHeight;
     min-width: 16px;
     padding: 4px 5px;
     font-size: @baseFontSize;
@@ -375,6 +390,7 @@ select:focus:invalid {
   .add-on,
   .btn,
   .btn-group > .dropdown-toggle {
+    display: inline-block;
     vertical-align: top;
     .border-radius(0);
   }
@@ -397,8 +413,20 @@ select:focus:invalid {
 }
 
 .input-append {
-  input,
-  select,
+  input[type="text"],
+  input[type="password"],
+  input[type="datetime"],
+  input[type="datetime-local"],
+  input[type="date"],
+  input[type="month"],
+  input[type="time"],
+  input[type="week"],
+  input[type="number"],
+  input[type="email"],
+  input[type="url"],
+  input[type="search"],
+  input[type="tel"],
+  input[type="color"],
   .uneditable-input {
     .border-radius(@inputBorderRadius 0 0 @inputBorderRadius);
     + .btn-group .btn:last-child {

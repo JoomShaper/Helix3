@@ -145,13 +145,6 @@ if($custom_js = $this->helix3->getParam('custom_js')) {
         }
 
         $this->helix3->addLess('presets',  'presets/'.$this->helix3->Preset(), array('class'=>'preset'));
-        //Front-end Edit
-        if($this->helix3->view()=='edit') {
-            $this->helix3->addLess('frontend-edit', 'frontend-edit')
-            ->addJS('frontend-edit.js');
-        }
-
-        
 
         //Before Head
         if($before_head = $this->helix3->getParam('before_head')) {

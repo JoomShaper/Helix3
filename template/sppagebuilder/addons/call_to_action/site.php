@@ -75,7 +75,7 @@ function sp_call_to_action_addon($atts){
 			$subtitle_style = '';
 
 			if($subtitle_text_color) $subtitle_style .= 'color:' . $subtitle_text_color  . ';';
-			if($subtitle_fontsize) $subtitle_style .= 'font-size:'.$subtitle_fontsize.'px;line-height:'.$subtitle_fontsize.'px;"';
+			if($subtitle_fontsize) $subtitle_style .= 'font-size:'.$subtitle_fontsize.'px;line-height:'.$subtitle_fontsize.'px;';
 			
 			$output .= '<p class="sppb-lead sppb-cta-subtitle" style="' . $subtitle_style . '">' . $subtitle . '</p>';
 		}		
@@ -112,7 +112,7 @@ function sp_call_to_action_addon($atts){
 			$subtitle_style = '';
 
 			if($subtitle_text_color) $subtitle_style .= 'color:' . $subtitle_text_color  . ';';
-			if($subtitle_fontsize) $subtitle_style .= 'font-size:'.$subtitle_fontsize.'px;line-height:'.$subtitle_fontsize.'px;"';
+			if($subtitle_fontsize) $subtitle_style .= 'font-size:'.$subtitle_fontsize.'px;line-height:'.$subtitle_fontsize.'px;';
 			
 			$output .= '<p class="sppb-lead sppb-cta-subtitle" style="' . $subtitle_style . '">' . $subtitle . '</p>';
 		}	

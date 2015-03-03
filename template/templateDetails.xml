@@ -21,6 +21,7 @@
         <position>title</position>
         <position>top1</position>
         <position>top2</position>
+        <position>top3</position>
         <position>logo</position>
         <position>menu</position>
         <position>search</position>
@@ -159,8 +160,8 @@
                     <option value="0">HELIX_HIDE</option>
                 </field>
                 <field name="social_position" type="modpos" default="top1" label="HELIX_MODULE_POSITIONS" description="HELIX_MODULE_POSITIONS_DESC" class="child social_icons social_icons_1" />
-                <field name="facebook" type="text" label="HELIX_SOCIAL_ICON_FACEBOOK" description="HELIX_SOCIAL_ICON_FACEBOOK_DESC" class="child social_icons social_icons_1" />
-                <field name="twitter" type="text" label="HELIX_SOCIAL_ICON_TWITTER" description="HELIX_SOCIAL_ICON_TWITTER_DESC" class="child social_icons social_icons_1" />
+                <field name="facebook" type="text" label="HELIX_SOCIAL_ICON_FACEBOOK" default="https://www.facebook.com/joomshaper" description="HELIX_SOCIAL_ICON_FACEBOOK_DESC" class="child social_icons social_icons_1" />
+                <field name="twitter" type="text" label="HELIX_SOCIAL_ICON_TWITTER" default="https://twitter.com/joomshaper" description="HELIX_SOCIAL_ICON_TWITTER_DESC" class="child social_icons social_icons_1" />
                 <field name="googleplus" type="text" label="HELIX_SOCIAL_ICON_GOOGLEPLUS" description="HELIX_SOCIAL_ICON_GOOGLEPLUS_DESC" class="child social_icons social_icons_1" />
                 <field name="pinterest" type="text" label="HELIX_SOCIAL_ICON_PINTEREST" description="HELIX_SOCIAL_ICON_PINTEREST_DESC" class="child social_icons social_icons_1" />
                 <field name="linkedin" type="text" label="HELIX_SOCIAL_ICON_LINKEDIN" description="HELIX_SOCIAL_ICON_LINKEDIN_DESC" class="child social_icons social_icons_1" />

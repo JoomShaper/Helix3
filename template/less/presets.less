@@ -141,7 +141,20 @@ ul.social-icons {
 // Blog
 .post-format {
 	background: @major_color;
-} 
+}
+
+.voting-symbol{
+	span.star.active:before{
+		color: @major_color;
+	}
+}
+
+.sp-rating {
+	span.star:hover:before,
+	span.star:hover ~ span.star:before {
+		color: darken(@major_color, 10%);
+	}
+}
 
 .entry-link,
 .entry-quote {

@@ -91,8 +91,6 @@ $useDefList = ($params->get('show_modify_date') || $params->get('show_publish_da
 	<?php if (!$params->get('show_intro')) : echo $this->item->event->afterDisplayTitle; endif; ?>
 	<?php echo $this->item->event->beforeDisplayContent; ?>
 
-	<?php echo JLayoutHelper::render('joomla.content.rating', array('params' => $params, 'item' => $this->item, 'rating_layout' => 'single')) ?>
-
 	<?php if (isset($urls) && ((!empty($urls->urls_position) && ($urls->urls_position == '0')) || ($params->get('urls_position') == '0' && empty($urls->urls_position)))
 		|| (empty($urls->urls_position) && (!$params->get('urls_position')))) : ?>
 	<?php echo $this->loadTemplate('links'); ?>

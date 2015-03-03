@@ -14,23 +14,51 @@
 
 body {
  	&.rtl {
+
+		#sp-top-bar .sp-module {
+			margin: 0 20px 0 0;
+		}
+
 		//top address
 		.sp-contact-info {
 			float: left;
 		}
 
-		//off canvas
+		// lang switcher
+		.sp-module-content .mod-languages ul.lang-inline li {
+			margin: 0 0 0 5px;
+		}
+
+
+		//Offcanvas
 		#offcanvas-toggler {
 			float: left;
 		}
+		#offcanvas-toggler >i {
+			padding: 0 10px 0 0;
 
-		.offcanvas-menu {
-			right: 0;
-			left: -280px;
 		}
 		.close-offcanvas {
 			right: auto;
 			left: 10px;
+		}
+		.offcanvas-menu {
+			-webkit-transition: opacity 400ms cubic-bezier(0.7,0,0.3,1), left 400ms cubic-bezier(0.7,0,0.3,1);
+			transition: opacity 400ms cubic-bezier(0.7,0,0.3,1), left 400ms cubic-bezier(0.7,0,0.3,1);
+		}
+
+		.body-innerwrapper:after {
+			left: 0;
+		}
+
+		.offcanvas-menu {
+			left: -280px;
+		}
+
+		&.offcanvas {
+			.offcanvas-menu {
+				left: 0;
+			}
 		}
 
 		//mega menu

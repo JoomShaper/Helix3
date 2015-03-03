@@ -58,8 +58,6 @@ $post_format = $post_attribs->get('post_format', 'standard');
 
 <?php $rating = (int) $this->item->rating; ?>
 
-<?php echo JLayoutHelper::render('joomla.content.rating', array('params' => $params, 'item' => $this->item, 'rating_layout' => 'list')) ?>
-
 <?php echo $this->item->introtext; ?>
 
 <?php if ($useDefList && ($info == 1 || $info == 2)) : ?>

@@ -37,6 +37,7 @@ $blockPosition = $displayData['params']->get('info_block_position', 0);
 			<?php if ($displayData['params']->get('show_publish_date')) : ?>
 				<?php echo JLayoutHelper::render('joomla.content.info_block.publish_date', $displayData); ?>
 			<?php endif; ?>
+
 		<?php endif; ?>
 
 		<?php if ($displayData['position'] == 'above' && ($blockPosition == 0)
@@ -54,4 +55,7 @@ $blockPosition = $displayData['params']->get('info_block_position', 0);
 				<?php echo JLayoutHelper::render('joomla.content.info_block.hits', $displayData); ?>
 			<?php endif; ?>
 		<?php endif; ?>
+
+		<?php echo JLayoutHelper::render('joomla.content.rating', $displayData) ?>
+
 	</dl>

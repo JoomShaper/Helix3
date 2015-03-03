@@ -64,6 +64,13 @@ ul.social-icons >li a:hover {
 .post-format {
   background: #eb4947;
 }
+.voting-symbol span.star.active:before {
+  color: #eb4947;
+}
+.sp-rating span.star:hover:before,
+.sp-rating span.star:hover ~ span.star:before {
+  color: #e61c19;
+}
 .entry-link,
 .entry-quote {
   background: #eb4947;

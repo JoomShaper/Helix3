@@ -95,3 +95,6 @@ svg {
 #mailto-window input[type="text"] {
   height: auto !important;
 }
+.chzn-container.chzn-container-multi input[type="text"] {
+  min-height: 30px;
+}

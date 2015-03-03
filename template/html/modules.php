@@ -15,16 +15,12 @@ function modChrome_sp_xhtml($module, $params, $attribs) {
 	$moduleClass   = $bootstrapSize != 0 ? ' col-sm-' . $bootstrapSize : '';
 	$headerTag     = htmlspecialchars($params->get('header_tag', 'h3'));
 	$headerClass   = htmlspecialchars($params->get('header_class', 'sp-module-title'));
-
+	
 	if ($module->content) {
 		echo '<' . $moduleTag . ' class="sp-module ' . htmlspecialchars($params->get('moduleclass_sfx')) . $moduleClass . '">';
 
 			if ($module->showtitle)
 			{
-				if( $params->get('icon') ) {
-					$module->title = '<i class="fa '. $params->get('icon') .'"></i> ' . $module->title;
-				}
-
 				echo '<' . $headerTag . ' class="' . $headerClass . '">' . $module->title . '</' . $headerTag . '>';
 			}
 

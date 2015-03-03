@@ -693,12 +693,38 @@ select:focus:invalid:focus {
 .input-prepend .popover {
   font-size: 14px;
 }
-.input-append input,
-.input-append select,
+.input-append input[type="text"],
+.input-append input[type="password"],
+.input-append input[type="datetime"],
+.input-append input[type="datetime-local"],
+.input-append input[type="date"],
+.input-append input[type="month"],
+.input-append input[type="time"],
+.input-append input[type="week"],
+.input-append input[type="number"],
+.input-append input[type="email"],
+.input-append input[type="url"],
+.input-append input[type="search"],
+.input-append input[type="tel"],
+.input-append input[type="color"],
 .input-append .uneditable-input,
-.input-prepend input,
-.input-prepend select,
+.input-prepend input[type="text"],
+.input-prepend input[type="password"],
+.input-prepend input[type="datetime"],
+.input-prepend input[type="datetime-local"],
+.input-prepend input[type="date"],
+.input-prepend input[type="month"],
+.input-prepend input[type="time"],
+.input-prepend input[type="week"],
+.input-prepend input[type="number"],
+.input-prepend input[type="email"],
+.input-prepend input[type="url"],
+.input-prepend input[type="search"],
+.input-prepend input[type="tel"],
+.input-prepend input[type="color"],
 .input-prepend .uneditable-input {
+  width: auto;
+  display: inline-block;
   position: relative;
   margin-bottom: 0;
   *margin-left: 0;
@@ -707,11 +733,35 @@ select:focus:invalid:focus {
   -moz-border-radius: 0 4px 4px 0;
   border-radius: 0 4px 4px 0;
 }
-.input-append input:focus,
-.input-append select:focus,
+.input-append input[type="text"]:focus,
+.input-append input[type="password"]:focus,
+.input-append input[type="datetime"]:focus,
+.input-append input[type="datetime-local"]:focus,
+.input-append input[type="date"]:focus,
+.input-append input[type="month"]:focus,
+.input-append input[type="time"]:focus,
+.input-append input[type="week"]:focus,
+.input-append input[type="number"]:focus,
+.input-append input[type="email"]:focus,
+.input-append input[type="url"]:focus,
+.input-append input[type="search"]:focus,
+.input-append input[type="tel"]:focus,
+.input-append input[type="color"]:focus,
 .input-append .uneditable-input:focus,
-.input-prepend input:focus,
-.input-prepend select:focus,
+.input-prepend input[type="text"]:focus,
+.input-prepend input[type="password"]:focus,
+.input-prepend input[type="datetime"]:focus,
+.input-prepend input[type="datetime-local"]:focus,
+.input-prepend input[type="date"]:focus,
+.input-prepend input[type="month"]:focus,
+.input-prepend input[type="time"]:focus,
+.input-prepend input[type="week"]:focus,
+.input-prepend input[type="number"]:focus,
+.input-prepend input[type="email"]:focus,
+.input-prepend input[type="url"]:focus,
+.input-prepend input[type="search"]:focus,
+.input-prepend input[type="tel"]:focus,
+.input-prepend input[type="color"]:focus,
 .input-prepend .uneditable-input:focus {
   z-index: 2;
 }
@@ -720,6 +770,7 @@ select:focus:invalid:focus {
   display: inline-block;
   width: auto;
   height: 20px;
+  min-height: 20px;
   min-width: 16px;
   padding: 4px 5px;
   font-size: 14px;
@@ -736,6 +787,7 @@ select:focus:invalid:focus {
 .input-prepend .add-on,
 .input-prepend .btn,
 .input-prepend .btn-group > .dropdown-toggle {
+  display: inline-block;
   vertical-align: top;
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
@@ -756,15 +808,39 @@ select:focus:invalid:focus {
   -moz-border-radius: 4px 0 0 4px;
   border-radius: 4px 0 0 4px;
 }
-.input-append input,
-.input-append select,
+.input-append input[type="text"],
+.input-append input[type="password"],
+.input-append input[type="datetime"],
+.input-append input[type="datetime-local"],
+.input-append input[type="date"],
+.input-append input[type="month"],
+.input-append input[type="time"],
+.input-append input[type="week"],
+.input-append input[type="number"],
+.input-append input[type="email"],
+.input-append input[type="url"],
+.input-append input[type="search"],
+.input-append input[type="tel"],
+.input-append input[type="color"],
 .input-append .uneditable-input {
   -webkit-border-radius: 4px 0 0 4px;
   -moz-border-radius: 4px 0 0 4px;
   border-radius: 4px 0 0 4px;
 }
-.input-append input + .btn-group .btn:last-child,
-.input-append select + .btn-group .btn:last-child,
+.input-append input[type="text"] + .btn-group .btn:last-child,
+.input-append input[type="password"] + .btn-group .btn:last-child,
+.input-append input[type="datetime"] + .btn-group .btn:last-child,
+.input-append input[type="datetime-local"] + .btn-group .btn:last-child,
+.input-append input[type="date"] + .btn-group .btn:last-child,
+.input-append input[type="month"] + .btn-group .btn:last-child,
+.input-append input[type="time"] + .btn-group .btn:last-child,
+.input-append input[type="week"] + .btn-group .btn:last-child,
+.input-append input[type="number"] + .btn-group .btn:last-child,
+.input-append input[type="email"] + .btn-group .btn:last-child,
+.input-append input[type="url"] + .btn-group .btn:last-child,
+.input-append input[type="search"] + .btn-group .btn:last-child,
+.input-append input[type="tel"] + .btn-group .btn:last-child,
+.input-append input[type="color"] + .btn-group .btn:last-child,
 .input-append .uneditable-input + .btn-group .btn:last-child {
   -webkit-border-radius: 0 4px 4px 0;
   -moz-border-radius: 0 4px 4px 0;

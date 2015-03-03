@@ -1,9 +1,17 @@
 <?php
+/**
+ * @package SP Page Builder
+ * @author JoomShaper http://www.joomshaper.com
+ * @copyright Copyright (c) 2010 - 2015 JoomShaper
+ * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or later
+*/
+//no direct accees
+defined ('_JEXEC') or die ('resticted aceess');
+
 SpAddonsConfig::addonConfig(
 	array( 
 		'type'=>'content',
 		'addon_name'=>'sp_image_content',
-		'category'=>'Helix 3',
 		'title'=>JText::_('COM_SPPAGEBUILDER_ADDON_IMAGE_CONTENT'),
 		'desc'=>JText::_('COM_SPPAGEBUILDER_ADDON_IMAGE_CONTENT_DESC'),
 		'attr'=>array(
@@ -16,12 +24,6 @@ SpAddonsConfig::addonConfig(
 			'image'=>array(
 				'type'=>'media', 
 				'title'=>JText::_('COM_SPPAGEBUILDER_ADDON_IMAGE_CONTENT_IMAGE'),
-				),
-			'image_width'=>array(
-				'type'=>'number', 
-				'title'=>JText::_('COM_SPPAGEBUILDER_ADDON_IMAGE_CONTENT_IMAGE_WIDTH'),
-				'desc'=>JText::_('COM_SPPAGEBUILDER_ADDON_IMAGE_CONTENT_IMAGE_WIDTH_DESC'),
-				'std'=>'50'
 				),
 			
 			'image_alignment'=>array(
@@ -65,6 +67,13 @@ SpAddonsConfig::addonConfig(
 				'type'=>'number', 
 				'title'=>JText::_('COM_SPPAGEBUILDER_ADDON_TITLE_FONT_SIZE'),
 				'desc'=>JText::_('COM_SPPAGEBUILDER_ADDON_TITLE_FONT_SIZE_DESC'),
+				'std'=>''
+				),
+
+			'title_fontweight'=>array(
+				'type'=>'text', 
+				'title'=>JText::_('COM_SPPAGEBUILDER_ADDON_TITLE_FONT_WEIGHT'),
+				'desc'=>JText::_('COM_SPPAGEBUILDER_ADDON_TITLE_FONT_WEIGHT_DESC'),
 				'std'=>''
 				),
 

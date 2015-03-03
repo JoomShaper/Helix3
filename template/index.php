@@ -145,7 +145,7 @@ if($custom_js = $this->helix3->getParam('custom_js')) {
         }
 
         $this->helix3->addLess('presets',  'presets/'.$this->helix3->Preset(), array('class'=>'preset'));
-
+        
         //Before Head
         if($before_head = $this->helix3->getParam('before_head')) {
             echo $before_head . "\n";

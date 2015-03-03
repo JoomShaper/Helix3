@@ -1,7 +1,7 @@
 /**
  * @package Helix Framework
  * @author JoomShaper http://www.joomshaper.com
- * @copyright Copyright (c) 2010 - 2013 JoomShaper
+ * @copyright Copyright (c) 2010 - 2015 JoomShaper
  * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or later
 */
 
@@ -9,22 +9,22 @@
  *======= 	TABLE OF CONTENT	 ========*
  *=======================================*
 
-	01. Base Style					// Line No. 1
-	01. Button & Input				// Line No. 65	
-	03. Top Bar						// Line No. 127
-	04. Header						// Line No. 167
-	05. Page Title					// Line No. 222
-	06. body innerwrapper			// Line No. 1273
-	07. Page Builder Addons			// Line No. 299
-	08. Module						// Line No. 345
-	09. Login Form					// Line No. 452
-	10. Search						// Line No. 480
-	11. Blog						// Line No. 568
-	12. Bottom						// Line No. 782
-	13. Footer						// Line No. 800
-	14. Comingsoon					// Line No. 856
-	15. Error page					// Line No. 938
-	16. Mixed CSS					// Line No. 988	
+	01. Base Style	
+	01. Button & Input
+	03. Top Bar
+	04. Header
+	05. Page Title
+	06. body innerwrapper
+	07. Page Builder Addons
+	08. Module
+	09. Login Form
+	10. Search
+	11. Blog
+	12. Bottom
+	13. Footer
+	14. Comingsoon
+	15. Error page
+	16. Mixed CSS
 
 =======================================*/
 
@@ -132,6 +132,10 @@ input[type="color"],
 *=======================================*/
 #sp-top-bar {
 	padding: 8px 0;
+	.sp-module {
+		display: inline-block;
+		margin: 0 0 0 20px;
+	}
 }
 
 ul.social-icons {
@@ -144,6 +148,30 @@ ul.social-icons {
 		margin: 5px 7px;
 		a {
 			color: #999999;
+		}
+	}
+}
+
+// language switcher
+.sp-module-content {
+	.mod-languages {
+		ul.lang-inline {
+			margin: 0;
+			padding: 0;
+
+			li {
+				border: none;
+				display: inline-block;
+				margin: 0 5px 0 0;
+
+				a {
+					padding: 0 !important;
+				}
+
+				>a:before {
+					display: none;
+				}
+			}
 		}
 	}
 }
@@ -314,20 +342,38 @@ only screen and (min-device-pixel-ratio: 1.5) {
 }
 
 //Image content addon
+//Image content addon
 .sppb-addon-image-content {
 	position: relative;
 	.sppb-image-holder {
 		position: absolute;
-		left: 0;
 		top: 0;
+		width: 50%;
 		height: 100%;
 		background-position: 50%;
 		background-size: cover;
 	}
 
-	.sppb-content-holder {
-		padding: 120px 0 120px 50px;
+	&.aligment-left {
+		.sppb-image-holder {
+			left: 0;
+		}
+
+		.sppb-content-holder {
+			padding: 120px 0 120px 50px;
+		}
 	}
+
+	&.aligment-right {
+		.sppb-image-holder {
+			right: 0;
+		}
+
+		.sppb-content-holder {
+			padding: 120px 50px 120px 0;
+		}
+	}
+
 }
 
 
@@ -598,6 +644,52 @@ article {
 	>span {
 		text-transform: uppercase;
 		letter-spacing: 2px;
+	}
+}
+
+//Article Voting
+.content_rating,
+.content_rating + form {
+	display: none;
+}
+
+.voting-symbol{
+	unicode-bidi: bidi-override;
+	direction: rtl;
+	font-size: 14px;
+	display: inline-block;
+
+	span.star {
+		font-family: "FontAwesome";
+		font-weight: normal;
+		font-style: normal;
+		display: inline-block;
+
+		&.active:before{
+			content: "\f005";
+		}
+
+		&:before{
+			content: "\f006";
+			padding-right: 5px;
+		}
+
+	}
+}
+
+.sp-rating {
+	span.star:hover:before,
+	span.star:hover ~ span.star:before {
+		content: "\f005";
+		cursor: pointer;
+	}
+}
+
+.post_rating {
+	margin-bottom: 20px;
+	.ajax-loader,
+	.voting-result {
+		display: none;
 	}
 }
 
@@ -987,17 +1079,20 @@ article {
 /*=========================================
 *======= 	Start  Mixed CSS   ==========
 *=======================================*/
-#sp-social-share {
-	margin-top: 20px;
-	margin-bottom: 20px;
-	> span {
-		display: inline-block;
-		float: left;
-		&.facebook-share {
-			margin-right: 10px;
+.sp-social-share {
+	ul{
+		display: block;
+		padding: 0;
+		margin: 20px -5px 0;
+
+		li{
+			display: inline-block;
+			font-size: 24px;
+			margin: 0 5px;
 		}
 	}
 }
+
 
 // profile
 .dl-horizontal {
@@ -1052,32 +1147,6 @@ table.category {
 	color:#fff;
 	-webkit-transition: 300ms;
 	transition: 300ms;
-}
-
-// offcanvas
-.offcanvas-menu {
-	.offcanvas-inner {
-		.sp-module ul {
-			> li{
-				border: none ;
-				a {
-					border-bottom: 1px solid #eee;
-					.transition(300ms);
-					padding:4px 20px;
-					&:hover {
-						background: #f5f5f5;
-					}
-				}
-
-				>a:before  {
-					display: none;
-				}
-			}
-		}	
-		.sp-module > ul {
-			margin:0 -20px;
-		}
-	}
 }
 
 

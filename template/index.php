@@ -84,7 +84,7 @@ if( $this->params->get('enable_h5_font') ) {
 
 //Heading6 Font
 if( $this->params->get('enable_h6_font') ) {
-    $webfonts['h4'] = $this->params->get('h6_font');
+    $webfonts['h6'] = $this->params->get('h6_font');
 }
 
 //Navigation Font

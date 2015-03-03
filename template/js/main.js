@@ -6,15 +6,42 @@
 */
 jQuery(function($) {
 
-    $('#offcanvas-toggler').on('click', function(event){
+    var $body = $('body'),
+    $wrapper = $('.body-innerwrapper'),
+    $toggler = $('#offcanvas-toggler'),
+    $close = $('.close-offcanvas'),
+    $offCanvas = $('.offcanvas-menu');
+
+    $toggler.on('click', function(event){
         event.preventDefault();
-        $('body').toggleClass('offcanvas');
+        stopBubble (event);
+        setTimeout(offCanvasShow, 50);
     });
 
-    $('.close-offcanvas').on('click', function(event){
+    $close.on('click', function(event){
         event.preventDefault();
-        $('body').removeClass('offcanvas');
+        offCanvasClose();
     });
+
+    var offCanvasShow = function(){
+        $body.addClass('offcanvas');
+        $wrapper.on('click',offCanvasClose);
+        $close.on('click',offCanvasClose);
+        $offCanvas.on('click',stopBubble);
+
+    };
+
+    var offCanvasClose = function(){
+        $body.removeClass('offcanvas');
+        $wrapper.off('click',offCanvasClose);
+        $close.off('click',offCanvasClose);
+        $offCanvas.off('click',stopBubble);
+    };
+
+    var stopBubble = function (e) {
+        e.stopPropagation();
+        return true;
+    };
 
     //Mega Menu
     $('.sp-megamenu-wrapper').parent().parent().css('position','static').parent().css('position', 'relative');

@@ -11,6 +11,7 @@
 - Desktop,  Mobile and Retina logo option
 - Advanced Typography Options - Google Fonts with update button
 - Layout Manager
+- Custom Layout options in Layout Builder
 - Bootstrap 3.2
 - Cross-Browser Support
 and much more.

@@ -424,17 +424,21 @@ class plgAjaxHelix3 extends JPlugin
         ob_start();
         
         $colGrid = array(
-            '12'    => '12',
-            '66'    => '6,6',
-            '444'   => '4,4,4',
-            '3333'  => '3,3,3,3',
-            '48'    => '4,8',
-            '39'    => '3,9',
-            '363'   => '3,6,3',
-            '264'   => '2,6,4',
-            '210'   => '2,10',
-            '57'    => '5,7',
-            );
+            '12'        => '12',
+            '66'        => '6,6',
+            '444'       => '4,4,4',
+            '3333'      => '3,3,3,3',
+            '48'        => '4,8',
+            '39'        => '3,9',
+            '363'       => '3,6,3',
+            '264'       => '2,6,4',
+            '210'       => '2,10',
+            '57'        => '5,7',
+            '237'       => '2,3,7',
+            '255'       => '2,5,5',
+            '282'       => '2,8,2',
+            '2442'      => '2,4,4,2',
+        );
 
         if ($layout_data) {
         foreach ($layout_data as $row) {
@@ -465,6 +469,15 @@ class plgAjaxHelix3 extends JPlugin
                                 echo '<li><a href="#" class="column-layout column-layout-' .$key. ' '.$_active.'" data-layout="'.$grid.'"></a></li>';
                                 $_active ='';
                             } ?>
+                            <?php
+                                $customLayout = '';
+                                if (!isset($colGrid[$row->layout])) {
+                                    $active = 'active';
+                                    $split = str_split($row->layout);
+                                    $customLayout = implode(',',$split);
+                                }
+                            ?>
+                            <li><a href="#" class="hasTooltip column-layout-custom column-layout custom <?php echo $active; ?>" data-layout="<?php echo $customLayout; ?>" data-type='custom' data-original-title="<strong>Custom Layout</strong>"></a></li>
                         </ul>
                     </li>
                     <li><a class="btn btn-small add-row" href="#"><i class="fa fa-bars"></i> <?php echo JText::_('HELIX_ADD_ROW'); ?></a></li>

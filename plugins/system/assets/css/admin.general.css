@@ -504,6 +504,9 @@ a.btn-ino{color:#fff}
 .button-group > li > ul li a.column-layout-2442{
 	background-image: url(../images/layout/2442.png);
 }
+.button-group > li > ul li a.column-layout-custom{
+	background-image: url(../images/layout/custom.png);
+}
 
 .button-group > li ul li a:hover,
 .button-group > li ul li a.active{

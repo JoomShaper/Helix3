@@ -37,7 +37,6 @@ $colGrid = array(
         '255'       => '2,5,5',
         '282'       => '2,8,2',
         '2442'      => '2,4,4,2',
-        '222222'    => '2,2,2,2,2,2',
     );
 
 ?>
@@ -91,6 +90,7 @@ $colGrid = array(
                                 $active = '';
                             }
                             ?>
+                            <li><a href="#" class="hasTooltip column-layout-custom column-layout custom <?php echo $active; ?>" data-layout="<?php echo $customLayout; ?>" data-type='custom' data-original-title="<strong>Custom Layout</strong>"></a></li>
                         </ul>
                     </li>
                     <li><a class="btn btn-small add-row" href="#"><i class="fa fa-bars"></i> <?php echo JText::_('HELIX_ADD_ROW'); ?></a></li>
@@ -147,6 +147,16 @@ $colGrid = array(
                                 echo '<li><a href="#" class="column-layout hasTooltip column-layout-' .$key. ' '.$active.'" data-layout="'.$grid.'" data-original-title="<strong>'.$grid.'</strong>"></a></li>';
                                 $active ='';
                             } ?>
+
+                            <?php
+                                $customLayout = '';
+                                if (!isset($colGrid[$row->layout])) {
+                                    $active = 'active';
+                                    $split = str_split($row->layout);
+                                    $customLayout = implode(',',$split);
+                                }
+                            ?>
+                            <li><a href="#" class="hasTooltip column-layout-custom column-layout custom <?php echo $active; ?>" data-layout="<?php echo $customLayout; ?>" data-type='custom' data-original-title="<strong>Custom Layout</strong>"></a></li>
                         </ul>
                     </li>
                     <li><a class="btn btn-small add-row" href="#"><i class="fa fa-bars"></i> <?php echo JText::_('HELIX_ADD_ROW'); ?></a></li>

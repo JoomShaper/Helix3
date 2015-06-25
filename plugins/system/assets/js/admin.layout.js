@@ -403,17 +403,25 @@ jQuery(function($) {
 	$(document).on('click', '.column-layout', function(event) {
 		event.preventDefault();
 		
-		var $that = $(this);
-		if ($that.hasClass('active')) {
+		var $that = $(this),
+			colType = $that.data('type'), column;
+
+		if ($that.hasClass('active') && colType != 'custom' ) {
 			return;
 		};
+
+		
+
+		if (colType == 'custom') {
+			column = prompt('Enter your custom layout like 4,2,2,2,2 as total 12 grid','4,2,2,2,2');
+		}
 
 		var $parent 		= $that.closest('.column-list'),
 			$gparent 		= $that.closest('.layoutbuilder-section'),
 			oldLayoutData 	= $parent.find('.active').data('layout'),
-			oldLayout       = [12],
+			oldLayout       = ['12'],
 			layoutData 		= $that.data('layout'),
-			newLayout 		= [12];
+			newLayout 		= ['12'];
 
 		if (oldLayoutData !=12) {
 			oldLayout = oldLayoutData.split(',');
@@ -421,6 +429,29 @@ jQuery(function($) {
 
 		if(layoutData != 12 ){
 			newLayout = layoutData.split(',');
+		}
+
+		if ( colType == 'custom' ) {
+			var error 	= true;
+
+			if ( column != null ) {
+				var colArray = column.split(',');
+
+				var colSum = colArray.reduce(function(a, b) {
+					return Number(a) + Number(b);
+				});
+
+				if ( colSum == 12 ) {
+					newLayout = colArray;
+					$(this).data('layout', column)
+					error = false;
+				} 
+			}
+
+			if (error) {
+				alert('Error generated. Please correct your column arragnement and try again.');
+				return false;
+			}
 		}
 
 		var col = [],
@@ -451,7 +482,7 @@ jQuery(function($) {
 				});
 			}
 
-			new_item +='<div class="layout-column col-sm-'+newLayout[i]+'" '+dataAttr+'>';
+			new_item +='<div class="layout-column col-sm-'+ newLayout[i].trim() +'" '+dataAttr+'>';
 			if (col[i]) {
 				new_item += col[i];
 			}else{

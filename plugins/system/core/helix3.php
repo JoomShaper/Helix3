@@ -736,14 +736,14 @@ class Helix3
 	 */
 	public static function lessInit()
 	{
-		if (!class_exists('lessc'))
-		{
+		if (!class_exists('lessc')) {
 			//import less class file
 			require_once __DIR__ . '/classes/lessc.inc.php';
-			self::getInstance()->_less = new lessc();
-
-			return self::getInstance();
 		}
+
+		self::getInstance()->_less = new lessc();
+
+		return self::getInstance();
 	}
 
 	/**

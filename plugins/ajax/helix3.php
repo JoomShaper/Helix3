@@ -470,6 +470,7 @@ class plgAjaxHelix3 extends JPlugin
                                 $_active ='';
                             } ?>
                             <?php
+                                $active = '';
                                 $customLayout = '';
                                 if (!isset($colGrid[$row->layout])) {
                                     $active = 'active';

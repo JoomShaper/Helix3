@@ -4,7 +4,7 @@
 * @author JoomShaper http://www.joomshaper.com
 * @copyright Copyright (c) 2010 - 2015 JoomShaper
 * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
-*/  
+*/
 
 //no direct accees
 defined ('_JEXEC') or die ('resticted aceess');
@@ -47,7 +47,7 @@ $colGrid = array(
                 <?php echo JText::_('HELIX_ENTER_LAYOUT_NAME'); ?>
                 <input class="form-control addon-input addon-name" type="text" data-attrname="layout_name" value="" placeholder="">
             </label>
-        </div> 
+        </div>
     </div>
 </div>
 
@@ -76,7 +76,7 @@ $colGrid = array(
             <div class="settings-left pull-left">
                 <a class="row-move" href="#"><i class="fa fa-arrows"></i></a>
                 <strong class="section-title"><?php echo JText::_('HELIX_SECTION_TITLE'); ?></strong>
-            </div>            
+            </div>
 
             <div class="settings-right pull-right">
                 <ul class="button-group">
@@ -90,7 +90,7 @@ $colGrid = array(
                                 $active = '';
                             }
                             ?>
-                            <li><a href="#" class="hasTooltip column-layout-custom column-layout custom <?php echo $active; ?>" data-layout="<?php echo $customLayout; ?>" data-type='custom' data-original-title="<strong>Custom Layout</strong>"></a></li>
+                            <li><a href="#" class="hasTooltip column-layout-custom column-layout custom <?php echo $active; ?>" data-layout="" data-type='custom' data-original-title="<strong>Custom Layout</strong>"></a></li>
                         </ul>
                     </li>
                     <li><a class="btn btn-small add-row" href="#"><i class="fa fa-bars"></i> <?php echo JText::_('HELIX_ADD_ROW'); ?></a></li>
@@ -140,7 +140,7 @@ $colGrid = array(
                         <ul class="column-list">
                             <?php
                             $active = '';
-                            foreach ($colGrid as $key => $grid){ 
+                            foreach ($colGrid as $key => $grid){
                                 if($key == $row->layout){
                                     $active = 'active';
                                 }

@@ -739,7 +739,7 @@ class Helix3
 
 		require_once __DIR__ . '/classes/lessc.inc.php';
 
-		self::getInstance()->_less = new lessc();
+		self::getInstance()->_less = new helix3_lessc();
 
 		return self::getInstance();
 	}

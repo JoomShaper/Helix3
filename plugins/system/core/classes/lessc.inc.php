@@ -15,29 +15,29 @@
  * The less compiler and parser.
  *
  * Converting LESS to CSS is a three stage process. The incoming file is parsed
- * by `lessc_parser` into a syntax tree, then it is compiled into another tree
- * representing the CSS structure by `lessc`. The CSS tree is fed into a
- * formatter, like `lessc_formatter` which then outputs CSS as a string.
+ * by `helix3_lessc_parser` into a syntax tree, then it is compiled into another tree
+ * representing the CSS structure by `helix3_lessc`. The CSS tree is fed into a
+ * formatter, like `helix3_lessc_formatter` which then outputs CSS as a string.
  *
  * During the first compile, all values are *reduced*, which means that their
  * types are brought to the lowest form before being dump as strings. This
  * handles math equations, variable dereferences, and the like.
  *
- * The `parse` function of `lessc` is the entry point.
+ * The `parse` function of `helix3_lessc` is the entry point.
  *
  * In summary:
  *
- * The `lessc` class creates an intstance of the parser, feeds it LESS code,
+ * The `helix3_lessc` class creates an intstance of the parser, feeds it LESS code,
  * then transforms the resulting tree to a CSS tree. This class also holds the
  * evaluation context, such as all available mixins and variables at any given
  * time.
  *
- * The `lessc_parser` class is only concerned with parsing its input.
+ * The `helix3_lessc_parser` class is only concerned with parsing its input.
  *
- * The `lessc_formatter` takes a CSS tree, and dumps it to a formatted string,
+ * The `helix3_lessc_formatter` takes a CSS tree, and dumps it to a formatted string,
  * handling things like indentation.
  */
-class lessc {
+class helix3_lessc {
 	static public $VERSION = "v0.4.0";
 	static protected $TRUE = array("keyword", "true");
 	static protected $FALSE = array("keyword", "false");
@@ -184,7 +184,7 @@ class lessc {
 	 * Compiling the block involves pushing a fresh environment on the stack,
 	 * and iterating through the props, compiling each one.
 	 *
-	 * See lessc::compileProp()
+	 * See helix3_lessc::compileProp()
 	 *
 	 */
 	protected function compileBlock($block) {
@@ -1763,7 +1763,7 @@ class lessc {
 	// inject array of unparsed strings into environment as variables
 	protected function injectVariables($args) {
 		$this->pushEnv();
-		$parser = new lessc_parser($this, __METHOD__);
+		$parser = new helix3_lessc_parser($this, __METHOD__);
 		foreach ($args as $name => $strValue) {
 			if ($name{0} != '@') $name = '@'.$name;
 			$parser->count = 0;
@@ -1939,7 +1939,7 @@ class lessc {
 	}
 
 	protected function makeParser($name) {
-		$parser = new lessc_parser($this, $name);
+		$parser = new helix3_lessc_parser($this, $name);
 		$parser->writeComments = $this->preserveComments;
 
 		return $parser;
@@ -1950,11 +1950,11 @@ class lessc {
 	}
 
 	protected function newFormatter() {
-		$className = "lessc_formatter_lessjs";
+		$className = "helix3_lessc_formatter_lessjs";
 		if (!empty($this->formatterName)) {
 			if (!is_string($this->formatterName))
 				return $this->formatterName;
-			$className = "lessc_formatter_$this->formatterName";
+			$className = "helix3_lessc_formatter_$this->formatterName";
 		}
 
 		return new $className;
@@ -2177,7 +2177,7 @@ class lessc {
 
 // responsible for taking a string of LESS code and converting it into a
 // syntax tree
-class lessc_parser {
+class helix3_lessc_parser {
 	static protected $nextBlockId = 0; // used to uniquely identify blocks
 
 	static protected $precedence = array(
@@ -2225,10 +2225,10 @@ class lessc_parser {
 	// caches preg escaped literals
 	static protected $literalCache = array();
 
-	public function __construct($lessc, $sourceName = null) {
+	public function __construct($helix3_lessc, $sourceName = null) {
 		$this->eatWhiteDefault = true;
 		// reference to less needed for vPrefix, mPrefix, and parentSelector
-		$this->lessc = $lessc;
+		$this->helix3_lessc = $helix3_lessc;
 
 		$this->sourceName = $sourceName; // name used for error messages
 
@@ -2236,12 +2236,12 @@ class lessc_parser {
 
 		if (!self::$operatorString) {
 			self::$operatorString =
-				'('.implode('|', array_map(array('lessc', 'preg_quote'),
+				'('.implode('|', array_map(array('helix3_lessc', 'preg_quote'),
 					array_keys(self::$precedence))).')';
 
-			$commentSingle = lessc::preg_quote(self::$commentSingle);
-			$commentMultiLeft = lessc::preg_quote(self::$commentMultiLeft);
-			$commentMultiRight = lessc::preg_quote(self::$commentMultiRight);
+			$commentSingle = helix3_lessc::preg_quote(self::$commentSingle);
+			$commentMultiLeft = helix3_lessc::preg_quote(self::$commentMultiLeft);
+			$commentMultiRight = helix3_lessc::preg_quote(self::$commentMultiRight);
 
 			self::$commentMulti = $commentMultiLeft.'.*?'.$commentMultiRight;
 			self::$whitePattern = '/'.$commentSingle.'[^\n]*\s*|('.self::$commentMulti.')\s*|\s+/Ais';
@@ -2291,7 +2291,7 @@ class lessc_parser {
 	 * functions represent discrete grammatical rules for the language, and
 	 * they are able to capture the text that represents those rules.
 	 *
-	 * Consider the function lessc::keyword(). (all parse functions are
+	 * Consider the function helix3_lessc::keyword(). (all parse functions are
 	 * structured the same)
 	 *
 	 * The function takes a single reference argument. When calling the
@@ -2300,7 +2300,7 @@ class lessc_parser {
 	 * argument, advance the position in the buffer, and return true. If it
 	 * fails then it won't advance the buffer and it will return false.
 	 *
-	 * All of these parse functions are powered by lessc::match(), which behaves
+	 * All of these parse functions are powered by helix3_lessc::match(), which behaves
 	 * the same way, but takes a literal regular expression. Sometimes it is
 	 * more convenient to use match instead of creating a new function.
 	 *
@@ -2309,7 +2309,7 @@ class lessc_parser {
 	 *
 	 * But, if some of the rules in the chain succeed before one fails, then
 	 * the buffer position will be left at an invalid state. In order to
-	 * avoid this, lessc::seek() is used to remember and set buffer positions.
+	 * avoid this, helix3_lessc::seek() is used to remember and set buffer positions.
 	 *
 	 * Before parsing a chain, use $s = $this->seek() to remember the current
 	 * position into $s. Then if a chain fails, use $this->seek($s) to
@@ -2421,7 +2421,7 @@ class lessc_parser {
 				$hidden = true;
 				if (!isset($block->args)) {
 					foreach ($block->tags as $tag) {
-						if (!is_string($tag) || $tag{0} != $this->lessc->mPrefix) {
+						if (!is_string($tag) || $tag{0} != $this->helix3_lessc->mPrefix) {
 							$hidden = false;
 							break;
 						}
@@ -2466,7 +2466,7 @@ class lessc_parser {
 	protected function isDirective($dirname, $directives) {
 		// TODO: cache pattern in parser
 		$pattern = implode("|",
-			array_map(array("lessc", "preg_quote"), $directives));
+			array_map(array("helix3_lessc", "preg_quote"), $directives));
 		$pattern = '/^(-[a-z-]+-)?(' . $pattern . ')$/i';
 
 		return preg_match($pattern, $dirname);
@@ -2475,8 +2475,8 @@ class lessc_parser {
 	protected function fixTags($tags) {
 		// move @ tags out of variable namespace
 		foreach ($tags as &$tag) {
-			if ($tag{0} == $this->lessc->vPrefix)
-				$tag[0] = $this->lessc->mPrefix;
+			if ($tag{0} == $this->helix3_lessc->vPrefix)
+				$tag[0] = $this->helix3_lessc->mPrefix;
 		}
 		return $tags;
 	}
@@ -2491,7 +2491,7 @@ class lessc_parser {
 
 		if (count($values) == 0) return false;
 
-		$exps = lessc::compressList($values, ' ');
+		$exps = helix3_lessc::compressList($values, ' ');
 		return true;
 	}
 
@@ -2589,7 +2589,7 @@ class lessc_parser {
 
 		if (count($values) == 0) return false;
 
-		$value = lessc::compressList($values, ', ');
+		$value = helix3_lessc::compressList($values, ', ');
 		return true;
 	}
 
@@ -2754,7 +2754,7 @@ class lessc_parser {
 		$this->eatWhiteDefault = false;
 
 		$stop = array("'", '"', "@{", $end);
-		$stop = array_map(array("lessc", "preg_quote"), $stop);
+		$stop = array_map(array("helix3_lessc", "preg_quote"), $stop);
 		// $stop[] = self::$commentMulti;
 
 		if (!is_null($rejectStrs)) {
@@ -2830,7 +2830,7 @@ class lessc_parser {
 
 		// look for either ending delim , escape, or string interpolation
 		$patt = '([^\n]*?)(@\{|\\\\|' .
-			lessc::preg_quote($delim).')';
+			helix3_lessc::preg_quote($delim).')';
 
 		$oldWhite = $this->eatWhiteDefault;
 		$this->eatWhiteDefault = false;
@@ -3073,7 +3073,7 @@ class lessc_parser {
 				if ($this->string($str)) {
 					// escape parent selector, (yuck)
 					foreach ($str[2] as &$chunk) {
-						$chunk = str_replace($this->lessc->parentSelector, "$&$", $chunk);
+						$chunk = str_replace($this->helix3_lessc->parentSelector, "$&$", $chunk);
 					}
 
 					$attrParts[] = $str;
@@ -3226,13 +3226,13 @@ class lessc_parser {
 	// consume a less variable
 	protected function variable(&$name) {
 		$s = $this->seek();
-		if ($this->literal($this->lessc->vPrefix, false) &&
+		if ($this->literal($this->helix3_lessc->vPrefix, false) &&
 			($this->variable($sub) || $this->keyword($name)))
 		{
 			if (!empty($sub)) {
 				$name = array('variable', $sub);
 			} else {
-				$name = $this->lessc->vPrefix.$name;
+				$name = $this->helix3_lessc->vPrefix.$name;
 			}
 			return true;
 		}
@@ -3347,7 +3347,7 @@ class lessc_parser {
 		}
 
 		if (!isset(self::$literalCache[$what])) {
-			self::$literalCache[$what] = lessc::preg_quote($what);
+			self::$literalCache[$what] = helix3_lessc::preg_quote($what);
 		}
 
 		return $this->match(self::$literalCache[$what], $m, $eatWhitespace);
@@ -3387,7 +3387,7 @@ class lessc_parser {
 		} else {
 			$validChars = $allowNewline ? "." : "[^\n]";
 		}
-		if (!$this->match('('.$validChars.'*?)'.lessc::preg_quote($what), $m, !$until)) return false;
+		if (!$this->match('('.$validChars.'*?)'.helix3_lessc::preg_quote($what), $m, !$until)) return false;
 		if ($until) $this->count -= strlen($what); // give back $what
 		$out = $m[1];
 		return true;
@@ -3557,7 +3557,7 @@ class lessc_parser {
 
 }
 
-class lessc_formatter_classic {
+class helix3_lessc_formatter_classic {
 	public $indentChar = "  ";
 
 	public $break = "\n";
@@ -3652,7 +3652,7 @@ class lessc_formatter_classic {
 	}
 }
 
-class lessc_formatter_compressed extends lessc_formatter_classic {
+class helix3_lessc_formatter_compressed extends helix3_lessc_formatter_classic {
 	public $disableSingle = true;
 	public $open = "{";
 	public $selectorSeparator = ",";
@@ -3665,11 +3665,9 @@ class lessc_formatter_compressed extends lessc_formatter_classic {
 	}
 }
 
-class lessc_formatter_lessjs extends lessc_formatter_classic {
+class helix3_lessc_formatter_lessjs extends helix3_lessc_formatter_classic {
 	public $disableSingle = true;
 	public $breakSelectors = true;
 	public $assignSeparator = ": ";
 	public $selectorSeparator = ",";
 }
-
-

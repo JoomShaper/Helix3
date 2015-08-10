@@ -981,7 +981,7 @@ class Helix3
 			$subset = array_unique($value['subset']);
 			if (isset($subset) && $subset)
 			{
-				$output .= '&amp;' . implode(',', $subset);
+				$output .= '&subset=' . implode(',', $subset);
 			}
 
 			$doc->addStylesheet('//fonts.googleapis.com/css?family=' . $output);

@@ -1044,6 +1044,9 @@ dl.article-info dd.hits span[class*=" icon-"] {
 .offcanvas .offcanvas-menu {
   opacity: 1;
 }
+.offcanvas .offcanvas-menu ul.nav-child li {
+  padding-left: 10px;
+}
 .menu .nav-child.small {
   font-size: inherit;
 }

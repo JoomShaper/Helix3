@@ -50,7 +50,9 @@ class  plgSystemHelix3 extends JPlugin
 
             if($data['id'] && $data['parent_id'] == 1) {
                 
-                $doc->addScript($plg_path.'/assets/js/jquery-ui.min.js');
+                JHtml::_('jquery.ui', array('core', 'more', 'sortable'));
+
+                $doc->addScript($plg_path.'/assets/js/jquery-ui.draggable.min.js');
                 $doc->addStyleSheet($plg_path.'/assets/css/bootstrap.css');
                 $doc->addStyleSheet($plg_path.'/assets/css/font-awesome.min.css');
                 $doc->addStyleSheet($plg_path.'/assets/css/modal.css');
@@ -58,6 +60,7 @@ class  plgSystemHelix3 extends JPlugin
                 $doc->addScript($plg_path.'/assets/js/modal.js');
                 $doc->addScript( $plg_path. '/assets/js/menu.generator.js' );
                 $form->loadFile('menu-parent', false);
+
             } else {
                 $form->loadFile('menu-child', false); 
             }

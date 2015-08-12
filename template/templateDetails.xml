@@ -11,7 +11,7 @@
     <description>Shaper Helix3 - Starter Template of Helix3 framework</description>
 
     <updateservers> 
-        <server type="template" priority="1" name="shaper_helix3">http://www.joomshaper.com/updates/tpl_helix3.xml</server>
+        <server type="template" priority="1" name="shaper_helix3">http://www.joomshaper.com/updates/shaper-helix3.xml</server>
     </updateservers>
 
     <languages>

@@ -14,6 +14,11 @@ if($displayData['params']->get('show_vote')) {
 $rating = (int) $displayData['item']->rating;
 $layout = JRequest::getCmd('view', 'article');
 
+$rating_count = $displayData['item']->rating_count;
+if($rating_count == '') {
+	$rating_count = 0;
+}
+
 $class_name = '';
 
 if ($layout == 'article') {
@@ -35,6 +40,6 @@ if ($layout == 'article') {
 			?>
 		</div>
 		<span class="ajax-loader fa fa-spinner fa-spin"></span>
-		<span class="voting-result"></span>
+		<span class="voting-result">( <?php echo ($rating_count>1) ? $rating_count . ' ' . JText::_('HELIX3_COUNT_RATINGS') : $rating_count . ' ' . JText::_('HELIX3_COUNT_RATING'); ?> )</span>
 </dd>
 <?php }

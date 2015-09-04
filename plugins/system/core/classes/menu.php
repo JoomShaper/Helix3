@@ -18,12 +18,16 @@ class Helix3Menu {
 	public $_params 	= null;
 	public $menuname	= 'mainmenu';
 	
-	function __construct($class = ''){
+	function __construct($class = '', $name = ''){
 		$this->app = JFactory::getApplication();
 		$this->template = $this->app->getTemplate(true);
 		$this->_params = $this->template->params;
 		$this->extraclass = $class;
-		$this->menuname = $this->_params->get('menu');
+		if($name) {
+			$this->menuname = $name;
+		} else {
+			$this->menuname = $this->_params->get('menu');
+		}
 		$this->initMenu();
 		$this->render();
 	}

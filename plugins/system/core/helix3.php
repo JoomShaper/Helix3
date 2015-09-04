@@ -909,11 +909,43 @@ class Helix3
 	 *
 	 * @since    1.0
 	 */
-	public static function loadMegaMenu($class = "")
+	public static function loadMegaMenu($class = "", $name = '')
 	{
 		require_once __DIR__ . '/classes/menu.php';
 
-		return new Helix3Menu($class);
+		return new Helix3Menu($class, $name);
+	}
+
+
+	/**
+	 * Convert object to array
+	 *
+	 */
+	public static function object_to_array($obj) {
+		if(is_object($obj)) $obj = (array) $obj;
+		if(is_array($obj)) {
+			$new = array();
+			foreach($obj as $key => $val) {
+				$new[$key] = self::object_to_array($val);
+			}
+		}
+		else $new = $obj;
+		return $new;       
+	}
+
+	/**
+	 * Convert object to array
+	 *
+	 */
+	public static function font_key_search($font, $fonts) {
+
+		foreach ($fonts as $key => $value) {
+			if($value['family'] == $font) {
+				return $key;
+			}
+		}
+
+		return 0;
 	}
 
 	/**
@@ -925,8 +957,16 @@ class Helix3
 	 */
 	public static function addGoogleFont($fonts)
 	{
-
 		$doc = JFactory::getDocument();
+		$webfonts = '';
+		$tpl_path = JPATH_BASE . '/templates/' . JFactory::getApplication()->getTemplate() . '/webfonts/webfonts.json';
+		$plg_path = JPATH_BASE . '/plugins/system/helix3/assets/webfonts/webfonts.json';
+
+		if(file_exists($tpl_path)) {
+			$webfonts = JFile::read($tpl_path);
+		} else if (file_exists($plg_path)) {
+			$webfonts = JFile::read($plg_path);
+		}
 
 		//Families
 		$families = array();
@@ -972,16 +1012,25 @@ class Helix3
 		{
 			$output = str_replace(' ', '+', $key);
 
-			$weight = array_unique($value['weight']);
-			if (isset($weight) && $weight)
-			{
-				$output .= ':' . implode(',', $weight);
+			// Weight
+			if($webfonts) {
+				$fonts_array = self::object_to_array(json_decode($webfonts));
+				$font_key = self::font_key_search($key, $fonts_array['items']);
+				$weight_array = $fonts_array['items'][$font_key]['variants'];
+				$output .= ':' . implode(',', $weight_array);
+			} else {
+				$weight = array_unique($value['weight']);
+				if (isset($weight) && $weight)
+				{
+					$output .= ':' . implode(',', $weight);
+				}
 			}
 
+			// Subset
 			$subset = array_unique($value['subset']);
 			if (isset($subset) && $subset)
 			{
-				$output .= '&subset=' . implode(',', $subset);
+				$output .= '&amp;subset=' . implode(',', $subset);
 			}
 
 			$doc->addStylesheet('//fonts.googleapis.com/css?family=' . $output);

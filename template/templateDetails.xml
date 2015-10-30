@@ -353,6 +353,10 @@
                     <option value="1">HELIX_YES</option>
                     <option value="0">HELIX_NO</option>
                 </field>
+
+                <field type="group" title="HELIX_IMPORT_EXPORT"  />
+                <field name="export_options" type="optionio" label="HELIX_IMPORT_EXPORT_FIELD"/>
+
             </fieldset>
             <!--End Advanced Tab-->
 

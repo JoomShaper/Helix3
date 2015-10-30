@@ -144,15 +144,58 @@ jQuery(function($){
     });
 
     //Media Button
-    $('.input-prepend').find('.btn').each(function(){
-        if($(this).hasClass('modal')) {
-            $(this).addClass('btn-success');
+    $( '.input-prepend' ).find( '.btn' ).each(function(){
+        if($(this).hasClass( 'modal' )) {
+            $(this).addClass( 'btn-success' );
         } else {
-            $(this).addClass('btn-danger');
+            $(this).addClass( 'btn-danger' );
         }
     });
 
     //Add .btn-group class
-    $('.radio').addClass('btn-group');
+    $( '.radio' ).addClass( 'btn-group' );
+
+    //Import Template Settings
+    $( '.form-horizontal' ).on( 'click', '#import-settings', function( event ) {
+        event.preventDefault();
+
+        var $that = $( this ),
+            template_id = $that.data( 'template_id' ),
+            temp_settings = $.trim( $that.prev().val() );
+
+        if ( temp_settings == '' ) {
+          return false;
+        }
+
+        if ( confirm( "Warning: It will change all current settings of this Template." ) != true ){
+            return false;
+        }
+
+        var data = {
+            action : 'import',
+            template_id : template_id,
+            settings : temp_settings
+          };
+
+
+        var request = {
+                'option' : 'com_ajax',
+                'plugin' : 'helix3',
+                'data'   : data,
+                'format' : 'json'
+            };
+
+        $.ajax({
+            type   : 'POST',
+            data   : request,
+            success: function (response) {
+                window.location.reload();
+            },
+            error: function(){
+                alert('Somethings wrong, Try again');
+            }
+        });
+        return false;
+  });
 
 });

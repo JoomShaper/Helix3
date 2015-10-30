@@ -117,4 +117,51 @@ class  plgSystemHelix3 extends JPlugin
         }
     }
 
+    public function onAfterRoute()
+    {
+        $japps = JFactory::getApplication();
+
+        if ( $japps->isAdmin() )
+        {
+            $user = JFactory::getUser();
+
+            if( !in_array( 8, $user->groups ) ){
+                return false;
+            }
+
+            $inputs = JFactory::getApplication()->input;
+
+            $option         = $inputs->get ( 'option', '' );
+            $id             = $inputs->get ( 'id', '0', 'INT' );
+            $helix3task     = $inputs->get ( 'helix3task' ,'' );
+
+            if ( strtolower( $option ) == 'com_templates' && $id && $helix3task == "export" )
+            {
+               $db = JFactory::getDbo();
+               $query = $db->getQuery(true);
+
+               $query
+                    ->select( '*' )
+                    ->from( $db->quoteName( '#__template_styles' ) )
+                    ->where( $db->quoteName( 'id' ) . ' = ' . $db->quote( $id ) . ' AND ' . $db->quoteName( 'client_id' ) . ' = 0' );
+
+                $db->setQuery( $query );
+
+                $result = $db->loadObject();
+
+                header( 'Content-Description: File Transfer' );
+                header( 'Content-type: application/txt' );
+                header( 'Content-Disposition: attachment; filename="' . $result->template . '_settings_' . date( 'd-m-Y' ) . '.json"' );
+                header( 'Content-Transfer-Encoding: binary' );
+                header( 'Expires: 0' );
+                header( 'Cache-Control: must-revalidate' );
+                header( 'Pragma: public' );
+
+                echo $result->params;
+
+                exit;
+            }
+        }
+        
+    }
 }

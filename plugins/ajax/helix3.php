@@ -17,13 +17,13 @@ class plgAjaxHelix3 extends JPlugin
 {
     function onAjaxHelix3()
     {
-        if ($_POST['data']) {
-            $data = json_decode(json_encode($_POST['data']),true);;
-            $action = $data['action'];
+        if ( $_POST[ 'data' ] ) {
+            $data = json_decode( json_encode($_POST['data'] ), true );;
+            $action = $data[ 'action' ];
             $layoutName = '';
 
-            if (isset($data['layoutName'])) {
-                $layoutName = $data['layoutName'];
+            if ( isset( $data[ 'layoutName' ] ) ) {
+                $layoutName = $data[ 'layoutName' ];
             }
 
             $template  = self::getTemplate();
@@ -35,7 +35,8 @@ class plgAjaxHelix3 extends JPlugin
             $report['action'] = 'none';
             $report['status'] = 'false';
 
-            switch ($action) {
+            switch ($action)
+            {
                 case 'remove':
                         if (file_exists($filepath)) {
                             unlink($filepath);
@@ -254,6 +255,41 @@ class plgAjaxHelix3 extends JPlugin
 
                     die();
 
+                    break;
+
+
+                    //Font variant
+                case 'import':
+
+                    $template_id = filter_var( $data['template_id'], FILTER_VALIDATE_INT );
+                    
+                    if ( !$template_id ) {
+                        die();
+                        break;
+                    }
+
+                    $settings   = $data['settings'];
+
+                    $db = JFactory::getDbo();
+
+                    $query = $db->getQuery(true);
+
+                    $fields = array(
+                        $db->quoteName( 'params' ) . ' = ' . $db->quote( $settings )
+                    );
+
+                    $conditions = array(
+                        $db->quoteName( 'id' ) . ' = '. $db->quote( $template_id ), 
+                        $db->quoteName('client_id') . ' = 0'
+                    );
+                     
+                    $query->update($db->quoteName('#__template_styles'))->set($fields)->where($conditions);
+                     
+                    $db->setQuery($query);
+                     
+                    $db->execute();
+                    
+                    die();
                     break;
                     
             }

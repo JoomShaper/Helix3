@@ -394,6 +394,40 @@
                     <option value="1">HELIX_YES</option>
                     <option value="0">HELIX_NO</option>
                 </field>
+
+                <!--Blog Image-->
+                <field type="group" title="HELIX_IMAGE_SIZES" />
+                <field name="image_small" type="radio" default="0" class="parent image_small" label="HELIX_IMAGE_SMALL" description="HELIX_IMAGE_SMALL_DESC">
+                    <option value="1">HELIX_YES</option>
+                    <option value="0">HELIX_NO</option>
+                </field>
+                <field name="image_small_size" type="text" default="100X100" hint="100X100" class="child image_small image_small_1" label="HELIX_IMAGE_SMALL_SIZE" description="HELIX_IMAGE_SMALL_SIZE_DESC" />
+                
+                <field name="image_thumbnail" type="radio" default="0" class="parent image_thumbnail" label="HELIX_IMAGE_THUMBNAIL" description="HELIX_IMAGE_THUMBNAIL_DESC">
+                    <option value="1">HELIX_YES</option>
+                    <option value="0">HELIX_NO</option>
+                </field>
+                <field name="image_thumbnail_size" type="text" default="200X200" hint="200X200" class="child image_thumbnail image_thumbnail_1" label="HELIX_IMAGE_THUMBNAIL_SIZE" description="HELIX_IMAGE_THUMBNAIL_SIZE_DESC" />
+                
+                <field name="image_medium" type="radio" default="0" class="parent image_medium" label="HELIX_IMAGE_MEDIUM" description="HELIX_IMAGE_MEDIUM_DESC">
+                    <option value="1">HELIX_YES</option>
+                    <option value="0">HELIX_NO</option>
+                </field>
+                <field name="image_medium_size" type="text" default="300X300" hint="300X300" class="child image_medium image_medium_1" label="HELIX_IMAGE_MEDIUM_SIZE" description="HELIX_IMAGE_MEDIUM_SIZE_DESC" />
+
+                <field name="image_large" type="radio" default="0" class="parent image_large" label="HELIX_IMAGE_LARGE" description="HELIX_IMAGE_LARGE_DESC">
+                    <option value="1">HELIX_YES</option>
+                    <option value="0">HELIX_NO</option>
+                </field>
+                <field name="image_large_size" type="text" default="600X600" hint="600X600" class="child image_large image_large_1" label="HELIX_IMAGE_LARGE_SIZE" description="HELIX_IMAGE_LARGE_SIZE_DESC" />
+
+                <field name="blog_list_image" type="list" default="default" label="HELIX_BLOG_LIST_IMAGE" description="HELIX_BLOG_LIST_IMAGE_DESC">
+                    <option value="default">HELIX_BLOG_LIST_IMAGE_DEFAULT</option>
+                    <option value="small">HELIX_BLOG_LIST_IMAGE_SMALL</option>
+                    <option value="thumbnail">HELIX_BLOG_LIST_IMAGE_THUMBNAIL</option>
+                    <option value="medium">HELIX_BLOG_LIST_IMAGE_MEDIUM</option>
+                    <option value="large">HELIX_BLOG_LIST_IMAGE_LARGE</option>
+                </field>
             </fieldset>
             <!--End Blog Tab-->
 

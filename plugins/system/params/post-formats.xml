@@ -2,6 +2,7 @@
 <form>
 	<fields name="attribs" addfieldpath="/plugins/system/helix3/fields">
 		<fieldset name="sppostformats" label="BLOG_OPTIONS">
+			<field name="spfeatured_image" type="spimage" label="Featured Image" description="BLOG_POST_FORMAT_GALLERY_DESCRIPTION" />
 			<field name="post_format" type="radio" label="Post Format" default="standard" class="btn-group post-formats" description="Mega Menu Layout">
 				<option value="standard">BLOG_POST_FORMAT_STANDARD</option>
 				<option value="video">BLOG_POST_FORMAT_VIDEO</option>
@@ -11,11 +12,7 @@
 				<option value="quote">BLOG_POST_FORMAT_QUOTE</option>
 				<option value="status">BLOG_POST_FORMAT_STATUS</option>
 			</field>
-			<field name="gallery" type="repeatable" icon="list" label="BLOG_POST_FORMAT_GALLERY_LABEL" description="BLOG_POST_FORMAT_GALLERY_DESCRIPTION">
-				<fieldset hidden="true" repeat="true">
-					<field name="gallery_images" type="media" label="BLOG_POST_FORMAT_GALLERY_LABEL" description="BLOG_POST_FORMAT_GALLERY_DESCRIPTION" />
-				</fieldset>
-			</field>
+			<field name="gallery" type="spgallery" label="BLOG_POST_FORMAT_GALLERY_LABEL" description="BLOG_POST_FORMAT_GALLERY_DESCRIPTION" />
 			<field name="audio" type="textarea" rows="5" label="BLOG_POST_FORMAT_AUDIO_LABEL" description="BLOG_POST_FORMAT_AUDIO_DESCRIPTION" class="input-xxlarge" filter="raw" />
 			<field name="video" type="url" label="BLOG_POST_FORMAT_VIDEO_LABEL" description="BLOG_POST_FORMAT_VIDEO_DESCRIPTION" />
 			<field name="link_title" type="text" label="BLOG_POST_FORMAT_LINK_TITLE_LABEL" description="BLOG_POST_FORMAT_LINK_TITLE_DESCRIPTION" hint="Best Joomla Templates" />

@@ -75,7 +75,14 @@ class  plgSystemHelix3 extends JPlugin
             $doc->addStyleSheet($plg_path.'/assets/css/font-awesome.min.css');
             $doc->addScript($plg_path.'/assets/js/post-formats.js');
 
-            JForm::addFormPath(JPATH_PLUGINS.'/system/helix3/params');
+            $tpl_path = JPATH_ROOT . '/templates/' . $this->getTemplateName();
+
+            if(JFile::exists( $tpl_path . '/post-formats.xml' )) {
+                JForm::addFormPath($tpl_path);
+            } else {
+                JForm::addFormPath(JPATH_PLUGINS . '/system/helix3/params');
+            }
+
             $form->loadFile('post-formats', false);
         }
 
@@ -163,5 +170,18 @@ class  plgSystemHelix3 extends JPlugin
             }
         }
         
+    }
+
+    private function getTemplateName()
+    {
+        $db = JFactory::getDbo();
+        $query = $db->getQuery(true);
+        $query->select($db->quoteName(array('template')));
+        $query->from($db->quoteName('#__template_styles'));
+        $query->where($db->quoteName('client_id') . ' = 0');
+        $query->where($db->quoteName('home') . ' = 1');
+        $db->setQuery($query);
+
+        return $db->loadObject()->template;
     }
 }

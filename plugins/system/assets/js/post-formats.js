@@ -16,12 +16,12 @@ jQuery(function($) {
 
         if(typeof formate != 'undefined'){
 
-            $('#jform_attribs_gallery_button, #jform_attribs_audio, #jform_attribs_audio, #jform_attribs_video, #jform_attribs_link_title, #jform_attribs_link_url, #jform_attribs_quote_text, #jform_attribs_quote_author, #jform_attribs_post_status').closest('.control-group').hide();
+            $('#jform_attribs_gallery, #jform_attribs_audio, #jform_attribs_audio, #jform_attribs_video, #jform_attribs_link_title, #jform_attribs_link_url, #jform_attribs_quote_text, #jform_attribs_quote_author, #jform_attribs_post_status').closest('.control-group').hide();
 
             if( formate=='video' ) {
                 $('#jform_attribs_video').closest('.control-group').show();
             } else if( formate=='gallery' ) {
-                $('#jform_attribs_gallery_button').closest('.control-group').show();
+                $('#jform_attribs_gallery').closest('.control-group').show();
             } else if( formate=='audio' ) {
                 $('#jform_attribs_audio').closest('.control-group').show();
             } else if( formate=='link' ) {

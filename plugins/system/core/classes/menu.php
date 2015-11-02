@@ -192,14 +192,29 @@ class Helix3Menu {
 		$this->menu .= $this->end_lvl();
 	}
 
-	private function getItem($item){
+	private function getItem($item) {
+
 		$this->menu .= $this->start_el(array('item' => $item));
 		$this->menu .= $this->item($item); // get item url
 
-		if($item->megamenu){
+		if ( $item->megamenu ) {
 			$this->mega($item);
-		}else if ($item->dropdown) {
-			$this->dropdown($item);
+		} else if ( $item->dropdown ) {
+			$this->dropdown( $item );
+		}
+		else if ( ( $item->parent_id == 1 ) && ($item->megamenu == 0 ))
+		{
+			$menulayout = json_decode($this->_items[$item->id]->params->get('menulayout'));
+
+			if ($menulayout) {
+				$layout = $menulayout->layout;
+				$attr 	= $layout[0]->attr;
+
+				if ( $attr[0]->moduleId !== '' ) {
+					$this->mega($item);
+				}
+			}
+			
 		}
 
 		$this->menu .= $this->end_el();
@@ -292,38 +307,44 @@ class Helix3Menu {
 			{
 				$this->menu .='<div class="col-sm-'.$col->colGrid.'">';
 				
-				$item_ids = ($col->menuParentId)? explode(',', $col->menuParentId):array();
-				if (count($item_ids))
+				if (count($items))
 				{
-					$this->menu .= $this->start_lvl('sp-mega-group');
+					$item_ids = ($col->menuParentId)? explode(',', $col->menuParentId):array();
 					
-					foreach ($item_ids as $item_id)
+					if (count($item_ids))
 					{
-						if (!empty($this->_items[$item_id]))
+						$this->menu .= $this->start_lvl('sp-mega-group');
+						
+						foreach ($item_ids as $item_id)
 						{
-							$item 	= $this->_items[$item_id];
-							$items  = isset($this->children[$item_id]) ? $this->children[$item_id] : array();
+							if (!empty($this->_items[$item_id]))
+							{
+								$item 	= $this->_items[$item_id];
+								$items  = isset($this->children[$item_id]) ? $this->children[$item_id] : array();
 
-							$firstitem = count($items) ? $items[0]->id : 0;
+								$firstitem = count($items) ? $items[0]->id : 0;
 
-							$this->menu .= $this->start_el(array('item' => $item));
+								$this->menu .= $this->start_el(array('item' => $item));
 
-							//Mega Group Title
-							if(isset($this->children[$item_id])) {
-								$this->menu .= $this->item($item, 'sp-group-title');
-							} else {
-								$this->menu .= $this->item($item);
+								//Mega Group Title
+								if(isset($this->children[$item_id])) {
+									$this->menu .= $this->item($item, 'sp-group-title');
+								} else {
+									$this->menu .= $this->item($item);
+								}
+								if ($firstitem) {
+									$this->navigation(null, $firstitem, 0, 'sp-mega-group-child sp-dropdown-items');
+								}
+
+								$this->menu .= $this->end_el();
 							}
-							if ($firstitem) {
-								$this->navigation(null, $firstitem, 0, 'sp-mega-group-child sp-dropdown-items');
-							}
-
-							$this->menu .= $this->end_el();
 						}
+
+						$this->menu .= $this->end_lvl();
 					}
 
-					$this->menu .= $this->end_lvl();
 				}
+
 				$mod_ids = ($col->moduleId)? explode(',', $col->moduleId):array();
 
 				if (count($mod_ids))
@@ -354,18 +375,31 @@ class Helix3Menu {
 		return '</ul>';
 	}
 
-	private function start_el($args = array())
+	private function start_el( $args = array() )
 	{
 		$item 	= $args['item'];
 		$class 	= 'sp-menu-item';
 
-		if(!empty($this->children[$item->id])) {
+		if( !empty( $this->children[$item->id] ) ) {
 			$class .= ' sp-has-child';
-		} else if(isset($item->megamenu) && ($item->megamenu)) {
+		} else if( isset( $item->megamenu ) && ( $item->megamenu ) ) {
 			$class .= ' sp-has-child';
 		}
+		else if ( ( $item->parent_id == 1 ) && ( $item->megamenu == 0 ) )
+		{
+			$menulayout = json_decode( $this->_items[$item->id]->params->get('menulayout') );
 
-		if($custom_class = $item->params->get('class')) {
+			if ( $menulayout ) {
+				$layout = $menulayout->layout;
+				$attr 	= $layout[0]->attr;
+
+				if ( $attr[0]->moduleId !== '' ) {
+					$class .= ' sp-has-child';
+				}
+			}
+		}
+
+		if( $custom_class = $item->params->get( 'class' ) ) {
 			$class .= ' ' . $custom_class;
 		}
 

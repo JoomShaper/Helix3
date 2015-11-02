@@ -44,7 +44,7 @@ function getModuleNameId($id = 'all')
     $db = JFactory::getDBO();
     
     if ($id == 'all') {
-        $query = 'SELECT id, title FROM `#__modules` WHERE client_id = 0';
+        $query = 'SELECT id, title FROM `#__modules` WHERE ( `published` !=-2 AND `published` !=0 ) AND client_id = 0';
     } else {
         $query = 'SELECT id, title FROM `#__modules` WHERE ( `published` !=-2 AND `published` !=0 ) AND id = ' . $id;
     }

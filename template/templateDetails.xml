@@ -7,7 +7,7 @@
     <authorUrl>http://www.joomshaper.com</authorUrl>
     <copyright>Copyright (C) 2010 - 2015 JoomShaper.com. All rights reserved.</copyright>
     <license>http://www.gnu.org/licenses/gpl-2.0.html GPLv2 or later</license>
-    <version>1.1</version>
+    <version>1.2</version>
     <description>Shaper Helix3 - Starter Template of Helix3 framework</description>
 
     <updateservers> 
@@ -403,7 +403,7 @@
                 </field>
                 <field name="image_small_size" type="text" default="100X100" hint="100X100" class="child image_small image_small_1" label="HELIX_IMAGE_SMALL_SIZE" description="HELIX_IMAGE_SMALL_SIZE_DESC" />
                 
-                <field name="image_thumbnail" type="radio" default="0" class="parent image_thumbnail" label="HELIX_IMAGE_THUMBNAIL" description="HELIX_IMAGE_THUMBNAIL_DESC">
+                <field name="image_thumbnail" type="radio" default="1" class="parent image_thumbnail" label="HELIX_IMAGE_THUMBNAIL" description="HELIX_IMAGE_THUMBNAIL_DESC">
                     <option value="1">HELIX_YES</option>
                     <option value="0">HELIX_NO</option>
                 </field>

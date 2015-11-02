@@ -216,8 +216,13 @@ if($count > 4 && $count != 6)
                                         foreach ($modArray as $mod_id)
                                         {
                                             $modules = getModuleNameId($mod_id);
+
+                                            if ($modules) {
                                             $module = $modules[0];
-                                            ?><div class='draggable-module' data-mod_id="<?php echo $module->id; ?>"><?php echo $module->title; ?><i class="fa fa-remove"></i><i class="fa fa-arrows"></i></div><?php
+                                    ?>
+                                            <div class='draggable-module' data-mod_id="<?php echo $module->id; ?>"><?php echo $module->title; ?><i class="fa fa-remove"></i><i class="fa fa-arrows"></i></div>
+                                    <?php
+                                            }
                                         }
                                     }?></div>
 

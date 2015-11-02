@@ -36,14 +36,14 @@
 			$output .= '<div class="sp-image-upload-wrapper">';
 			
 			if($this->value) {
+				$data_src = $this->value;
+				$src = JURI::root(true) . '/' . $data_src;
 				
-				$src = $data_src = $this->value;
-				
-				$basename = basename($src);
-				$thumbnail = JPATH_ROOT . '/' . dirname($src) . '/' . JFile::stripExt($basename) . '_thumbnail.' . JFile::getExt($basename);
+				$basename = basename($data_src);
+				$thumbnail = JPATH_ROOT . '/' . dirname($data_src) . '/' . JFile::stripExt($basename) . '_thumbnail.' . JFile::getExt($basename);
 				
 				if(file_exists($thumbnail)) {
-					$src = JURI::root(true) . '/' . dirname($src) . '/' . JFile::stripExt($basename) . '_thumbnail.' . JFile::getExt($basename);
+					$src = JURI::root(true) . '/' . dirname($data_src) . '/' . JFile::stripExt($basename) . '_thumbnail.' . JFile::getExt($basename);
 				}
 
 				$output .= '<img src="'. $src .'" data-src="' . $data_src . '" alt="">';

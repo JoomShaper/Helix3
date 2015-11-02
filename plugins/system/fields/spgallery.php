@@ -37,22 +37,22 @@
 			$output .= '<ul class="sp-gallery-items clearfix">';
 
 			if(count($values)) {
-				foreach ($values as $key => $src) {
+				foreach ($values as $key => $value) {
 
-					$data_src = $src;
+					$data_src = $value;
 
-					$src = JURI::root(true) . '/' . $src;
+					$src = JURI::root(true) . '/' . $value;
 
 					$basename = basename($src);
 
-					$thumbnail = JPATH_ROOT . '/' . dirname($src) . '/' . JFile::stripExt($basename) . '_thumbnail.' . JFile::getExt($basename);
+					$thumbnail = JPATH_ROOT . '/' . dirname($value) . '/' . JFile::stripExt($basename) . '_thumbnail.' . JFile::getExt($basename);
 					if(file_exists($thumbnail)) {
-						$src = JURI::root(true) . '/' . dirname($src) . '/' . JFile::stripExt($basename) . '_thumbnail.' . JFile::getExt($basename);
+						$src = JURI::root(true) . '/' . dirname($value) . '/' . JFile::stripExt($basename) . '_thumbnail.' . JFile::getExt($basename);
 					}
 
-					$small_size = JPATH_ROOT . '/' . dirname($src) . '/' . JFile::stripExt($basename) . '_small.' . JFile::getExt($basename);
+					$small_size = JPATH_ROOT . '/' . dirname($value) . '/' . JFile::stripExt($basename) . '_small.' . JFile::getExt($basename);
 					if(file_exists($small_size)) {
-						$src = JURI::root(true) . '/' . dirname($src) . '/' . JFile::stripExt($basename) . '_small.' . JFile::getExt($basename);
+						$src = JURI::root(true) . '/' . dirname($value) . '/' . JFile::stripExt($basename) . '_small.' . JFile::getExt($basename);
 					}
 
 					$output .= '<li data-src="' . $data_src . '"><a href="#" class="btn btn-mini btn-danger btn-remove-image">Delete</a><img src="'. $src .'" alt=""></li>';

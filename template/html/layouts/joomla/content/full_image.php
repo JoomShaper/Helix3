@@ -27,4 +27,4 @@ if(isset($attribs->spfeatured_image) && $attribs->spfeatured_image != '') {
 		echo 'class="caption"' . ' title="' . htmlspecialchars($images->image_fulltext_caption) . '"';
 		endif; ?>
 		src="<?php echo htmlspecialchars($full_image); ?>" alt="<?php echo htmlspecialchars($images->image_fulltext_alt); ?>" itemprop="image"/> </div>
-<?php endif; ?>
+<?php } ?>

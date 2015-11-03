@@ -419,7 +419,7 @@ class Helix3
 
 					if (isset($column->settings->sm_col) && $column->settings->sm_col)
 					{
-						$column->className = preg_replace('/col-sm-\d/', $column->settings->sm_col, $column->className);
+						$column->className = preg_replace('/col-sm-\d*/', $column->settings->sm_col, $column->className);
 					}
 
 					if (isset($column->settings->hidden_md) && $column->settings->hidden_md)

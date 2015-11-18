@@ -413,11 +413,10 @@ class Helix3Menu {
 	}
 
 	private function item($item, $extra_class=''){
-		$class = $extra_class;
 		$title = $item->anchor_title ? 'title="' . $item->anchor_title . '" ' : '';
 
-		$item->anchor_css = ($item->anchor_css) ? ' ' . $item->anchor_css : '';
-		$class = ($class) ? 'class="' . $class . $item->anchor_css . '" ' : '';
+		$class = trim($extra_class . ' ' . $item->anchor_css);
+		$class = ($class) ? 'class="' . $class . '"' : '';
 
 		if ($item->menu_image)
 		{

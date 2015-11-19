@@ -17,6 +17,13 @@ JHtml::_('behavior.formvalidation');
 JHtml::_('formbehavior.chosen', 'select');
 JHtml::_('behavior.modal', 'a.modal_jform_contenthistory');
 
+$app = JFactory::getApplication();
+$template = $app->getTemplate();
+
+$doc = JFactory::getDocument();
+$doc->addStyleSheet( JURI::base(true). '/templates/'. $template .'/css/frontend-edit.css' );
+$doc->addScript( JURI::base(true). '/templates/'. $template .'/js/frontend-edit.js' );
+
 // Create shortcut to parameters.
 $params = $this->state->get('params');
 //$images = json_decode($this->item->images);

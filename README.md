@@ -2,6 +2,8 @@
 
 [![Join the chat at https://gitter.im/JoomShaper/Helix3](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/JoomShaper/Helix3?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
+[Community Discussion](https://www.facebook.com/groups/819713448150532/) Group on Facebook.
+
 **Helix3** is a user-friendly, modern, highly customizable and easy to integrate solution to build your custom Joomla 3+ website. For users installing Helix3 for the first time on a site, we have nice surprise all advanced template settings are already here. Helix3 isn’t just a template or a plugin, it’s a complete **Joomla 3+ template framework.**
 
 ####Most Powerful Features:

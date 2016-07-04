@@ -57,7 +57,7 @@ JHtml::_('jquery.framework');
     ?>
 </head>
 <body>
-<div class="sp-comingsoon-wrap">	
+<div class="sp-comingsoon-wrap">
 	<div class="container">
 		<div class="text-center">
 			<div id="sp-comingsoon">
@@ -74,7 +74,7 @@ JHtml::_('jquery.framework');
 				<?php } ?>
 
 				<div id="sp-comingsoon-countdown" class="sp-comingsoon-countdown">
-					
+
 				</div>
 
 				<?php if($this->countModules('comingsoon')) { ?>
@@ -96,8 +96,9 @@ JHtml::_('jquery.framework');
 				$skype 		= $this->params->get('skype');
 				$flickr 	= $this->params->get('flickr');
 				$vk 		= $this->params->get('vk');
+				$github		= $this->params->get('github');
 
-				if( $this->params->get('show_social_icons') && ( $facebook || $twitter || $googleplus || $pinterest || $youtube || $linkedin || $dribbble || $behance || $skype || $flickr || $vk ) ) {
+				if( $this->params->get('show_social_icons') && ( $facebook || $twitter || $googleplus || $pinterest || $youtube || $linkedin || $dribbble || $behance || $skype || $flickr || $vk || $github) ) {
 					$html  = '<ul class="social-icons">';
 
 					if( $facebook ) {
@@ -130,9 +131,13 @@ JHtml::_('jquery.framework');
 					if( $vk ) {
 						$html .= '<li><a target="_blank" href="'. $vk .'"><i class="fa fa-vk"></i></a></li>';
 					}
+					if( $github ) {
+						$html .= '<li><a target="_blank" href="'. $github .'"><i class="fa fa-github"></i></a></li>';
+					}
 					if( $skype ) {
 						$html .= '<li><a href="skype:'. $skype .'?chat"><i class="fa fa-skype"></i></a></li>';
 					}
+
 
 					$html .= '<ul>';
 

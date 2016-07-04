@@ -10,7 +10,7 @@
     <version>1.2</version>
     <description>Shaper Helix3 - Starter Template of Helix3 framework</description>
 
-    <updateservers> 
+    <updateservers>
         <server type="extension" priority="1" name="shaper_helix3">http://www.joomshaper.com/updates/shaper-helix3.xml</server>
     </updateservers>
 
@@ -171,6 +171,7 @@
                 <field name="flickr" type="text" label="HELIX_SOCIAL_ICON_FLICKR" description="HELIX_SOCIAL_ICON_FLICKR_DESC" class="child social_icons social_icons_1" />
                 <field name="skype" type="text" label="HELIX_SOCIAL_ICON_SKYPE" description="HELIX_SOCIAL_ICON_SKYPE_DESC" class="child social_icons social_icons_1" />
                 <field name="vk" type="text" label="HELIX_SOCIAL_ICON_VK" description="HELIX_SOCIAL_ICON_VK_DESC" class="child social_icons social_icons_1" />
+                <field name="github" type="text" label="HELIX_SOCIAL_ICON_GITHUB" description="HELIX_SOCIAL_ICON_GITHUB_DESC" class="child social_icons social_icons_1" />
 
                 <!--Contact Info-->
                 <field type="group" title="HELIX_CONTACT_INFO" />
@@ -198,7 +199,7 @@
             <fieldset name="preset"  addfieldpath="/plugins/system/helix3/fields">
                 <field type="group" title="HELIX_PRESETS" />
                 <field name="preset" type="presets"  default="preset1" label="HELIX_PRESETS" />
-                
+
                 <field type="group" title="HELIX_STYLEING_OPTIONS" />
 
                 <!--Start Preset1-->
@@ -257,7 +258,7 @@
             <fieldset name="typography" addfieldpath="/plugins/system/helix3/fields">
                 <field type="group" title="Google Fonts List" />
                 <field name="update_fonts" type="button" url="#" text="HELIX_UPDATE_FONTS_CLICK" label="HELIX_UPDATE_FONTS_LIST" description="HELIX_UPDATE_FONTS_LIST_DESC" class="btn-primary btn-update-fonts-list" />
-                
+
                 <field type="group" title="HELIX_BODY_FONT" subtitle="HELIX_BODY_FONT_DESC" />
                 <field name="enable_body_font" class="parent body_font" type="radio" default="1" label="HELIX_ENABLE_FONT" description="HELIX_ENABLE_FONT_DESC">
                     <option value="1">HELIX_YES</option>
@@ -402,13 +403,13 @@
                     <option value="0">HELIX_NO</option>
                 </field>
                 <field name="image_small_size" type="text" default="100X100" hint="100X100" class="child image_small image_small_1" label="HELIX_IMAGE_SMALL_SIZE" description="HELIX_IMAGE_SMALL_SIZE_DESC" />
-                
+
                 <field name="image_thumbnail" type="radio" default="1" class="parent image_thumbnail" label="HELIX_IMAGE_THUMBNAIL" description="HELIX_IMAGE_THUMBNAIL_DESC">
                     <option value="1">HELIX_YES</option>
                     <option value="0">HELIX_NO</option>
                 </field>
                 <field name="image_thumbnail_size" type="text" default="200X200" hint="200X200" class="child image_thumbnail image_thumbnail_1" label="HELIX_IMAGE_THUMBNAIL_SIZE" description="HELIX_IMAGE_THUMBNAIL_SIZE_DESC" />
-                
+
                 <field name="image_medium" type="radio" default="0" class="parent image_medium" label="HELIX_IMAGE_MEDIUM" description="HELIX_IMAGE_MEDIUM_DESC">
                     <option value="1">HELIX_YES</option>
                     <option value="0">HELIX_NO</option>

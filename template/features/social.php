@@ -31,8 +31,9 @@ class Helix3FeatureSocial {
 		$skype 		= $this->helix3->getParam('skype');
 		$flickr 	= $this->helix3->getParam('flickr');
 		$vk 		= $this->helix3->getParam('vk');
+		$github  	= $this->helix3->getParam('github');
 
-		if( $this->helix3->getParam('show_social_icons') && ( $facebook || $twitter || $googleplus || $pinterest || $youtube || $linkedin || $dribbble || $behance || $skype || $flickr || $vk ) ) {
+		if( $this->helix3->getParam('show_social_icons') && ( $facebook || $twitter || $googleplus || $pinterest || $youtube || $linkedin || $dribbble || $behance || $skype || $flickr || $vk || $github) ) {
 			$html  = '<ul class="social-icons">';
 
 			if( $facebook ) {
@@ -64,6 +65,9 @@ class Helix3FeatureSocial {
 			}
 			if( $vk ) {
 				$html .= '<li><a target="_blank" href="'. $vk .'"><i class="fa fa-vk"></i></a></li>';
+			}
+			if( $github ) {
+				$html .= '<li><a target="_blank" href="'. $github .'"><i class="fa fa-github"></i></a></li>';
 			}
 			if( $skype ) {
 				$html .= '<li><a href="skype:'. $skype .'?chat"><i class="fa fa-skype"></i></a></li>';

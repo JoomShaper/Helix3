@@ -457,8 +457,8 @@ class Helix3Menu {
 				$output = '<a '. $class .' href="'. $flink .'" target="_blank" '. $title .'>'. $linktitle .'</a>';
 			break;
 			case 2:
-				$options = 'toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,' . $item->params->get('window_open');
-				$output = '<a '. $class .' href="'. $flink .'" onclick="window.open(this.href,\'targetWindow\','. $options. ');return false;" '. $title .'>'. $linktitle .'</a>';
+				$options = '\'toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,\'';
+				$output = '<a '. $class .' href="'. $flink .'" onclick="window.open(this.href,\'targetWindow\','. $options. '); return false;" '. $title .'>'. $linktitle .'</a>';
 			break;
 		}
 

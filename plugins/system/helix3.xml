@@ -7,7 +7,7 @@
     <license>http://www.gnu.org/licenses/gpl-2.0.html GPLv2 or later</license>
     <authorEmail>support@joomshaper.com</authorEmail>
     <authorUrl>www.joomshaper.com</authorUrl>
-    <version>1.2</version>
+    <version>1.5</version>
     <description>Helix3 Framework - Joomla Template Framework by JoomShaper</description>
 	
     <updateservers> 
@@ -25,6 +25,7 @@
 		<folder plugin="helix3">language</folder>
         <folder plugin="helix3">fields</folder>
         <folder plugin="helix3">layout</folder>
+        <folder plugin="helix3">layouts</folder>
 		<folder plugin="helix3">params</folder>
     </files>
     <fieldset addfieldpath="/plugins/system/helix3/fields"></fieldset>

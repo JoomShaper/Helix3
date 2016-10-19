@@ -16,6 +16,7 @@ class Helix3FeatureSocial {
 	public function __construct( $helix3 ){
 		$this->helix3 = $helix3;
 		$this->position = $this->helix3->getParam('social_position');
+		$this->load_pos = $this->helix3->getParam('social_load_pos');
 	}
 
 	public function renderFeature() {
@@ -31,6 +32,7 @@ class Helix3FeatureSocial {
 		$skype 		= $this->helix3->getParam('skype');
 		$flickr 	= $this->helix3->getParam('flickr');
 		$vk 		= $this->helix3->getParam('vk');
+		$custom 	= $this->helix3->getParam('custom');
 
 		if( $this->helix3->getParam('show_social_icons') && ( $facebook || $twitter || $googleplus || $pinterest || $youtube || $linkedin || $dribbble || $behance || $skype || $flickr || $vk ) ) {
 			$html  = '<ul class="social-icons">';
@@ -67,6 +69,11 @@ class Helix3FeatureSocial {
 			}
 			if( $skype ) {
 				$html .= '<li><a href="skype:'. $skype .'?chat"><i class="fa fa-skype"></i></a></li>';
+			}
+
+			if( $custom ) {
+				$explt_custom = explode(' ', $custom);
+				$html .= '<li><a href="'. $explt_custom[1] .'"><i class="fa '. $explt_custom[0] .'"></i></a></li>';
 			}
 
 			$html .= '</ul>';

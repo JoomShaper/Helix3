@@ -250,6 +250,16 @@ class Helix3Menu {
 			$dropdown_style .= 'left: -'. $dropdown_width .'px;';
 		}
 
+		// $dropdown_data = array(
+		// 	'class' 			=> $class,
+		// 	'alignment' 		=> $alignment,
+		// 	'dropdown_style' 	=> $dropdown_style,
+		// 	'params' 			=> $item->params,
+		// );
+
+		//$getLayout = new JLayoutFile('menus.dropdown', $basePath = JPATH_ROOT .'/plugins/system/helix3/layouts');
+        //$this->menu .= $getLayout->render(array('data'=>$dropdown_style));
+
 		$this->menu .= '<div class="' . $class . ' sp-menu-'. $alignment .'" style="' . $dropdown_style . '">';
 		$this->menu .= '<div class="sp-dropdown-inner">';
 		$this->navigation($item, $firstitem, 0,  'sp-dropdown-items');
@@ -413,10 +423,11 @@ class Helix3Menu {
 	}
 
 	private function item($item, $extra_class=''){
+		$class = $extra_class;
 		$title = $item->anchor_title ? 'title="' . $item->anchor_title . '" ' : '';
 
-		$class = trim($extra_class . ' ' . $item->anchor_css);
-		$class = ($class) ? 'class="' . $class . '"' : '';
+		$item->anchor_css = ($item->anchor_css) ? ' ' . $item->anchor_css : '';
+		$class = ($class) ? 'class="' . $class . $item->anchor_css . '" ' : '';
 
 		if ($item->menu_image)
 		{
@@ -457,8 +468,8 @@ class Helix3Menu {
 				$output = '<a '. $class .' href="'. $flink .'" target="_blank" '. $title .'>'. $linktitle .'</a>';
 			break;
 			case 2:
-				$options = '\'toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,\'';
-				$output = '<a '. $class .' href="'. $flink .'" onclick="window.open(this.href,\'targetWindow\','. $options. '); return false;" '. $title .'>'. $linktitle .'</a>';
+				$options = 'toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,' . $params->get('window_open');
+				$output = '<a '. $class .' href="'. $flink .'" onclick="window.open(this.href,\'targetWindow\','. $options. ');return false;" '. $title .'>'. $linktitle .'</a>';
 			break;
 		}
 

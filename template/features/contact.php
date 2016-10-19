@@ -22,10 +22,10 @@ class Helix3FeatureContact {
 		if($this->helix3->getParam('enable_contactinfo')) {
 
 			$output = '<ul class="sp-contact-info">';
-
-			if($this->helix3->getParam('contact_phone')) $output .= '<li class="sp-contact-phone"><i class="fa fa-phone"></i> <a href="tel:' . $this->helix3->getParam('contact_phone') . '">' . $this->helix3->getParam('contact_phone') . '</a></li>';
+			if($this->helix3->getParam('contact_phone')) $output .= '<li class="sp-contact-phone"><i class="fa fa-phone"></i> <a href="tel:' . str_replace(' ', '', $this->helix3->getParam('contact_phone')) . '">' . $this->helix3->getParam('contact_phone') . '</a></li>';
+			if($this->helix3->getParam('contact_mobile')) $output .= '<li class="sp-contact-mobile"><i class="fa fa-mobile"></i> <a href="tel:'. str_replace(' ', '', $this->helix3->getParam('contact_mobile')) .'">' . $this->helix3->getParam('contact_mobile') . '</a></li>';
 			if($this->helix3->getParam('contact_email')) $output .= '<li class="sp-contact-email"><i class="fa fa-envelope"></i> <a href="mailto:'. $this->helix3->getParam('contact_email') .'">' . $this->helix3->getParam('contact_email') . '</a></li>';
-
+			if($this->helix3->getParam('contact_time')) $output .= '<li class="sp-contact-time"><i class="fa fa-clock-o"></i>' . $this->helix3->getParam('contact_time') . '</li>';
 			$output .= '</ul>';
 
 			return $output;

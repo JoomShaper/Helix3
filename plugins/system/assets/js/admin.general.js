@@ -42,11 +42,10 @@ jQuery(function($){
                   continue;
                 } else {
 
-                  var elecls =  '.' + eleclass[i];
+                  var elecls =  '.' + eleclass[i]; 
 
                   $(childClassName+elecls).parents('.control-group').hide();
-                  
-                  if( $(parent).is('fieldset') ){
+                  if( $(parent).prop('type')=='fieldset' ){
                     var selected = $(parent).find('input[type=radio]:checked');
                     var radios = $(parent).find('input[type=radio]');
                     var activeItems = conditionClassName+elecls+'_'+$(selected).val();
@@ -60,7 +59,7 @@ jQuery(function($){
                       $(childClassName+elecls+conditionClassName+elecls+'_'+$.trim($(this).val())).parents('.control-group').fadeIn();
                     });
 
-                  } else if( $(parent).is('select-one') ) {
+                  } else if( $(parent).prop('type')=='select-one' ) {
                     var element = $(parent);
                     var selected = $(parent).find('option:selected');
                     var option = $(parent).find('option');

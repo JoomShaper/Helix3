@@ -16,6 +16,7 @@ class Helix3FeatureLogo {
 	public function __construct( $helix3 ){
 		$this->helix3 = $helix3;
 		$this->position = $this->helix3->getParam('logo_position', 'logo');
+		$this->load_pos = $this->helix3->getParam('logo_load_pos');
 	}
 
 	public function renderFeature() {
@@ -49,46 +50,46 @@ class Helix3FeatureLogo {
 			$custom_logo_class = ' hidden-xs';
 		}
 
-		$html .= '<a class="logo" href="' . JURI::base(true) . '/">';
-
 		if( $this->helix3->getParam('logo_type') == 'image' ) {
 			if( $this->helix3->getParam('logo_image') ) {
-				$html .= '<h1>';
-				$html .= '<img class="sp-default-logo'. $custom_logo_class .'" src="' . $this->helix3->getParam('logo_image') . '" alt="'. $sitename .'">';
-				if( $this->helix3->getParam('logo_image_2x') ) {
-					$html .= '<img class="sp-retina-logo'. $custom_logo_class .'" src="' . $this->helix3->getParam('logo_image_2x') . '" alt="'. $sitename .'" width="' . $width . '" height="' . $height . '">';
-				}
+				$html .= '<h1 class="logo">';
+				$html .= '<a href="' . JURI::base(true) . '/">';
+					$html .= '<img class="sp-default-logo'. $custom_logo_class .'" src="' . $this->helix3->getParam('logo_image') . '" alt="'. $sitename .'">';
+					if( $this->helix3->getParam('logo_image_2x') ) {
+						$html .= '<img class="sp-retina-logo'. $custom_logo_class .'" src="' . $this->helix3->getParam('logo_image_2x') . '" alt="'. $sitename .'" width="' . $width . '" height="' . $height . '">';
+					}
 
-				if( $this->helix3->getParam('mobile_logo') ) {
-					$html .= '<img class="sp-default-logo visible-xs" src="' . $this->helix3->getParam('mobile_logo') . '" alt="'. $sitename .'">';
-				}
+					if( $this->helix3->getParam('mobile_logo') ) {
+						$html .= '<img class="sp-default-logo visible-xs" src="' . $this->helix3->getParam('mobile_logo') . '" alt="'. $sitename .'">';
+					}
+
+				$html .= '</a>';
 
 				$html .= '</h1>';
 			} else {
-				$html .= '<h1>';
-				$html .= '<img class="sp-default-logo'. $custom_logo_class .'" src="' . $this->helix3->getTemplateUri() . '/images/presets/' . $this->helix3->Preset() . '/logo.png" alt="'. $sitename .'">';
-				$html .= '<img class="sp-retina-logo'. $custom_logo_class .'" src="' . $this->helix3->getTemplateUri() . '/images/presets/' . $this->helix3->Preset() . '/logo@2x.png" alt="'. $sitename .'" width="' . $width . '" height="' . $height . '">';
+				$html .= '<h1 class="logo">';
+					$html .= '<a href="' . JURI::base(true) . '/">';
+						$html .= '<img class="sp-default-logo'. $custom_logo_class .'" src="' . $this->helix3->getTemplateUri() . '/images/presets/' . $this->helix3->Preset() . '/logo.png" alt="'. $sitename .'">';
+						$html .= '<img class="sp-retina-logo'. $custom_logo_class .'" src="' . $this->helix3->getTemplateUri() . '/images/presets/' . $this->helix3->Preset() . '/logo@2x.png" alt="'. $sitename .'" width="' . $width . '" height="' . $height . '">';
 
-				if( $this->helix3->getParam('mobile_logo') ) {
-					$html .= '<img class="sp-default-logo visible-xs" src="' . $this->helix3->getParam('mobile_logo') . '" alt="'. $sitename .'">';
-				}
-
+						if( $this->helix3->getParam('mobile_logo') ) {
+							$html .= '<img class="sp-default-logo visible-xs" src="' . $this->helix3->getParam('mobile_logo') . '" alt="'. $sitename .'">';
+						}
+					$html .= '</a>';
 				$html .= '</h1>';
 			}
 			
 		} else {
 			if( $this->helix3->getParam('logo_text') ) {
-				$html .= '<h1>' . $this->helix3->getParam('logo_text') . '</h1>';
+				$html .= '<h1 class="logo"> <a href="' . JURI::base(true) . '/">' . $this->helix3->getParam('logo_text') . '</a></h1>';
 			} else {
-				$html .= '<h1>' . $sitename . '</h1>';
+				$html .= '<h1 class="logo"> <a href="' . JURI::base(true) . '/">' . $sitename . '</a></h1>';
 			}
 
 			if( $this->helix3->getParam('logo_slogan') ) {
 				$html .= '<p class="logo-slogan">' . $this->helix3->getParam('logo_slogan') . '</p>';
 			}
 		}
-
-		$html .= '</a>';
 
 		return $html;
 	}

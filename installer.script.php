@@ -10,8 +10,7 @@ defined ('_JEXEC') or die ('resticted aceess');
 
 class plgSystemTmp_helix3InstallerScript {
 
-    function postflight($type, $parent)
-    {
+    function postflight($type, $parent) {
         $db = JFactory::getDBO();
         $status = new stdClass;
         $status->plugins = array();
@@ -53,8 +52,7 @@ class plgSystemTmp_helix3InstallerScript {
         $parent->getParent()->abort();
     }
 
-    public function abort($msg = null, $type = null)
-    {
+    public function abort($msg = null, $type = null){
         if ($msg) {
             JError::raiseWarning(100, $msg);
         }

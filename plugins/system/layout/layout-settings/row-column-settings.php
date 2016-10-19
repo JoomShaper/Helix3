@@ -185,6 +185,7 @@ $columnSettings = array(
 			'desc'		=> JText::_('HELIX_TABLET_LAYOUT_DESC'),
 			'values'	=> array(
 				'' => "", 
+				'col-sm-1' => 'col-sm-1',
 				'col-sm-2' => 'col-sm-2',
 				'col-sm-3' => 'col-sm-3',
 				'col-sm-4' => 'col-sm-4', 
@@ -194,6 +195,8 @@ $columnSettings = array(
 				'col-sm-8' => 'col-sm-8', 
 				'col-sm-9' => 'col-sm-9',
 				'col-sm-10' => 'col-sm-10',
+				'col-sm-11' => 'col-sm-11',
+				'col-sm-12' => 'col-sm-12',
 				),
 			'std'		=> '',
 			),
@@ -203,6 +206,7 @@ $columnSettings = array(
 			'desc'		=> JText::_('HELIX_MOBILE_LAYOUT_DESC'),
 			'values'	=> array(
 				'' => "", 
+				'col-xs-1' => 'col-xs-1',
 				'col-xs-2' => 'col-xs-2',
 				'col-xs-3' => 'col-xs-3',
 				'col-xs-4' => 'col-xs-4', 
@@ -212,6 +216,8 @@ $columnSettings = array(
 				'col-xs-8' => 'col-xs-8', 
 				'col-xs-9' => 'col-xs-9',
 				'col-xs-10' => 'col-xs-10',
+				'col-xs-11' => 'col-xs-11',
+				'col-xs-12' => 'col-xs-12',
 				),
 			'std'		=> '',
 			),

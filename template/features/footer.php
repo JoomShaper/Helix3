@@ -15,15 +15,17 @@ class Helix3FeatureFooter {
 	public function __construct($helix3){
 		$this->helix3 = $helix3;
 		$this->position = $this->helix3->getParam('copyright_position');
+		$this->load_pos = $this->helix3->getParam('copyright_load_pos');
 	}
 
 	public function renderFeature() {
 
 		if($this->helix3->getParam('enabled_copyright')) {
-
 			$output = '';
-
-			if($this->helix3->getParam('copyright')) $output .= '<span class="sp-copyright"> ' . $this->helix3->getParam('copyright') . '</span>';
+			//Copyright
+			if( $this->helix3->getParam('copyright') ) {
+				$output .= '<span class="sp-copyright">' . str_ireplace('{year}',date('Y'), $this->helix3->getParam('copyright')) . '</span>';
+			}
 			
 			return $output;
 		}

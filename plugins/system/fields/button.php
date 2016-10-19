@@ -19,7 +19,8 @@ class JFormFieldButton extends JFormField
 		$url = !empty($this->element['url']) ? $this->element['url'] : '#';
 		$class = !empty($this->element['class']) ? ' ' . $this->element['class'] : '';
 		$text = !empty($this->element['text']) ? $this->element['text'] : 'Button';
+		$target = !empty($this->element['target']) ? $this->element['target'] : '_self';
 		
-		return '<a id="'. $this->id .'" class="btn'. $class .'" href="'. $url .'">'. JText::_($text) .'</a>';	
+		return '<a id="'. $this->id .'" class="btn'. $class .'" href="'. $url .'" target="' . $target . '">'. JText::_($text) .'</a>';	
 	}	
 }

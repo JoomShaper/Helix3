@@ -166,8 +166,13 @@ if (!empty($this->item->pagination) && $this->item->pagination && $this->item->p
 	<?php echo $this->item->event->afterDisplayContent; ?>
 
 	<?php if(!$this->print) : ?>
-		<?php echo JLayoutHelper::render('joomla.content.social_share.share', $this->item); //Helix Social Share ?>
-		<?php echo JLayoutHelper::render('joomla.content.comments.comments', $this->item); //Helix Comment ?>
+		<div class="article-footer-wrap">
+			<div class="article-footer-top">
+				<?php echo JLayoutHelper::render('joomla.content.rating', array('item' => $this->item, 'params' => $params)) ?>
+				<?php echo JLayoutHelper::render('joomla.content.social_share.share', $this->item); //Helix Social Share ?>
+			</div>
+			<?php echo JLayoutHelper::render('joomla.content.comments.comments', $this->item); //Helix Comment ?>
+		</div>
 	<?php endif; ?>
 	
 </article>

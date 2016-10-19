@@ -26,12 +26,12 @@ class Helix3FeatureMenu {
 		if($menu_type == 'mega_offcanvas') { ?>
 			<div class='sp-megamenu-wrapper'>
 				<a id="offcanvas-toggler" href="#"><i class="fa fa-bars"></i></a>
-				<?php $this->helix3->loadMegaMenu('hidden-xs'); ?>
+				<?php $this->helix3->loadMegaMenu('hidden-sm hidden-xs'); ?>
 			</div>
 		<?php } else if ($menu_type == 'mega') { ?>
 			<div class='sp-megamenu-wrapper'>
-				<a id="offcanvas-toggler" class="visible-xs" href="#"><i class="fa fa-bars"></i></a>
-				<?php $this->helix3->loadMegaMenu('hidden-xs'); ?>
+				<a id="offcanvas-toggler" class="visible-sm visible-xs" href="#"><i class="fa fa-bars"></i></a>
+				<?php $this->helix3->loadMegaMenu('hidden-sm hidden-xs'); ?>
 			</div>
 		<?php } else { ?>
 			<a id="offcanvas-toggler" href="#"><i class="fa fa-bars"></i></a>

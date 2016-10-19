@@ -56,6 +56,6 @@ $blockPosition = $displayData['params']->get('info_block_position', 0);
 			<?php endif; ?>
 		<?php endif; ?>
 
-		<?php echo JLayoutHelper::render('joomla.content.rating', $displayData) ?>
+		
 
 	</dl>

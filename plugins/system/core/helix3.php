@@ -21,6 +21,8 @@ class Helix3
 	private $importedFiles = array();
 	private $_less;
 
+	private $load_pos;
+
 	//initialize
 	public function __construct()
 	{
@@ -163,7 +165,7 @@ class Helix3
 	 * @access private
 	 */
 	private $inPositions = array();
-	private $loadFeature = array();
+	public $loadFeature = array();
 
 	private static function importFeatures()
 	{
@@ -178,7 +180,7 @@ class Helix3
 			if (count($files))
 			{
 
-				foreach ($files as $file)
+				foreach ($files as $key => $file)
 				{
 
 					include_once $path . '/' . $file;
@@ -188,13 +190,15 @@ class Helix3
 					$class = new $class(self::getInstance());
 
 					$position = $class->position;
+					$load_pos = (isset($class->load_pos) && $class->load_pos) ? $class->load_pos : '';
 
 					self::getInstance()->inPositions[] = $position;
 
 					if (!empty($position))
 					{
 
-						self::getInstance()->loadFeature[$position][] = $class->renderFeature();
+						self::getInstance()->loadFeature[$position][$key]['feature'] = $class->renderFeature();
+						self::getInstance()->loadFeature[$position][$key]['load_pos'] = $load_pos;
 					}
 				}
 			}
@@ -309,65 +313,54 @@ class Helix3
 				//css
 				$row_css = '';
 
-				if (!empty($row->settings->background_image))
-				{
+				if (!empty($row->settings->background_image)) {
+
 					$row_css .= 'background-image:url("' . JURI::base(true) . '/' . $row->settings->background_image . '");';
 
-					if (!empty($row->settings->background_repeat))
-					{
+					if (!empty($row->settings->background_repeat)) {
 						$row_css .= 'background-repeat:' . $row->settings->background_repeat . ';';
 					}
 
-					if (!empty($row->settings->background_size))
-					{
+					if (!empty($row->settings->background_size)) {
 						$row_css .= 'background-size:' . $row->settings->background_size . ';';
 					}
 
-					if (!empty($row->settings->background_attachment))
-					{
+					if (!empty($row->settings->background_attachment)) {
 						$row_css .= 'background-attachment:' . $row->settings->background_attachment . ';';
 					}
 
-					if (!empty($row->settings->background_position))
-					{
+					if (!empty($row->settings->background_position)) {
 						$row_css .= 'background-position:' . $row->settings->background_position . ';';
 					}
 				}
 
-				if (!empty($row->settings->background_color))
-				{
+				if (!empty($row->settings->background_color)) {
 					$row_css .= 'background-color:' . $row->settings->background_color . ';';
 				}
 
-				if (!empty($row->settings->color))
-				{
+				if (!empty($row->settings->color)) {
 					$row_css .= 'color:' . $row->settings->color . ';';
 				}
 
-				if (!empty($row->settings->padding))
-				{
+				if (!empty($row->settings->padding)) {
 					$row_css .= 'padding:' . $row->settings->padding . ';';
 				}
 
-				if (!empty($row->settings->margin))
-				{
+				if (!empty($row->settings->margin)) {
 					$row_css .= 'margin:' . $row->settings->margin . ';';
 				}
 
-				if ($row_css)
-				{
+				if ($row_css) {
 					$doc->addStyledeclaration('#' . $id . '{ ' . $row_css . ' }');
 				}
 
 				//Link Color
-				if (!empty($row->settings->link_color))
-				{
+				if (!empty($row->settings->link_color)) {
 					$doc->addStyledeclaration('#' . $id . ' a{color:' . $row->settings->link_color . ';}');
 				}
 
 				//Link Hover Color
-				if (!empty($row->settings->link_hover_color))
-				{
+				if (!empty($row->settings->link_hover_color)) {
 					$doc->addStyledeclaration('#' . $id . ' a:hover{color:' . $row->settings->link_hover_color . ';}');
 				}
 
@@ -389,108 +382,28 @@ class Helix3
 						break;
 				}
 
-				$output .= '<' . $sematic . ' id="' . $id . '"' . $row_class . '>';
+				$layout_data = array(
+					'sematic' 			=> $sematic,
+					'id' 				=> $id,
+					'row_class' 		=> $row_class,
+					'componentArea' 	=> $componentArea,
+					'pagebuilder' 		=> $pagebuilder,
+					'fluidrow' 			=> $fluidrow,
+					'rowColumns' 		=> $rowColumns,
+					'componentArea' 	=> $componentArea,
+					'componentArea' 	=> $componentArea,
+				);
 
-				if ($componentArea)
-				{
-					if (!$pagebuilder)
-					{
-						$output .= '<div class="container">';
-					}
-				}
-				else
-				{
-					if (!$fluidrow)
-					{
-						$output .= '<div class="container">';
-					}
-				}
+				$template  		= JFactory::getApplication()->getTemplate();
+				$themepath 		= JPATH_THEMES . '/' . $template;
+				$generate_file	= $themepath . '/html/layouts/helix3/frontend/generate.php';
+				$lyt_thm_path   = $themepath . '/html/layouts/helix3/';
 
-				$output .= '<div class="row">';
+				$layout_path  = (file_exists($generate_file)) ? $lyt_thm_path : JPATH_ROOT .'/plugins/system/helix3/layouts';
 
-				foreach ($rowColumns as $key => $column)
-				{
+				$getLayout = new JLayoutFile('frontend.generate', $layout_path );
+        		$output .= $getLayout->render($layout_data);
 
-					//Responsive Utilities
-					if (isset($column->settings->xs_col) && $column->settings->xs_col)
-					{
-						$column->className = $column->settings->xs_col . ' ' . $column->className;
-					}
-
-					if (isset($column->settings->sm_col) && $column->settings->sm_col)
-					{
-						$column->className = preg_replace('/col-sm-\d*/', $column->settings->sm_col, $column->className);
-					}
-
-					if (isset($column->settings->hidden_md) && $column->settings->hidden_md)
-					{
-						$column->className = $column->className . ' hidden-md hidden-lg';
-					}
-
-					if (isset($column->settings->hidden_sm) && $column->settings->hidden_sm)
-					{
-						$column->className = $column->className . ' hidden-sm';
-					}
-
-					if (isset($column->settings->hidden_xs) && $column->settings->hidden_xs)
-					{
-						$column->className = $column->className . ' hidden-xs';
-					}
-					//End Responsive Utilities
-
-					if ($column->settings->column_type)
-					{ //Component
-
-						$output .= '<div id="sp-component" class="' . $column->className . '">';
-
-						$output .= '<div class="sp-column ' . ($column->settings->custom_class) . '">';
-						$output .= '<jdoc:include type="message" />';
-						$output .= '<jdoc:include type="component" />';
-						$output .= '</div>';
-
-						$output .= '</div>';
-					}
-					else
-					{ // Module
-
-						$output .= '<div id="sp-' . JFilterOutput::stringURLSafe($column->settings->name) . '" class="' . $column->className . '">';
-
-						$output .= '<div class="sp-column ' . ($column->settings->custom_class) . '">';
-
-						if (self::hasFeature($column->settings->name))
-						{
-							$features = self::getInstance()->loadFeature[$column->settings->name]; //Feature
-							foreach ($features as $feature)
-							{
-								$output .= $feature;
-							}
-						}
-
-						$output .= '<jdoc:include type="modules" name="' . $column->settings->name . '" style="sp_xhtml" />';
-						$output .= '</div>';
-
-						$output .= '</div>';
-					}
-				}
-
-				$output .= '</div>';
-
-				if ($componentArea)
-				{
-					if (!$pagebuilder)
-					{
-						$output .= '</div>';
-					}
-				}
-				else
-				{
-					if (!$fluidrow)
-					{
-						$output .= '</div>';
-					}
-				}
-
-				$output .= '</' . $sematic . '>';
 			}
 		}
 

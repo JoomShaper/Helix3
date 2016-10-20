@@ -31,6 +31,8 @@ class Helix3FeatureTitle {
 				$page_title 		 = $menuitem->title;
 				$page_title_alt 	 = $params->get('page_title_alt');
 				$page_subtitle 		 = $params->get('page_subtitle');
+				// Here
+				$page_title_css 	 = $params->get('page_title_css');
 				$page_title_bg_color = $params->get('page_title_bg_color');
 				$page_title_bg_image = $params->get('page_title_bg_image');
 
@@ -52,9 +54,13 @@ class Helix3FeatureTitle {
 					$page_title 	 = $page_title_alt;
 				}
 
+				if($page_title_css) {
+					$page_css	 = $page_title_css;
+				}
+
 				$output = '';
 
-				$output .= '<div class="sp-page-title"'. $style .'>';
+				$output .= '<div class="sp-page-title '. $page_css .'"'. $style .'>';
 				$output .= '<div class="container">';
 
 				$output .= '<h2>'. $page_title .'</h2>';

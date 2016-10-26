@@ -7,7 +7,7 @@
 ####Most Powerful Features:
 - Modern Design  (2015 web trends inlcuded)
 - Flexibility & Fully Responsive Template
-- Font Awesome 4.3 ( over 510+ Icons) also for menu items
+- Font Awesome 4.6.3 ( over 510+ Icons) also for menu items
 - MegaMenu Generator
 - Off-Canvas Menu & MegaMenu
 - Article Post Formats
@@ -15,7 +15,7 @@
 - Advanced Typography Options - Google Fonts with update button
 - Layout Manager
 - Custom Layout options in Layout Builder
-- Bootstrap 3.2
+- Bootstrap 3.3.7
 - Cross-Browser Support
 and much more.
 

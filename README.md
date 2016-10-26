@@ -19,6 +19,6 @@
 - Cross-Browser Support
 and much more.
 
->As one of our customer Puskás Attila Barna said "Helix3 and Menu Builder with SP Page Builder is one powerfull tools pack for the Joomla CMS Developers!
+> As one of our customer Puskás Attila Barna said "Helix3 and Menu Builder with SP Page Builder is one powerfull tools pack for the Joomla CMS Developers!
 
-See more at: http://www.joomshaper.com/joomla-templates/helix3
+See more at: https://www.joomshaper.com/helix

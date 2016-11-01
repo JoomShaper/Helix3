@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<extension version="3.6" type="template" client="site" method="upgrade">
+<extension version="3.4" type="template" client="site" method="upgrade">
     <name>shaper_helix3</name>
     <creationDate>Jan 2016</creationDate>
     <author>JoomShaper.com</author>
@@ -7,7 +7,7 @@
     <authorUrl>http://www.joomshaper.com</authorUrl>
     <copyright>Copyright (C) 2010 - 2016 JoomShaper.com. All rights reserved.</copyright>
     <license>http://www.gnu.org/licenses/gpl-2.0.html GPLv2 or later</license>
-    <version>1.5</version>
+    <version>1.7</version>
     <description>Shaper Helix3 - Starter Template of Helix3 framework</description>
 
     <updateservers>

@@ -28,7 +28,7 @@ else
 }
 
 $icon = '';
-if ($item_decode->icon) {
+if (isset($item_decode->icon) && $item_decode->icon) {
 	$icon = ' <i class="fa ' . $item_decode->icon . '"></i>';
 }
 

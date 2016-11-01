@@ -231,8 +231,9 @@ class Helix3
 		$view        = $app->input->getCmd('view', '');
 		$pagebuilder = false;
 
-		if (($option == 'com_sppagebuilder') && ($view == 'page'))
+		if ($option == 'com_sppagebuilder')
 		{
+			$doc->addStylesheet( JURI::base(true) . '/plugins/system/helix3/assets/css/pagebuilder.css' );
 			$pagebuilder = true;
 		}
 
@@ -843,7 +844,7 @@ class Helix3
 			}
 		}
 		else $new = $obj;
-		return $new;       
+		return $new;
 	}
 
 	/**

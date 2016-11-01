@@ -4,7 +4,7 @@
 * @author JoomShaper http://www.joomshaper.com
 * @copyright Copyright (c) 2010 - 2015 JoomShaper
 * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
-*/  
+*/
 
 //no direct accees
 defined ('_JEXEC') or die ('resticted aceess');
@@ -17,7 +17,7 @@ class Helix3Menu {
 	protected $menu = '';
 	public $_params 	= null;
 	public $menuname	= 'mainmenu';
-	
+
 	function __construct($class = '', $name = ''){
 		$this->app = JFactory::getApplication();
 		$this->template = $this->app->getTemplate(true);
@@ -62,7 +62,7 @@ class Helix3Menu {
 			if ($item->id == $this->active) {
 				$class .= ' current-item';
 			}
-			
+
 			if (in_array($item->id, $this->active_tree)) {
 				$class .= ' active';
 			}elseif ($item->type == 'alias') {
@@ -87,17 +87,17 @@ class Helix3Menu {
 				case 'heading':
 					// No further action needed.
 					continue;
-				
+
 				case 'url':
 					if ((strpos($item->link, 'index.php?') === 0) && (strpos($item->link, 'Itemid=') === false)) {
 						$item->flink = $item->link . '&Itemid=' . $item->id;
 					}
 					break;
-				
+
 				case 'alias':
 					$item->flink = 'index.php?Itemid=' . $item->params->get('aliasoptions');
 					break;
-				
+
 				default:
 					$router = JSite::getRouter();
 					if ($router->getMode() == JROUTER_MODE_SEF) {
@@ -107,7 +107,7 @@ class Helix3Menu {
 					}
 					break;
 			}
-			
+
 			if (strcasecmp(substr($item->flink, 0, 4), 'http') && (strpos($item->flink, 'index.php?') !== false)) {
 				$item->flink = JRoute::_($item->flink, true, $item->params->get('secure'));
 			} else {
@@ -119,7 +119,7 @@ class Helix3Menu {
 			$item->title = htmlspecialchars($item->title, ENT_COMPAT, 'UTF-8', false);
 			$item->anchor_css   = htmlspecialchars($item->params->get('menu-anchor_css', ''), ENT_COMPAT, 'UTF-8', false);
 			$item->anchor_title = htmlspecialchars($item->params->get('menu-anchor_title', ''), ENT_COMPAT, 'UTF-8', false);
-			$item->menu_image   = $item->params->get('menu_image', '') ? htmlspecialchars($item->params->get('menu_image', ''), ENT_COMPAT, 'UTF-8', false) : '';			
+			$item->menu_image   = $item->params->get('menu_image', '') ? htmlspecialchars($item->params->get('menu_image', ''), ENT_COMPAT, 'UTF-8', false) : '';
 		}
 	}
 
@@ -131,7 +131,7 @@ class Helix3Menu {
 		if (count($keys)) {
 			$this->navigation(null,$keys[0]);
 		}
-		echo $this->menu;		
+		echo $this->menu;
 	}
 
 	public function navigation($pitem, $start = 0, $end = 0, $class = '')
@@ -172,7 +172,7 @@ class Helix3Menu {
 			if($this->_params->get('menu_animation') != 'none') {
 				$animation = ' ' . $this->_params->get('menu_animation');
 			} else {
-				$animation = '';	
+				$animation = '';
 			}
 
 			$class = 'sp-megamenu-parent' . $animation;
@@ -214,7 +214,7 @@ class Helix3Menu {
 					$this->mega($item);
 				}
 			}
-			
+
 		}
 
 		$this->menu .= $this->end_el();
@@ -316,15 +316,15 @@ class Helix3Menu {
 			foreach ($row->attr as $col)
 			{
 				$this->menu .='<div class="col-sm-'.$col->colGrid.'">';
-				
+
 				if (count($items))
 				{
 					$item_ids = ($col->menuParentId)? explode(',', $col->menuParentId):array();
-					
+
 					if (count($item_ids))
 					{
 						$this->menu .= $this->start_lvl('sp-mega-group');
-						
+
 						foreach ($item_ids as $item_id)
 						{
 							if (!empty($this->_items[$item_id]))
@@ -455,22 +455,24 @@ class Helix3Menu {
 			}
 		}
 
-
 		$flink = $item->flink;
 		$flink = JFilterOutput::ampReplace(htmlspecialchars($flink));
 
-		switch ($item->browserNav) {
-			default:
-			case 0:
-				$output = '<a '.$class.' href="'. $flink .'" '.$title.'>'.$linktitle.'</a>';
-			break;
-			case 1:
-				$output = '<a '. $class .' href="'. $flink .'" target="_blank" '. $title .'>'. $linktitle .'</a>';
-			break;
-			case 2:
-				$options = 'toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,' . $params->get('window_open');
-				$output = '<a '. $class .' href="'. $flink .'" onclick="window.open(this.href,\'targetWindow\','. $options. ');return false;" '. $title .'>'. $linktitle .'</a>';
-			break;
+		$output = '';
+		if ($item->params->get('menu_show', 1) != 0) {
+			switch ($item->browserNav) {
+				default:
+				case 0:
+					$output .= '<a '.$class.' href="'. $flink .'" '.$title.'>'.$linktitle.'</a>';
+				break;
+				case 1:
+					$output .= '<a '. $class .' href="'. $flink .'" target="_blank" '. $title .'>'. $linktitle .'</a>';
+				break;
+				case 2:
+					$options .= 'toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,' . $params->get('window_open');
+					$output .= '<a '. $class .' href="'. $flink .'" onclick="window.open(this.href,\'targetWindow\','. $options. ');return false;" '. $title .'>'. $linktitle .'</a>';
+				break;
+			}
 		}
 
 		return $output;
@@ -485,13 +487,13 @@ class Helix3Menu {
 		$groups		= implode(',', $user->getAuthorisedViewLevels());
 		$lang 		= JFactory::getLanguage()->getTag();
 		$clientId 	= (int) $app->getClientId();
-		
+
 		$db	= JFactory::getDbo();
 		$query = $db->getQuery(true);
 		$query->select('id, title, module, position, content, showtitle, params');
 		$query->from('#__modules AS m');
 		$query->where('m.published = 1');
-		
+
 		if (is_numeric($mod)) {
 			$query->where('m.id = ' . $mod);
 		} else {
@@ -506,7 +508,7 @@ class Helix3Menu {
 
 		$query->where('m.access IN ('.$groups.')');
 		$query->where('m.client_id = '. $clientId);
-		
+
 		// Filter by language
 		if ($app->isSite() && $app->getLanguageFilter()) {
 			$query->where('m.language IN (' . $db->Quote($lang) . ',' . $db->Quote('*') . ')');
@@ -518,9 +520,9 @@ class Helix3Menu {
 		$db->setQuery($query);
 
 		$modules = $db->loadObjectList();
-		
+
 		if (!$modules) return null;
-		
+
 		$options = array('style' => 'sp_xhtml');
 		$output = '';
 		ob_start();
@@ -531,10 +533,10 @@ class Helix3Menu {
 			$module->name		= $custom ? $module->title : substr($file, 4);
 			$module->style		= null;
 			$module->position	= strtolower($module->position);
-			$clean[$module->id]	= $module;		
+			$clean[$module->id]	= $module;
 			echo JModuleHelper::renderModule($module, $options);
 		}
 		$output = ob_get_clean();
-		return $output;		
+		return $output;
 	}
 }

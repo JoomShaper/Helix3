@@ -2835,7 +2835,7 @@ table.category tbody >tr td {
   z-index: 99999;
 }
 .sp-pre-loader .sp-loader-clock {
-  border: 3px solid #999999;
+  border: 3px solid #333333;
   border-radius: 60px;
   bottom: 0;
   height: 80px;
@@ -2849,7 +2849,7 @@ table.category tbody >tr td {
 .sp-pre-loader .sp-loader-clock:after {
   content: "";
   position: absolute;
-  background-color: #999999;
+  background-color: #333333;
   top: 2px;
   left: 48%;
   height: 38px;
@@ -2863,7 +2863,7 @@ table.category tbody >tr td {
 .sp-pre-loader .sp-loader-clock:before {
   content: "";
   position: absolute;
-  background-color: #999999;
+  background-color: #333333;
   top: 6px;
   left: 48%;
   height: 35px;
@@ -2879,7 +2879,7 @@ table.category tbody >tr td {
   height: 80px;
   width: 80px;
   border-radius: 80px;
-  border: 3px solid rgba(153,153,153,0.7);
+  border: 3px solid rgba(51,51,51,0.7);
   left: 0;
   top: 0;
   right: 0;
@@ -2898,7 +2898,7 @@ table.category tbody >tr td {
   width: 11px;
   height: 11px;
   border-radius: 10px;
-  background-color: #999999;
+  background-color: #333333;
 }
 .sp-pre-loader .sp-loader-bubble-loop {
   position: absolute;
@@ -2910,7 +2910,7 @@ table.category tbody >tr td {
   bottom: 0;
   margin: auto;
   border-radius: 12px;
-  background-color: #999999;
+  background-color: #333333;
   -webkit-transform-origin: 50% 50%;
   transform-origin: 50% 50%;
   -webkit-animation: loader6 1s ease-in-out infinite;
@@ -2919,7 +2919,7 @@ table.category tbody >tr td {
 .sp-pre-loader .sp-loader-bubble-loop:before {
   content: "";
   position: absolute;
-  background-color: rgba(153,153,153,0.5);
+  background-color: rgba(51,51,51,0.5);
   top: 0px;
   left: -25px;
   height: 12px;
@@ -2929,7 +2929,7 @@ table.category tbody >tr td {
 .sp-pre-loader .sp-loader-bubble-loop:after {
   content: "";
   position: absolute;
-  background-color: rgba(153,153,153,0.5);
+  background-color: rgba(51,51,51,0.5);
   top: 0px;
   left: 25px;
   height: 12px;
@@ -2952,7 +2952,7 @@ table.category tbody >tr td {
   content: "";
   display: block;
   border-radius: 50%;
-  border: 2px solid #999999;
+  border: 2px solid #333333;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -3004,7 +3004,7 @@ table.category tbody >tr td {
   position: absolute;
   width: 2px;
   height: 0;
-  background-color: #999999;
+  background-color: #333333;
   bottom: 0;
 }
 .sp-pre-loader .wave-two li:nth-child(1) {
@@ -3040,7 +3040,7 @@ table.category tbody >tr td {
 .sp-pre-loader .sp-loader-audio-wave {
   width: 3em;
   height: 2em;
-  background: linear-gradient(#999999,#999999) 0 50%, linear-gradient(#999999,#999999) 0.625em 50%, linear-gradient(#999999,#999999) 1.25em 50%, linear-gradient(#999999,#999999) 1.875em 50%, linear-gradient(#999999,#999999) 2.5em 50%;
+  background: linear-gradient(#333333,#333333) 0 50%, linear-gradient(#333333,#333333) 0.625em 50%, linear-gradient(#333333,#333333) 1.25em 50%, linear-gradient(#333333,#333333) 1.875em 50%, linear-gradient(#333333,#333333) 2.5em 50%;
   background-repeat: no-repeat;
   background-size: 0.5em 0.25em, 0.5em 0.25em, 0.5em 0.25em, 0.5em 0.25em, 0.5em 0.25em;
   animation: audioWave 1.5s linear infinite;
@@ -3067,7 +3067,7 @@ table.category tbody >tr td {
   width: auto;
 }
 .sp-pre-loader .sp-loader-with-logo .line {
-  background: #999999;
+  background: #333333;
   bottom: 0;
   height: 5px;
   left: 0;
@@ -3160,27 +3160,27 @@ table.category tbody >tr td {
 }
 @keyframes audioWave {
   25% {
-    background: linear-gradient(#999999,#999999) 0 50%, linear-gradient(#999999,#999999) 0.625em 50%, linear-gradient(#999999,#999999) 1.25em 50%, linear-gradient(#999999,#999999) 1.875em 50%, linear-gradient(#999999,#999999) 2.5em 50%;
+    background: linear-gradient(#333333,#333333) 0 50%, linear-gradient(#333333,#333333) 0.625em 50%, linear-gradient(#333333,#333333) 1.25em 50%, linear-gradient(#333333,#333333) 1.875em 50%, linear-gradient(#333333,#333333) 2.5em 50%;
     background-repeat: no-repeat;
     background-size: 0.5em 2em, 0.5em 0.25em, 0.5em 0.25em, 0.5em 0.25em, 0.5em 0.25em;
   }
   37.5% {
-    background: linear-gradient(#999999,#999999) 0 50%, linear-gradient(#999999,#999999) 0.625em 50%, linear-gradient(#999999,#999999) 1.25em 50%, linear-gradient(#999999,#999999) 1.875em 50%, linear-gradient(#999999,#999999) 2.5em 50%;
+    background: linear-gradient(#333333,#333333) 0 50%, linear-gradient(#333333,#333333) 0.625em 50%, linear-gradient(#333333,#333333) 1.25em 50%, linear-gradient(#333333,#333333) 1.875em 50%, linear-gradient(#333333,#333333) 2.5em 50%;
     background-repeat: no-repeat;
     background-size: 0.5em 0.25em, 0.5em 2em, 0.5em 0.25em, 0.5em 0.25em, 0.5em 0.25em;
   }
   50% {
-    background: linear-gradient(#999999,#999999) 0 50%, linear-gradient(#999999,#999999) 0.625em 50%, linear-gradient(#999999,#999999) 1.25em 50%, linear-gradient(#999999,#999999) 1.875em 50%, linear-gradient(#999999,#999999) 2.5em 50%;
+    background: linear-gradient(#333333,#333333) 0 50%, linear-gradient(#333333,#333333) 0.625em 50%, linear-gradient(#333333,#333333) 1.25em 50%, linear-gradient(#333333,#333333) 1.875em 50%, linear-gradient(#333333,#333333) 2.5em 50%;
     background-repeat: no-repeat;
     background-size: 0.5em 0.25em, 0.5em 0.25em, 0.5em 2em, 0.5em 0.25em, 0.5em 0.25em;
   }
   62.5% {
-    background: linear-gradient(#999999,#999999) 0 50%, linear-gradient(#999999,#999999) 0.625em 50%, linear-gradient(#999999,#999999) 1.25em 50%, linear-gradient(#999999,#999999) 1.875em 50%, linear-gradient(#999999,#999999) 2.5em 50%;
+    background: linear-gradient(#333333,#333333) 0 50%, linear-gradient(#333333,#333333) 0.625em 50%, linear-gradient(#333333,#333333) 1.25em 50%, linear-gradient(#333333,#333333) 1.875em 50%, linear-gradient(#333333,#333333) 2.5em 50%;
     background-repeat: no-repeat;
     background-size: 0.5em 0.25em, 0.5em 0.25em, 0.5em 0.25em, 0.5em 2em, 0.5em 0.25em;
   }
   75% {
-    background: linear-gradient(#999999,#999999) 0 50%, linear-gradient(#999999,#999999) 0.625em 50%, linear-gradient(#999999,#999999) 1.25em 50%, linear-gradient(#999999,#999999) 1.875em 50%, linear-gradient(#999999,#999999) 2.5em 50%;
+    background: linear-gradient(#333333,#333333) 0 50%, linear-gradient(#333333,#333333) 0.625em 50%, linear-gradient(#333333,#333333) 1.25em 50%, linear-gradient(#333333,#333333) 1.875em 50%, linear-gradient(#333333,#333333) 2.5em 50%;
     background-repeat: no-repeat;
     background-size: 0.5em 0.25em, 0.5em 0.25em, 0.5em 0.25em, 0.5em 0.25em, 0.5em 2em;
   }
@@ -3324,6 +3324,34 @@ table.category tbody >tr td {
 .fadeInDown {
   -webkit-animation-name: fadeInDown;
   animation-name: fadeInDown;
+}
+@-webkit-keyframes fadeInUp {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(0,100%,0);
+    transform: translate3d(0,100%,0);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(0,100%,0);
+    transform: translate3d(0,100%,0);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+.fadeInUp {
+  -webkit-animation-name: fadeInUp;
+  animation-name: fadeInUp;
 }
 @media screen and (min-width: 768px) and (max-width: 1199px) {
   .scrollup {

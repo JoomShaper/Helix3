@@ -7,10 +7,10 @@
     <license>http://www.gnu.org/licenses/gpl-2.0.html GPLv2 or later</license>
     <authorEmail>support@joomshaper.com</authorEmail>
     <authorUrl>www.joomshaper.com</authorUrl>
-    <version>1.5</version>
+    <version>1.7</version>
     <description>Helix3 Framework - Joomla Template Framework by JoomShaper</description>
 
-    <updateservers> 
+    <updateservers>
         <server type="extension" priority="1" name="Helix3 - Ajax">http://www.joomshaper.com/updates/plg-ajax-helix3.xml</server>
     </updateservers>
 

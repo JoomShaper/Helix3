@@ -168,23 +168,23 @@ $doc->addScriptdeclaration("\nvar sp_offanimation = '" . $this->params->get('off
                 </head>
                 <body class="<?php echo $this->helix3->bodyClass($body_classes); ?> off-canvas-menu-init">
 
-                    <div class="off-canvas-menu-wrap">
+                    <div class="body-wrapper">
                         <div class="body-innerwrapper">
-<?php $this->helix3->generatelayout(); ?>
+                            <?php $this->helix3->generatelayout(); ?>
                         </div> <!-- /.body-innerwrapper -->
-                    </div> <!-- /.off-canvas-menu-wrap -->
+                    </div> <!-- /.body-innerwrapper -->
 
                     <!-- Off Canvas Menu -->
                     <div class="offcanvas-menu">
                         <a href="#" class="close-offcanvas"><i class="fa fa-remove"></i></a>
                         <div class="offcanvas-inner">
                             <?php if ($this->helix3->countModules('offcanvas')) { ?>
-                                <jdoc:include type="modules" name="offcanvas" style="sp_xhtml" />
-                                <?php } else { ?>
-                                <p class="alert alert-warning">
+                              <jdoc:include type="modules" name="offcanvas" style="sp_xhtml" />
+                            <?php } else { ?>
+                              <p class="alert alert-warning">
                                 <?php echo JText::_('HELIX_NO_MODULE_OFFCANVAS'); ?>
-                                </p>
-<?php } ?>
+                              </p>
+                            <?php } ?>
                         </div> <!-- /.offcanvas-inner -->
                     </div> <!-- /.offcanvas-menu -->
 
@@ -200,8 +200,7 @@ $doc->addScriptdeclaration("\nvar sp_offanimation = '" . $this->params->get('off
                     //before body
                     if ($before_body = $this->helix3->getParam('before_body')) {
                         echo $before_body . "\n";
-                    }
-                    ?>
+                    } ?>
 
                     <jdoc:include type="modules" name="debug" />
                     <!-- Preloader -->
@@ -209,7 +208,7 @@ $doc->addScriptdeclaration("\nvar sp_offanimation = '" . $this->params->get('off
                     <!-- Go to top -->
                     <?php if ($this->params->get('goto_top')) { ?>
                         <a href="javascript:void(0)" class="scrollup">&nbsp;</a>
-<?php } ?>
+                    <?php } ?>
 
                 </body>
                 </html>

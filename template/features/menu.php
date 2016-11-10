@@ -38,5 +38,5 @@ class Helix3FeatureMenu {
 		<?php }
 
 		return ob_get_clean();
-	}    
+	}
 }

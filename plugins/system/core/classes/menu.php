@@ -459,6 +459,7 @@ class Helix3Menu {
 		$flink = JFilterOutput::ampReplace(htmlspecialchars($flink));
 
 		$output = '';
+		$options ='';
 		if ($item->params->get('menu_show', 1) != 0) {
 			switch ($item->browserNav) {
 				default:
@@ -469,8 +470,8 @@ class Helix3Menu {
 					$output .= '<a '. $class .' href="'. $flink .'" target="_blank" '. $title .'>'. $linktitle .'</a>';
 				break;
 				case 2:
-					$options .= 'toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,' . $params->get('window_open');
-					$output .= '<a '. $class .' href="'. $flink .'" onclick="window.open(this.href,\'targetWindow\','. $options. ');return false;" '. $title .'>'. $linktitle .'</a>';
+					$options .= 'toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,' . $item->params->get('window_open');
+					$output .= '<a '. $class .' href="'. $flink .'" onclick="window.open(this.href,\'targetWindow\',\''. $options. '\');return false;" '. $title .'>'. $linktitle .'</a>';
 				break;
 			}
 		}

@@ -5,9 +5,9 @@
 **Helix3** is a user-friendly, modern, highly customizable and easy to integrate solution to build your custom Joomla 3+ website. For users installing Helix3 for the first time on a site, we have nice surprise all advanced template settings are already here. Helix3 isn’t just a template or a plugin, it’s a complete **Joomla 3+ template framework.**
 
 #### Most Powerful Features:
-- Modern Design  (2015 web trends inlcuded)
+- Modern Design  (2016 web trends inlcuded)
 - Flexibility & Fully Responsive Template
-- Font Awesome 4.6.3 ( over 510+ Icons) also for menu items
+- Font Awesome 4.6.3 ( over 675+ Icons) also for menu items
 - MegaMenu Generator
 - Off-Canvas Menu & MegaMenu
 - Article Post Formats

@@ -313,7 +313,7 @@
                     <option value="menu-twist">HELIX_TWIST_ANIMATION</option>
                 </field>
 
-                <field name="offcanvas_animation" class="child menutype menutype_mega_offcanvas menutype_offcanvas" type="list" default="default" label="HELIX_MENU_OFFCANVAS_ANIMATION" description="HELIX_MENU_OFFCANVAS_ANIMATION_DESC">
+                <field name="offcanvas_animation" class="child" type="list" default="default" label="HELIX_MENU_OFFCANVAS_ANIMATION" description="HELIX_MENU_OFFCANVAS_ANIMATION_DESC">
                     <option value="default">HELIX_OFFANIMATION_DEFAULT</option>
                     <option value="fullscreen">HELIX_OFFANIMATION_FULLSCREEN</option>
                     <option value="fullScreen-top">HELIX_OFFANIMATION_FULLSCREEN_FROM_TOP</option>

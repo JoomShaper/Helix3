@@ -31,11 +31,11 @@ class Helix3FeaturePreloader {
 		}
 
 		$output = '';
-		if ($getHelix3->getParam('preloader')) { 
+		if ($getHelix3->getParam('preloader')) {
            	//Pre-loader -->
             $output .= '<div class="sp-pre-loader">';
                 if ($getHelix3->getParam('preloader_animation') == 'double-loop') {
-                    // Bubble Loop loader 
+                    // Bubble Loop loader
                     $output .= '<div class="sp-loader-bubble-loop"></div>';
                 } elseif ($getHelix3->getParam('preloader_animation') == 'wave-two') {
                     // Audio Wave 2 loader
@@ -55,8 +55,8 @@ class Helix3FeaturePreloader {
                     $output .= '<div class="sp-loader-audio-wave"> </div>';
                 } elseif ($getHelix3->getParam('preloader_animation') == 'circle-two') {
                     // Circle two Loader
-                    $output .= '<div class="circle-two">'; 
-                        $output .= '<span></span>'; 
+                    $output .= '<div class="circle-two">';
+                        $output .= '<span></span>';
                     $output .= '</div>'; // /.Circle two loader
                 } elseif ($getHelix3->getParam('preloader_animation') == 'clock') {
                     //Clock loader
@@ -64,7 +64,7 @@ class Helix3FeaturePreloader {
                 } elseif ($getHelix3->getParam('preloader_animation') == 'logo') {
 
                     if ($getHelix3->getParam('logo_image')) {
-                        $path = JUri::root() . '/' . $getHelix3->getParam('logo_image');
+                        $logo = JUri::root() . '/' . $getHelix3->getParam('logo_image');
                     } else {
                         $logo = JUri::root() . '/templates/' . $app->getTemplate() . '/images/presets/' . $getHelix3->Preset() . '/logo.png';
                     }
@@ -82,7 +82,7 @@ class Helix3FeaturePreloader {
                     $output .= '<div class="sp-loader-circle"></div>'; // /.Circular loader
                 }
             $output .= '</div>'; // /.Pre-loader
-            
+
         } // if enable preloader
 
         echo $output;

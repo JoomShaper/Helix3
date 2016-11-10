@@ -12,8 +12,8 @@ function sp_call_to_action_addon($atts){
 		"title_fontsize" 		=> '',
 		"title_text_color" 		=> '',
 		"title_margin_top" 		=> '',
-		"title_margin_bottom" 	=> '',	
-		"subtitle_fontsize" 	=> '',		
+		"title_margin_bottom" 	=> '',
+		"subtitle_fontsize" 	=> '',
 		"subtitle" 				=> '',
 		"subtitle_text_color" 	=> '',
 		"text" 					=> '',
@@ -76,13 +76,13 @@ function sp_call_to_action_addon($atts){
 
 			if($subtitle_text_color) $subtitle_style .= 'color:' . $subtitle_text_color  . ';';
 			if($subtitle_fontsize) $subtitle_style .= 'font-size:'.$subtitle_fontsize.'px;line-height:'.$subtitle_fontsize.'px;';
-			
+
 			$output .= '<p class="sppb-lead sppb-cta-subtitle" style="' . $subtitle_style . '">' . $subtitle . '</p>';
-		}		
+		}
 
 
 		if($text) $output .= '<p class="sppb-cta-text">' . $text . '</p>';
-		
+
 		$output .= '</div>';
 
 		$output .= '<div class="sppb-col-sm-4 sppb-text-right">';
@@ -113,16 +113,16 @@ function sp_call_to_action_addon($atts){
 
 			if($subtitle_text_color) $subtitle_style .= 'color:' . $subtitle_text_color  . ';';
 			if($subtitle_fontsize) $subtitle_style .= 'font-size:'.$subtitle_fontsize.'px;line-height:'.$subtitle_fontsize.'px;';
-			
+
 			$output .= '<p class="sppb-lead sppb-cta-subtitle" style="' . $subtitle_style . '">' . $subtitle . '</p>';
-		}	
+		}
 
 		if($text) $output .= '<p class="sppb-cta-text">' . $text . '</p>';
-		
+
 		$output .= '<div>';
 		$output .= $button_output;
 		$output .= '</div>';
-		
+
 		$output .= '</div>';
 
 	}

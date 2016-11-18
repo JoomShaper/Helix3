@@ -23,6 +23,17 @@ JHtml::_('behavior.caption');
 $useDefList = ($params->get('show_modify_date') || $params->get('show_publish_date') || $params->get('show_create_date')
 	|| $params->get('show_hits') || $params->get('show_category') || $params->get('show_parent_category') || $params->get('show_author'));
 
+
+//get image
+$article_attribs 	= json_decode($this->item->attribs);
+$article_images 	= json_decode($this->item->images);
+$article_image 		= '';
+if(isset($article_attribs->spfeatured_image) && $article_attribs->spfeatured_image != '') {
+	$article_image 	= $article_attribs->spfeatured_image;
+} elseif(isset($article_images->image_fulltext) && !empty($article_images->image_fulltext)) {
+	$article_image 	= $article_images->image_fulltext;
+}
+
 //opengraph
 $document = JFactory::getDocument();
 $document->setTitle($this->item->title);

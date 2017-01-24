@@ -2,7 +2,7 @@
 /*=========================================
  *======= 	  Fronted edit	   ============
  *=======================================*/
-	
+
 .layout-edit {
 
 	@import "bootstrap-legacy/variables";
@@ -59,7 +59,7 @@ iframe, svg {
 }
 
 .manager.thumbnails {
-  
+
   list-style: none;
   padding: 0;
   margin: 0 0 0 -20px;
@@ -128,4 +128,29 @@ iframe, svg {
 	input[type="text"] {
 		min-height: 30px;
 	}
+}
+
+.com-config {
+		.form-horizontal{
+				.accordion-body {
+					&.in{
+						&:hover{
+							overflow: visible;
+						}
+					}
+						overflow: hidden;
+						.input-prepend.input-append {
+								.media-preview.add-on {
+										height: 34px;
+										line-height: 26px;
+								}
+								.btn {
+										position: relative;
+										cursor: pointer;
+										color: #333;
+										border: 1px solid #bbb;
+								}
+						}
+				}
+		}
 }

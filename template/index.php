@@ -193,10 +193,10 @@ $doc->addScriptdeclaration("\nvar sp_offanimation = '" . $this->params->get('off
                         $this->helix3->compressCSS();
                     }
 
-                    $temapOption    = $app->input->get('option');
+                    $tempOption    = $app->input->get('option');
                     // $tempView       = $app->input->get('view');
 
-                    if ( $this->params->get('compress_js') && $temapOption != 'com_config' ) {
+                    if ( $this->params->get('compress_js') && $tempOption != 'com_config' ) {
                         $this->helix3->compressJS($this->params->get('exclude_js'));
                     }
 

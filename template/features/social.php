@@ -25,14 +25,15 @@ class Helix3FeatureSocial {
 		$twitter  	= $this->helix3->getParam('twitter');
 		$googleplus = $this->helix3->getParam('googleplus');
 		$pinterest 	= $this->helix3->getParam('pinterest');
-		$youtube 	= $this->helix3->getParam('youtube');
+		$youtube 		= $this->helix3->getParam('youtube');
 		$linkedin 	= $this->helix3->getParam('linkedin');
 		$dribbble 	= $this->helix3->getParam('dribbble');
-		$behance 	= $this->helix3->getParam('behance');
-		$skype 		= $this->helix3->getParam('skype');
-		$flickr 	= $this->helix3->getParam('flickr');
-		$vk 		= $this->helix3->getParam('vk');
-		$custom 	= $this->helix3->getParam('custom');
+		$behance 		= $this->helix3->getParam('behance');
+		$skype 			= $this->helix3->getParam('skype');
+		$whatsapp 	= $this->helix3->getParam('whatsapp');
+		$flickr 		= $this->helix3->getParam('flickr');
+		$vk 				= $this->helix3->getParam('vk');
+		$custom 		= $this->helix3->getParam('custom');
 
 		if( $this->helix3->getParam('show_social_icons') && ( $facebook || $twitter || $googleplus || $pinterest || $youtube || $linkedin || $dribbble || $behance || $skype || $flickr || $vk ) ) {
 			$html  = '<ul class="social-icons">';
@@ -70,10 +71,12 @@ class Helix3FeatureSocial {
 			if( $skype ) {
 				$html .= '<li><a href="skype:'. $skype .'?chat"><i class="fa fa-skype"></i></a></li>';
 			}
-
+			if( $whatsapp ) {
+				$html .= '<li><a href="whatsapp://send?abid='. $whatsapp .'&text=Hi"><i class="fa fa-whatsapp"></i></a></li>';
+			}
 			if( $custom ) {
 				$explt_custom = explode(' ', $custom);
-				$html .= '<li><a href="'. $explt_custom[1] .'"><i class="fa '. $explt_custom[0] .'"></i></a></li>';
+				$html .= '<li><a target="_blank" href="'. $explt_custom[1] .'"><i class="fa '. $explt_custom[0] .'"></i></a></li>';
 			}
 
 			$html .= '</ul>';

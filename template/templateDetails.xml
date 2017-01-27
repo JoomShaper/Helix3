@@ -7,7 +7,7 @@
     <authorUrl>http://www.joomshaper.com</authorUrl>
     <copyright>Copyright (C) 2010 - 2016 JoomShaper.com. All rights reserved.</copyright>
     <license>http://www.gnu.org/licenses/gpl-2.0.html GPLv2 or later</license>
-    <version>1.7</version>
+    <version>1.9</version>
     <description>Shaper Helix3 - Starter Template of Helix3 framework</description>
 
     <updateservers>
@@ -210,6 +210,7 @@
                 <field name="youtube" type="text" label="HELIX_SOCIAL_ICON_YOUTUBE" description="HELIX_SOCIAL_ICON_YOUTUBE_DESC" class="child social_icons social_icons_1" />
                 <field name="flickr" type="text" label="HELIX_SOCIAL_ICON_FLICKR" description="HELIX_SOCIAL_ICON_FLICKR_DESC" class="child social_icons social_icons_1" />
                 <field name="skype" type="text" label="HELIX_SOCIAL_ICON_SKYPE" description="HELIX_SOCIAL_ICON_SKYPE_DESC" class="child social_icons social_icons_1" />
+                <field name="whatsapp" type="text" label="HELIX_SOCIAL_ICON_WHATSAPP" description="HELIX_SOCIAL_ICON_WHATSAPP_DESC" class="child social_icons social_icons_1" />
                 <field name="vk" type="text" label="HELIX_SOCIAL_ICON_VK" description="HELIX_SOCIAL_ICON_VK_DESC" class="child social_icons social_icons_1" />
                 <field name="custom" type="text" label="HELIX_SOCIAL_ICON_CUSTOM" description="HELIX_SOCIAL_ICON_CUSTOM_DESC" class="child social_icons social_icons_1" />
 

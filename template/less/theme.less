@@ -26,53 +26,53 @@
         15. Error page
         16. Mixed CSS
 
-/* ************   END:: TABLE OF CONTENT  ************* */
-/* **************************************************** */
+        /* ************   END:: TABLE OF CONTENT  ************* */
+        /* **************************************************** */
 
 
-/* ************   START Start Base Style   ************* */
-/* **************************************************** */
+        /* ************   START Start Base Style   ************* */
+        /* **************************************************** */
 
-a {
-    -webkit-transition: color 400ms, background-color 400ms;
-    transition: color 400ms, background-color 400ms;
-}
+        a {
+            -webkit-transition: color 400ms, background-color 400ms;
+            transition: color 400ms, background-color 400ms;
+        }
 
-body {
-    line-height: 24px;
-    -webkit-transition: all 400ms ease;
-    transition: all 400ms ease;
-    background-color: @bg_color;
+        body {
+            line-height: 24px;
+            -webkit-transition: all 400ms ease;
+            transition: all 400ms ease;
+            background-color: @bg_color;
 
-}
+        }
 
-a, a:hover, a:focus, a:active {
-    text-decoration: none;
-}
+        a, a:hover, a:focus, a:active {
+            text-decoration: none;
+        }
 
-label {
-    font-weight: normal;
-}
+        label {
+            font-weight: normal;
+        }
 
-legend {
-    padding-bottom: 10px;
-}
+        legend {
+            padding-bottom: 10px;
+        }
 
-img {
-    display: block;
-    max-width: 100%;
-    height: auto;
-}
+        img {
+            display: block;
+            max-width: 100%;
+            height: auto;
+        }
 
-/* ***************   END:: Base Style  **************** */
-/* **************************************************** */
+        /* ***************   END:: Base Style  **************** */
+        /* **************************************************** */
 
-/* ****************   START Button   ****************** */
-/* **************************************************** */
+        /* ****************   START Button   ****************** */
+        /* **************************************************** */
 
-.btn, .sppb-btn {
-    .transition(~'color 400ms, background-color 400ms, border-color 400ms');
-}
+        .btn, .sppb-btn {
+            .transition(~'color 400ms, background-color 400ms, border-color 400ms');
+        }
 
 //Offline
 .offline-inner {
@@ -827,7 +827,7 @@ article {
                         width: 30px;
                         display: inline-block;
                         &:hover,
-                            &:focus{
+                        &:focus{
                             background: @major_color;
                             color: #fff;
                         }
@@ -1283,7 +1283,7 @@ table.category {
     }
     .circle-two > span,
     .circle-two > span:before,
-        .circle-two > span:after {
+    .circle-two > span:after {
         content: "";
         display: block;
         border-radius: 50%;
@@ -1753,7 +1753,23 @@ table.category {
         bottom: 25px;
         right: 25px;
     }
-
+    //contact form
+    .form-horizontal{
+        .control-label{
+            width: 100%;
+            text-align: left;
+        }
+        .controls{
+            margin: 0;
+            width: 100%;
+            input, textarea{
+                width: 100%;
+            }
+            textarea{
+                height: 131px;
+            }
+        }
+    } 
 }
 @media screen and (min-width: 550px) and (max-width: 767px){
     //top social

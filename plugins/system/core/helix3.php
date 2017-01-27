@@ -224,6 +224,7 @@ class Helix3
 	{
 
 		self::getInstance()->addCSS('custom.css');
+		self::getInstance()->addJS('custom.js');
 
 		$doc         = JFactory::getDocument();
 		$app         = JFactory::getApplication();
@@ -480,7 +481,7 @@ class Helix3
 				if (self::countModules($column->settings->name))
 				{
 
-					$last_col = ($totalPublished == $col_i) ? $absspan : '';
+					$last_col = ($totalPublished == $col_i) ? $absspan : 0;
 					if ($hasComponent)
 					{
 						$column->className = 'col-sm-' . self::getColXsNo($column->className) . ' col-md-' . self::getColXsNo($column->className);
@@ -609,7 +610,10 @@ class Helix3
 			}
 			else
 			{
+				if ($src != 'custom.js')
+				{
 				self::getInstance()->document->addScript($src);
+				}
 			}
 		}
 
@@ -1020,6 +1024,10 @@ class Helix3
 		{
 			$js_file = str_replace($root_url, JPATH_ROOT, $key);
 
+			if (strpos($js_file, JPATH_ROOT) === false) {
+				$js_file = JPATH_ROOT . $key;
+			}
+
 			if (JFile::exists($js_file))
 			{
 				if (!self::excludeJS($key, $excludes))
@@ -1085,6 +1093,10 @@ class Helix3
 		foreach ($all_stylesheets as $key => $value)
 		{
 			$css_file = str_replace($root_url, JPATH_ROOT, $key);
+
+			if (strpos($css_file, JPATH_ROOT) === false) {
+				$css_file = JPATH_ROOT . $key;
+			}
 
 			global $absolute_url;
 			$absolute_url = $key;//absoulte path of each css file

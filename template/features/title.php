@@ -12,67 +12,70 @@ class Helix3FeatureTitle {
 
 	private $helix3;
 
-	public function __construct($helix){
+	public function __construct($helix)
+	{
 		$this->helix3 = $helix;
 		$this->position = 'title';
 	}
 
-	public function renderFeature() {
+	public function renderFeature() 
+	{
 
 		$app 		= JFactory::getApplication();
 		$menuitem   = $app->getMenu()->getActive(); // get the active item
 
-		if($menuitem) {
-
-			$params 	= $menuitem->params; // get the menu params
-
-			if($params->get('enable_page_title', 0)) {
-
-				$page_title 		 = $menuitem->title;
-				$page_title_alt 	 = $params->get('page_title_alt');
-				$page_subtitle 		 = $params->get('page_subtitle');
-				$page_title_bg_color = $params->get('page_title_bg_color');
-				$page_title_bg_image = $params->get('page_title_bg_image');
-
-				$style = '';
-
-				if($page_title_bg_color) {
-					$style .= 'background-color: ' . $page_title_bg_color . ';';
-				}
-
-				if($page_title_bg_image) {
-					$style .= 'background-image: url(' . JURI::root(true) . '/' . $page_title_bg_image . ');';
-				}
-
-				if( $style ) {
-					$style = 'style="' . $style . '"';
-				}
-
-				if($page_title_alt) {
-					$page_title 	 = $page_title_alt;
-				}
-
-				$output = '';
-
-				$output .= '<div class="sp-page-title"'. $style .'>';
-				$output .= '<div class="container">';
-
-				$output .= '<h2>'. $page_title .'</h2>';
-				
-				if($page_subtitle) {
-					$output .= '<h3>'. $page_subtitle .'</h3>';
-				}
-
-				$output .= '<jdoc:include type="modules" name="breadcrumb" style="none" />';
-				
-				$output .= '</div>';
-				$output .= '</div>';
-				
-				return $output;
-
-			}
-			
+		if(!$menuitem) 
+		{
+			return false;
 		}
-		
+
+		$params 	= $menuitem->params; // get the menu params
+
+		if(!$params->get('enable_page_title', 0))
+		{
+			return false;
+		}
+
+		$page_title 		 = $menuitem->title;
+		$page_title_alt 	 = $params->get('page_title_alt');
+		$page_subtitle 		 = $params->get('page_subtitle');
+		$page_title_bg_color = $params->get('page_title_bg_color');
+		$page_title_bg_image = $params->get('page_title_bg_image');
+
+		$style = '';
+
+		if($page_title_bg_color) {
+			$style .= 'background-color: ' . $page_title_bg_color . ';';
+		}
+
+		if($page_title_bg_image) {
+			$style .= 'background-image: url(' . JURI::root(true) . '/' . $page_title_bg_image . ');';
+		}
+
+		if( $style ) {
+			$style = 'style="' . $style . '"';
+		}
+
+		if($page_title_alt) {
+			$page_title 	 = $page_title_alt;
+		}
+
+		$output = '';
+
+		$output .= '<div class="sp-page-title"'. $style .'>';
+		$output .= '<div class="container">';
+
+		$output .= '<h2>'. $page_title .'</h2>';
+
+		if($page_subtitle) {
+			$output .= '<h3>'. $page_subtitle .'</h3>';
+		}
+
+		$output .= '<jdoc:include type="modules" name="breadcrumb" style="none" />';
+
+		$output .= '</div>';
+		$output .= '</div>';
+
+		return $output;	
 	}    
 }

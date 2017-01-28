@@ -58,21 +58,21 @@ class Helix3FeatureTitle {
 				$output .= '<div class="container">';
 
 				$output .= '<h2>'. $page_title .'</h2>';
-				
+
 				if($page_subtitle) {
 					$output .= '<h3>'. $page_subtitle .'</h3>';
 				}
 
 				$output .= '<jdoc:include type="modules" name="breadcrumb" style="none" />';
-				
+
 				$output .= '</div>';
 				$output .= '</div>';
-				
+
 				return $output;
 
 			}
-			
+
 		}
-		
-	}    
+
+	}
 }

@@ -49,7 +49,7 @@ JFactory::getDocument()->addScriptDeclaration("
 	</div>
 	<?php } ?>
 
-	<form action="<?php echo JRoute::_('index.php?option=com_content&a_id=' . (int) $this->item->id); ?>" method="post" name="adminForm" id="adminForm" class="form-validate form-vertical">
+	<form action="<?php echo JRoute::_('index.php?option=com_content&a_id=' . (int) $this->item->id); ?>" method="post" name="adminForm" id="adminForm" class="form-validate form-vertical com-content-adminForm">
 		<div class="btn-toolbar">
 			<button type="button" class="btn btn-success" onclick="Joomla.submitbutton('article.save')">
 				<i class="fa fa-check"></i> <?php echo JText::_('JSAVE') ?>
@@ -64,13 +64,14 @@ JFactory::getDocument()->addScriptDeclaration("
 				<i class="fa fa-remove"></i> <?php echo JText::_('JCANCEL') ?>
 			</button>
 		</div>
-		
+
 		<fieldset>
 			<ul class="nav nav-tabs">
 				<li class="active"><a href="#editor" data-toggle="tab"><?php echo JText::_('COM_CONTENT_ARTICLE_CONTENT') ?></a></li>
 				<?php if ($params->get('show_urls_images_frontend') ) : ?>
 				<li><a href="#images" data-toggle="tab"><?php echo JText::_('COM_CONTENT_IMAGES_AND_URLS') ?></a></li>
 				<?php endif; ?>
+				<li><a href="#sppostformats" data-toggle="tab"><?php echo JText::_('BLOG_OPTIONS') ?></a></li>
 				<li><a href="#publishing" data-toggle="tab"><?php echo JText::_('COM_CONTENT_PUBLISHING') ?></a></li>
 				<li><a href="#language" data-toggle="tab"><?php echo JText::_('JFIELD_LANGUAGE_LABEL') ?></a></li>
 				<li><a href="#metadata" data-toggle="tab"><?php echo JText::_('COM_CONTENT_METADATA') ?></a></li>
@@ -87,6 +88,7 @@ JFactory::getDocument()->addScriptDeclaration("
 					<?php echo $this->form->getInput('articletext'); ?>
 
 				</div>
+
 				<?php if ($params->get('show_urls_images_frontend')): ?>
 				<div class="tab-pane" id="images">
 					<?php echo $this->form->renderField('image_intro', 'images'); ?>
@@ -118,8 +120,24 @@ JFactory::getDocument()->addScriptDeclaration("
 							<?php echo $this->form->getInput('targetc', 'urls'); ?>
 						</div>
 					</div>
+
 				</div>
-				<?php endif; ?>
+			<?php endif; ?>
+
+			<div class="tab-pane" id="sppostformats">
+				<?php $attribs = json_decode($this->item->attribs); ?>
+				<?php echo $this->form->renderField('spfeatured_image','attribs', (isset($attribs->spfeatured_image)? $attribs->spfeatured_image: '')); ?>
+				<?php echo $this->form->renderField('post_format','attribs', $attribs->post_format); ?>
+				<?php echo $this->form->renderField('gallery','attribs', $attribs->gallery); ?>
+				<?php echo $this->form->renderField('audio','attribs', $attribs->audio); ?>
+				<?php echo $this->form->renderField('video','attribs', $attribs->video); ?>
+				<?php echo $this->form->renderField('link_title','attribs', $attribs->link_title); ?>
+				<?php echo $this->form->renderField('link_url','attribs', $attribs->link_url); ?>
+				<?php echo $this->form->renderField('quote_text','attribs',$attribs->quote_text); ?>
+				<?php echo $this->form->renderField('quote_author','attribs',$attribs->quote_author); ?>
+				<?php echo $this->form->renderField('post_status','attribs',$attribs->post_status); ?>
+			</div>
+
 				<div class="tab-pane" id="publishing">
 					<?php echo $this->form->renderField('catid'); ?>
 					<?php echo $this->form->renderField('tags'); ?>

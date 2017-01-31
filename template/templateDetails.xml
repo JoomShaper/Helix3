@@ -509,15 +509,6 @@
             </fieldset>
             <!--End Update Tab-->
 
-            <!--Start Update Tab-->
-            <fieldset name="documentation">
-                <field name="template_doc" type="button" url="https://www.joomshaper.com/documentation/helix3/docs" target="_blank" text="HELIX_CLICK_TO_VIEW" label="HELIX3_TEMPLATE_DOCUMENTATION" description="HELIX3_TEMPLATE_DOCUMENTATION_DESC" class="btn-primary" />
-
-                <field name="helix_doc" type="button" url="https://www.joomshaper.com/documentation/helix3/docs" target="_blank" text="HELIX_CLICK_TO_VIEW" label="HELIX3_DOCUMENTATION" description="HELIX3_DOCUMENTATION_DESC" class="btn-primary" />
-
-            </fieldset>
-            <!--End Update Tab-->
-
         </fields>
     </config>
 </extension>

@@ -613,3 +613,42 @@ a.btn-ino{color:#fff}
 
 /*Others*/
 .clr{ clear:both}
+
+/* Helix3 Footer Area */
+
+.helix-footer-area {
+    background: #164D78;
+    margin-top: 40px;
+    padding: 40px 0;
+    text-align: center;
+}
+
+.helix-footer-area .helix-logo-area{
+	display: inline-block;
+	width: 130px;
+	height: 40px;
+	background: url(../images/helix-logo.png) no-repeat;
+	background-position: -20px;
+	border: 0;
+	text-indent: -9999px;
+}
+
+.helix-footer-area .template-version{
+	background: #8dc63f;
+    padding: 3px 8px;
+    border-radius: 3px;
+    font-size: 12px;
+    font-weight: bold;
+    color: #fff;
+}
+
+.helix-footer-area .help-links{
+	padding-top: 20px;
+}
+
+.helix-footer-area .help-links a{
+	color: #fff;
+	margin-right: 7px;
+	margin-left: 7px;
+	display: inline-block;
+}

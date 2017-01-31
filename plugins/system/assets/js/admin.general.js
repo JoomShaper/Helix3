@@ -25,7 +25,7 @@ jQuery(function($){
               var eleclass = $(this).attr('class').split(/\s/g);
               var $key = $.inArray("parent", eleclass);
               if( $key!=-1 ){
-                classes.push( eleclass[$key+1] ); 
+                classes.push( eleclass[$key+1] );
               }
             });
 
@@ -42,7 +42,7 @@ jQuery(function($){
                   continue;
                 } else {
 
-                  var elecls =  '.' + eleclass[i]; 
+                  var elecls =  '.' + eleclass[i];
 
                   $(childClassName+elecls).parents('.control-group').hide();
                   if( $(parent).prop('type')=='fieldset' ){
@@ -91,7 +91,7 @@ jQuery(function($){
         //Presets
         $('.preset').parent().unwrap().prev().remove();
         $('.preset').parent().removeClass('controls').addClass('presets clearfix');
-        
+
         //Load Preset
         $('#attrib-preset').find('.preset-control').each(function(){
             if($(this).hasClass( current_preset )) {
@@ -141,6 +141,22 @@ jQuery(function($){
 
         childParentEngine();
 
+        // Helix3 Admin Footer
+        var footerHtml = '<div class="helix-footer-area">';
+        footerHtml += '<div class="clearfix">';
+        footerHtml += '<a class="helix-logo-area" href="https://www.joomshaper.com/helix" target="_blank">Helix3 Logo</a>';
+        footerHtml += '<span class="template-version">'+ pluginVersion +'</span>';
+        footerHtml += '</div>';
+        footerHtml += '<div class="help-links">';
+        footerHtml += '<a href="https://www.joomshaper.com/documentation/helix-framework/helix3" target="_blank">Documentation</a><span>|</span>';
+        footerHtml += '<a href="https://www.facebook.com/groups/819713448150532/" target="_blank">Helix Community</a><span>|</span>';
+        footerHtml += '<a href="https://www.joomshaper.com/page-builder" target="_blank">Page Builder Pro</a><span>|</span>';
+        footerHtml += '<a href="https://www.joomshaper.com/joomla-templates" target="_blank">Premium Templates</a><span>|</span>';
+        footerHtml += '<a href="https://www.joomshaper.com/joomla-extensions" target="_blank">Joomla Extensions</a>';
+        footerHtml += '</div>';
+        footerHtml += '</div>';
+
+        $(footerHtml).insertAfter('.form-horizontal');
     });
 
     //Media Button

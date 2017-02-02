@@ -7,7 +7,7 @@
 */
 //no direct accees
 defined ('_JEXEC') or die('resticted aceess');
- 
+
 class Helix3FeatureLogo {
 
 	private $helix3;
@@ -52,7 +52,7 @@ class Helix3FeatureLogo {
 
 		if( $this->helix3->getParam('logo_type') == 'image' ) {
 			if( $this->helix3->getParam('logo_image') ) {
-				$html .= '<h1 class="logo">';
+				$html .= '<div class="logo">';
 				$html .= '<a href="' . JURI::base(true) . '/">';
 					$html .= '<img class="sp-default-logo'. $custom_logo_class .'" src="' . $this->helix3->getParam('logo_image') . '" alt="'. $sitename .'">';
 					if( $this->helix3->getParam('logo_image_2x') ) {
@@ -65,9 +65,9 @@ class Helix3FeatureLogo {
 
 				$html .= '</a>';
 
-				$html .= '</h1>';
+				$html .= '</div>';
 			} else {
-				$html .= '<h1 class="logo">';
+				$html .= '<div class="logo">';
 					$html .= '<a href="' . JURI::base(true) . '/">';
 						$html .= '<img class="sp-default-logo'. $custom_logo_class .'" src="' . $this->helix3->getTemplateUri() . '/images/presets/' . $this->helix3->Preset() . '/logo.png" alt="'. $sitename .'">';
 						$html .= '<img class="sp-retina-logo'. $custom_logo_class .'" src="' . $this->helix3->getTemplateUri() . '/images/presets/' . $this->helix3->Preset() . '/logo@2x.png" alt="'. $sitename .'" width="' . $width . '" height="' . $height . '">';
@@ -76,9 +76,9 @@ class Helix3FeatureLogo {
 							$html .= '<img class="sp-default-logo visible-xs" src="' . $this->helix3->getParam('mobile_logo') . '" alt="'. $sitename .'">';
 						}
 					$html .= '</a>';
-				$html .= '</h1>';
+				$html .= '</div>';
 			}
-			
+
 		} else {
 			if( $this->helix3->getParam('logo_text') ) {
 				$html .= '<h1 class="logo"> <a href="' . JURI::base(true) . '/">' . $this->helix3->getParam('logo_text') . '</a></h1>';

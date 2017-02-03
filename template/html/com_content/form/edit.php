@@ -127,15 +127,15 @@ JFactory::getDocument()->addScriptDeclaration("
 			<div class="tab-pane" id="sppostformats">
 				<?php $attribs = json_decode($this->item->attribs); ?>
 				<?php echo $this->form->renderField('spfeatured_image','attribs', (isset($attribs->spfeatured_image)? $attribs->spfeatured_image: '')); ?>
-				<?php echo $this->form->renderField('post_format','attribs', $attribs->post_format); ?>
-				<?php echo $this->form->renderField('gallery','attribs', $attribs->gallery); ?>
-				<?php echo $this->form->renderField('audio','attribs', $attribs->audio); ?>
-				<?php echo $this->form->renderField('video','attribs', $attribs->video); ?>
-				<?php echo $this->form->renderField('link_title','attribs', $attribs->link_title); ?>
-				<?php echo $this->form->renderField('link_url','attribs', $attribs->link_url); ?>
-				<?php echo $this->form->renderField('quote_text','attribs',$attribs->quote_text); ?>
-				<?php echo $this->form->renderField('quote_author','attribs',$attribs->quote_author); ?>
-				<?php echo $this->form->renderField('post_status','attribs',$attribs->post_status); ?>
+				<?php echo $this->form->renderField('post_format','attribs', (isset($attribs->post_format)? $attribs->post_format: '')); ?>
+				<?php echo $this->form->renderField('gallery','attribs', (isset($attribs->gallery)? $attribs->gallery: '')); ?>
+				<?php echo $this->form->renderField('audio','attribs', (isset($attribs->audio)? $attribs->audio: '')); ?>
+				<?php echo $this->form->renderField('video','attribs', (isset($attribs->video)? $attribs->video: '')); ?>
+				<?php echo $this->form->renderField('link_title','attribs', (isset($attribs->link_title)? $attribs->link_title: '')); ?>
+				<?php echo $this->form->renderField('link_url','attribs', (isset($attribs->link_url)? $attribs->link_url: '')); ?>
+				<?php echo $this->form->renderField('quote_text','attribs',(isset($attribs->quote_text)? $attribs->quote_text: '')); ?>
+				<?php echo $this->form->renderField('quote_author','attribs',(isset($attribs->quote_author)? $attribs->quote_author: '')); ?>
+				<?php echo $this->form->renderField('post_status','attribs',(isset($attribs->post_status)? $attribs->post_status: '')); ?>
 			</div>
 
 				<div class="tab-pane" id="publishing">

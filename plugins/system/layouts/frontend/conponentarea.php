@@ -7,9 +7,6 @@
  */
 defined('_JEXEC') or die('Restricted Access');
 
-JHtml::_('stylesheet', 'system/frontediting.css', array(), true);
-JHtml::_('script', 'system/frontediting.js', false, true);
-
 //Helix3
 helix3::addLess('frontend-edit', 'frontend-edit');
 helix3::addJS('frontend-edit.js');

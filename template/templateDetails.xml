@@ -9,7 +9,7 @@
     <license>http://www.gnu.org/licenses/gpl-2.0.html GPLv2 or later</license>
     <version>1.9</version>
     <description>Shaper Helix3 - Starter Template of Helix3 framework</description>
-    
+
     <updateservers>
         <server type="extension" priority="1" name="shaper_helix3">https://www.joomshaper.com/updates/shaper-helix3.xml</server>
     </updateservers>
@@ -501,13 +501,6 @@
                 </field>
             </fieldset>
             <!--End Blog Tab-->
-
-            <!--Start Update Tab-->
-            <fieldset name="licenseupdate">
-                <field name="joomshaper_email" type="email" label="HELIX3_JOOMSHAPER_EMAIL" description="HELIX3_JOOMSHAPER_EMAIL_DESC" />
-                <field name="joomshaper_license_key" type="text" label="HELIX3_JOOMSHAPER_LICENSE_KEY" description="HELIX3_JOOMSHAPER_LICENSE_KEY_DESC" />
-            </fieldset>
-            <!--End Update Tab-->
 
         </fields>
     </config>

@@ -250,31 +250,37 @@ class Helix3Menu {
 			$dropdown_style .= 'left: -'. $dropdown_width .'px;';
 		}
 
-		$this->menu .= '<div class="' . $class . ' sp-menu-'. $alignment .'" style="' . $dropdown_style . '">';
-		$this->menu .= '<div class="sp-dropdown-inner">';
-		$this->navigation($item, $firstitem, 0,  'sp-dropdown-items');
+		if (count($items)) {
+			if ((count($this->children[$item->id]) == 1 && $this->children[$item->id][0]->params->get('menu_show') !== 0) || count($this->children[$item->id]) > 1) {
 
-		// only module exist
-		if (count($item->params->get('menulayout')) == 1) {
-			$mega_json = $item->params->get('menulayout');
-			$mega = json_decode($mega_json);
-			$layout = $mega->layout;
+			$this->menu .= '<div class="' . $class . ' sp-menu-'. $alignment .'" style="' . $dropdown_style . '">';
+			$this->menu .= '<div class="sp-dropdown-inner">';
+			$this->navigation($item, $firstitem, 0,  'sp-dropdown-items');
 
-			$layout = $layout[0];
-			$col = $layout->attr[0];
-			$mod_ids = ($col->moduleId)? explode(',', $col->moduleId):array();
+				// only module exist
+				if (count($item->params->get('menulayout')) == 1) {
+					$mega_json = $item->params->get('menulayout');
+					$mega = json_decode($mega_json);
+					$layout = $mega->layout;
 
-			if (count($mod_ids))
-			{
-				foreach ($mod_ids as $mod_id)
-				{
-					$this->menu .= $this->load_module($mod_id);
+					$layout = $layout[0];
+					$col = $layout->attr[0];
+					$mod_ids = ($col->moduleId)? explode(',', $col->moduleId):array();
+
+					if (count($mod_ids))
+					{
+						foreach ($mod_ids as $mod_id)
+						{
+							$this->menu .= $this->load_module($mod_id);
+						}
+					}
 				}
-			}
-		}
 
-		$this->menu .= '</div>';
-		$this->menu .= '</div>';
+			$this->menu .= '</div>';
+			$this->menu .= '</div>';
+		 }
+	 }
+
 	}
 
 	private function mega($item)
@@ -299,8 +305,7 @@ class Helix3Menu {
 
 		$this->menu .='<div class="sp-dropdown sp-dropdown-main sp-dropdown-mega sp-menu-'. $mega->menuAlign .'" style="' . $mega_style . '">';
 		$this->menu .='<div class="sp-dropdown-inner">';
-		foreach ($layout as $row)
-		{
+		foreach ($layout as $row) {
 
 			$this->menu .='<div class="row">';
 			foreach ($row->attr as $col)
@@ -381,7 +386,9 @@ class Helix3Menu {
 		$class 	= 'sp-menu-item';
 
 		if( !empty( $this->children[$item->id] ) ) {
-			$class .= ' sp-has-child';
+			if ((count($this->children[$item->id]) == 1 && $this->children[$item->id][0]->params->get('menu_show') !== 0) || count($this->children[$item->id]) > 1) {
+				$class .= ' sp-has-child';
+			}
 		} else if( isset( $item->megamenu ) && ( $item->megamenu ) ) {
 			$class .= ' sp-has-child';
 		}
@@ -416,8 +423,8 @@ class Helix3Menu {
 		$class = $extra_class;
 		$title = $item->anchor_title ? 'title="' . $item->anchor_title . '" ' : '';
 
-		$class .= ($item->anchor_css && $class) ? ' ' . $item->anchor_css : $item->anchor_css;
-		$class = ($class) ? 'class="' . $class . '"' : '';
+		$item->anchor_css = ($item->anchor_css) ? ' ' . $item->anchor_css : '';
+		$class = ($class) ? 'class="' . $class . $item->anchor_css . '" ' : '';
 
 		if ($item->menu_image)
 		{
@@ -449,21 +456,25 @@ class Helix3Menu {
 		$flink = JFilterOutput::ampReplace(htmlspecialchars($flink));
 
 		$output = '';
-		$options ='';
 		if ($item->params->get('menu_show', 1) != 0) {
-			switch ($item->browserNav) {
-				default:
-				case 0:
-					$output .= '<a '.$class.' href="'. $flink .'" '.$title.'>'.$linktitle.'</a>';
-				break;
-				case 1:
-					$output .= '<a '. $class .' href="'. $flink .'" target="_blank" '. $title .'>'. $linktitle .'</a>';
-				break;
-				case 2:
-					$options .= 'toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,' . $item->params->get('window_open');
-					$output .= '<a '. $class .' href="'. $flink .'" onclick="window.open(this.href,\'targetWindow\',\''. $options. '\');return false;" '. $title .'>'. $linktitle .'</a>';
-				break;
+			if ($item->type == 'separator' || $item->type == 'heading') {
+      		$output .= '<span ' . $class . '>' . $linktitle . '</span>';
+      } else{
+				switch ($item->browserNav) {
+					default:
+					case 0:
+						$output .= '<a '.$class.' href="'. $flink .'" '.$title.'>'.$linktitle.'</a>';
+					break;
+					case 1:
+						$output .= '<a '. $class .' href="'. $flink .'" target="_blank" '. $title .'>'. $linktitle .'</a>';
+					break;
+					case 2:
+						$options .= 'toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,' . $item->params->get('window_open');
+						$output .= '<a '. $class .' href="'. $flink .'" onclick="window.open(this.href,\'targetWindow\','. $options. ');return false;" '. $title .'>'. $linktitle .'</a>';
+					break;
+				}
 			}
+
 		}
 
 		return $output;

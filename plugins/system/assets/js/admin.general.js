@@ -160,13 +160,27 @@ jQuery(function($){
     });
 
     //Media Button
-    $( '.input-prepend' ).find( '.btn' ).each(function(){
-        if($(this).hasClass( 'modal' )) {
+    $( '.input-prepend, .input-append' ).find( '.btn' ).each(function(){
+        if($(this).is( '.modal, .button-select' ) ) {
             $(this).addClass( 'btn-success' );
         } else {
             $(this).addClass( 'btn-danger' );
         }
     });
+
+    $( '.controls' ).find( '.field-media-preview' ).each(function(){
+      $(this).insertBefore($(this).parent().find('.input-append'));
+    });
+
+    $( '.control-group .field-media-preview' ).not( 'img' ).each(function(){
+      $(this).append('<div id="preview_empty">No image selected.</div>');
+    });
+
+    // clear image
+    $( '.helix-options .controls .field-media-wrapper .input-append' ).on( 'click', '.button-clear', function( event ) {
+      $(this).closest('.field-media-wrapper').find('.field-media-preview').html('<div id="preview_empty">No image selected.</div>');
+    });
+
 
     //Add .btn-group class
     $( '.radio' ).addClass( 'btn-group' );
@@ -213,5 +227,4 @@ jQuery(function($){
         });
         return false;
   });
-
 });

@@ -38,7 +38,7 @@ a.btn-ino{color:#fff}
 }
 
 /*Basic*/
-.com_templates.view-style input[type="text"],
+.com_templates.view-style input[type="text"]:not(.minicolors),
 .com_templates.view-style input[type="url"],
 .com_templates.view-style input[type="password"],
 .com_templates.view-style input[type="number"],
@@ -279,7 +279,7 @@ a.btn-ino{color:#fff}
 
 .layout-column .column:hover {
 	cursor: move;
-} 
+}
 
 .layout-column .column .col-title {
 	margin: 0;
@@ -323,7 +323,7 @@ a.btn-ino{color:#fff}
 }
 
 /*Button*/
-.helix-options .btn {
+.helix-options .btn, .helix-options .input-append .add-on, .helix-options .input-prepend .add-on {
 	border-color: #e5e5e5;
 	border-width: 0;
 	border-bottom-width: 2px;
@@ -344,6 +344,7 @@ a.btn-ino{color:#fff}
 
 .helix-options .btn.btn-danger {
 	border-color: #bd362f;
+	background-color: #bd362f;
 }
 
 .helix-options .btn.btn-danger.active,
@@ -353,11 +354,13 @@ a.btn-ino{color:#fff}
 
 .helix-options .btn.btn-success {
 	border-color: #51a351;
+	background-color: #409740;
 }
 
 .helix-options .btn.btn-success.active,
 .helix-options .btn.btn-success:hover {
 	border-color: #458a45;
+	background-color: #378137;
 }
 
 .helix-options .btn.btn-primary {
@@ -514,7 +517,7 @@ a.btn-ino{color:#fff}
 }
 
 /*Media*/
-.controls .input-append .media-preview.add-on, 
+.controls .input-append .media-preview.add-on,
 .controls .input-prepend .media-preview.add-on {
 	border: 0;
 	background: none;
@@ -524,11 +527,11 @@ a.btn-ino{color:#fff}
 	margin-bottom: 20px;
 }
 
-.controls .modal.btn {
+.controls .modal.btn, .controls .button-select.btn{
 	border-radius: 3px 0 0 3px;
 }
 
-.controls .media-preview + input[type="text"] {
+.controls .media-preview + input[type="text"]{
 	display: none;
 }
 
@@ -574,7 +577,7 @@ a.btn-ino{color:#fff}
 	bottom: 5px;
 }
 
-.com_templates.view-style .minicolors input[type="text"] {
+.com_templates.view-style .minicolors input[type="text"]:not(.minicolors) {
 	width: 100%;
 	padding-left: 30px;
 }
@@ -594,7 +597,7 @@ a.btn-ino{color:#fff}
 .font-update-success,
 .font-update-failed {
 	margin-top: 10px;
-	font-weight: bold;	
+	font-weight: bold;
 }
 
 .font-update-success {
@@ -651,4 +654,18 @@ a.btn-ino{color:#fff}
 	margin-right: 7px;
 	margin-left: 7px;
 	display: inline-block;
+}
+
+/* Joomla 3.7 Compatible */
+.helix-options .controls .field-media-wrapper[data-preview-container=".field-media-preview"] .input-append > input[type="text"]{
+	display: none;
+}
+.helix-options .control-group .field-media-wrapper .field-media-preview{
+	margin: 0 0 20px 0;
+}
+
+.helix-options .control-group .field-media-wrapper .field-media-preview img{
+	max-height: 200px;
+	max-width: 200px;
+	height: inherit !important;
 }

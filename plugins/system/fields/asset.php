@@ -26,7 +26,6 @@ class JFormFieldAsset extends JFormField
         //Core scripts
         JHtml::_('jquery.ui', array('core', 'sortable'));
         JHtml::_('formbehavior.chosen', 'select');
-        JHtml::_('behavior.colorpicker');
 
         $doc->addScript($helix_plg_url.'/assets/js/helper.js');
         $doc->addScript($helix_plg_url.'/assets/js/webfont.js');

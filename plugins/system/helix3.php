@@ -4,7 +4,7 @@
 * @author JoomShaper http://www.joomshaper.com
 * @copyright Copyright (c) 2010 - 2015 JoomShaper
 * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
-*/  
+*/
 
 //no direct accees
 defined ('_JEXEC') or die ('resticted aceess');
@@ -44,12 +44,12 @@ class  plgSystemHelix3 extends JPlugin
         $plg_path = JURI::root(true).'/plugins/system/helix3';
         JForm::addFormPath(JPATH_PLUGINS.'/system/helix3/params');
 
-        if ($form->getName()=='com_menus.item') { //Add Helix menu params to the menu item   
-            
+        if ($form->getName()=='com_menus.item') { //Add Helix menu params to the menu item
+
             JHtml::_('jquery.framework');
 
             if($data['id'] && $data['parent_id'] == 1) {
-                
+
                 JHtml::_('jquery.ui', array('core', 'more', 'sortable'));
 
                 $doc->addScript($plg_path.'/assets/js/jquery-ui.draggable.min.js');
@@ -62,7 +62,7 @@ class  plgSystemHelix3 extends JPlugin
                 $form->loadFile('menu-parent', false);
 
             } else {
-                $form->loadFile('menu-child', false); 
+                $form->loadFile('menu-child', false);
             }
 
             $form->loadFile('page-title', false);
@@ -96,7 +96,7 @@ class  plgSystemHelix3 extends JPlugin
 
             $params = new JRegistry;
             $params->loadString($data->params);
-            
+
             $email       = $params->get('joomshaper_email');
             $license_key = $params->get('joomshaper_license_key');
             $template = trim($data->template);
@@ -108,7 +108,7 @@ class  plgSystemHelix3 extends JPlugin
                 $extra_query .='&amp;joomshaper_license_key=' . urlencode($license_key);
 
                 $db = JFactory::getDbo();
-                
+
                 $fields = array(
                     $db->quoteName('extra_query') . '=' . $db->quote($extra_query),
                     $db->quoteName('last_check_timestamp') . '=0'
@@ -169,7 +169,7 @@ class  plgSystemHelix3 extends JPlugin
                 exit;
             }
         }
-        
+
     }
 
     private function getTemplateName()

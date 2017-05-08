@@ -14,8 +14,8 @@ jQuery(function($) {
 		});
 
 	});//end ready
-	/* ----------   Load existing template   ------------- */
 
+	/* ----------   Load existing template   ------------- */
 	$('.form-horizontal').on('click', '.layout-del-action', function(event) {
 		event.preventDefault();
 
@@ -165,7 +165,7 @@ jQuery(function($) {
 		}
 	}
 
-	// callback function, return checkbox value 
+	// callback function, return checkbox value
 	$.fn.getInputValue = function(){
 		if (this.attr('type') == 'checkbox') {
 			if (this.attr("checked")) {
@@ -311,7 +311,7 @@ jQuery(function($) {
 
 					if ($attrname == 'name') {
 						var nameVal = $this.val();
-						
+
 						if (nameVal  !='' || $this.val() != null) {
 							$('.row-active .section-title').text($this.val());
 						}else{
@@ -402,7 +402,7 @@ jQuery(function($) {
 	// Column Layout Arrange
 	$(document).on('click', '.column-layout', function(event) {
 		event.preventDefault();
-		
+
 		var $that = $(this),
 			colType = $that.data('type'), column;
 
@@ -410,7 +410,7 @@ jQuery(function($) {
 			return;
 		};
 
-		
+
 
 		if (colType == 'custom') {
 			column = prompt('Enter your custom layout like 4,2,2,2,2 as total 12 grid','4,2,2,2,2');
@@ -445,7 +445,7 @@ jQuery(function($) {
 					newLayout = colArray;
 					$(this).data('layout', column)
 					error = false;
-				} 
+				}
 			}
 
 			if (error) {
@@ -498,7 +498,7 @@ jQuery(function($) {
 		jqueryUiLayout();
 	});
 
-	// add row 
+	// add row
 	$(document).on('click','.add-row',function(event){
 		event.preventDefault();
 
@@ -507,7 +507,7 @@ jQuery(function($) {
 
 		$rowClone.addClass('layoutbuilder-section').removeAttr('id');
 		$($rowClone).insertAfter($parent);
-		
+
 		jqueryUiLayout();
 	});
 
@@ -579,7 +579,7 @@ jQuery(function($) {
 
 		return item;
 	}
-	
+
 	//On Submit
 	document.adminForm.onsubmit = function(event){
 

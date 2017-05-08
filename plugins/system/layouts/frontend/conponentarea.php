@@ -15,7 +15,6 @@ $data = $displayData;
 
 $output ='';
 
-
 $output .= '<div id="sp-component" class="' . $data->className . '">';
 
 $output .= '<div class="sp-column ' . ($data->settings->custom_class) . '">';
@@ -27,3 +26,4 @@ $output .= '</div>';
 
 
 echo $output;
+

@@ -11,43 +11,56 @@ defined('JPATH_BASE') or die;
 
 if ( $displayData['params']->get('video') ) {
 	
-	$video = parse_url($displayData['params']->get('video'));
-
-	switch($video['host']) {
-		case 'youtu.be':
-		$video_id 	= trim($video['path'],'/');
-		$video_src 	= '//www.youtube.com/embed/' . $video_id;
-		break;
-
-		case 'www.youtube.com':
-		case 'youtube.com':
-		parse_str($video['query'], $query);
-		$video_id 	= $query['v'];
-		$video_src 	= '//www.youtube.com/embed/' . $video_id;
-		break;
-
-		case 'vimeo.com':
-		case 'www.vimeo.com':
-		$video_id 	= trim($video['path'],'/');
-		$video_src 	= "//player.vimeo.com/video/" . $video_id;
-	}
-
-	if($video_src) {
+	$jinput = JFactory::getApplication()->input;
+	if($displayData['params']->get('spfeatured_image') && $jinput->get('option') == 'com_content' && $jinput->get('view') == 'category'){
+		$link = JRoute::_(ContentHelperRoute::getArticleRoute($displayData['item']->slug, $displayData['item']->catid, $displayData['item']->language));
 		?>
-
-		<div class="entry-video embed-responsive embed-responsive-16by9">
-			<object class="embed-responsive-item" style="width:100%;height:100%;" data="<?php echo $video_src; ?>">
-				<param name="movie" value="<?php echo $video_src; ?>">
-				<param name="wmode" value="transparent" />
-				<param name="allowFullScreen" value="true">
-				<param name="allowScriptAccess" value="always"></param>
-				<embed src="<?php echo $video_src; ?>"
-		         type="application/x-shockwave-flash" allowscriptaccess="always">
-		         </embed>
-			</object>
+		<div class="entry-image intro-image">
+			<a href="<?php echo $link;?>">
+				<img src="<?php echo $displayData['params']->get('spfeatured_image'); ?>" alt="" itemprop="thumbnailUrl">
+			</a>
 		</div>
-
 		<?php
-	} // has video source
+	}else{
+		$video = parse_url($displayData['params']->get('video'));
+
+		switch($video['host']) {
+			case 'youtu.be':
+			$video_id 	= trim($video['path'],'/');
+			$video_src 	= '//www.youtube.com/embed/' . $video_id;
+			break;
+
+			case 'www.youtube.com':
+			case 'youtube.com':
+			parse_str($video['query'], $query);
+			$video_id 	= $query['v'];
+			$video_src 	= '//www.youtube.com/embed/' . $video_id;
+			break;
+
+			case 'vimeo.com':
+			case 'www.vimeo.com':
+			$video_id 	= trim($video['path'],'/');
+			$video_src 	= "//player.vimeo.com/video/" . $video_id;
+		}
+
+		if($video_src) {
+			?>
+
+			<div class="entry-video embed-responsive embed-responsive-16by9">
+				<object class="embed-responsive-item" style="width:100%;height:100%;" data="<?php echo $video_src; ?>">
+					<param name="movie" value="<?php echo $video_src; ?>">
+					<param name="wmode" value="transparent" />
+					<param name="allowFullScreen" value="true">
+					<param name="showinfo" value="0">
+					<param name="allowScriptAccess" value="always"></param>
+					<embed src="<?php echo $video_src; ?>"
+			         type="application/x-shockwave-flash" allowscriptaccess="always">
+			         </embed>
+				</object>
+			</div>
+
+			<?php
+		} // has video source
+	} 
 	
 } // has video value

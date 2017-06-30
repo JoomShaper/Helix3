@@ -82,7 +82,8 @@ JHtml::_('behavior.keepalive');
 					</button>
 				</div>
 
-				<input type="hidden" name="return" value="<?php echo base64_encode($this->params->get('login_redirect_url', $this->form->getValue('return'))); ?>" />
+				<?php $return = $this->form->getValue('return', '', $this->params->get('login_redirect_url', $this->params->get('login_redirect_menuitem'))); ?>
+				<input type="hidden" name="return" value="<?php echo base64_encode($return); ?>" />
 				<?php echo JHtml::_('form.token'); ?>
 
 			</form>

@@ -11,6 +11,7 @@ defined('_JEXEC') or die('resticted aceess');
 
 $doc = JFactory::getDocument();
 $app = JFactory::getApplication();
+$menu = $app->getMenu()->getActive();
 
 JHtml::_('jquery.framework');
 JHtml::_('bootstrap.framework'); //Force load Bootstrap
@@ -31,12 +32,17 @@ if ($this->helix3->getParam('comingsoon_mode'))
 
 //Class Classes
 $body_classes = '';
-
 if ($this->helix3->getParam('sticky_header')) {
     $body_classes .= ' sticky-header';
 }
 
 $body_classes .= ($this->helix3->getParam('boxed_layout', 0)) ? ' layout-boxed' : ' layout-fluid';
+
+if (isset($menu) && $menu) {
+  if ($menu->params->get('pageclass_sfx')) {
+    $body_classes .= ' ' . $menu->params->get('pageclass_sfx');
+  }
+}
 
 //Body Background Image
 if ($bg_image = $this->helix3->getParam('body_bg_image')) {

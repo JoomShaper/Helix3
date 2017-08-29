@@ -2,7 +2,7 @@
 /**
 * @package Helix3 Framework
 * @author JoomShaper http://www.joomshaper.com
-* @copyright Copyright (c) 2010 - 2015 JoomShaper
+* @copyright Copyright (c) 2010 - 2017 JoomShaper
 * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
 */
 
@@ -12,6 +12,10 @@ defined ('_JEXEC') or die ('resticted aceess');
 jimport('joomla.plugin.plugin');
 jimport( 'joomla.event.plugin' );
 jimport('joomla.registry.registry');
+
+if(!class_exists('Helix3')) {
+  require_once (__DIR__ . '/core/helix3.php');
+}
 
 class  plgSystemHelix3 extends JPlugin
 {
@@ -183,5 +187,20 @@ class  plgSystemHelix3 extends JPlugin
         $db->setQuery($query);
 
         return $db->loadObject()->template;
+    }
+
+    function onAfterRender() {
+      $app = JFactory::getApplication();
+
+  		if ($app->isAdmin())
+      {
+  			return;
+  		}
+      $body = JResponse::getBody();
+  		$preset = Helix3::Preset();
+
+  		$body = str_replace('{helix_preset}', $preset, $body);
+
+  		JResponse::setBody($body);
     }
 }

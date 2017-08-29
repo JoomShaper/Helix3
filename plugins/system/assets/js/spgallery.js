@@ -1,13 +1,13 @@
 /**
 * @package Helix3 Framework
 * @author JoomShaper http://www.joomshaper.com
-* @copyright Copyright (c) 2010 - 2015 JoomShaper
+* @copyright Copyright (c) 2010 - 2017 JoomShaper
 * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
 */
 jQuery(function($) {
 
 	$('.sp-gallery-field').each(function(index, el) {
-		
+
 		var $field = $(el);
 
 		// Upload form
@@ -40,7 +40,7 @@ jQuery(function($) {
 			data.append('plugin', 'helix3');
 			data.append('action', 'upload_image');
 			data.append('format', 'json');
-			
+
 			if (file.type.match(/image.*/)) {
 				data.append('image', file);
 
@@ -65,28 +65,28 @@ jQuery(function($) {
 						} else {
 							alert(data.output);
 						}
-		 				
-		 				$this.val('');
-		 				$this.prev('.sp-gallery-items').find('.sp-gallery-item-loader').remove();
-		 				$this.prop('disabled', false);
-		 				$field.find('.btn-sp-gallery-item-upload').removeAttr('disabled');
 
-		 				var images = [];
-		 				$.each($field.find('.sp-gallery-items').find('>li'), function( index, value ) {
-		 					images.push( '"' + $(value).data('src') + '"' );
-		 				});
-		 				var output = '{"'+ $field.find('.form-field-spgallery').data('name') +'":['+ images +']}';
-		 				$('.form-field-spgallery').val(output);
+						$this.val('');
+						$this.prev('.sp-gallery-items').find('.sp-gallery-item-loader').remove();
+						$this.prop('disabled', false);
+						$field.find('.btn-sp-gallery-item-upload').removeAttr('disabled');
+
+						var images = [];
+						$.each($field.find('.sp-gallery-items').find('>li'), function( index, value ) {
+							images.push( '"' + $(value).data('src') + '"' );
+						});
+						var output = '{"'+ $field.find('.form-field-spgallery').data('name') +'":['+ images +']}';
+						$('.form-field-spgallery').val(output);
 
 					},
-					error: function() 
+					error: function()
 					{
 						$this.prev('.sp-gallery-items').find('.sp-gallery-item-loader').remove();
 						$this.val('');
-					} 	        
+					}
 				});
 			}
-	
+
 			$this.val('');
 
 		}));
@@ -101,11 +101,11 @@ jQuery(function($) {
 		var $this = $(this);
 
 		if (confirm("You are about to permanently delete this item. 'Cancel' to stop, 'OK' to delete.") == true) {
-		    var request = {
+			var request = {
 				'option' : 'com_ajax',
 				'plugin' : 'helix3',
 				'action' : 'remove_image',
-				'src'	 : $(this).parent().data('src'),	
+				'src'	 : $(this).parent().data('src'),
 				'format' : 'json'
 			};
 
@@ -132,5 +132,5 @@ jQuery(function($) {
 			});
 		}
 	});
-    
+
 });

@@ -2,7 +2,7 @@
 /**
 * @package Helix3 Framework
 * @author JoomShaper http://www.joomshaper.com
-* @copyright Copyright (c) 2010 - 2015 JoomShaper
+* @copyright Copyright (c) 2010 - 2017 JoomShaper
 * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
 */
 
@@ -85,27 +85,27 @@ class Helix3Menu {
 			switch ($item->type) {
 				case 'separator':
 				case 'heading':
-					// No further action needed.
-					continue;
+				// No further action needed.
+				continue;
 
 				case 'url':
-					if ((strpos($item->link, 'index.php?') === 0) && (strpos($item->link, 'Itemid=') === false)) {
-						$item->flink = $item->link . '&Itemid=' . $item->id;
-					}
-					break;
+				if ((strpos($item->link, 'index.php?') === 0) && (strpos($item->link, 'Itemid=') === false)) {
+					$item->flink = $item->link . '&Itemid=' . $item->id;
+				}
+				break;
 
 				case 'alias':
-					$item->flink = 'index.php?Itemid=' . $item->params->get('aliasoptions');
-					break;
+				$item->flink = 'index.php?Itemid=' . $item->params->get('aliasoptions');
+				break;
 
 				default:
-					$router = JSite::getRouter();
-					if ($router->getMode() == JROUTER_MODE_SEF) {
-						$item->flink = 'index.php?Itemid=' . $item->id;
-					} else {
-						$item->flink .= '&Itemid=' . $item->id;
-					}
-					break;
+				$router = JSite::getRouter();
+				if ($router->getMode() == JROUTER_MODE_SEF) {
+					$item->flink = 'index.php?Itemid=' . $item->id;
+				} else {
+					$item->flink .= '&Itemid=' . $item->id;
+				}
+				break;
 			}
 
 			if (strcasecmp(substr($item->flink, 0, 4), 'http') && (strpos($item->flink, 'index.php?') !== false)) {
@@ -138,7 +138,7 @@ class Helix3Menu {
 	{
 		if ( $start > 0 ) {
 			if (!isset($this->_items[$start]))
-				return;
+			return;
 			$pid     = $this->_items[$start]->parent_id;
 			$items   = array();
 			$started = false;
@@ -146,7 +146,7 @@ class Helix3Menu {
 			foreach ($this->children[$pid] as $item) {
 				if ($started) {
 					if ($item->id == $end)
-						break;
+					break;
 					$items[] = $item;
 				} else {
 					if ($item->id == $start) {
@@ -156,11 +156,11 @@ class Helix3Menu {
 				}
 			}
 			if (!count($items))
-				return;
+			return;
 		}else if( $start === 0 ){
 			$pid = $pitem->id;
 			if (!isset($this->children[$pid]))
-				return;
+			return;
 			$items = $this->children[$pid];
 		}else{
 			return;
@@ -454,14 +454,14 @@ class Helix3Menu {
 			switch ($item->browserNav) {
 				default:
 				case 0:
-					$output .= '<a '.$class.' href="'. $flink .'" '.$title.'>'.$linktitle.'</a>';
+				$output .= '<a '.$class.' href="'. $flink .'" '.$title.'>'.$linktitle.'</a>';
 				break;
 				case 1:
-					$output .= '<a '. $class .' href="'. $flink .'" target="_blank" '. $title .'>'. $linktitle .'</a>';
+				$output .= '<a '. $class .' href="'. $flink .'" target="_blank" '. $title .'>'. $linktitle .'</a>';
 				break;
 				case 2:
-					$options .= 'toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,' . $item->params->get('window_open');
-					$output .= '<a '. $class .' href="'. $flink .'" onclick="window.open(this.href,\'targetWindow\',\''. $options. '\');return false;" '. $title .'>'. $linktitle .'</a>';
+				$options .= 'toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,' . $item->params->get('window_open');
+				$output .= '<a '. $class .' href="'. $flink .'" onclick="window.open(this.href,\'targetWindow\',\''. $options. '\');return false;" '. $title .'>'. $linktitle .'</a>';
 				break;
 			}
 		}

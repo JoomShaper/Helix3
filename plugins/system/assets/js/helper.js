@@ -1,7 +1,7 @@
 /**
 * @package Helix3 Framework
 * @author JoomShaper http://www.joomshaper.com
-* @copyright Copyright (c) 2010 - 2015 JoomShaper
+* @copyright Copyright (c) 2010 - 2017 JoomShaper
 * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
 */
 
@@ -40,7 +40,7 @@
 			var $id = random_number();
 
 			$(this).find('.input-media').attr('id', 'media-' + $id);
-			
+
 			//Preview
 			$(this).find('.image-preview').attr('id', 'media-' + $id + '_preview_img');
 			$(this).find('.image-preview').find('img').attr('id', 'media-' + $id + '_preview');

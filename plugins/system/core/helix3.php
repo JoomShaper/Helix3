@@ -1,10 +1,10 @@
 <?php
 /**
- * @package   Helix3 Framework
- * @author    JoomShaper http://www.joomshaper.com
- * @copyright Copyright (c) 2010 - 2015 JoomShaper
- * @license   http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
- */
+* @package Helix3 Framework
+* @author JoomShaper http://www.joomshaper.com
+* @copyright Copyright (c) 2010 - 2017 JoomShaper
+* @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
+*/
 
 //no direct accees
 defined('_JEXEC') or die ('resticted aceess');
@@ -29,9 +29,9 @@ class Helix3
 	}
 
 	/**
-	 * making self object for singleton method
-	 *
-	 */
+	* making self object for singleton method
+	*
+	*/
 	final public static function getInstance()
 	{
 		if (!self::$_instance)
@@ -44,10 +44,10 @@ class Helix3
 	}
 
 	/**
-	 * Get Document
-	 *
-	 * @param string $key
-	 */
+	* Get Document
+	*
+	* @param string $key
+	*/
 	public static function getDocument($key = false)
 	{
 		self::getInstance()->document = JFactory::getDocument();
@@ -124,12 +124,12 @@ class Helix3
 	}
 
 	/**
-	 * Get or set Template param. If value not setted params get and return,
-	 * else set params
-	 *
-	 * @param string $name
-	 * @param mixed  $value
-	 */
+	* Get or set Template param. If value not setted params get and return,
+	* else set params
+	*
+	* @param string $name
+	* @param mixed  $value
+	*/
 	public static function Param($name = true, $value = null)
 	{
 
@@ -160,10 +160,10 @@ class Helix3
 	}
 
 	/**
-	 * Importing features
-	 *
-	 * @access private
-	 */
+	* Importing features
+	*
+	* @access private
+	*/
 	private $inPositions = array();
 	public $loadFeature = array();
 
@@ -208,10 +208,10 @@ class Helix3
 	}
 
 	/**
-	 * get number from col-xs
-	 *
-	 * @param string $col_name
-	 */
+	* get number from col-xs
+	*
+	* @param string $col_name
+	*/
 	public static function getColXsNo($col_name)
 	{
 		//Remove Classes name
@@ -372,16 +372,16 @@ class Helix3
 				switch ($sematic)
 				{
 					case "header":
-						$sematic = 'header';
-						break;
+					$sematic = 'header';
+					break;
 
 					case "footer":
-						$sematic = 'footer';
-						break;
+					$sematic = 'footer';
+					break;
 
 					default:
-						$sematic = 'section';
-						break;
+					$sematic = 'section';
+					break;
 				}
 
 				$layout_data = array(
@@ -404,7 +404,7 @@ class Helix3
 				$layout_path  = (file_exists($generate_file)) ? $lyt_thm_path : JPATH_ROOT .'/plugins/system/helix3/layouts';
 
 				$getLayout = new JLayoutFile('frontend.generate', $layout_path );
-        		$output .= $getLayout->render($layout_data);
+				$output .= $getLayout->render($layout_data);
 
 			}
 		}
@@ -509,10 +509,10 @@ class Helix3
 	}
 
 	/**
-	 * Has feature
-	 *
-	 * @param string $position
-	 */
+	* Has feature
+	*
+	* @param string $position
+	*/
 
 	public static function hasFeature($position)
 	{
@@ -528,12 +528,12 @@ class Helix3
 	}
 
 	/**
-	 * Add stylesheet
-	 *
-	 * @param mixed $sources . string or array
-	 *
-	 * @return self
-	 */
+	* Add stylesheet
+	*
+	* @param mixed $sources . string or array
+	*
+	* @return self
+	*/
 	public static function addCSS($sources, $attribs = array())
 	{
 
@@ -552,7 +552,7 @@ class Helix3
 		}
 
 		foreach ((array) $sources as $source)
-			$srcs[] = trim($source);
+		$srcs[] = trim($source);
 
 		foreach ($srcs as $src)
 		{
@@ -574,13 +574,13 @@ class Helix3
 	}
 
 	/**
-	 * Add javascript
-	 *
-	 * @param mixed  $sources   . string or array
-	 * @param string $seperator . default is , (comma)
-	 *
-	 * @return self
-	 */
+	* Add javascript
+	*
+	* @param mixed  $sources   . string or array
+	* @param string $seperator . default is , (comma)
+	*
+	* @return self
+	*/
 	public static function addJS($sources, $seperator = ',')
 	{
 
@@ -599,7 +599,7 @@ class Helix3
 		}
 
 		foreach ((array) $sources as $source)
-			$srcs[] = trim($source);
+		$srcs[] = trim($source);
 
 		foreach ($srcs as $src)
 		{
@@ -612,7 +612,7 @@ class Helix3
 			{
 				if ($src != 'custom.js')
 				{
-				self::getInstance()->document->addScript($src);
+					self::getInstance()->document->addScript($src);
 				}
 			}
 		}
@@ -621,12 +621,12 @@ class Helix3
 	}
 
 	/**
-	 * Add Inline Javascript
-	 *
-	 * @param mixed $code
-	 *
-	 * @return self
-	 */
+	* Add Inline Javascript
+	*
+	* @param mixed $code
+	*
+	* @return self
+	*/
 	public function addInlineJS($code)
 	{
 		self::getInstance()->document->addScriptDeclaration($code);
@@ -635,12 +635,12 @@ class Helix3
 	}
 
 	/**
-	 * Add Inline CSS
-	 *
-	 * @param mixed $code
-	 *
-	 * @return self
-	 */
+	* Add Inline CSS
+	*
+	* @param mixed $code
+	*
+	* @return self
+	*/
 	public function addInlineCSS($code)
 	{
 		self::getInstance()->document->addStyleDeclaration($code);
@@ -649,9 +649,9 @@ class Helix3
 	}
 
 	/**
-	 * Less Init
-	 *
-	 */
+	* Less Init
+	*
+	*/
 	public static function lessInit()
 	{
 
@@ -663,20 +663,20 @@ class Helix3
 	}
 
 	/**
-	 * Instance of Less
-	 */
+	* Instance of Less
+	*/
 	public static function less()
 	{
 		return self::getInstance()->_less;
 	}
 
 	/**
-	 * Set Less Variables using array key and value
-	 *
-	 * @param mixed $array
-	 *
-	 * @return self
-	 */
+	* Set Less Variables using array key and value
+	*
+	* @param mixed $array
+	*
+	* @return self
+	*/
 	public static function setLessVariables($array)
 	{
 		self::getInstance()->less()->setVariables($array);
@@ -685,13 +685,13 @@ class Helix3
 	}
 
 	/**
-	 * Set less variable using name and value
-	 *
-	 * @param mixed $name
-	 * @param mixed $value
-	 *
-	 * @return self
-	 */
+	* Set less variable using name and value
+	*
+	* @param mixed $name
+	* @param mixed $value
+	*
+	* @return self
+	*/
 	public static function setLessVariable($name, $value)
 	{
 		self::getInstance()->less()->setVariables(array($name => $value));
@@ -700,13 +700,13 @@ class Helix3
 	}
 
 	/**
-	 * Compile less to css when less modified or css not exist
-	 *
-	 * @param mixed $less
-	 * @param mixed $css
-	 *
-	 * @return self
-	 */
+	* Compile less to css when less modified or css not exist
+	*
+	* @param mixed $less
+	* @param mixed $css
+	*
+	* @return self
+	*/
 	private static function autoCompileLess($less, $css)
 	{
 		// load the cache
@@ -751,13 +751,13 @@ class Helix3
 	}
 
 	/**
-	 * Add Less
-	 *
-	 * @param mixed $less
-	 * @param mixed $css
-	 *
-	 * @return self
-	 */
+	* Add Less
+	*
+	* @param mixed $less
+	* @param mixed $css
+	*
+	* @return self
+	*/
 	public static function addLess($less, $css, $attribs = array())
 	{
 		$template  = JFactory::getApplication()->getTemplate();
@@ -797,9 +797,9 @@ class Helix3
 	}
 
 	/**
-	 * Preset
-	 *
-	 */
+	* Preset
+	*
+	*/
 	public static function Preset()
 	{
 		$template = JFactory::getApplication()->getTemplate();
@@ -823,10 +823,10 @@ class Helix3
 	}
 
 	/**
-	 * Load Menu
-	 *
-	 * @since    1.0
-	 */
+	* Load Menu
+	*
+	* @since    1.0
+	*/
 	public static function loadMegaMenu($class = "", $name = '')
 	{
 		require_once __DIR__ . '/classes/menu.php';
@@ -836,9 +836,9 @@ class Helix3
 
 
 	/**
-	 * Convert object to array
-	 *
-	 */
+	* Convert object to array
+	*
+	*/
 	public static function object_to_array($obj) {
 		if(is_object($obj)) $obj = (array) $obj;
 		if(is_array($obj)) {
@@ -852,9 +852,9 @@ class Helix3
 	}
 
 	/**
-	 * Convert object to array
-	 *
-	 */
+	* Convert object to array
+	*
+	*/
 	public static function font_key_search($font, $fonts) {
 
 		foreach ($fonts as $key => $value) {
@@ -867,12 +867,12 @@ class Helix3
 	}
 
 	/**
-	 * Add Google Fonts
-	 *
-	 * @param string $name  . Name of font. Ex: Yanone+Kaffeesatz:400,700,300,200 or Yanone+Kaffeesatz  or Yanone
-	 *                      Kaffeesatz
-	 * @param string $field . Applied selector. Ex: h1, h2, #id, .classname
-	 */
+	* Add Google Fonts
+	*
+	* @param string $name  . Name of font. Ex: Yanone+Kaffeesatz:400,700,300,200 or Yanone+Kaffeesatz  or Yanone
+	*                      Kaffeesatz
+	* @param string $field . Applied selector. Ex: h1, h2, #id, .classname
+	*/
 	public static function addGoogleFont($fonts)
 	{
 		$doc = JFactory::getDocument();
@@ -1108,21 +1108,21 @@ class Helix3
 				$compressed = CSSMinify::process(JFile::read($css_file));
 
 				$fixUrl = preg_replace_callback('/url\(([^\)]*)\)/',
-					function ($matches)
+				function ($matches)
+				{
+					$url = str_replace(array('"', '\''), '', $matches[1]);
+
+					global $absolute_url;
+					$base = dirname($absolute_url);
+					while (preg_match('/^\.\.\//', $url))
 					{
-						$url = str_replace(array('"', '\''), '', $matches[1]);
+						$base = dirname($base);
+						$url  = substr($url, 3);
+					}
+					$url = $base . '/' . $url;
 
-						global $absolute_url;
-						$base = dirname($absolute_url);
-						while (preg_match('/^\.\.\//', $url))
-						{
-							$base = dirname($base);
-							$url  = substr($url, 3);
-						}
-						$url = $base . '/' . $url;
-
-						return "url('$url')";
-					}, $compressed);
+					return "url('$url')";
+				}, $compressed);
 
 				$minifiedCode .= "/*------ " . JFile::getName($css_file) . " ------*/\n" . $fixUrl . "\n\n";//add file name to compressed css
 

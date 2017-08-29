@@ -1,10 +1,10 @@
 <?php
 /**
- * @package     Helix
- *
- * @copyright   Copyright (C) 2010 - 2016 JoomShaper. All rights reserved.
- * @license     GNU General Public License version 2 or later.
- */
+* @package Helix3 Framework
+* @author JoomShaper http://www.joomshaper.com
+* @copyright Copyright (c) 2010 - 2017 JoomShaper
+* @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
+*/
 defined('_JEXEC') or die('Restricted Access');
 
 //helper & model
@@ -37,11 +37,10 @@ $output ='';
                     $output .= $feature['feature'];
                 }
             }
-        
+
         $output .= '</div>'; //.sp-column
 
     $output .= '</div>'; //.sp-
 
 
 echo $output;
-

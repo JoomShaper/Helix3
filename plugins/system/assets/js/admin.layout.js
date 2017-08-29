@@ -1,7 +1,7 @@
 /**
 * @package Helix3 Framework
 * @author JoomShaper http://www.joomshaper.com
-* @copyright Copyright (c) 2010 - 2015 JoomShaper
+* @copyright Copyright (c) 2010 - 2017 JoomShaper
 * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
 */
 
@@ -20,11 +20,11 @@ jQuery(function($) {
 		event.preventDefault();
 
 		var $that = $(this),
-			layoutName = $(".layoutlist select").val(),
-			data = {
-				action : $that.data('action'),
-				layoutName : layoutName
-			};
+		layoutName = $(".layoutlist select").val(),
+		data = {
+			action : $that.data('action'),
+			layoutName : layoutName
+		};
 
 		if ( confirm("Click Ok button to delete "+layoutName+", Cancel to leave.") != true ){
 			return false;
@@ -35,40 +35,40 @@ jQuery(function($) {
 		}
 
 		var request = {
-                'option' : 'com_ajax',
-                'plugin' : 'helix3',
-                'data'   : data,
-                'format' : 'json'
-            };
+			'option' : 'com_ajax',
+			'plugin' : 'helix3',
+			'data'   : data,
+			'format' : 'json'
+		};
 
-        $.ajax({
-            type   : 'POST',
-            data   : request,
-            beforeSend: function(){
-            	$('.layout-del-action .fa-spin').show();
-            },
-            success: function (response) {
-            	var data = $.parseJSON(response.data),
-            		layouts = data.layout,
-            		tplHtml = '';
+		$.ajax({
+			type   : 'POST',
+			data   : request,
+			beforeSend: function(){
+				$('.layout-del-action .fa-spin').show();
+			},
+			success: function (response) {
+				var data = $.parseJSON(response.data),
+				layouts = data.layout,
+				tplHtml = '';
 
-            	$('#jform_params_layoutlist').find('option').remove();
-            	if (layouts.length) {
-            		for (var i = 0; i < layouts.length; i++) {
-            			tplHtml += '<option value="'+ layouts[i] +'">'+ layouts[i].replace('.json','')+'</option>';
-            		}
+				$('#jform_params_layoutlist').find('option').remove();
+				if (layouts.length) {
+					for (var i = 0; i < layouts.length; i++) {
+						tplHtml += '<option value="'+ layouts[i] +'">'+ layouts[i].replace('.json','')+'</option>';
+					}
 
-            		$('#jform_params_layoutlist').html(tplHtml);
-            	}
+					$('#jform_params_layoutlist').html(tplHtml);
+				}
 
-            	$('.layout-del-action .fa-spin').fadeOut('fast');
-            },
-            error: function(){
-            	alert('Somethings wrong, Try again');
-            	$('.layout-del-action .fa-spin').fadeOut('fast');
-            }
-        });
-        return false;
+				$('.layout-del-action .fa-spin').fadeOut('fast');
+			},
+			error: function(){
+				alert('Somethings wrong, Try again');
+				$('.layout-del-action .fa-spin').fadeOut('fast');
+			}
+		});
+		return false;
 	});
 
 	// Save new copy of layout
@@ -87,36 +87,36 @@ jQuery(function($) {
 
 	$(".layoutlist select").chosen().change(function(){
 		var $that = $(this),
-			layoutName = $that.val(),
-			data = {
-				action : 'load',
-				layoutName : layoutName
-			};
+		layoutName = $that.val(),
+		data = {
+			action : 'load',
+			layoutName : layoutName
+		};
 
 		if ( layoutName == '' || layoutName == ' ' ){
 			alert('You are doing somethings wrong.');
 		}
 
 		var request = {
-                'option' : 'com_ajax',
-                'plugin' : 'helix3',
-                'data'   : data,
-                'format' : 'raw'
-            };
+			'option' : 'com_ajax',
+			'plugin' : 'helix3',
+			'data'   : data,
+			'format' : 'raw'
+		};
 
-        $.ajax({
-            type   : 'POST',
-            data   : request,
-            dataType: "html",
-            beforeSend: function(){
-            },
-            success: function (response) {
-               	$('#helix-layout-builder').empty();
+		$.ajax({
+			type   : 'POST',
+			data   : request,
+			dataType: "html",
+			beforeSend: function(){
+			},
+			success: function (response) {
+				$('#helix-layout-builder').empty();
 				$('#helix-layout-builder').append(response).fadeIn('normal');
 				jqueryUiLayout();
-            }
-        });
-        return false;
+			}
+		});
+		return false;
 	});
 
 	/*********   Lyout Builder JavaScript   **********/
@@ -178,7 +178,7 @@ jQuery(function($) {
 		}
 	}
 
-    // color picker initialize
+	// color picker initialize
 	$.fn.initColorPicker = function(){
 		this.find('.minicolors').each(function() {
 			$(this).minicolors({
@@ -210,7 +210,7 @@ jQuery(function($) {
 
 		$clone.find('.addon-input').each(function(){
 			var $that = $(this),
-				attrValue = $parent.data( $that.data('attrname'));
+			attrValue = $parent.data( $that.data('attrname'));
 			$that.setInputValue({filed: attrValue});
 		});
 
@@ -246,14 +246,14 @@ jQuery(function($) {
 		var comFlug = false;
 		$clone.find('.addon-input').each(function(){
 			var $that = $(this),
-				$attrname = $that.data('attrname'),
-				attrValue = $parent.data($attrname);
+			$attrname = $that.data('attrname'),
+			attrValue = $parent.data($attrname);
 
-				if ( $attrname == 'column_type' && attrValue == '1' ) {
-					comFlug = true;
-				}else if($attrname == 'name' && comFlug == true){
-					$that.closest('.form-group').slideUp('fast');
-				}
+			if ( $attrname == 'column_type' && attrValue == '1' ) {
+				comFlug = true;
+			}else if($attrname == 'name' && comFlug == true){
+				$that.closest('.form-group').slideUp('fast');
+			}
 
 			$that.setInputValue({filed: attrValue});
 		});
@@ -272,7 +272,7 @@ jQuery(function($) {
 	$('.input-column_type').change(function(event) {
 
 		var $parent = $(this).closest('.column-settings'),
-			flag = false;
+		flag = false;
 
 		$('#helix-layout-builder').find('.layout-column').not( ".column-active" ).each(function(index, val) {
 			if ($(this).data('column_type') == '1') {
@@ -303,99 +303,99 @@ jQuery(function($) {
 
 		switch(flag){
 			case 'row-setting':
-				$('#layout-modal').find('.addon-input').each(function(){
-					var $this = $(this),
-					$parent = $('.row-active'),
-					$attrname = $this.data('attrname');
-					$parent.removeData( $attrname );
+			$('#layout-modal').find('.addon-input').each(function(){
+				var $this = $(this),
+				$parent = $('.row-active'),
+				$attrname = $this.data('attrname');
+				$parent.removeData( $attrname );
 
-					if ($attrname == 'name') {
-						var nameVal = $this.val();
+				if ($attrname == 'name') {
+					var nameVal = $this.val();
 
-						if (nameVal  !='' || $this.val() != null) {
-							$('.row-active .section-title').text($this.val());
-						}else{
-							$('.row-active .section-title').text('Section Header');
-						}
+					if (nameVal  !='' || $this.val() != null) {
+						$('.row-active .section-title').text($this.val());
+					}else{
+						$('.row-active .section-title').text('Section Header');
 					}
+				}
 
-					$parent.attr('data-' + $attrname, $this.getInputValue());
-				});
-				break;
+				$parent.attr('data-' + $attrname, $this.getInputValue());
+			});
+			break;
 
 			case 'col-setting':
-				var component = false;
+			var component = false;
 
-				$('#layout-modal').find('.addon-input').each(function(){
+			$('#layout-modal').find('.addon-input').each(function(){
 
-					var $this = $(this),
-					$parent = $('.column-active'),
-					$attrname = $this.data('attrname');
-					$parent.removeData( $attrname ),
-					dataVal = $this.val();
+				var $this = $(this),
+				$parent = $('.column-active'),
+				$attrname = $this.data('attrname');
+				$parent.removeData( $attrname ),
+				dataVal = $this.val();
 
-					if ( $attrname == 'column_type' && $(this).attr("checked") ) {
-						component = true;
-						$('.column-active .col-title').text('Component');
-					}else if( $attrname == 'name' && component != true ) {
-						if (dataVal == '' || dataVal == undefined) {
-							dataVal = 'none';
-						}
-						$('.column-active .col-title').text(dataVal);
+				if ( $attrname == 'column_type' && $(this).attr("checked") ) {
+					component = true;
+					$('.column-active .col-title').text('Component');
+				}else if( $attrname == 'name' && component != true ) {
+					if (dataVal == '' || dataVal == undefined) {
+						dataVal = 'none';
 					}
+					$('.column-active .col-title').text(dataVal);
+				}
 
-					$parent.attr('data-' + $attrname, $this.getInputValue());
-				});
-				break;
+				$parent.attr('data-' + $attrname, $this.getInputValue());
+			});
+			break;
 
 			case 'save-layout':
-					var layoutName = $('#layout-modal .addon-input').val(),
-						data = {
-							action : 'save',
-							layoutName : layoutName,
-							content: JSON.stringify(getGeneratedLayout())
-						};
+			var layoutName = $('#layout-modal .addon-input').val(),
+			data = {
+				action : 'save',
+				layoutName : layoutName,
+				content: JSON.stringify(getGeneratedLayout())
+			};
 
-					if (layoutName =='' || layoutName ==' ') {
-						alert("Without Name Layout Can't be save");
-						return false;
-					}
+			if (layoutName =='' || layoutName ==' ') {
+				alert("Without Name Layout Can't be save");
+				return false;
+			}
 
-					var request = {
-						'option' : 'com_ajax',
-						'plugin' : 'helix3',
-						'data'   : data,
-						'format' : 'json'
-					};
+			var request = {
+				'option' : 'com_ajax',
+				'plugin' : 'helix3',
+				'data'   : data,
+				'format' : 'json'
+			};
 
-					$.ajax({
-						type   : 'POST',
-						data   : request,
-						beforeSend: function(){
-						},
-						success: function (response) {
-							var data = $.parseJSON(response.data),
-								layouts = data.layout,
-								tplHtml = '';
+			$.ajax({
+				type   : 'POST',
+				data   : request,
+				beforeSend: function(){
+				},
+				success: function (response) {
+					var data = $.parseJSON(response.data),
+					layouts = data.layout,
+					tplHtml = '';
 
-							$('#jform_params_layoutlist').find('option').remove();
-							if (layouts.length) {
-								for (var i = 0; i < layouts.length; i++) {
-									tplHtml += '<option value="'+ layouts[i] +'">'+ layouts[i].replace('.json','')+'</option>';
-								}
-
-								$('#jform_params_layoutlist').html(tplHtml);
-							}
-						},
-						error: function(){
-							alert('Somethings wrong, Try again');
+					$('#jform_params_layoutlist').find('option').remove();
+					if (layouts.length) {
+						for (var i = 0; i < layouts.length; i++) {
+							tplHtml += '<option value="'+ layouts[i] +'">'+ layouts[i].replace('.json','')+'</option>';
 						}
 
-					});
-				break;
+						$('#jform_params_layoutlist').html(tplHtml);
+					}
+				},
+				error: function(){
+					alert('Somethings wrong, Try again');
+				}
+
+			});
+			break;
 
 			default:
-				alert('You are doing somethings wrongs. Try again');
+			alert('You are doing somethings wrongs. Try again');
 		}
 	});
 
@@ -404,7 +404,7 @@ jQuery(function($) {
 		event.preventDefault();
 
 		var $that = $(this),
-			colType = $that.data('type'), column;
+		colType = $that.data('type'), column;
 
 		if ($that.hasClass('active') && colType != 'custom' ) {
 			return;
@@ -417,11 +417,11 @@ jQuery(function($) {
 		}
 
 		var $parent 		= $that.closest('.column-list'),
-			$gparent 		= $that.closest('.layoutbuilder-section'),
-			oldLayoutData 	= $parent.find('.active').data('layout'),
-			oldLayout       = ['12'],
-			layoutData 		= $that.data('layout'),
-			newLayout 		= ['12'];
+		$gparent 		= $that.closest('.layoutbuilder-section'),
+		oldLayoutData 	= $parent.find('.active').data('layout'),
+		oldLayout       = ['12'],
+		layoutData 		= $that.data('layout'),
+		newLayout 		= ['12'];
 
 		if (oldLayoutData !=12) {
 			oldLayout = oldLayoutData.split(',');
@@ -455,7 +455,7 @@ jQuery(function($) {
 		}
 
 		var col = [],
-			colAttr = [];
+		colAttr = [];
 
 		$gparent.find('.layout-column').each(function(i,val){
 			col[i] = $(this).html();
@@ -503,7 +503,7 @@ jQuery(function($) {
 		event.preventDefault();
 
 		var $parent = $(this).closest('.layoutbuilder-section'),
-			$rowClone = $('#layoutbuilder-section').clone(true);
+		$rowClone = $('#layoutbuilder-section').clone(true);
 
 		$rowClone.addClass('layoutbuilder-section').removeAttr('id');
 		$($rowClone).insertAfter($parent);
@@ -526,7 +526,7 @@ jQuery(function($) {
 	// Remove Media
 	$(document).on('click','.remove-media',function(){
 		var $that = $(this),
-			$imgParent = $that.parent('.media');
+		$imgParent = $that.parent('.media');
 
 		$imgParent.find('img.media-preview').each(function() {
 			$(this).attr('src','');
@@ -540,13 +540,13 @@ jQuery(function($) {
 		var item = [];
 		$('#helix-layout-builder').find('.layoutbuilder-section').each(function(index){
 			var $row 		= $(this),
-				rowIndex 	= index,
-				rowObj 		= $row.data();
+			rowIndex 	= index,
+			rowObj 		= $row.data();
 			delete rowObj.sortableItem;
 
 			var activeLayout 	= $row.find('.column-layout.active'),
-				layoutArray 	= activeLayout.data('layout'),
-				layout = 12;
+			layoutArray 	= activeLayout.data('layout'),
+			layout = 12;
 
 			if( layoutArray != 12){
 				layout = layoutArray.split(',').join('');
@@ -563,9 +563,9 @@ jQuery(function($) {
 			$row.find('.layout-column').each(function(index) {
 
 				var $column 	= $(this),
-					colIndex 	= index,
-					className 	= $column.attr('class'),
-					colObj 		= $column.data();
+				colIndex 	= index,
+				className 	= $column.attr('class'),
+				colObj 		= $column.data();
 				delete colObj.sortableItem;
 
 				item[rowIndex].attr[colIndex] = {
@@ -586,12 +586,12 @@ jQuery(function($) {
 		//Webfonts
 		$('.webfont').each(function(){
 			var $that = $(this),
-				webfont = {
-					'fontFamily' : $that.find('.list-font-families').val(),
-					'fontWeight' : $that.find('.list-font-weight').val(),
-					'fontSubset' : $that.find('.list-font-subset').val(),
-					'fontSize'	: $that.find('.webfont-size').val()
-				}
+			webfont = {
+				'fontFamily' : $that.find('.list-font-families').val(),
+				'fontWeight' : $that.find('.list-font-weight').val(),
+				'fontSubset' : $that.find('.list-font-subset').val(),
+				'fontSize'	: $that.find('.webfont-size').val()
+			}
 
 			$that.find('.input-webfont').val( JSON.stringify(webfont) )
 

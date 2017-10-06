@@ -98,6 +98,34 @@ svg {
 .chzn-container.chzn-container-multi input[type="text"] {
   min-height: 30px;
 }
+.com-content-adminForm textarea {
+  width: 350px;
+  height: 100px;
+}
+.com-content-adminForm .input-prepend.input-append .media-preview.add-on {
+  height: 34px;
+  line-height: 26px;
+}
+.com-content-adminForm .input-prepend.input-append .modal.btn {
+  position: relative;
+  background: #ccc;
+}
+.com-config .form-horizontal .accordion-body {
+  overflow: hidden;
+}
+.com-config .form-horizontal .accordion-body.in:hover {
+  overflow: visible;
+}
+.com-config .form-horizontal .accordion-body .input-prepend.input-append .media-preview.add-on {
+  height: 34px;
+  line-height: 26px;
+}
+.com-config .form-horizontal .accordion-body .input-prepend.input-append .btn {
+  position: relative;
+  cursor: pointer;
+  color: #333;
+  border: 1px solid #bbb;
+}
 
 
 /* *** Joomla 3.7 Compatibility *** */

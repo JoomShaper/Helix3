@@ -155,7 +155,8 @@ if (!empty($this->item->pagination) && $this->item->pagination && $this->item->p
 	<?php echo $this->item->introtext; ?>
 	<?php //Optional link to let them register to see the whole article. ?>
 	<?php if ($params->get('show_readmore') && $this->item->fulltext != null) :
-		$link1 = JRoute::_('index.php?option=com_users&view=login');
+		$redirectUrl = urlencode(base64_encode(JURI::current()));  
+		$link1 = JRoute::_('index.php?option=com_users&view=login&return='.$redirectUrl);
 		$link = new JUri($link1);?>
 	<p class="readmore">
 		<a href="<?php echo $link; ?>">

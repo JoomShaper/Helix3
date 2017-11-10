@@ -30,7 +30,7 @@ $output ='';
 $output .= '<' . $data['sematic'] . ' id="' . $data['id'] . '"' . $data['row_class'] . '>';
 
 if ($data['componentArea']){
-    if (!$data['pagebuilder']){
+    if (!$data['pagebuilder'] && !$data['fluidrow']){
         $output .= '<div class="container">';
     }
 }

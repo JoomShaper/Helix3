@@ -1119,7 +1119,15 @@ class Helix3
 						$base = dirname($base);
 						$url  = substr($url, 3);
 					}
-					$url = $base . '/' . $url;
+
+					// If the base is always /, it shouldn't be adding another /
+					$default = $base . '/' . $url;
+
+					if ($base === '/') {
+						$default = '/' . $url;
+					}
+
+					$url = $default;
 
 					return "url('$url')";
 				}, $compressed);

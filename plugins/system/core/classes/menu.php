@@ -255,7 +255,8 @@ class Helix3Menu {
 		$this->navigation($item, $firstitem, 0,  'sp-dropdown-items');
 
 		// only module exist
-		if (count($item->params->get('menulayout')) == 1) {
+		$menu_layout = $item->params->get('menulayout');
+		if ($menu_layout && count($menu_layout) == 1) {
 			$mega_json = $item->params->get('menulayout');
 			$mega = json_decode($mega_json);
 			$layout = $mega->layout;

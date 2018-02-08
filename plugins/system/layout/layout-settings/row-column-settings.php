@@ -316,7 +316,7 @@ class RowColumnSettings{
 
 	static public function getSettings($config = null){
 		$data = '';
-		if (count($config)) {
+		if (is_array($config)) {
 			foreach ($config as $key => $value) {
 				$data .= ' data-'.$key.'="'.$value.'"';
 			}

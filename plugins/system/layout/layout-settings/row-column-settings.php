@@ -237,7 +237,7 @@ class RowColumnSettings{
 		return call_user_func(array( 'SpType' . ucfirst( $attr['type'] ), 'getInput'), $key, $attr );
 	}
 
-	static public function getRowSettings($row_settings = array())
+	public static function getRowSettings($row_settings = array())
 	{
 
 		$output = '<div class="hidden">';
@@ -253,7 +253,7 @@ class RowColumnSettings{
 		return $output;
 	}
 
-	static public function getColumnSettings($col_settings = array())
+	public static function getColumnSettings($col_settings = array())
 	{
 
 		$col_settings['attr']['name']['values'] = self::getPositionss();
@@ -271,7 +271,7 @@ class RowColumnSettings{
 		return $output;
 	}
 
-	static public function getTemplateName()
+	public static function getTemplateName()
 	{
 		$db = JFactory::getDbo();
 		$query = $db->getQuery(true);
@@ -285,7 +285,7 @@ class RowColumnSettings{
 	}
 
 
-	static public function getPositionss()
+	public static function getPositionss()
 	{
 
 	    $db = JFactory::getDBO();
@@ -314,9 +314,9 @@ class RowColumnSettings{
 	    return $selectOption;
 	}
 
-	static public function getSettings($config = null){
+	public static function getSettings($config = null){
 		$data = '';
-		if (count($config)) {
+		if ($config) {
 			foreach ($config as $key => $value) {
 				$data .= ' data-'.$key.'="'.$value.'"';
 			}

@@ -26,7 +26,7 @@ class JFormFieldSpgallery extends JFormField {
 
     $values = json_decode($this->value);
 
-    if(count($values)) {
+    if($values) {
       $images = $this->element['name'] . '_images';
       $values = $values->$images;
     } else {
@@ -36,7 +36,7 @@ class JFormFieldSpgallery extends JFormField {
     $output  = '<div class="sp-gallery-field">';
     $output .= '<ul class="sp-gallery-items clearfix">';
 
-    if(count($values)) {
+    if(is_array($values) && $values) {
       foreach ($values as $key => $value) {
 
         $data_src = $value;

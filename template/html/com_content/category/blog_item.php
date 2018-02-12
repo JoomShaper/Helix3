@@ -56,8 +56,6 @@ $post_format = $post_attribs->get('post_format', 'standard');
 <?php endif; ?>
 <?php echo $this->item->event->beforeDisplayContent; ?>
 
-<?php $rating = (int) $this->item->rating; ?>
-
 <?php echo $this->item->introtext; ?>
 
 <?php if ($useDefList && ($info == 1 || $info == 2)) : ?>

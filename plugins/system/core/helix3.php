@@ -80,7 +80,9 @@ class Helix3
 		$task      = $app->input->getCmd('task', '');
 		$itemid    = $app->input->getCmd('Itemid', '');
 		$menu      = $app->getMenu()->getActive();
-		$pageclass = $menu->params->get('pageclass_sfx');
+		if ($menu) {
+			$pageclass = $menu->params->get('pageclass_sfx');
+		}
 
 		if ($view == 'modules')
 		{

@@ -46,7 +46,6 @@ if (isset($menu) && $menu) {
 
 //Body Background Image
 if ($bg_image = $this->helix3->getParam('body_bg_image')) {
-
     $body_style = 'background-image: url(' . JURI::base(true) . '/' . $bg_image . ');';
     $body_style .= 'background-repeat: ' . $this->helix3->getParam('body_bg_repeat') . ';';
     $body_style .= 'background-size: ' . $this->helix3->getParam('body_bg_size') . ';';
@@ -172,15 +171,12 @@ $doc->addScriptdeclaration("\nvar sp_offanimation = '" . $this->params->get('off
             }
         ?>
     </head>
-
     <body class="<?php echo $this->helix3->bodyClass($body_classes); ?> off-canvas-menu-init">
-
         <div class="body-wrapper">
             <div class="body-innerwrapper">
                 <?php $this->helix3->generatelayout(); ?>
             </div> <!-- /.body-innerwrapper -->
-        </div> <!-- /.body-innerwrapper -->
-
+        </div> <!-- /.body-wrapper -->
         <!-- Off Canvas Menu -->
         <div class="offcanvas-menu">
             <a href="#" class="close-offcanvas" aria-label="Close"><i class="fa fa-remove" aria-hidden="true"></i></a>
@@ -194,14 +190,13 @@ $doc->addScriptdeclaration("\nvar sp_offanimation = '" . $this->params->get('off
                 <?php } ?>
             </div> <!-- /.offcanvas-inner -->
         </div> <!-- /.offcanvas-menu -->
-
         <?php
             if ($this->params->get('compress_css')) {
                 $this->helix3->compressCSS();
             }
 
-            $tempOption    = $app->input->get('option');
-            // $tempView       = $app->input->get('view');
+            $tempOption = $app->input->get('option');
+            // $tempView = $app->input->get('view');
 
             if ( $this->params->get('compress_js') && $tempOption != 'com_config' ) {
                 $this->helix3->compressJS($this->params->get('exclude_js'));
@@ -212,16 +207,12 @@ $doc->addScriptdeclaration("\nvar sp_offanimation = '" . $this->params->get('off
                 echo $before_body . "\n";
             } 
         ?>
-
         <jdoc:include type="modules" name="debug" />
-        
         <!-- Preloader -->
         <jdoc:include type="modules" name="helixpreloader" />
-
         <!-- Go to top -->
         <?php if ($this->params->get('goto_top')) { ?>
             <a href="javascript:void(0)" class="scrollup" aria-label="<?php echo JText::_('HELIX_GOTO_TOP'); ?>">&nbsp;</a>
         <?php } ?>
-
     </body>
 </html>

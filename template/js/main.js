@@ -245,6 +245,16 @@ jQuery(function ($) {
             }
         });
     });
+    
+    
+    // inserted by braindev to close Offscreen Menu on each click except on the menu bar Button so the (X) button is obsolete
+$('html').click(function( event ) {
+   //console.log("event = "+event.target.className);
+   if (event.target.className != "fa fa-bars") {
+     $('.off-canvas-menu-init').removeClass('offcanvas');
+  }
+}); 
+
 
     // **************  END:: Others SCRIPT  *************** //
     // **************************************************** //

@@ -47,7 +47,7 @@ $output .= $getLayout->render($data);
 
 
 if ($data['componentArea']){
-    if (!$data['pagebuilder']){
+    if (!$data['pagebuilder'] && !$data['fluidrow']){
         $output .= '</div>';
     }
 }

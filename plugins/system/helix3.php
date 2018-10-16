@@ -13,11 +13,11 @@ jimport('joomla.plugin.plugin');
 jimport( 'joomla.event.plugin' );
 jimport('joomla.registry.registry');
 
-if(!class_exists('Helix3')) {
+if (!class_exists('Helix3')) {
   require_once (__DIR__ . '/core/helix3.php');
 }
 
-class  plgSystemHelix3 extends JPlugin
+class plgSystemHelix3 extends JPlugin
 {
 
     protected $autoloadLanguage = true;
@@ -25,19 +25,25 @@ class  plgSystemHelix3 extends JPlugin
     // Copied style
     function onAfterDispatch() {
 
-        if(  !JFactory::getApplication()->isAdmin() ) {
+        if (!JFactory::getApplication()->isAdmin()) {
 
             $activeMenu = JFactory::getApplication()->getMenu()->getActive();
 
-            if(is_null($activeMenu)) $template_style_id = 0;
-            else $template_style_id = (int) $activeMenu->template_style_id;
-            if( $template_style_id > 0 ){
+            if (is_null($activeMenu)) {
+                $template_style_id = 0;
+            } else {
+                $template_style_id = (int) $activeMenu->template_style_id;
+            }
+
+            if ($template_style_id > 0 ) {
 
                 JTable::addIncludePath(JPATH_ADMINISTRATOR . '/components/com_templates/tables');
                 $style = JTable::getInstance('Style', 'TemplatesTable');
                 $style->load($template_style_id);
 
-                if( !empty($style->template) ) JFactory::getApplication()->setTemplate($style->template, $style->params);
+                if (!empty($style->template)) {
+                    JFactory::getApplication()->setTemplate($style->template, $style->params);
+                }
             }
         }
     }
@@ -52,7 +58,7 @@ class  plgSystemHelix3 extends JPlugin
 
             JHtml::_('jquery.framework');
 
-            if($data['id'] && $data['parent_id'] == 1) {
+            if ($data->id && $data->parent_id == 1) {
 
                 JHtml::_('jquery.ui', array('core', 'more', 'sortable'));
 
@@ -81,7 +87,7 @@ class  plgSystemHelix3 extends JPlugin
 
             $tpl_path = JPATH_ROOT . '/templates/' . $this->getTemplateName();
 
-            if(JFile::exists( $tpl_path . '/post-formats.xml' )) {
+            if (JFile::exists( $tpl_path . '/post-formats.xml' )) {
                 JForm::addFormPath($tpl_path);
             } else {
                 JForm::addFormPath(JPATH_PLUGINS . '/system/helix3/params');
@@ -92,7 +98,6 @@ class  plgSystemHelix3 extends JPlugin
 
     }
 
-
     // Live Update system
     public function onExtensionAfterSave($option, $data) {
 
@@ -101,12 +106,11 @@ class  plgSystemHelix3 extends JPlugin
             $params = new JRegistry;
             $params->loadString($data->params);
 
-            $email       = $params->get('joomshaper_email');
+            $email = $params->get('joomshaper_email');
             $license_key = $params->get('joomshaper_license_key');
             $template = trim($data->template);
 
-            if(!empty($email) and !empty($license_key) )
-            {
+            if (!empty($email) and !empty($license_key)) {
 
                 $extra_query = 'joomshaper_email=' . urlencode($email);
                 $extra_query .='&amp;joomshaper_license_key=' . urlencode($license_key);
@@ -132,11 +136,10 @@ class  plgSystemHelix3 extends JPlugin
     {
         $japps = JFactory::getApplication();
 
-        if ( $japps->isAdmin() )
-        {
+        if ($japps->isAdmin()) {
             $user = JFactory::getUser();
 
-            if( !in_array( 8, $user->groups ) ){
+            if (!in_array( 8, $user->groups)) {
                 return false;
             }
 
@@ -146,8 +149,7 @@ class  plgSystemHelix3 extends JPlugin
             $id             = $inputs->get ( 'id', '0', 'INT' );
             $helix3task     = $inputs->get ( 'helix3task' ,'' );
 
-            if ( strtolower( $option ) == 'com_templates' && $id && $helix3task == "export" )
-            {
+            if ( strtolower( $option ) == 'com_templates' && $id && $helix3task == 'export' ) {
                $db = JFactory::getDbo();
                $query = $db->getQuery(true);
 
@@ -192,8 +194,7 @@ class  plgSystemHelix3 extends JPlugin
     function onAfterRender() {
       $app = JFactory::getApplication();
 
-  		if ($app->isAdmin())
-      {
+  		if ($app->isAdmin()) {
   			return;
   		}
       $body = JResponse::getBody();

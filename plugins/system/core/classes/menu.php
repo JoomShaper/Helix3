@@ -86,8 +86,8 @@ class Helix3Menu {
 				case 'separator':
 				case 'heading':
 				// No further action needed.
-				continue;
-
+				continue 2;
+				
 				case 'url':
 				if ((strpos($item->link, 'index.php?') === 0) && (strpos($item->link, 'Itemid=') === false)) {
 					$item->flink = $item->link . '&Itemid=' . $item->id;

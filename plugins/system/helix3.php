@@ -52,7 +52,7 @@ class  plgSystemHelix3 extends JPlugin
 
             JHtml::_('jquery.framework');
 
-            if($data['id'] && $data['parent_id'] == 1) {
+            if($data->id && $data->parent_id == 1) {
 
                 JHtml::_('jquery.ui', array('core', 'more', 'sortable'));
 

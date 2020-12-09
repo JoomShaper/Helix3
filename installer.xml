@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="3.4" type="plugin" group="system" method="upgrade">
+    <name>Helix3 based template installer</name>
+    <description>Shaper Helix3 - Blank template of Helix3 framework</description>
+    <scriptfile>installer.script.php</scriptfile>
+    <files>
+        <filename plugin="tmp_helix3">installer.script.php</filename>
+    </files>
+    <plugins>
+        <plugin plugin="helix3" group="ajax" />
+        <plugin plugin="helix3" group="system" />
+    </plugins>
+</extension>

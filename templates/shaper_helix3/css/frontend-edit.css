@@ -1,3 +1,914 @@
+.layout-edit .clearfix {
+  *zoom: 1;
+}
+.layout-edit .clearfix:before,
+.layout-edit .clearfix:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+.layout-edit .clearfix:after {
+  clear: both;
+}
+.layout-edit .hide-text {
+  font: 0/0 a;
+  color: transparent;
+  text-shadow: none;
+  background-color: transparent;
+  border: 0;
+}
+.layout-edit .input-block-level {
+  display: block;
+  width: 100%;
+  min-height: 30px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.layout-edit input,
+.layout-edit textarea,
+.layout-edit .uneditable-input {
+  width: 206px;
+}
+.layout-edit textarea {
+  height: auto;
+}
+.layout-edit textarea,
+.layout-edit input[type="text"],
+.layout-edit input[type="password"],
+.layout-edit input[type="datetime"],
+.layout-edit input[type="datetime-local"],
+.layout-edit input[type="date"],
+.layout-edit input[type="month"],
+.layout-edit input[type="time"],
+.layout-edit input[type="week"],
+.layout-edit input[type="number"],
+.layout-edit input[type="email"],
+.layout-edit input[type="url"],
+.layout-edit input[type="search"],
+.layout-edit input[type="tel"],
+.layout-edit input[type="color"],
+.layout-edit .uneditable-input {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+  -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+  box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+  -webkit-transition: border linear .2s, box-shadow linear .2s;
+  -moz-transition: border linear .2s, box-shadow linear .2s;
+  -o-transition: border linear .2s, box-shadow linear .2s;
+  transition: border linear .2s, box-shadow linear .2s;
+}
+.layout-edit textarea:focus,
+.layout-edit input[type="text"]:focus,
+.layout-edit input[type="password"]:focus,
+.layout-edit input[type="datetime"]:focus,
+.layout-edit input[type="datetime-local"]:focus,
+.layout-edit input[type="date"]:focus,
+.layout-edit input[type="month"]:focus,
+.layout-edit input[type="time"]:focus,
+.layout-edit input[type="week"]:focus,
+.layout-edit input[type="number"]:focus,
+.layout-edit input[type="email"]:focus,
+.layout-edit input[type="url"]:focus,
+.layout-edit input[type="search"]:focus,
+.layout-edit input[type="tel"]:focus,
+.layout-edit input[type="color"]:focus,
+.layout-edit .uneditable-input:focus {
+  border-color: rgba(82,168,236,0.8);
+  outline: 0;
+  outline: thin dotted \9;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(82,168,236,.6);
+  -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(82,168,236,.6);
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(82,168,236,.6);
+}
+.layout-edit input[type="radio"],
+.layout-edit input[type="checkbox"] {
+  margin: 4px 0 0;
+  *margin-top: 0;
+  margin-top: 1px \9;
+  line-height: normal;
+}
+.layout-edit input[type="file"],
+.layout-edit input[type="image"],
+.layout-edit input[type="submit"],
+.layout-edit input[type="reset"],
+.layout-edit input[type="button"],
+.layout-edit input[type="radio"],
+.layout-edit input[type="checkbox"] {
+  width: auto;
+}
+.layout-edit select,
+.layout-edit input[type="file"] {
+  height: 30px;
+  *margin-top: 4px;
+  line-height: 30px;
+}
+.layout-edit select {
+  width: 220px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+}
+.layout-edit select[multiple],
+.layout-edit select[size] {
+  height: auto;
+}
+.layout-edit select:focus,
+.layout-edit input[type="file"]:focus,
+.layout-edit input[type="radio"]:focus,
+.layout-edit input[type="checkbox"]:focus {
+  outline: thin dotted #333;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+.layout-edit .uneditable-input,
+.layout-edit .uneditable-textarea {
+  color: #999;
+  background-color: #fcfcfc;
+  border-color: #ccc;
+  -webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,0.025);
+  -moz-box-shadow: inset 0 1px 2px rgba(0,0,0,0.025);
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.025);
+  cursor: not-allowed;
+}
+.layout-edit .uneditable-input {
+  overflow: hidden;
+  white-space: nowrap;
+}
+.layout-edit .uneditable-textarea {
+  width: auto;
+  height: auto;
+}
+.layout-edit input:-moz-placeholder,
+.layout-edit textarea:-moz-placeholder {
+  color: #999;
+}
+.layout-edit input:-ms-input-placeholder,
+.layout-edit textarea:-ms-input-placeholder {
+  color: #999;
+}
+.layout-edit input::-webkit-input-placeholder,
+.layout-edit textarea::-webkit-input-placeholder {
+  color: #999;
+}
+.layout-edit .controls > .radio:first-child,
+.layout-edit .controls > .checkbox:first-child {
+  padding-top: 5px;
+}
+.layout-edit .radio.inline,
+.layout-edit .checkbox.inline {
+  display: inline-block;
+  padding-top: 5px;
+  margin-bottom: 0;
+  vertical-align: middle;
+}
+.layout-edit .radio.inline + .radio.inline,
+.layout-edit .checkbox.inline + .checkbox.inline {
+  margin-left: 10px;
+}
+.layout-edit .input-mini {
+  width: 60px;
+}
+.layout-edit .input-small {
+  width: 90px;
+}
+.layout-edit .input-medium {
+  width: 150px;
+}
+.layout-edit .input-large {
+  width: 210px;
+}
+.layout-edit .input-xlarge {
+  width: 270px;
+}
+.layout-edit .input-xxlarge {
+  width: 530px;
+}
+.layout-edit input[class*="span"],
+.layout-edit select[class*="span"],
+.layout-edit textarea[class*="span"],
+.layout-edit .uneditable-input[class*="span"],
+.layout-edit .row-fluid input[class*="span"],
+.layout-edit .row-fluid select[class*="span"],
+.layout-edit .row-fluid textarea[class*="span"],
+.layout-edit .row-fluid .uneditable-input[class*="span"] {
+  float: none;
+  margin-left: 0;
+}
+.layout-edit .input-append input[class*="span"],
+.layout-edit .input-append .uneditable-input[class*="span"],
+.layout-edit .input-prepend input[class*="span"],
+.layout-edit .input-prepend .uneditable-input[class*="span"],
+.layout-edit .row-fluid input[class*="span"],
+.layout-edit .row-fluid select[class*="span"],
+.layout-edit .row-fluid textarea[class*="span"],
+.layout-edit .row-fluid .uneditable-input[class*="span"],
+.layout-edit .row-fluid .input-prepend [class*="span"],
+.layout-edit .row-fluid .input-append [class*="span"] {
+  display: inline-block;
+}
+.layout-edit input,
+.layout-edit textarea,
+.layout-edit .uneditable-input {
+  margin-left: 0;
+}
+.layout-edit .controls-row [class*="span"] + [class*="span"] {
+  margin-left: 20px;
+}
+.layout-edit input.span12,
+.layout-edit textarea.span12,
+.layout-edit .uneditable-input.span12 {
+  width: 926px;
+}
+.layout-edit input.span11,
+.layout-edit textarea.span11,
+.layout-edit .uneditable-input.span11 {
+  width: 846px;
+}
+.layout-edit input.span10,
+.layout-edit textarea.span10,
+.layout-edit .uneditable-input.span10 {
+  width: 766px;
+}
+.layout-edit input.span9,
+.layout-edit textarea.span9,
+.layout-edit .uneditable-input.span9 {
+  width: 686px;
+}
+.layout-edit input.span8,
+.layout-edit textarea.span8,
+.layout-edit .uneditable-input.span8 {
+  width: 606px;
+}
+.layout-edit input.span7,
+.layout-edit textarea.span7,
+.layout-edit .uneditable-input.span7 {
+  width: 526px;
+}
+.layout-edit input.span6,
+.layout-edit textarea.span6,
+.layout-edit .uneditable-input.span6 {
+  width: 446px;
+}
+.layout-edit input.span5,
+.layout-edit textarea.span5,
+.layout-edit .uneditable-input.span5 {
+  width: 366px;
+}
+.layout-edit input.span4,
+.layout-edit textarea.span4,
+.layout-edit .uneditable-input.span4 {
+  width: 286px;
+}
+.layout-edit input.span3,
+.layout-edit textarea.span3,
+.layout-edit .uneditable-input.span3 {
+  width: 206px;
+}
+.layout-edit input.span2,
+.layout-edit textarea.span2,
+.layout-edit .uneditable-input.span2 {
+  width: 126px;
+}
+.layout-edit input.span1,
+.layout-edit textarea.span1,
+.layout-edit .uneditable-input.span1 {
+  width: 46px;
+}
+.layout-edit .controls-row {
+  *zoom: 1;
+}
+.layout-edit .controls-row:before,
+.layout-edit .controls-row:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+.layout-edit .controls-row:after {
+  clear: both;
+}
+.layout-edit .controls-row [class*="span"],
+.layout-edit .row-fluid .controls-row [class*="span"] {
+  float: left;
+}
+.layout-edit .controls-row .checkbox[class*="span"],
+.layout-edit .controls-row .radio[class*="span"] {
+  padding-top: 5px;
+}
+.layout-edit input[disabled],
+.layout-edit select[disabled],
+.layout-edit textarea[disabled],
+.layout-edit input[readonly],
+.layout-edit select[readonly],
+.layout-edit textarea[readonly] {
+  cursor: not-allowed;
+  background-color: #eee;
+}
+.layout-edit input[type="radio"][disabled],
+.layout-edit input[type="checkbox"][disabled],
+.layout-edit input[type="radio"][readonly],
+.layout-edit input[type="checkbox"][readonly] {
+  background-color: transparent;
+}
+.layout-edit .control-group.warning .control-label,
+.layout-edit .control-group.warning .help-block,
+.layout-edit .control-group.warning .help-inline {
+  color: #c09853;
+}
+.layout-edit .control-group.warning .checkbox,
+.layout-edit .control-group.warning .radio,
+.layout-edit .control-group.warning input,
+.layout-edit .control-group.warning select,
+.layout-edit .control-group.warning textarea {
+  color: #c09853;
+}
+.layout-edit .control-group.warning input,
+.layout-edit .control-group.warning select,
+.layout-edit .control-group.warning textarea {
+  border-color: #c09853;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+  -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+  box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+}
+.layout-edit .control-group.warning input:focus,
+.layout-edit .control-group.warning select:focus,
+.layout-edit .control-group.warning textarea:focus {
+  border-color: #a47e3c;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075), 0 0 6px #dbc59e;
+  -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075), 0 0 6px #dbc59e;
+  box-shadow: inset 0 1px 1px rgba(0,0,0,0.075), 0 0 6px #dbc59e;
+}
+.layout-edit .control-group.warning .input-prepend .add-on,
+.layout-edit .control-group.warning .input-append .add-on {
+  color: #c09853;
+  background-color: #fcf8e3;
+  border-color: #c09853;
+}
+.layout-edit .control-group.error .control-label,
+.layout-edit .control-group.error .help-block,
+.layout-edit .control-group.error .help-inline {
+  color: #b94a48;
+}
+.layout-edit .control-group.error .checkbox,
+.layout-edit .control-group.error .radio,
+.layout-edit .control-group.error input,
+.layout-edit .control-group.error select,
+.layout-edit .control-group.error textarea {
+  color: #b94a48;
+}
+.layout-edit .control-group.error input,
+.layout-edit .control-group.error select,
+.layout-edit .control-group.error textarea {
+  border-color: #b94a48;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+  -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+  box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+}
+.layout-edit .control-group.error input:focus,
+.layout-edit .control-group.error select:focus,
+.layout-edit .control-group.error textarea:focus {
+  border-color: #953b39;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075), 0 0 6px #d59392;
+  -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075), 0 0 6px #d59392;
+  box-shadow: inset 0 1px 1px rgba(0,0,0,0.075), 0 0 6px #d59392;
+}
+.layout-edit .control-group.error .input-prepend .add-on,
+.layout-edit .control-group.error .input-append .add-on {
+  color: #b94a48;
+  background-color: #f2dede;
+  border-color: #b94a48;
+}
+.layout-edit .control-group.success .control-label,
+.layout-edit .control-group.success .help-block,
+.layout-edit .control-group.success .help-inline {
+  color: #468847;
+}
+.layout-edit .control-group.success .checkbox,
+.layout-edit .control-group.success .radio,
+.layout-edit .control-group.success input,
+.layout-edit .control-group.success select,
+.layout-edit .control-group.success textarea {
+  color: #468847;
+}
+.layout-edit .control-group.success input,
+.layout-edit .control-group.success select,
+.layout-edit .control-group.success textarea {
+  border-color: #468847;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+  -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+  box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+}
+.layout-edit .control-group.success input:focus,
+.layout-edit .control-group.success select:focus,
+.layout-edit .control-group.success textarea:focus {
+  border-color: #356635;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075), 0 0 6px #7aba7b;
+  -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075), 0 0 6px #7aba7b;
+  box-shadow: inset 0 1px 1px rgba(0,0,0,0.075), 0 0 6px #7aba7b;
+}
+.layout-edit .control-group.success .input-prepend .add-on,
+.layout-edit .control-group.success .input-append .add-on {
+  color: #468847;
+  background-color: #dff0d8;
+  border-color: #468847;
+}
+.layout-edit .control-group.info .control-label,
+.layout-edit .control-group.info .help-block,
+.layout-edit .control-group.info .help-inline {
+  color: #3a87ad;
+}
+.layout-edit .control-group.info .checkbox,
+.layout-edit .control-group.info .radio,
+.layout-edit .control-group.info input,
+.layout-edit .control-group.info select,
+.layout-edit .control-group.info textarea {
+  color: #3a87ad;
+}
+.layout-edit .control-group.info input,
+.layout-edit .control-group.info select,
+.layout-edit .control-group.info textarea {
+  border-color: #3a87ad;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+  -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+  box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+}
+.layout-edit .control-group.info input:focus,
+.layout-edit .control-group.info select:focus,
+.layout-edit .control-group.info textarea:focus {
+  border-color: #2d6987;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075), 0 0 6px #7ab5d3;
+  -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075), 0 0 6px #7ab5d3;
+  box-shadow: inset 0 1px 1px rgba(0,0,0,0.075), 0 0 6px #7ab5d3;
+}
+.layout-edit .control-group.info .input-prepend .add-on,
+.layout-edit .control-group.info .input-append .add-on {
+  color: #3a87ad;
+  background-color: #d9edf7;
+  border-color: #3a87ad;
+}
+.layout-edit input:focus:invalid,
+.layout-edit textarea:focus:invalid,
+.layout-edit select:focus:invalid {
+  color: #b94a48;
+  border-color: #ee5f5b;
+}
+.layout-edit input:focus:invalid:focus,
+.layout-edit textarea:focus:invalid:focus,
+.layout-edit select:focus:invalid:focus {
+  border-color: #e9322d;
+  -webkit-box-shadow: 0 0 6px #f8b9b7;
+  -moz-box-shadow: 0 0 6px #f8b9b7;
+  box-shadow: 0 0 6px #f8b9b7;
+}
+.layout-edit .form-actions {
+  padding: 19px 20px 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background-color: #f5f5f5;
+  border-top: 1px solid #e5e5e5;
+  *zoom: 1;
+}
+.layout-edit .form-actions:before,
+.layout-edit .form-actions:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+.layout-edit .form-actions:after {
+  clear: both;
+}
+.layout-edit .help-block,
+.layout-edit .help-inline {
+  color: #595959;
+}
+.layout-edit .help-block {
+  display: block;
+  margin-bottom: 10px;
+}
+.layout-edit .help-inline {
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+  vertical-align: middle;
+  padding-left: 5px;
+}
+.layout-edit .input-append,
+.layout-edit .input-prepend {
+  display: inline-block;
+  margin-bottom: 10px;
+  vertical-align: middle;
+  font-size: 0;
+  white-space: nowrap;
+}
+.layout-edit .input-append input,
+.layout-edit .input-append select,
+.layout-edit .input-append .uneditable-input,
+.layout-edit .input-append .dropdown-menu,
+.layout-edit .input-append .popover,
+.layout-edit .input-prepend input,
+.layout-edit .input-prepend select,
+.layout-edit .input-prepend .uneditable-input,
+.layout-edit .input-prepend .dropdown-menu,
+.layout-edit .input-prepend .popover {
+  font-size: 14px;
+}
+.layout-edit .input-append input[type="text"],
+.layout-edit .input-append input[type="password"],
+.layout-edit .input-append input[type="datetime"],
+.layout-edit .input-append input[type="datetime-local"],
+.layout-edit .input-append input[type="date"],
+.layout-edit .input-append input[type="month"],
+.layout-edit .input-append input[type="time"],
+.layout-edit .input-append input[type="week"],
+.layout-edit .input-append input[type="number"],
+.layout-edit .input-append input[type="email"],
+.layout-edit .input-append input[type="url"],
+.layout-edit .input-append input[type="search"],
+.layout-edit .input-append input[type="tel"],
+.layout-edit .input-append input[type="color"],
+.layout-edit .input-append .uneditable-input,
+.layout-edit .input-prepend input[type="text"],
+.layout-edit .input-prepend input[type="password"],
+.layout-edit .input-prepend input[type="datetime"],
+.layout-edit .input-prepend input[type="datetime-local"],
+.layout-edit .input-prepend input[type="date"],
+.layout-edit .input-prepend input[type="month"],
+.layout-edit .input-prepend input[type="time"],
+.layout-edit .input-prepend input[type="week"],
+.layout-edit .input-prepend input[type="number"],
+.layout-edit .input-prepend input[type="email"],
+.layout-edit .input-prepend input[type="url"],
+.layout-edit .input-prepend input[type="search"],
+.layout-edit .input-prepend input[type="tel"],
+.layout-edit .input-prepend input[type="color"],
+.layout-edit .input-prepend .uneditable-input {
+  width: auto;
+  display: inline-block;
+  position: relative;
+  margin-bottom: 0;
+  *margin-left: 0;
+  vertical-align: top;
+  -webkit-border-radius: 0 4px 4px 0;
+  -moz-border-radius: 0 4px 4px 0;
+  border-radius: 0 4px 4px 0;
+}
+.layout-edit .input-append input[type="text"]:focus,
+.layout-edit .input-append input[type="password"]:focus,
+.layout-edit .input-append input[type="datetime"]:focus,
+.layout-edit .input-append input[type="datetime-local"]:focus,
+.layout-edit .input-append input[type="date"]:focus,
+.layout-edit .input-append input[type="month"]:focus,
+.layout-edit .input-append input[type="time"]:focus,
+.layout-edit .input-append input[type="week"]:focus,
+.layout-edit .input-append input[type="number"]:focus,
+.layout-edit .input-append input[type="email"]:focus,
+.layout-edit .input-append input[type="url"]:focus,
+.layout-edit .input-append input[type="search"]:focus,
+.layout-edit .input-append input[type="tel"]:focus,
+.layout-edit .input-append input[type="color"]:focus,
+.layout-edit .input-append .uneditable-input:focus,
+.layout-edit .input-prepend input[type="text"]:focus,
+.layout-edit .input-prepend input[type="password"]:focus,
+.layout-edit .input-prepend input[type="datetime"]:focus,
+.layout-edit .input-prepend input[type="datetime-local"]:focus,
+.layout-edit .input-prepend input[type="date"]:focus,
+.layout-edit .input-prepend input[type="month"]:focus,
+.layout-edit .input-prepend input[type="time"]:focus,
+.layout-edit .input-prepend input[type="week"]:focus,
+.layout-edit .input-prepend input[type="number"]:focus,
+.layout-edit .input-prepend input[type="email"]:focus,
+.layout-edit .input-prepend input[type="url"]:focus,
+.layout-edit .input-prepend input[type="search"]:focus,
+.layout-edit .input-prepend input[type="tel"]:focus,
+.layout-edit .input-prepend input[type="color"]:focus,
+.layout-edit .input-prepend .uneditable-input:focus {
+  z-index: 2;
+}
+.layout-edit .input-append .add-on,
+.layout-edit .input-prepend .add-on {
+  display: inline-block;
+  width: auto;
+  height: 20px;
+  min-height: 20px;
+  min-width: 16px;
+  padding: 4px 5px;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 20px;
+  text-align: center;
+  text-shadow: 0 1px 0 #fff;
+  background-color: #eee;
+  border: 1px solid #ccc;
+}
+.layout-edit .input-append .add-on,
+.layout-edit .input-append .btn,
+.layout-edit .input-append .btn-group > .dropdown-toggle,
+.layout-edit .input-prepend .add-on,
+.layout-edit .input-prepend .btn,
+.layout-edit .input-prepend .btn-group > .dropdown-toggle {
+  display: inline-block;
+  vertical-align: top;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+}
+.layout-edit .input-append .active,
+.layout-edit .input-prepend .active {
+  background-color: #a9dba9;
+  border-color: #46a546;
+}
+.layout-edit .input-prepend .add-on,
+.layout-edit .input-prepend .btn {
+  margin-right: -1px;
+}
+.layout-edit .input-prepend .add-on:first-child,
+.layout-edit .input-prepend .btn:first-child {
+  -webkit-border-radius: 4px 0 0 4px;
+  -moz-border-radius: 4px 0 0 4px;
+  border-radius: 4px 0 0 4px;
+}
+.layout-edit .input-append input[type="text"],
+.layout-edit .input-append input[type="password"],
+.layout-edit .input-append input[type="datetime"],
+.layout-edit .input-append input[type="datetime-local"],
+.layout-edit .input-append input[type="date"],
+.layout-edit .input-append input[type="month"],
+.layout-edit .input-append input[type="time"],
+.layout-edit .input-append input[type="week"],
+.layout-edit .input-append input[type="number"],
+.layout-edit .input-append input[type="email"],
+.layout-edit .input-append input[type="url"],
+.layout-edit .input-append input[type="search"],
+.layout-edit .input-append input[type="tel"],
+.layout-edit .input-append input[type="color"],
+.layout-edit .input-append .uneditable-input {
+  -webkit-border-radius: 4px 0 0 4px;
+  -moz-border-radius: 4px 0 0 4px;
+  border-radius: 4px 0 0 4px;
+}
+.layout-edit .input-append input[type="text"] + .btn-group .btn:last-child,
+.layout-edit .input-append input[type="password"] + .btn-group .btn:last-child,
+.layout-edit .input-append input[type="datetime"] + .btn-group .btn:last-child,
+.layout-edit .input-append input[type="datetime-local"] + .btn-group .btn:last-child,
+.layout-edit .input-append input[type="date"] + .btn-group .btn:last-child,
+.layout-edit .input-append input[type="month"] + .btn-group .btn:last-child,
+.layout-edit .input-append input[type="time"] + .btn-group .btn:last-child,
+.layout-edit .input-append input[type="week"] + .btn-group .btn:last-child,
+.layout-edit .input-append input[type="number"] + .btn-group .btn:last-child,
+.layout-edit .input-append input[type="email"] + .btn-group .btn:last-child,
+.layout-edit .input-append input[type="url"] + .btn-group .btn:last-child,
+.layout-edit .input-append input[type="search"] + .btn-group .btn:last-child,
+.layout-edit .input-append input[type="tel"] + .btn-group .btn:last-child,
+.layout-edit .input-append input[type="color"] + .btn-group .btn:last-child,
+.layout-edit .input-append .uneditable-input + .btn-group .btn:last-child {
+  -webkit-border-radius: 0 4px 4px 0;
+  -moz-border-radius: 0 4px 4px 0;
+  border-radius: 0 4px 4px 0;
+}
+.layout-edit .input-append .add-on,
+.layout-edit .input-append .btn,
+.layout-edit .input-append .btn-group {
+  margin-left: -1px;
+}
+.layout-edit .input-append .add-on:last-child,
+.layout-edit .input-append .btn:last-child,
+.layout-edit .input-append .btn-group:last-child > .dropdown-toggle {
+  -webkit-border-radius: 0 4px 4px 0;
+  -moz-border-radius: 0 4px 4px 0;
+  border-radius: 0 4px 4px 0;
+}
+.layout-edit .input-prepend.input-append input,
+.layout-edit .input-prepend.input-append select,
+.layout-edit .input-prepend.input-append .uneditable-input {
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+}
+.layout-edit .input-prepend.input-append input + .btn-group .btn,
+.layout-edit .input-prepend.input-append select + .btn-group .btn,
+.layout-edit .input-prepend.input-append .uneditable-input + .btn-group .btn {
+  -webkit-border-radius: 0 4px 4px 0;
+  -moz-border-radius: 0 4px 4px 0;
+  border-radius: 0 4px 4px 0;
+}
+.layout-edit .input-prepend.input-append .add-on:first-child,
+.layout-edit .input-prepend.input-append .btn:first-child {
+  margin-right: -1px;
+  -webkit-border-radius: 4px 0 0 4px;
+  -moz-border-radius: 4px 0 0 4px;
+  border-radius: 4px 0 0 4px;
+}
+.layout-edit .input-prepend.input-append .add-on:last-child,
+.layout-edit .input-prepend.input-append .btn:last-child {
+  margin-left: -1px;
+  -webkit-border-radius: 0 4px 4px 0;
+  -moz-border-radius: 0 4px 4px 0;
+  border-radius: 0 4px 4px 0;
+}
+.layout-edit .input-prepend.input-append .btn-group:first-child {
+  margin-left: 0;
+}
+.layout-edit input.search-query {
+  padding-right: 14px;
+  padding-right: 4px \9;
+  padding-left: 14px;
+  padding-left: 4px \9;
+  margin-bottom: 0;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  border-radius: 15px;
+}
+.layout-edit .form-search .input-append .search-query,
+.layout-edit .form-search .input-prepend .search-query {
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+}
+.layout-edit .form-search .input-append .search-query {
+  -webkit-border-radius: 14px 0 0 14px;
+  -moz-border-radius: 14px 0 0 14px;
+  border-radius: 14px 0 0 14px;
+}
+.layout-edit .form-search .input-append .btn {
+  -webkit-border-radius: 0 14px 14px 0;
+  -moz-border-radius: 0 14px 14px 0;
+  border-radius: 0 14px 14px 0;
+}
+.layout-edit .form-search .input-prepend .search-query {
+  -webkit-border-radius: 0 14px 14px 0;
+  -moz-border-radius: 0 14px 14px 0;
+  border-radius: 0 14px 14px 0;
+}
+.layout-edit .form-search .input-prepend .btn {
+  -webkit-border-radius: 14px 0 0 14px;
+  -moz-border-radius: 14px 0 0 14px;
+  border-radius: 14px 0 0 14px;
+}
+.layout-edit .form-search input,
+.layout-edit .form-search textarea,
+.layout-edit .form-search select,
+.layout-edit .form-search .help-inline,
+.layout-edit .form-search .uneditable-input,
+.layout-edit .form-search .input-prepend,
+.layout-edit .form-search .input-append,
+.layout-edit .form-inline input,
+.layout-edit .form-inline textarea,
+.layout-edit .form-inline select,
+.layout-edit .form-inline .help-inline,
+.layout-edit .form-inline .uneditable-input,
+.layout-edit .form-inline .input-prepend,
+.layout-edit .form-inline .input-append,
+.layout-edit .form-horizontal input,
+.layout-edit .form-horizontal textarea,
+.layout-edit .form-horizontal select,
+.layout-edit .form-horizontal .help-inline,
+.layout-edit .form-horizontal .uneditable-input,
+.layout-edit .form-horizontal .input-prepend,
+.layout-edit .form-horizontal .input-append {
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+  margin-bottom: 0;
+  vertical-align: middle;
+}
+.layout-edit .form-search .hide,
+.layout-edit .form-inline .hide,
+.layout-edit .form-horizontal .hide {
+  display: none;
+}
+.layout-edit .form-search label,
+.layout-edit .form-inline label,
+.layout-edit .form-search .btn-group,
+.layout-edit .form-inline .btn-group {
+  display: inline-block;
+}
+.layout-edit .form-search .input-append,
+.layout-edit .form-inline .input-append,
+.layout-edit .form-search .input-prepend,
+.layout-edit .form-inline .input-prepend {
+  margin-bottom: 0;
+}
+.layout-edit .form-search .radio,
+.layout-edit .form-search .checkbox,
+.layout-edit .form-inline .radio,
+.layout-edit .form-inline .checkbox {
+  padding-left: 0;
+  margin-bottom: 0;
+  vertical-align: middle;
+}
+.layout-edit .form-search .radio input[type="radio"],
+.layout-edit .form-search .checkbox input[type="checkbox"],
+.layout-edit .form-inline .radio input[type="radio"],
+.layout-edit .form-inline .checkbox input[type="checkbox"] {
+  float: left;
+  margin-right: 3px;
+  margin-left: 0;
+}
+.layout-edit .control-group {
+  margin-bottom: 10px;
+}
+.layout-edit legend + .control-group {
+  margin-top: 20px;
+  -webkit-margin-top-collapse: separate;
+}
+.layout-edit .form-horizontal .control-group {
+  margin-bottom: 20px;
+  *zoom: 1;
+}
+.layout-edit .form-horizontal .control-group:before,
+.layout-edit .form-horizontal .control-group:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+.layout-edit .form-horizontal .control-group:after {
+  clear: both;
+}
+.layout-edit .form-horizontal .control-label {
+  float: left;
+  width: 160px;
+  padding-top: 5px;
+  text-align: right;
+}
+.layout-edit .form-horizontal .controls {
+  *display: inline-block;
+  *padding-left: 20px;
+  margin-left: 180px;
+  *margin-left: 0;
+}
+.layout-edit .form-horizontal .controls:first-child {
+  *padding-left: 180px;
+}
+.layout-edit .form-horizontal .help-block {
+  margin-bottom: 0;
+}
+.layout-edit .form-horizontal input + .help-block,
+.layout-edit .form-horizontal select + .help-block,
+.layout-edit .form-horizontal textarea + .help-block,
+.layout-edit .form-horizontal .uneditable-input + .help-block,
+.layout-edit .form-horizontal .input-prepend + .help-block,
+.layout-edit .form-horizontal .input-append + .help-block {
+  margin-top: 10px;
+}
+.layout-edit .form-horizontal .form-actions {
+  padding-left: 180px;
+}
+.layout-edit .control-label .hasTooltip {
+  display: inline-block;
+}
+.layout-edit .well {
+  min-height: 20px;
+  padding: 19px;
+  margin-bottom: 20px;
+  background-color: #f5f5f5;
+  border: 1px solid #e3e3e3;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.05);
+  -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.05);
+  box-shadow: inset 0 1px 1px rgba(0,0,0,0.05);
+}
+.layout-edit .well blockquote {
+  border-color: #ddd;
+  border-color: rgba(0,0,0,0.15);
+}
+.layout-edit .well-large {
+  padding: 24px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+}
+.layout-edit .well-small {
+  padding: 9px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+.layout-edit .accordion {
+  margin-bottom: 20px;
+}
+.layout-edit .accordion-group {
+  margin-bottom: 2px;
+  border: 1px solid #e5e5e5;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+}
+.layout-edit .accordion-heading {
+  border-bottom: 0;
+}
+.layout-edit .accordion-heading .accordion-toggle {
+  display: block;
+  padding: 8px 15px;
+}
+.layout-edit .accordion-toggle {
+  cursor: pointer;
+}
+.layout-edit .accordion-inner {
+  padding: 9px 15px;
+  border-top: 1px solid #e5e5e5;
+}
 .layout-edit select.inputbox,
 .layout-edit select {
   width: 250px;

@@ -23,6 +23,7 @@ web.config.txt
 /media
 /modules
 /tmp
+/node_modules
 
 !/administrator
 /administrator/*
@@ -42,9 +43,11 @@ web.config.txt
 /plugins/*
 !/plugins/system
 /plugins/system/*
+!/plugins/system/helix3
 !/language/system/helix3
 !/plugins/ajax
 /plugins/ajax/*
+!/plugins/ajax/helix3
 !/language/ajax/helix3
 
 !/templates

@@ -2,7 +2,7 @@
 /**
 * @package Helix Framework
 * @author JoomShaper http://www.joomshaper.com
-* @copyright Copyright (c) 2010 - 2015 JoomShaper
+* @copyright Copyright (c) 2010 - 2017 JoomShaper
 * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or later
 */
 //no direct accees
@@ -18,11 +18,9 @@ function modChrome_sp_xhtml($module, $params, $attribs) {
 
 	if ($module->content) {
 		echo '<' . $moduleTag . ' class="sp-module ' . htmlspecialchars($params->get('moduleclass_sfx'), ENT_COMPAT, 'UTF-8') . $moduleClass . '">';
-			
 			if ($module->showtitle) {
 				echo '<' . $headerTag . ' class="' . $headerClass . '">' . $module->title . '</' . $headerTag . '>';
 			}
-
 			echo '<div class="sp-module-content">';
 			echo $module->content;
 			echo '</div>';

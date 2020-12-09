@@ -5,11 +5,11 @@
 
 .layout-edit {
 
-	@import "bootstrap-legacy/variables";
-	@import "bootstrap-legacy/mixins";
-	@import "bootstrap-legacy/forms.less";
-	@import "bootstrap-legacy/wells.less";
-	@import "bootstrap-legacy/accordion.less";
+	@import "legacy/variables";
+	@import "legacy/mixins";
+	@import "legacy/forms.less";
+	@import "legacy/wells.less";
+	@import "legacy/accordion.less";
 
 	//Edit
 	select.inputbox,
@@ -118,7 +118,8 @@ iframe, svg {
 		font-size: 18px;
 		margin-top: 0;
 	}
-	input[type="text"] {
+	input[type="text"],
+	input[type="email"] {
 		height: auto !important;
 	}
 }
@@ -147,6 +148,7 @@ iframe, svg {
 			background: #ccc;
 		}
 	}
+	
 }
 
 // Module edit
@@ -177,9 +179,9 @@ iframe, svg {
 
 /* *** Joomla 3.7 Compatibility *** */
 .edit.item-page .modal {
-    position: initial;
+  position: initial;
 }
 .edit.item-page .media-preview.add-on {
-    height: 34px;
-    line-height: 28px;
+  height: 34px;
+  line-height: 28px;
 }

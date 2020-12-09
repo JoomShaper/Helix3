@@ -3,7 +3,7 @@
  * @package     Joomla.Site
  * @subpackage  com_content
  *
- * @copyright   Copyright (C) 2005 - 2014 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2017 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -109,8 +109,9 @@ if($this->print) $has_post_format = false;
 			</div>
 		<?php endif; ?>
 	<?php endif; ?>
+	
+	<?php if (!$params->get('show_intro') || strpos($this->item->event->afterDisplayTitle, 'SP Page Builder') !== false) : echo $this->item->event->afterDisplayTitle; endif; ?>
 
-	<?php if (!$params->get('show_intro')) : echo $this->item->event->afterDisplayTitle; endif; ?>
 	<?php echo $this->item->event->beforeDisplayContent; ?>
 
 	<?php if (isset($urls) && ((!empty($urls->urls_position) && ($urls->urls_position == '0')) || ($params->get('urls_position') == '0' && empty($urls->urls_position)))

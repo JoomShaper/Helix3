@@ -89,7 +89,7 @@ jQuery(function ($) {
     }
 
     // if sticky header
-    if ($("body.sticky-header").length > 0) {
+    if ($("body.sticky-header").length > 0 && $('#sp-header').length > 0 ) {
         var fixedSection = $('#sp-header');
         // sticky nav
         var headerHeight = fixedSection.outerHeight();

@@ -21,6 +21,7 @@ $useDefList = ($params->get('show_modify_date') || $params->get('show_publish_da
 // Post Format
 $post_attribs = new JRegistry(json_decode( $this->item->attribs ));
 $post_format = $post_attribs->get('post_format', 'standard');
+
 ?>
 
 <?php if ($this->item->state == 0 || strtotime($this->item->publish_up) > strtotime(JFactory::getDate())

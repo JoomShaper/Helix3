@@ -183,7 +183,7 @@ $doc->addScriptdeclaration("\nvar sp_offanimation = '" . $this->params->get('off
 
         <!-- Off Canvas Menu -->
         <div class="offcanvas-menu">
-            <a href="#" class="close-offcanvas" aria-label="Close"><i class="fa fa-remove" aria-hidden="true"></i></a>
+            <a href="#" class="close-offcanvas" aria-label="Close"><i class="fa fa-remove" aria-hidden="true" title="<?php echo JText::_('HELIX_CLOSE_MENU'); ?>"></i></a>
             <div class="offcanvas-inner">
                 <?php if ($this->helix3->countModules('offcanvas')) { ?>
                   <jdoc:include type="modules" name="offcanvas" style="sp_xhtml" />

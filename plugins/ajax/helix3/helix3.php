@@ -265,14 +265,26 @@ class plgAjaxHelix3 extends JPlugin
           JFolder::create( $template_path, 0755 );
         }
 
-        $url  = 'https://www.googleapis.com/webfonts/v1/webfonts?key=AIzaSyBVybAjpiMHzNyEm3ncA_RZ4WETKsLElDg';
+        $tplRegistry = new JRegistry();
+        $tplParams = $tplRegistry->loadString(self::getTemplate()->params);
+        $gfont_api = $tplParams->get('gfont_api', 'AIzaSyBVybAjpiMHzNyEm3ncA_RZ4WETKsLElDg');
+        $url  = 'https://www.googleapis.com/webfonts/v1/webfonts?key='. $gfont_api;
         $http = new JHttp();
         $str  = $http->get($url);
 
-        if ( JFile::write( $template_path . '/webfonts.json', $str->body )) {
-          echo "<p class='font-update-success'>Google Webfonts list successfully updated! Please refresh your browser.</p>";
-        } else {
-          echo "<p class='font-update-failed'>Google Webfonts update failed. Please make sure that your template folder is writable.</p>";
+        if($str->code == 200) {
+          // if successfully updated
+          if ( JFile::write( $template_path . '/webfonts.json', $str->body )) {
+            echo "<p class='font-update-success'>Google Webfonts list successfully updated! Please refresh your browser.</p>";
+          } else {
+            echo "<p class='font-update-failed'>Google Webfonts update failed. Please make sure that your template folder is writable.</p>";
+          }
+        } elseif($str->code == 403) {
+          // If got error
+          $decode_msg = json_decode($str->body);
+          if(isset(json_decode($str->body)->error->message) && $get_msg = json_decode($str->body)->error->message) {
+            echo "<p class='font-update-failed'>". $get_msg ."</p>";
+          }
         }
 
         die();

@@ -285,8 +285,7 @@ class RowColumnSettings{
 	}
 
 
-	public static function getPositionss()
-	{
+	public static function getPositionss() {
 
 	    $db = JFactory::getDBO();
 	    $query = 'SELECT `position` FROM `#__modules` WHERE  `client_id`=0 AND ( `published` !=-2 AND `published` !=0 ) GROUP BY `position` ORDER BY `position` ASC';

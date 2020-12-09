@@ -35,17 +35,21 @@ $flink = JFilterOutput::ampReplace(htmlspecialchars($flink));
 switch ($item->browserNav) :
 	default:
 	case 0:
-?><a <?php echo $class; ?>href="<?php echo $flink; ?>" <?php echo $title; ?>><?php echo $icon . ' ' . $linktype; ?></a><?php
-		break;
+		$link_rel = ($item->anchor_rel) ? 'rel="' . $item->anchor_rel . '"' : '' ;
+		?>
+		<a <?php echo $class; ?> href="<?php echo $flink; ?>" <?php echo $title; ?> <?php echo $link_rel ?>><?php echo $icon . ' ' . $linktype; ?></a><?php
+	break;
 	case 1:
 		// _blank
-?><a <?php echo $class; ?>href="<?php echo $flink; ?>" target="_blank" <?php echo $title; ?>><?php echo $icon . ' ' . $linktype; ?></a><?php
-		break;
+		$link_rel = ($item->anchor_rel == 'nofollow') ? 'noopener noreferrer nofollow' : 'noopener noreferrer';
+		?>
+		<a <?php echo $class; ?>href="<?php echo $flink; ?>" rel="<?php echo $link_rel ?>" target="_blank" <?php echo $title; ?>><?php echo $icon . ' ' . $linktype; ?></a><?php
+	break;
 	case 2:
 		// Use JavaScript "window.open"
 		$options = 'toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,' . $params->get('window_open');
 			?><a <?php echo $class; ?>href="<?php echo $flink; ?>" onclick="window.open(this.href,'targetWindow','<?php echo $options;?>');return false;" <?php echo $title; ?>><?php echo $icon . ' ' . $linktype; ?></a><?php
-		break;
+	break;
 endswitch;
 
 if(($module->position == 'offcanvas') && ($item->deeper)) {

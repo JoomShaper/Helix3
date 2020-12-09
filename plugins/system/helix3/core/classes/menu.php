@@ -2,7 +2,7 @@
 /**
 * @package Helix3 Framework
 * @author JoomShaper http://www.joomshaper.com
-* @copyright Copyright (c) 2010 - 2017 JoomShaper
+* @copyright Copyright (c) 2010 - 2018 JoomShaper
 * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
 */
 
@@ -454,14 +454,17 @@ class Helix3Menu {
 			switch ($item->browserNav) {
 				default:
 				case 0:
-				$output .= '<a '.$class.' href="'. $flink .'" '.$title.'>'.$linktitle.'</a>';
+					$link_rel = ($item->params->get('menu-anchor_rel', '')) ? 'rel="' . $item->params->get('menu-anchor_rel') . '"' : '' ;
+					$flink = ($flink) ? $flink : 'javascript:void(0);' ;
+					$output .= '<a '.$class.' href="'. $flink .'" '. $link_rel .' '.$title.'>'.$linktitle.'</a>';
 				break;
 				case 1:
-				$output .= '<a '. $class .' href="'. $flink .'" target="_blank" '. $title .'>'. $linktitle .'</a>';
+					$link_rel = ($item->params->get('menu-anchor_rel', '') == 'nofollow') ? 'noopener noreferrer nofollow' : 'noopener noreferrer';
+					$output .= '<a '. $class .' href="'. $flink .'" rel="'. $link_rel .'" target="_blank" '. $title .'>'. $linktitle .'</a>';
 				break;
 				case 2:
-				$options .= 'toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,' . $item->params->get('window_open');
-				$output .= '<a '. $class .' href="'. $flink .'" onclick="window.open(this.href,\'targetWindow\',\''. $options. '\');return false;" '. $title .'>'. $linktitle .'</a>';
+					$options .= 'toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,' . $item->params->get('window_open');
+					$output .= '<a '. $class .' href="'. $flink .'" onclick="window.open(this.href,\'targetWindow\',\''. $options. '\');return false;" '. $title .'>'. $linktitle .'</a>';
 				break;
 			}
 		}

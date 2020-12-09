@@ -1,7 +1,7 @@
 /**
 * @package Helix Framework
 * @author JoomShaper http://www.joomshaper.com
-* @copyright Copyright (c) 2010 - 2016 JoomShaper
+* @copyright Copyright (c) 2010 - 2017 JoomShaper
 * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or later
 */
 
@@ -9,70 +9,70 @@
 /* ************   START TABLE OF CONTENT   ************ */
 /* **************************************************** */
 /*
-        01. Base Style
-        01. Button & Input
-        03. Top Bar
-        04. Header
-        05. Page Title
-        06. body innerwrapper
-        07. Page Builder Addons
-        08. Module
-        09. Login Form
-        10. Search
-        11. Blog
-        12. Bottom
-        13. Footer
-        14. Comingsoon
-        15. Error page
-        16. Mixed CSS
+    01. Base Style
+    01. Button & Input
+    03. Top Bar
+    04. Header
+    05. Page Title
+    06. body innerwrapper
+    07. Page Builder Addons
+    08. Module
+    09. Login Form
+    10. Search
+    11. Blog
+    12. Bottom
+    13. Footer
+    14. Comingsoon
+    15. Error page
+    16. Mixed CSS
 
-        /* ************   END:: TABLE OF CONTENT  ************* */
-        /* **************************************************** */
+/* ************   END:: TABLE OF CONTENT  ************* */
+/* **************************************************** */
 
 
-        /* ************   START Start Base Style   ************* */
-        /* **************************************************** */
+/* ************   START Start Base Style   ************* */
+/* **************************************************** */
 
-        a {
-            -webkit-transition: color 400ms, background-color 400ms;
-            transition: color 400ms, background-color 400ms;
-        }
+a {
+    -webkit-transition: color 400ms, background-color 400ms;
+    transition: color 400ms, background-color 400ms;
+}
 
-        body {
-            line-height: 24px;
-            -webkit-transition: all 400ms ease;
-            transition: all 400ms ease;
-            background-color: @bg_color;
+body {
+    line-height: 24px;
+    -webkit-transition: all 400ms ease;
+    transition: all 400ms ease;
+    background-color: @bg_color;
 
-        }
+}
 
-        a, a:hover, a:focus, a:active {
-            text-decoration: none;
-        }
+a, a:hover, a:focus, a:active {
+    text-decoration: none;
+}
 
-        label {
-            font-weight: normal;
-        }
+label {
+    font-weight: normal;
+}
 
-        legend {
-            padding-bottom: 10px;
-        }
+legend {
+    padding-bottom: 10px;
+}
 
-        img {
-            display: block;
-            max-width: 100%;
-            height: auto;
-        }
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
 
-        /* ***************   END:: Base Style  **************** */
-        /* **************************************************** */
+/* ***************   END:: Base Style  **************** */
+/* **************************************************** */
 
-        /* ****************   START Button   ****************** */
-        /* **************************************************** */
+/* ****************   START Button   ****************** */
+/* **************************************************** */
 
-        .btn, .sppb-btn {
-            .transition(~'color 400ms, background-color 400ms, border-color 400ms');
-        }
+.btn, .sppb-btn {
+    .transition(~'color 400ms, background-color 400ms, border-color 400ms');
+}
 
 //Offline
 .offline-inner {
@@ -125,6 +125,10 @@ select, textarea, input[type="text"], input[type="password"], input[type="dateti
         font-weight: 700;
         color: #000;
     }
+}
+
+.backface-visible {
+    backface-visibility: hidden;
 }
 
 /* *****************   END:: Common  ****************** */
@@ -670,11 +674,20 @@ article {
     margin-bottom: 50px;
 }
 
+// image alignment css
+.pull-right.entry-image {
+    margin: 0 0 18px 20px;
+}
+.entry-status, .entry-quote {
+    margin-bottom: 50px;
+}
+
 .entry-header {
     position: relative;
     margin-bottom: 30px;
     &.has-post-format {
         margin-left: 68px;
+        display: inline-block;
     }
     h2 {
         margin: 8px 0 0;
@@ -1778,4 +1791,24 @@ table.category {
     }
 }
 /* *********   END:: Responsive Media Query   ********* */
+/* **************************************************** */
+
+
+/* ******************  Start SPPB 3 ******************* */
+/* **************************************************** */
+
+//Image Content
+@media (min-width: 768px) {
+    .sppb-col-sm-offset-6 {
+        margin-left: 50%;
+    }
+}
+
+//Testimonial Pro
+.sppb-testimonial-pro .sppb-item img {
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+/* ******************  END:: SPPB 3 ******************* */
 /* **************************************************** */

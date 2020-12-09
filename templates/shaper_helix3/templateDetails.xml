@@ -5,9 +5,9 @@
     <author>JoomShaper.com</author>
     <authorEmail>support@joomshaper.com</authorEmail>
     <authorUrl>http://www.joomshaper.com</authorUrl>
-    <copyright>Copyright (C) 2010 - 2017 JoomShaper.com. All rights reserved.</copyright>
+    <copyright>Copyright (C) 2010 - 2018 JoomShaper.com. All rights reserved.</copyright>
     <license>http://www.gnu.org/licenses/gpl-2.0.html GPLv2 or later</license>
-    <version>2.4</version>
+    <version>2.5.6</version>
     <description>Shaper Helix3 - Starter Template of Helix3 framework</description>
 
     <updateservers>
@@ -186,7 +186,7 @@
                     <option value="after">HELIX_FEATURE_LOAD_POS_AFTER</option>
                 </field>
 
-                <field name="copyright" class="child copyright copyright_1" type="textarea" rows="6" cols="30" default="© 2015 Your Company. All Rights Reserved. Designed By JoomShaper" label="HELIX_COMPYRIGHT_TEXT" description="HELIX_COMPYRIGHT_TEXT_DESC" filter="raw" />
+                <field name="copyright" class="child copyright copyright_1" type="textarea" rows="6" cols="30" default="© {year} Your Company. All Rights Reserved. Designed By JoomShaper" label="HELIX_COMPYRIGHT_TEXT" description="HELIX_COMPYRIGHT_TEXT_DESC" filter="raw" />
 
                 <!--Social Icons-->
                 <field type="group" title="HELIX_SOCIAL_ICONS" />
@@ -326,9 +326,10 @@
 
             <!--Start Font Tab-->
             <fieldset name="typography" addfieldpath="/plugins/system/helix3/fields">
-                <field type="group" title="Google Fonts List" />
+                <field type="group" title="HELIX_GOOGLE_FONTS_LIST" subtitle="HELIX_GOOGLE_FONTS_LIST_DESC"/>
+                <field name="gfont_api" type="text" class="parent" label="HELIX_GFONT_API" description="HELIX_GFONT_API_DESC" />
                 <field name="update_fonts" type="button" url="#" text="HELIX_UPDATE_FONTS_CLICK" label="HELIX_UPDATE_FONTS_LIST" description="HELIX_UPDATE_FONTS_LIST_DESC" class="btn-primary btn-update-fonts-list" />
-
+                
                 <field type="group" title="HELIX_BODY_FONT" subtitle="HELIX_BODY_FONT_DESC" />
                 <field name="enable_body_font" class="parent body_font" type="radio" default="1" label="HELIX_ENABLE_FONT" description="HELIX_ENABLE_FONT_DESC">
                     <option value="1">HELIX_YES</option>

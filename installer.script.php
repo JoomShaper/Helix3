@@ -35,7 +35,7 @@ class plgSystemTmp_helix3InstallerScript {
             if ($result) {
                 $query = "UPDATE #__extensions SET enabled=1 WHERE type='plugin' AND element=".$db->Quote($name)." AND folder=".$db->Quote($group);
                 $db->setQuery($query);
-                $db->query();
+                $db->execute();
             }
 
         }

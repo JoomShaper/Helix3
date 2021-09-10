@@ -501,7 +501,8 @@ class Helix3Menu {
 		$query->where('m.client_id = '. $clientId);
 
 		// Filter by language
-		if ($app->isSite() && $app->getLanguageFilter()) {
+		
+		if ($app->isClient('site') && $app->getLanguageFilter()) {
 			$query->where('m.language IN (' . $db->Quote($lang) . ',' . $db->Quote('*') . ')');
 		}
 

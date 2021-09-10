@@ -25,7 +25,7 @@ class  plgSystemHelix3 extends JPlugin
     // Copied style
     function onAfterDispatch() {
 
-        if(  !JFactory::getApplication()->isAdmin() ) {
+        if(  !JFactory::getApplication->isClient('administrator') ) {
 
             $activeMenu = JFactory::getApplication()->getMenu()->getActive();
 
@@ -132,7 +132,7 @@ class  plgSystemHelix3 extends JPlugin
     {
         $japps = JFactory::getApplication();
 
-        if ( $japps->isAdmin() )
+		if( $japps->isClient('administrator') ) {
         {
             $user = JFactory::getUser();
 
@@ -189,14 +189,16 @@ class  plgSystemHelix3 extends JPlugin
         return $db->loadObject()->template;
     }
 
-    function onAfterRender() {
-      $app = JFactory::getApplication();
+    function onAfterRender()
+	{
+		$app = JFactory::getApplication();
 
-  		if ($app->isAdmin())
-      {
+		if($app->isClient('administrator'))
+		{
   			return;
   		}
-      $body = JResponse::getBody();
+		
+		$body = JResponse::getBody();
   		$preset = Helix3::Preset();
 
   		$body = str_replace('{helix_preset}', $preset, $body);

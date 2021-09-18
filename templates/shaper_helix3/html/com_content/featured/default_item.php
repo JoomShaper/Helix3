@@ -22,10 +22,15 @@ $useDefList = ($params->get('show_modify_date') || $params->get('show_publish_da
 $post_attribs = new JRegistry(json_decode( $this->item->attribs ));
 $post_format = $post_attribs->get('post_format', 'standard');
 
+// published status
+$currentDate   = JFactory::getDate()->format('Y-m-d H:i:s');
+$isNotPublishedYet = $this->item->publish_up > $currentDate;
+$isUnpublished = JVERSION < 4 ? ($this->item->state == 0 || strtotime($this->item->publish_up) > strtotime(JFactory::getDate()) || ((strtotime($this->item->publish_down) < strtotime(JFactory::getDate())) && $this->item->publish_down != JFactory::getDbo()->getNullDate())) : ($this->item->state == Joomla\Component\Content\Administrator\Extension\ContentComponent::CONDITION_UNPUBLISHED || $isNotPublishedYet)
+	|| ($this->item->publish_down < $currentDate && $this->item->publish_down !== null);
+
 ?>
 
-<?php if ($this->item->state == 0 || strtotime($this->item->publish_up) > strtotime(JFactory::getDate())
-	|| ((strtotime($this->item->publish_down) < strtotime(JFactory::getDate())) && $this->item->publish_down != JFactory::getDbo()->getNullDate())) : ?>
+<?php if ($isUnpublished) : ?>
 	<div class="system-unpublished">
 <?php endif; ?>
 
@@ -78,8 +83,7 @@ $post_format = $post_attribs->get('post_format', 'standard');
 
 <?php endif; ?>
 
-<?php if ($this->item->state == 0 || strtotime($this->item->publish_up) > strtotime(JFactory::getDate())
-	|| ((strtotime($this->item->publish_down) < strtotime(JFactory::getDate())) && $this->item->publish_down != '0000-00-00 00:00:00' )) : ?>
+<?php if ($isUnpublished) : ?>
 	</div>
 <?php endif; ?>
 

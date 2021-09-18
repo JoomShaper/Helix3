@@ -24,7 +24,7 @@ class SpTypeColor{
 
 		$output  = '<div class="form-group">';
 		$output .= '<label>'.$attr['title'].'</label>';
-		$output .= '<input type="text" class="sppb-color addon-input" data-attrname="'.$key.'" placeholder="#rrggbb" value="'.$attr['std'].'">';
+		$output .= '<input type="text" class="sppb-color addon-input form-control" data-attrname="'.$key.'" placeholder="#rrggbb" value="'.$attr['std'].'">';
 
 		if( ( isset($attr['desc']) ) && ( isset($attr['desc']) != '' ) )
 		{

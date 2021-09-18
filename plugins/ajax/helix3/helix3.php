@@ -527,7 +527,7 @@ class plgAjaxHelix3 extends JPlugin
             <div class="settings-right pull-right">
               <ul class="button-group">
                 <li>
-                  <a class="btn btn-small add-columns" href="#"><i class="fa fa-columns"></i> <?php echo JText::_('HELIX_ADD_COLUMNS'); ?></a>
+                  <a class="btn btn-default btn-small btn-sm add-columns" href="#"><i class="fa fa-columns"></i> <?php echo JText::_('HELIX_ADD_COLUMNS'); ?></a>
                   <ul class="column-list">
                     <?php
                     $_active = '';
@@ -585,10 +585,13 @@ class plgAjaxHelix3 extends JPlugin
 
     }
 
-    static public function getSettings($config = null){
+    static public function getSettings($config = null)
+	{
       $data = '';
-      if (count($config)) {
-        foreach ($config as $key => $value) {
+      if (count((array) $config))
+	  {
+        foreach ($config as $key => $value)
+		{
           $data .= ' data-'.$key.'="'.$value.'"';
         }
       }
@@ -596,7 +599,8 @@ class plgAjaxHelix3 extends JPlugin
     }
 
     //Get template name
-    private static function getTemplate() {
+    private static function getTemplate()
+	{
 
       $db = JFactory::getDbo();
       $query = $db->getQuery(true);
@@ -610,7 +614,8 @@ class plgAjaxHelix3 extends JPlugin
     }
 
     // Upload File
-    private function upload_image() {
+    private function upload_image()
+	{
       $input = JFactory::getApplication()->input;
       $image = $input->files->get('image');
       $imageonly = $input->post->get('imageonly', false, 'BOOLEAN');
@@ -629,7 +634,8 @@ class plgAjaxHelix3 extends JPlugin
         die;
       }
 
-      if(count($image)) {
+      if(count($image))
+	  {
 
         if ($image['error'] == UPLOAD_ERR_OK) {
 
@@ -742,7 +748,8 @@ class plgAjaxHelix3 extends JPlugin
     }
 
     // Delete File
-    private function remove_image() {
+    private function remove_image()
+	{
       $report = array();
 
       if (!JFactory::getUser()->authorise('core.delete', 'com_media'))
@@ -797,5 +804,4 @@ class plgAjaxHelix3 extends JPlugin
 
       die;
     }
-
-  }
+}

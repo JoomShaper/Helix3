@@ -21,10 +21,13 @@ class JFormFieldLayout extends JFormField {
 
     $json = json_decode($this->value);
 
-    if(!empty($json)) {
+    if (!empty($json))
+    {
       $value = $json;
-    } else {
-      $layout_file = JFile::read( JPATH_SITE . '/templates/' . $this->getTemplate() . '/layout/default.json' );
+    }
+    else
+    {
+      $layout_file = file_get_contents(JPATH_SITE . '/templates/' . $this->getTemplate() . '/layout/default.json');
       $value = json_decode($layout_file);
     }
 
@@ -46,20 +49,20 @@ class JFormFieldLayout extends JFormField {
 
   }
 
-
   public function getLabel()
   {
     return false;
   }
 
   //Get template name
-  private static function getTemplate() {
-
+  private static function getTemplate()
+  {
+    $id = (int) JFactory::getApplication()->input->get('id', 0);
     $db = JFactory::getDbo();
     $query = $db->getQuery(true);
     $query->select($db->quoteName(array('template')));
     $query->from($db->quoteName('#__template_styles'));
-    $query->where($db->quoteName('id') . ' = '. $db->quote( JRequest::getVar('id') ));
+    $query->where($db->quoteName('id') . ' = '. $db->quote($id));
     $db->setQuery($query);
 
     return $db->loadResult();

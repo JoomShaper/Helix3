@@ -11,7 +11,7 @@ defined('_JEXEC') or die;
 
 JHtml::addIncludePath(JPATH_COMPONENT . '/helpers');
 
-JHtml::_('behavior.caption');
+// JHtml::_('behavior.caption');
 ?>
 <div class="blog<?php echo $this->pageclass_sfx; ?>" itemscope itemtype="http://schema.org/Blog">
 	<?php if ($this->params->get('show_page_heading', 1)) : ?>
@@ -69,6 +69,7 @@ JHtml::_('behavior.caption');
 	<?php
 	$introcount = (count($this->intro_items));
 	$counter = 0;
+	$this->columns = $this->columns ?? 1;
 	?>
 
 	<?php if (!empty($this->intro_items)) : ?>
@@ -108,12 +109,15 @@ JHtml::_('behavior.caption');
 			<?php endif; ?>
 			<?php echo $this->loadTemplate('children'); ?> </div>
 	<?php endif; ?>
-	<?php if (($this->params->def('show_pagination', 1) == 1 || ($this->params->get('show_pagination') == 2)) && ($this->pagination->get('pages.total') > 1)) : ?>
-		<div class="pagination-wrapper">
-			<?php if ($this->params->def('show_pagination_results', 1)) : ?>
-				<p class="counter"> <?php echo $this->pagination->getPagesCounter(); ?> </p>
-			<?php endif; ?>
+
+	<?php if (($this->params->def('show_pagination', 1) == 1 || ($this->params->get('show_pagination') == 2)) && ($this->pagination->pagesTotal > 1)) : ?>
+		<nav class="pagination-wrapper">
 			<?php echo $this->pagination->getPagesLinks(); ?>
-		</div>
+			<?php if ($this->params->def('show_pagination_results', 1)) : ?>
+				<div class="pagination-counter text-muted mb-4">
+					<?php echo $this->pagination->getPagesCounter(); ?>
+				</div>
+			<?php endif; ?>
+		</nav>
 	<?php endif; ?>
 </div>

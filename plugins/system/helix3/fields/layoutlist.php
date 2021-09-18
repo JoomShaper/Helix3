@@ -21,12 +21,16 @@ class JFormFieldLayoutlist extends JFormField
     $layoutPath = JPATH_SITE.'/templates/'.$template.'/layout/';
     $laoutlist = JFolder::files($layoutPath, '.json');
 
-    $htmls = '<div class="layoutlist"><select id="'.$this->id.'" name="'.$this->name.'">';
-    if ($laoutlist) {
-      foreach ($laoutlist as $name) {
+    $htmls = '<div class="layoutlist"><select id="'.$this->id.'" class="form-select" name="'.$this->name.'">';
+    
+    if ($laoutlist)
+    {
+      foreach ($laoutlist as $name)
+      {
         $htmls .= '<option value="'.$name.'">'.str_replace('.json','',$name).'</option>';
       }
     }
+    
     $htmls .= '</select></div>';
     $htmls .= '<div class="layout-button-wrap"><a href="#" class="btn btn-success layout-save-action" data-action="save">'. JText::_('HELIX_SAVE_COPY') .'</a>';
     $htmls .= '<a href="#" class="btn btn-danger layout-del-action" data-action="remove">'. JText::_('HELIX_DELETE') .'</a></div>';
@@ -41,13 +45,14 @@ class JFormFieldLayoutlist extends JFormField
   }
 
   //Get template name
-  private static function getTemplate() {
-
+  private static function getTemplate()
+  {
+    $id = (int) JFactory::getApplication()->input->get('id', 0);
     $db = JFactory::getDbo();
     $query = $db->getQuery(true);
     $query->select($db->quoteName(array('template')));
     $query->from($db->quoteName('#__template_styles'));
-    $query->where($db->quoteName('id') . ' = '. $db->quote( JRequest::getVar('id') ));
+    $query->where($db->quoteName('id') . ' = '. $db->quote($id));
     $db->setQuery($query);
 
     return $db->loadResult();

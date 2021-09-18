@@ -1,4 +1,5 @@
 .DS_Store
+.prettierrc
 __MACOSX
 robots.txt.dist
 *.zip
@@ -11,6 +12,8 @@ index.php
 robots.txt
 web.config.txt
 
+/.vscode
+/api
 /bin
 /cache
 /cli

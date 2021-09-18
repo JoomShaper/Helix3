@@ -20,10 +20,13 @@ class JFormFieldTypography extends JFormField
     $template_path = JPATH_SITE . '/templates/' . self::getTemplate() . '/webfonts/webfonts.json';
     $plugin_path   = JPATH_PLUGINS . '/system/helix3/assets/webfonts/webfonts.json';
 
-    if(file_exists( $template_path )) {
-      $json = JFile::read( $template_path );
-    } else {
-      $json = JFile::read( $plugin_path );
+    if(file_exists( $template_path ))
+    {
+      $json = file_get_contents( $template_path );
+    }
+    else
+    {
+      $json = file_get_contents( $plugin_path );
     }
 
     $webfonts   = json_decode($json);
@@ -41,11 +44,11 @@ class JFormFieldTypography extends JFormField
 
     //Font Family
     $html .= '<div class="webfont '. $classes .'">';
-    $html .= '<div class="row-fluid">';
+    $html .= '<div class="row row-fluid">';
 
-    $html .= '<div class="span3 font-families">';
-    $html .= '<label><strong>'. JText::_('HELIX_FONT_FAMILY') .'</strong></label>';
-    $html .= '<select class="list-font-families">';
+    $html .= '<div class="col-sm-3 span3 font-families">';
+    $html .= '<label class="control-label"><strong>'. JText::_('HELIX_FONT_FAMILY') .'</strong></label>';
+    $html .= '<select class="list-font-families form-select">';
 
     foreach ($items as $item) {
       if(isset($value->fontFamily) && $item->family==$value->fontFamily) {
@@ -59,9 +62,9 @@ class JFormFieldTypography extends JFormField
     $html .= '</div>';
 
     //Font Weight
-    $html .= '<div class="span2 font-weight">';
-    $html .= '<label><strong>'. JText::_('HELIX_FONT_WEIGHT_STYLE') .'</strong></label>';
-    $html .= '<select class="list-font-weight">';
+    $html .= '<div class="col-sm-2 span2 font-weight">';
+    $html .= '<label class="control-label"><strong>'. JText::_('HELIX_FONT_WEIGHT_STYLE') .'</strong></label>';
+    $html .= '<select class="list-font-weight form-select">';
 
     if(isset($value->fontFamily)) {
       foreach ($font->variants as $variant) {
@@ -81,9 +84,9 @@ class JFormFieldTypography extends JFormField
     $html .= '</div>';
 
     //Font Subsets
-    $html .= '<div class="span2 font-subsets">';
-    $html .= '<label><strong>'. JText::_('HELIX_FONT_SUBSET') .'</strong></label>';
-    $html .= '<select class="list-font-subset">';
+    $html .= '<div class="col-sm-2 span2 font-subsets">';
+    $html .= '<label class="control-label"><strong>'. JText::_('HELIX_FONT_SUBSET') .'</strong></label>';
+    $html .= '<select class="list-font-subset form-select">';
 
     if(isset($value->fontFamily)) {
       foreach ($font->subsets as $subset) {
@@ -104,9 +107,9 @@ class JFormFieldTypography extends JFormField
 
     //Font Size
     $fontSize = (isset($value->fontSize))?$value->fontSize:'';
-    $html .= '<div class="span2 font-size">';
-    $html .= '<label><strong>'. JText::_('HELIX_FONT_SIZE') .'</strong></label>';
-    $html .= '<input type="number" value="'. $fontSize .'" class="webfont-size" min="1" placeholder="14">';
+    $html .= '<div class="col-sm-2 span2 font-size">';
+    $html .= '<label class="control-label"><strong>'. JText::_('HELIX_FONT_SIZE') .'</strong></label>';
+    $html .= '<input type="number" value="'. $fontSize .'" class="form-control webfont-size" min="1" placeholder="14">';
     $html .= '</div>';
 
     $html .= '</div>';
@@ -117,7 +120,6 @@ class JFormFieldTypography extends JFormField
     $html .= '<input type="hidden" name="' . $this->name .'" value="'. $this->value .'" class="input-webfont" id="'. $this->id .'">';
 
     $html .= '</div>';
-
 
     return $html;
 
@@ -136,16 +138,16 @@ class JFormFieldTypography extends JFormField
   }
 
   //Get template name
-  private static function getTemplate() {
-
+  private static function getTemplate()
+  {
+    $id = (int) JFactory::getApplication()->input->get('id', 0);
     $db = JFactory::getDbo();
     $query = $db->getQuery(true);
     $query->select($db->quoteName(array('template')));
     $query->from($db->quoteName('#__template_styles'));
-    $query->where($db->quoteName('id') . ' = '. $db->quote( JRequest::getVar('id') ));
+    $query->where($db->quoteName('id') . ' = '. $db->quote($id));
     $db->setQuery($query);
 
     return $db->loadResult();
   }
-
 }

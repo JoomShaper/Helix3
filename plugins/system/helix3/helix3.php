@@ -25,7 +25,7 @@ class  plgSystemHelix3 extends JPlugin
     // Copied style
     function onAfterDispatch() {
 
-        if(  !JFactory::getApplication()->isAdmin() ) {
+        if(  !JFactory::getApplication()->isClient('administrator') ) {
 
             $activeMenu = JFactory::getApplication()->getMenu()->getActive();
 
@@ -45,22 +45,27 @@ class  plgSystemHelix3 extends JPlugin
     function onContentPrepareForm($form, $data) {
 
         $doc = JFactory::getDocument();
-        $plg_path = JURI::root(true).'/plugins/system/helix3';
+        $plg_path = JURI::root(true) . '/plugins/system/helix3';
         JForm::addFormPath(JPATH_PLUGINS.'/system/helix3/params');
 
         if ($form->getName()=='com_menus.item') { //Add Helix menu params to the menu item
             JHtml::_('jquery.framework');
             $data = (array)$data;
 
-            if($data['id'] && $data['parent_id'] == 1) {
-                JHtml::_('jquery.ui', array('core', 'more', 'sortable'));
-                $doc->addScript($plg_path.'/assets/js/jquery-ui.draggable.min.js');
-                $doc->addStyleSheet($plg_path.'/assets/css/bootstrap.css');
-                $doc->addStyleSheet($plg_path.'/assets/css/font-awesome.min.css');
-                $doc->addStyleSheet($plg_path.'/assets/css/modal.css');
-                $doc->addStyleSheet($plg_path.'/assets/css/menu.generator.css');
-                $doc->addScript($plg_path.'/assets/js/modal.js');
-                $doc->addScript( $plg_path. '/assets/js/menu.generator.js' );
+            if($data['id'] && $data['parent_id'] == 1)
+            {
+                $doc->addStyleSheet($plg_path . '/assets/css/bootstrap.css');
+                $doc->addStyleSheet($plg_path . '/assets/css/font-awesome.min.css');
+                $doc->addStyleSheet($plg_path . '/assets/css/modal.css');
+                $doc->addStyleSheet($plg_path . '/assets/css/menu.generator.css');
+                
+                JHtml::_('jquery.framework');
+                $doc->addScript($plg_path . '/assets/js/jquery-ui.min.js');
+                // $doc->addScript($plg_path . '/assets/js/jquery.ui.core.min.js');
+                // $doc->addScript($plg_path . '/assets/js/jquery.ui.sortable.min.js');
+                // $doc->addScript($plg_path . '/assets/js/jquery-ui.draggable.min.js');
+                $doc->addScript($plg_path . '/assets/js/modal.js');
+                $doc->addScript( $plg_path . '/assets/js/menu.generator.js' );
                 $form->loadFile('menu-parent', false);
 
             } else {
@@ -130,7 +135,7 @@ class  plgSystemHelix3 extends JPlugin
     {
         $japps = JFactory::getApplication();
 
-        if ( $japps->isAdmin() )
+        if ( $japps->isClient('administrator') )
         {
             $user = JFactory::getUser();
 
@@ -187,18 +192,19 @@ class  plgSystemHelix3 extends JPlugin
         return $db->loadObject()->template;
     }
 
-    function onAfterRender() {
-      $app = JFactory::getApplication();
+    function onAfterRender__() {
+        $app = JFactory::getApplication();
 
-  		if ($app->isAdmin())
-      {
+  		if ($app->isClient('administrator'))
+        {
   			return;
   		}
-      $body = JResponse::getBody();
+          
+        $body = JFactory::getApplication()->getBody();
   		$preset = Helix3::Preset();
 
   		$body = str_replace('{helix_preset}', $preset, $body);
 
-  		JResponse::setBody($body);
+  		JFactory::getApplication()->setBody($body);
     }
 }

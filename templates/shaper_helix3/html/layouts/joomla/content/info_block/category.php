@@ -9,6 +9,11 @@
 
 defined('JPATH_BASE') or die;
 
+if (!isset($displayData['item']->catslug))
+{
+	$displayData['item']->catslug = $displayData['item']->catid . ':' . $displayData['item']->category_alias;
+}
+
 ?>
 <dd class="category-name">
 	<i class="fa fa-folder-open-o"></i>

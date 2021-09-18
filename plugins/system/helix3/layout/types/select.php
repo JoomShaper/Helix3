@@ -20,7 +20,7 @@ class SpTypeSelect{
 		$output  = '<div class="form-group '.$key.'">';
 		$output .= '<label>'.$attr['title'].'</label>';
 
-		$output .= '<select class="form-control addon-input" data-attrname="'.$key.'">';
+		$output .= '<select class="form-control form-select addon-input" data-attrname="'.$key.'">';
 
 		foreach( $attr['values'] as $key => $value )
 		{

@@ -11,10 +11,6 @@ defined('_JEXEC') or die;
 
 JHtml::_('behavior.keepalive');
 
-//print_r(get_class_methods($this->form));
-
-//die;
-
 ?>
 <div class="row">
 	<div class="col-sm-4 col-sm-offset-4 text-center">

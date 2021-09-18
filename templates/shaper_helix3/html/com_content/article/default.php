@@ -19,7 +19,6 @@ $urls    = json_decode($this->item->urls);
 $canEdit = $params->get('access-edit');
 $user    = JFactory::getUser();
 $info    = $params->get('info_block_position', 0);
-JHtml::_('behavior.caption');
 $useDefList = ($params->get('show_modify_date') || $params->get('show_publish_date') || $params->get('show_create_date')
 	|| $params->get('show_hits') || $params->get('show_category') || $params->get('show_parent_category') || $params->get('show_author'));
 
@@ -48,8 +47,16 @@ if ($article_image) {
 
 $post_format = $params->get('post_format', 'standard');
 $has_post_format = $tpl_params->get('show_post_format');
-if($this->print) $has_post_format = false;
+if ($this->print)
+{
+	$has_post_format = false;
+}
 
+// status
+$currentDate   = JFactory::getDate()->format('Y-m-d H:i:s');
+$isExpired  = JVERSION < 4
+	? (strtotime($this->item->publish_down) < strtotime(Factory::getDate())) && $this->item->publish_down != JFactory::getDbo()->getNullDate()
+	: !is_null($this->item->publish_down) && $this->item->publish_down < $currentDate;
 
 ?>
 <article class="item item-page<?php echo $this->pageclass_sfx . ($this->item->featured) ? ' item-featured' : ''; ?>" itemscope itemtype="http://schema.org/Article">
@@ -92,7 +99,7 @@ if($this->print) $has_post_format = false;
 			<?php if (strtotime($this->item->publish_up) > strtotime(JFactory::getDate())) : ?>
 				<span class="label label-warning"><?php echo JText::_('JNOTPUBLISHEDYET'); ?></span>
 			<?php endif; ?>
-			<?php if ((strtotime($this->item->publish_down) < strtotime(JFactory::getDate())) && $this->item->publish_down != '0000-00-00 00:00:00') : ?>
+			<?php if ($isExpired) : ?>
 				<span class="label label-warning"><?php echo JText::_('JEXPIRED'); ?></span>
 			<?php endif; ?>
 		<?php endif; ?>

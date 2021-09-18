@@ -59,6 +59,6 @@ class JFormFieldModPos extends JFormFieldText
 
     foreach($options as $option) $selectOption[] = JHTML::_( 'select.option',$option,$option );
 
-    return JHTML::_('select.genericlist', $selectOption, 'jform[params]['.$this->element['name'].']', 'class="'.$this->element['class'].'"', 'value', 'text', $this->value, 'jform_params_helix_'.$this->element['name']);
+    return JHTML::_('select.genericlist', $selectOption, 'jform[params]['.$this->element['name'].']', 'class="form-select '.$this->element['class'].'"', 'value', 'text', $this->value, 'jform_params_helix_'.$this->element['name']);
   }
 }

@@ -81,7 +81,7 @@ $colGrid = array(
       <div class="settings-right pull-right">
         <ul class="button-group">
           <li>
-            <a class="btn btn-small add-columns" href="#"><i class="fa fa-columns"></i> <?php echo JText::_('HELIX_ADD_COLUMNS'); ?></a>
+            <a class="btn btn-default btn-small btn-sm add-columns" href="#"><i class="fa fa-columns"></i> <?php echo JText::_('HELIX_ADD_COLUMNS'); ?></a>
             <ul class="column-list">
               <?php
               foreach ($colGrid as $key => $grid){
@@ -93,8 +93,8 @@ $colGrid = array(
               <li><a href="#" class="hasTooltip column-layout-custom column-layout custom <?php echo $active; ?>" data-layout="" data-type='custom' data-original-title="<strong>Custom Layout</strong>"></a></li>
             </ul>
           </li>
-          <li><a class="btn btn-small add-row" href="#"><i class="fa fa-bars"></i> <?php echo JText::_('HELIX_ADD_ROW'); ?></a></li>
-          <li><a class="btn btn-small row-ops-set" href="#"><i class="fa fa-gears"></i> <?php echo JText::_('HELIX_SETTINGS'); ?></a></li>
+          <li><a class="btn btn-default btn-small btn-sm add-row" href="#"><i class="fa fa-bars"></i> <?php echo JText::_('HELIX_ADD_ROW'); ?></a></li>
+          <li><a class="btn btn-default btn-small btn-sm row-ops-set" href="#"><i class="fa fa-gears"></i> <?php echo JText::_('HELIX_SETTINGS'); ?></a></li>
           <li><a class="btn btn-danger btn-small remove-row" href="#"><i class="fa fa-times"></i> <?php echo JText::_('HELIX_REMOVE'); ?></a></li>
         </ul>
       </div>
@@ -136,7 +136,7 @@ $colGrid = array(
           <div class="settings-right pull-right">
             <ul class="button-group">
               <li>
-                <a class="btn btn-small add-columns" href="#"><i class="fa fa-columns"></i> <?php echo JText::_('HELIX_ADD_COLUMNS'); ?></a>
+                <a class="btn btn-default btn-small btn-sm add-columns" href="#"><i class="fa fa-columns"></i> <?php echo JText::_('HELIX_ADD_COLUMNS'); ?></a>
                 <ul class="column-list">
                   <?php
                   $active = '';
@@ -159,8 +159,8 @@ $colGrid = array(
                   <li><a href="#" class="hasTooltip column-layout-custom column-layout custom <?php echo $active; ?>" data-layout="<?php echo $customLayout; ?>" data-type='custom' data-original-title="<strong>Custom Layout</strong>"></a></li>
                 </ul>
               </li>
-              <li><a class="btn btn-small add-row" href="#"><i class="fa fa-bars"></i> <?php echo JText::_('HELIX_ADD_ROW'); ?></a></li>
-              <li><a class="btn btn-small row-ops-set" href="#"><i class="fa fa-gears"></i> <?php echo JText::_('HELIX_SETTINGS'); ?></a></li>
+              <li><a class="btn btn-default btn-small btn-sm add-row" href="#"><i class="fa fa-bars"></i> <?php echo JText::_('HELIX_ADD_ROW'); ?></a></li>
+              <li><a class="btn btn-default btn-small btn-sm row-ops-set" href="#"><i class="fa fa-gears"></i> <?php echo JText::_('HELIX_SETTINGS'); ?></a></li>
               <li><a class="btn btn-danger btn-small remove-row" href="#"><i class="fa fa-times"></i> <?php echo JText::_('HELIX_REMOVE'); ?></a></li>
             </ul>
           </div>

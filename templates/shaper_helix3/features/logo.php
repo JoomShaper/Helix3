@@ -19,7 +19,8 @@ class Helix3FeatureLogo {
 		$this->load_pos = $this->helix3->getParam('logo_load_pos');
 	}
 
-	public function renderFeature() {
+	public function renderFeature()
+	{
 
 		//Retina Image
 		if( $this->helix3->getParam('logo_type') == 'image' ) {
@@ -93,5 +94,4 @@ class Helix3FeatureLogo {
 
 		return $html;
 	}
-
 }

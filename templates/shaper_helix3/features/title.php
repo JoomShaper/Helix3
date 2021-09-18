@@ -24,7 +24,7 @@ class Helix3FeatureTitle {
 
 		if($menuitem) {
 
-			$params 	= $menuitem->params; // get the menu params
+			$params 	= $menuitem->getParams(); // get the menu params
 
 			if($params->get('enable_page_title', 0)) {
 

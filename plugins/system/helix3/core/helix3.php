@@ -81,7 +81,7 @@ class Helix3
 		$itemid    = $app->input->getCmd('Itemid', '');
 		$menu      = $app->getMenu()->getActive();
 		if ($menu) {
-			$pageclass = $menu->params->get('pageclass_sfx');
+			$pageclass = $menu->getParams()->get('pageclass_sfx');
 		}
 
 		if ($view == 'modules')
@@ -183,7 +183,6 @@ class Helix3
 
 			if (count($files))
 			{
-
 				foreach ($files as $key => $file)
 				{
 
@@ -200,7 +199,6 @@ class Helix3
 
 					if (!empty($position))
 					{
-
 						self::getInstance()->loadFeature[$position][$key]['feature'] = $class->renderFeature();
 						self::getInstance()->loadFeature[$position][$key]['load_pos'] = $load_pos;
 					}
@@ -232,8 +230,8 @@ class Helix3
 
 		$doc         = JFactory::getDocument();
 		$app         = JFactory::getApplication();
-		$option      = $app->input->getCmd('option', '');
-		$view        = $app->input->getCmd('view', '');
+		$option      = $app->input->get('option', '');
+		$view        = $app->input->get('view', '');
 		$pagebuilder = false;
 
 		if ($option == 'com_sppagebuilder')
@@ -256,7 +254,7 @@ class Helix3
 			{
 				die('Default Layout file is not exists! Please goto to template manager and create a new layout first.');
 			}
-			$rows = json_decode(JFile::read($layout_file));
+			$rows = json_decode(file_get_contents($layout_file));
 		}
 
 		$output = '';
@@ -720,7 +718,7 @@ class Helix3
 
 		if (file_exists($cacheFile))
 		{
-			$cache = unserialize(JFile::read($cacheFile));
+			$cache = unserialize(file_get_contents($cacheFile));
 
 			//If root changed then do not compile
 			if (isset($cache['root']) && $cache['root'])
@@ -884,10 +882,13 @@ class Helix3
 		$tpl_path = JPATH_BASE . '/templates/' . JFactory::getApplication()->getTemplate() . '/webfonts/webfonts.json';
 		$plg_path = JPATH_BASE . '/plugins/system/helix3/assets/webfonts/webfonts.json';
 
-		if(file_exists($tpl_path)) {
-			$webfonts = JFile::read($tpl_path);
-		} else if (file_exists($plg_path)) {
-			$webfonts = JFile::read($plg_path);
+		if (file_exists($tpl_path))
+		{
+			$webfonts = file_get_contents($tpl_path);
+		}
+		else if (file_exists($plg_path))
+		{
+			$webfonts = file_get_contents($plg_path);
 		}
 
 		//Families
@@ -1038,7 +1039,7 @@ class Helix3
 				{
 					$scripts[] = $key;
 					$md5sum .= md5($key);
-					$compressed = \JShrink\Minifier::minify(JFile::read($js_file), array('flaggedComments' => false));
+					$compressed = \JShrink\Minifier::minify(file_get_contents($js_file), array('flaggedComments' => false));
 					$minifiedCode .= "/*------ " . JFile::getName($js_file) . " ------*/\n" . $compressed . "\n\n";//add file name to compressed JS
 
 					unset($doc->_scripts[$key]); //Remove sripts
@@ -1109,7 +1110,7 @@ class Helix3
 			{
 				$stylesheets[] = $key;
 				$md5sum .= md5($key);
-				$compressed = CSSMinify::process(JFile::read($css_file));
+				$compressed = CSSMinify::process(file_get_contents($css_file));
 
 				$fixUrl = preg_replace_callback('/url\(([^\)]*)\)/',
 				function ($matches)

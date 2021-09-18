@@ -11,8 +11,6 @@ defined('_JEXEC') or die;
 
 JHtml::addIncludePath(JPATH_COMPONENT . '/helpers');
 
-JHtml::_('behavior.caption');
-
 // If the page class is defined, add to class as suffix.
 // It will be a separate class if the user starts it with a space
 ?>
@@ -45,6 +43,7 @@ JHtml::_('behavior.caption');
 <?php
 	$introcount = (count($this->intro_items));
 	$counter = 0;
+	$this->columns = $this->columns ?? 1;
 ?>
 <?php if (!empty($this->intro_items)) : ?>
 	<?php foreach ($this->intro_items as $key => &$item) : ?>

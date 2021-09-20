@@ -1,14 +1,16 @@
 <?php
 /**
- * @package Helix Framework
+ * @package Helix3 Framework
  * @author JoomShaper http://www.joomshaper.com
  * @copyright Copyright (c) 2010 - 2020 JoomShaper
  * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or later
 */
+
 //no direct accees
 defined ('_JEXEC') or die ('resticted aceess');
 
-function pagination_list_render($list) {
+function pagination_list_render($list)
+{
 	// Initialize variables
 	$html = '<ul class="pagination">';
 
@@ -27,7 +29,8 @@ function pagination_list_render($list) {
 	return $html;
 }
 
-function pagination_item_active(&$item) {
+function pagination_item_active(&$item)
+{
 
 	$cls = '';
 
@@ -40,7 +43,8 @@ function pagination_item_active(&$item) {
     return '<li><a class="' . $cls . '" href="' . $item->link . '" title="' . $item->text . '">' . $item->text . '</a></li>';
 }
 
-function pagination_item_inactive( &$item ) {
+function pagination_item_inactive( &$item )
+{
 	$cls = (int)$item->text > 0 ? 'active': 'disabled';
 	return '<li class="' . $cls . '"><a>' . $item->text . '</a></li>';
 }

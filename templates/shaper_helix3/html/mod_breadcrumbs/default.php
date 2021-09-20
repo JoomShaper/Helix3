@@ -1,16 +1,12 @@
 <?php
 /**
- * @package     Joomla.Site
- * @subpackage  mod_breadcrumbs
- *
- * @copyright   Copyright (C) 2005 - 2015 Open Source Matters, Inc. All rights reserved.
- * @license     GNU General Public License version 2 or later; see LICENSE.txt
- */
+ * @package Helix3 Framework
+ * @author JoomShaper http://www.joomshaper.com
+ * @copyright Copyright (c) 2010 - 2020 JoomShaper
+ * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or later
+*/
 
 defined('_JEXEC') or die;
-
-JHtml::_('bootstrap.tooltip');
-
 ?>
 
 <ol class="breadcrumb<?php echo $moduleclass_sfx; ?>">

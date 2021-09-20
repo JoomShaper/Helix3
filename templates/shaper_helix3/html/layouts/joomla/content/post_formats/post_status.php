@@ -1,16 +1,16 @@
 <?php
 /**
- * @package     Joomla.Site
- * @subpackage  Layout
- *
- * @copyright   Copyright (C) 2005 - 2014 Open Source Matters, Inc. All rights reserved.
- * @license     GNU General Public License version 2 or later; see LICENSE.txt
- */
+ * @package Helix3 Framework
+ * @author JoomShaper http://www.joomshaper.com
+ * @copyright Copyright (c) 2010 - 2020 JoomShaper
+ * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or later
+*/
 
 defined('JPATH_BASE') or die;
+?>
 
-if( $displayData['params']->get('post_status') ) {
-	echo '<div class="entry-status">';
-	echo $displayData['params']->get('post_status');
-	echo '</div>';
-}
+<?php if($displayData['params']->get('post_status')) : ?>
+	<div class="entry-status">
+		<?php echo $displayData['params']->get('post_status'); ?>
+	</div>
+<?php endif; ?>

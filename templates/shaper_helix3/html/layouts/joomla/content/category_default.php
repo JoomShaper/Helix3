@@ -1,11 +1,10 @@
 <?php
 /**
- * @package     Joomla.Site
- * @subpackage  Layout
- *
- * @copyright   Copyright (C) 2005 - 2015 Open Source Matters, Inc. All rights reserved.
- * @license     GNU General Public License version 2 or later; see LICENSE.txt
- */
+ * @package Helix3 Framework
+ * @author JoomShaper http://www.joomshaper.com
+ * @copyright Copyright (c) 2010 - 2020 JoomShaper
+ * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or later
+*/
 
 defined('JPATH_BASE') or die;
 
@@ -22,8 +21,10 @@ if (substr($className, -1) == 's')
 {
 	$className = rtrim($className, 's');
 }
+
 $tagsData = $displayData->get('category')->tags->itemTags;
 ?>
+
 <div>
 	<div class="<?php echo $className .'-category' . $displayData->pageclass_sfx;?>">
 		<?php if ($params->get('show_page_heading')) : ?>
@@ -31,14 +32,17 @@ $tagsData = $displayData->get('category')->tags->itemTags;
 				<?php echo $displayData->escape($params->get('page_heading')); ?>
 			</h1>
 		<?php endif; ?>
+		
 		<?php if($params->get('show_category_title', 1)) : ?>
 			<h2>
 				<?php echo JHtml::_('content.prepare', $displayData->get('category')->title, '', $extension . '.category.title'); ?>
 			</h2>
 		<?php endif; ?>
+
 		<?php if ($params->get('show_cat_tags', 1)) : ?>
 			<?php echo JLayoutHelper::render('joomla.content.tags', $tagsData); ?>
 		<?php endif; ?>
+
 		<?php if ($params->get('show_description', 1) || $params->def('show_description_image', 1)) : ?>
 			<div class="category-desc">
 				<?php if ($params->get('show_description_image') && $displayData->get('category')->getParams()->get('image')) : ?>
@@ -50,6 +54,7 @@ $tagsData = $displayData->get('category')->tags->itemTags;
 				<div class="clr"></div>
 			</div>
 		<?php endif; ?>
+
 		<?php echo $displayData->loadTemplate($displayData->subtemplatename); ?>
 
 		<?php if ($displayData->get('children') && $displayData->maxLevel != 0) : ?>

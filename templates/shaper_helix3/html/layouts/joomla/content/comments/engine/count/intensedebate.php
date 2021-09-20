@@ -1,14 +1,15 @@
 <?php
 /**
-* @author    JoomShaper http://www.joomshaper.com
-* @copyright Copyright (c) 2010 - 2020 JoomShaper
-* @license   http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2
+ * @package Helix3 Framework
+ * @author JoomShaper http://www.joomshaper.com
+ * @copyright Copyright (c) 2010 - 2020 JoomShaper
+ * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or later
 */
+
 //no direct access
 defined('_JEXEC') or die('Restricted Access');
 
-if( $displayData['params']->get('intensedebate_acc') != '' ) {
-	?>
+if ($displayData['params']->get('intensedebate_acc') != '' ) : ?>
 	<span class="comments-anchor">
 		<script type="text/javascript">
 			var idcomments_acct = '<?php echo $displayData["params"]->get("intensedebate_acc"); ?>';
@@ -17,5 +18,4 @@ if( $displayData['params']->get('intensedebate_acc') != '' ) {
 		</script>
 		<script type="text/javascript" src="//www.intensedebate.com/js/genericLinkWrapperV2.js"></script>
 	</span>
-	<?php
-}
+<?php endif; ?>

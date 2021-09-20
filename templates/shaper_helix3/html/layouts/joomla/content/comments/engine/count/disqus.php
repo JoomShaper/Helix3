@@ -1,25 +1,29 @@
 <?php
 /**
-* @author    JoomShaper http://www.joomshaper.com
-* @copyright Copyright (c) 2010 - 2020 JoomShaper
-* @license   http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2
+ * @package Helix3 Framework
+ * @author JoomShaper http://www.joomshaper.com
+ * @copyright Copyright (c) 2010 - 2020 JoomShaper
+ * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or later
 */
 
 //no direct access
 defined('_JEXEC') or die('Restricted Access');
 
-if( $displayData['params']->get('disqus_subdomain') != '' ) {
+if ($displayData['params']->get('disqus_subdomain') != '')
+{
 	$doc = JFactory::getDocument();
 
-	if(!defined('HELIX_COMMENTS_DISQUS_COUNT')) {
+	if (!defined('HELIX_COMMENTS_DISQUS_COUNT'))
+	{
 		ob_start();
 
 		$devmode = $displayData['params']->get('disqus_devmode');
-		if ($devmode) {
+		if ($devmode)
+		{
 			echo 'var disqus_developer = "1";';
 		}
-
 		?>
+
 		var disqus_shortname = '<?php echo $displayData['params']->get("disqus_subdomain"); ?>';
 		(function () {
 			var s = document.createElement('script'); s.async = true;
@@ -29,13 +33,9 @@ if( $displayData['params']->get('disqus_subdomain') != '' ) {
 		}());
 
 		<?php
-
 		$output = ob_get_clean();
-
 		$doc->addScriptdeclaration( $output );
-
 		define('HELIX_COMMENTS_DISQUS_COUNT', 1);
-
 	}
 
 	?>

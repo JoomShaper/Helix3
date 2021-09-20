@@ -1,11 +1,10 @@
 <?php
 /**
- * @package     Joomla.Site
- * @subpackage  Layout
- *
- * @copyright   Copyright (C) 2005 - 2015 Open Source Matters, Inc. All rights reserved.
- * @license     GNU General Public License version 2 or later; see LICENSE.txt
- */
+ * @package Helix3 Framework
+ * @author JoomShaper http://www.joomshaper.com
+ * @copyright Copyright (c) 2010 - 2020 JoomShaper
+ * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or later
+*/
 
 defined('_JEXEC') or die;
 $tplParams 		= JFactory::getApplication()->getTemplate(true)->params;
@@ -38,7 +37,8 @@ if(isset($attribs->spfeatured_image) && $attribs->spfeatured_image != '')
 	{
 		$image_alt_text = $attribs->spfeatured_image_alt;
 	}
-} elseif (isset($images->image_intro) && !empty($images->image_intro))
+}
+elseif (isset($images->image_intro) && !empty($images->image_intro))
 {
 	$intro_image = $images->image_intro;
 }

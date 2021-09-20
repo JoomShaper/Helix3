@@ -1,19 +1,18 @@
 <?php
 /**
- * @package     Joomla.Cms
- * @subpackage  Layout
- *
- * @copyright   Copyright (C) 2005 - 2015 Open Source Matters, Inc. All rights reserved.
- * @license     GNU General Public License version 2 or later; see LICENSE.txt
- */
+ * @package Helix3 Framework
+ * @author JoomShaper http://www.joomshaper.com
+ * @copyright Copyright (c) 2010 - 2020 JoomShaper
+ * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or later
+*/
 
 defined('JPATH_BASE') or die;
 
 use Joomla\Registry\Registry;
 
 JLoader::register('TagsHelperRoute', JPATH_BASE . '/components/com_tags/helpers/route.php');
-
 ?>
+
 <?php if (!empty($displayData)) : ?>
 	<div class="tags">
 	    <span><?php echo JText::_('HELIX_TAGS'); ?>: </span>

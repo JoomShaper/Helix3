@@ -1,28 +1,28 @@
 /**
 * @package Helix3 Framework
-* @author JoomShaper http://www.joomshaper.com
-* @copyright Copyright (c) 2010 - 2020 JoomShaper
+* @author JoomShaper https://www.joomshaper.com
+* @copyright (c) 2010 - 2021 JoomShaper
 * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
 */
 
 .sppb-row-container {
-  margin-right: auto;
-  margin-left: auto;
-  padding-left: 15px;
-  padding-right: 15px;
+	margin-right: auto;
+	margin-left: auto;
+	padding-left: 15px;
+	padding-right: 15px;
 }
 @media (min-width: 768px) {
-  .sppb-row-container {
-    width: 750px;
-  }
+	.sppb-row-container {
+		width: 750px;
+	}
 }
 @media (min-width: 992px) {
-  .sppb-row-container {
-    width: 970px;
-  }
+	.sppb-row-container {
+		width: 970px;
+	}
 }
 @media (min-width: 1200px) {
-  .sppb-row-container {
-    width: 1170px;
-  }
+	.sppb-row-container {
+		width: 1170px;
+	}
 }

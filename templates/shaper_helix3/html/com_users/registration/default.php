@@ -12,8 +12,8 @@ defined('_JEXEC') or die;
 JHtml::_('behavior.keepalive');
 JHtml::_('behavior.formvalidator');
 ?>
-<div class="row">
-	<div class="col-sm-4 col-sm-offset-4">
+<div class="row justify-content-center">
+	<div class="col-mb-4">
 		<div class="registration<?php echo $this->pageclass_sfx?>">
 			<?php if ($this->params->get('show_page_heading')) : ?>
 				<h1><?php echo $this->escape($this->params->get('page_heading')); ?></h1>
@@ -28,15 +28,13 @@ JHtml::_('behavior.formvalidator');
 							<?php if ($field->hidden):// If the field is hidden, just display the input.?>
 								<?php echo $field->input;?>
 							<?php else:?>
-								<div class="form-group">
+								<div class="mb-3">
 									<?php echo $field->label; ?>
 									<?php if (!$field->required && $field->type != 'Spacer') : ?>
 										<span class="optional"><?php echo JText::_('COM_USERS_OPTIONAL');?></span>
 									<?php endif; ?>
 									
-									<div class="group-control">
-										<?php echo $field->input;?>
-									</div>
+									<?php echo $field->input; ?>
 								</div>
 							<?php endif;?>
 						<?php endforeach;?>

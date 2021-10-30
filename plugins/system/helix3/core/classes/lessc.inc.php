@@ -38,10 +38,10 @@
  * handling things like indentation.
  */
 class helix3_lessc {
-    static public $VERSION = "v0.5.0";
+    public static $VERSION = "v0.5.0";
 
-    static public $TRUE = array("keyword", "true");
-    static public $FALSE = array("keyword", "false");
+    public static $TRUE = array("keyword", "true");
+    public static $FALSE = array("keyword", "false");
 
     protected $libFunctions = array();
     protected $registeredVars = array();
@@ -63,7 +63,7 @@ class helix3_lessc {
     protected $sourceParser = null;
     protected $sourceLoc = null;
 
-    static protected $nextImportId = 0; // uniquely identify imports
+    protected static $nextImportId = 0; // uniquely identify imports
 
     // attempts to find the path of an import url, returns null for css files
     protected function findImport($url) {
@@ -183,7 +183,7 @@ class helix3_lessc {
      * Compiling the block involves pushing a fresh environment on the stack,
      * and iterating through the props, compiling each one.
      *
-     * See lessc::compileProp()
+     * See helix3_lessc::compileProp()
      *
      */
     protected function compileBlock($block) {
@@ -575,7 +575,7 @@ class helix3_lessc {
         }
     }
 
-    protected function patternMatchAll($blocks, $orderedArgs, $keywordArgs, $skip=array()) {
+    protected function patternMatchAll($blocks, $orderedArgs, $keywordArgs, $skip = array()) {
         $matches = null;
         foreach ($blocks as $block) {
             // skip seen blocks that don't have arguments
@@ -592,7 +592,7 @@ class helix3_lessc {
     }
 
     // attempt to find blocks matched by path and args
-    protected function findBlocks($searchIn, $path, $orderedArgs, $keywordArgs, $seen=array()) {
+    protected function findBlocks($searchIn, $path, $orderedArgs, $keywordArgs, $seen = array()) {
         if ($searchIn == null) return null;
         if (isset($seen[$searchIn->id])) return null;
         $seen[$searchIn->id] = true;
@@ -662,7 +662,7 @@ class helix3_lessc {
 
         // check for a rest
         $last = end($args);
-        if ((isset($last[0])) && ($last[0] == "rest")) {
+        if (isset($last[0]) && $last[0] == "rest") {
             $rest = array_slice($orderedValues, count($args) - 1);
             $this->set($last[1], $this->reduce(array("list", " ", $rest)));
         }
@@ -748,7 +748,7 @@ class helix3_lessc {
                         is_string($subProp[1]) &&
                         $subProp[1][0] != $this->vPrefix
                     ) {
-						$subProp[2] = array(
+                        $subProp[2] = array(
                             'list', ' ',
                             array($subProp[2], array('keyword', $suffix))
                         );
@@ -1217,11 +1217,11 @@ class helix3_lessc {
      * @return array Color
      */
     protected function lib_tint($args) {
-        $white = ['color', 255, 255, 255];
+        $white = array('color', 255, 255, 255);
         if ($args[0] == 'color') {
-            return $this->lib_mix([ 'list', ',', [$white, $args] ]);
+            return $this->lib_mix(array( 'list', ',', array($white, $args) ));
         } elseif ($args[0] == "list" && count($args[2]) == 2) {
-            return $this->lib_mix([ $args[0], $args[1], [$white, $args[2][0], $args[2][1]] ]);
+            return $this->lib_mix(array( $args[0], $args[1], array($white, $args[2][0], $args[2][1]) ));
         } else {
             $this->throwError("tint expects (color, weight)");
         }
@@ -1239,11 +1239,11 @@ class helix3_lessc {
      * @return array Color
      */
     protected function lib_shade($args) {
-        $black = ['color', 0, 0, 0];
+        $black = array('color', 0, 0, 0);
         if ($args[0] == 'color') {
-            return $this->lib_mix([ 'list', ',', [$black, $args] ]);
+            return $this->lib_mix(array( 'list', ',', array($black, $args) ));
         } elseif ($args[0] == "list" && count($args[2]) == 2) {
-            return $this->lib_mix([ $args[0], $args[1], [$black, $args[2][0], $args[2][1]] ]);
+            return $this->lib_mix(array( $args[0], $args[1], array($black, $args[2][0], $args[2][1]) ));
         } else {
             $this->throwError("shade expects (color, weight)");
         }
@@ -1351,7 +1351,7 @@ class helix3_lessc {
         $this->throwError($error);
     }
 
-    public function assertArgs($value, $expectedArgs, $name="") {
+    public function assertArgs($value, $expectedArgs, $name = "") {
         if ($expectedArgs == 1) {
             return $value;
         } else {
@@ -1961,7 +1961,7 @@ class helix3_lessc {
     // inject array of unparsed strings into environment as variables
     protected function injectVariables($args) {
         $this->pushEnv();
-        $parser = new helix3_lessc_parser($this, __METHOD__);
+        $parser = new lessc_parser($this, __METHOD__);
         foreach ($args as $name => $strValue) {
             if ($name[0] !== '@') {
                 $name = '@' . $name;
@@ -2154,7 +2154,7 @@ class helix3_lessc {
         if (!empty($this->formatterName)) {
             if (!is_string($this->formatterName))
                 return $this->formatterName;
-            $className = "lessc_formatter_$this->formatterName";
+            $className = "helix3_lessc_formatter_$this->formatterName";
         }
 
         return new $className;
@@ -2223,7 +2223,7 @@ class helix3_lessc {
         return $less->cachedCompile($in, $force);
     }
 
-    static protected $cssColors = array(
+    protected static $cssColors = array(
         'aliceblue' => '240,248,255',
         'antiquewhite' => '250,235,215',
         'aqua' => '0,255,255',
@@ -2377,10 +2377,10 @@ class helix3_lessc {
 
 // responsible for taking a string of LESS code and converting it into a
 // syntax tree
-class helix3_lessc_parser {
-    static protected $nextBlockId = 0; // used to uniquely identify blocks
+class lessc_parser {
+    protected static $nextBlockId = 0; // used to uniquely identify blocks
 
-    static protected $precedence = array(
+    protected static $precedence = array(
         '=<' => 0,
         '>=' => 0,
         '=' => 0,
@@ -2394,18 +2394,18 @@ class helix3_lessc_parser {
         '%' => 2,
     );
 
-    static protected $whitePattern;
-    static protected $commentMulti;
+    protected static $whitePattern;
+    protected static $commentMulti;
 
-    static protected $commentSingle = "//";
-    static protected $commentMultiLeft = "/*";
-    static protected $commentMultiRight = "*/";
+    protected static $commentSingle = "//";
+    protected static $commentMultiLeft = "/*";
+    protected static $commentMultiRight = "*/";
 
     // regex string to match any of the operators
-    static protected $operatorString;
+    protected static $operatorString;
 
     // these properties will supress division unless it's inside parenthases
-    static protected $supressDivisionProps =
+    protected static $supressDivisionProps =
         array('/border-radius$/i', '/^font$/i');
 
     protected $blockDirectives = array("font-face", "keyframes", "page", "-moz-document", "viewport", "-moz-viewport", "-o-viewport", "-ms-viewport");
@@ -2423,7 +2423,7 @@ class helix3_lessc_parser {
     protected $inParens = false;
 
     // caches preg escaped literals
-    static protected $literalCache = array();
+    protected static $literalCache = array();
 
     public function __construct($lessc, $sourceName = null) {
         $this->eatWhiteDefault = true;
@@ -2436,12 +2436,12 @@ class helix3_lessc_parser {
 
         if (!self::$operatorString) {
             self::$operatorString =
-                '('.implode('|', array_map(array('lessc', 'preg_quote'),
+                '('.implode('|', array_map(array('helix3_lessc', 'preg_quote'),
                     array_keys(self::$precedence))).')';
 
-            $commentSingle = lessc::preg_quote(self::$commentSingle);
-            $commentMultiLeft = lessc::preg_quote(self::$commentMultiLeft);
-            $commentMultiRight = lessc::preg_quote(self::$commentMultiRight);
+            $commentSingle = helix3_lessc::preg_quote(self::$commentSingle);
+            $commentMultiLeft = helix3_lessc::preg_quote(self::$commentMultiLeft);
+            $commentMultiRight = helix3_lessc::preg_quote(self::$commentMultiRight);
 
             self::$commentMulti = $commentMultiLeft.'.*?'.$commentMultiRight;
             self::$whitePattern = '/'.$commentSingle.'[^\n]*\s*|('.self::$commentMulti.')\s*|\s+/Ais';
@@ -2490,7 +2490,7 @@ class helix3_lessc_parser {
      * functions represent discrete grammatical rules for the language, and
      * they are able to capture the text that represents those rules.
      *
-     * Consider the function lessc::keyword(). (all parse functions are
+     * Consider the function helix3_lessc::keyword(). (all parse functions are
      * structured the same)
      *
      * The function takes a single reference argument. When calling the
@@ -2499,7 +2499,7 @@ class helix3_lessc_parser {
      * argument, advance the position in the buffer, and return true. If it
      * fails then it won't advance the buffer and it will return false.
      *
-     * All of these parse functions are powered by lessc::match(), which behaves
+     * All of these parse functions are powered by helix3_lessc::match(), which behaves
      * the same way, but takes a literal regular expression. Sometimes it is
      * more convenient to use match instead of creating a new function.
      *
@@ -2508,7 +2508,7 @@ class helix3_lessc_parser {
      *
      * But, if some of the rules in the chain succeed before one fails, then
      * the buffer position will be left at an invalid state. In order to
-     * avoid this, lessc::seek() is used to remember and set buffer positions.
+     * avoid this, helix3_lessc::seek() is used to remember and set buffer positions.
      *
      * Before parsing a chain, use $s = $this->seek() to remember the current
      * position into $s. Then if a chain fails, use $this->seek($s) to
@@ -2669,7 +2669,7 @@ class helix3_lessc_parser {
     protected function isDirective($dirname, $directives) {
         // TODO: cache pattern in parser
         $pattern = implode("|",
-            array_map(array("lessc", "preg_quote"), $directives));
+            array_map(array("helix3_lessc", "preg_quote"), $directives));
         $pattern = '/^(-[a-z-]+-)?(' . $pattern . ')$/i';
 
         return preg_match($pattern, $dirname);
@@ -2694,7 +2694,7 @@ class helix3_lessc_parser {
 
         if (count($values) == 0) return false;
 
-        $exps = lessc::compressList($values, ' ');
+        $exps = helix3_lessc::compressList($values, ' ');
         return true;
     }
 
@@ -2792,7 +2792,7 @@ class helix3_lessc_parser {
 
         if (count($values) == 0) return false;
 
-        $value = lessc::compressList($values, ', ');
+        $value = helix3_lessc::compressList($values, ', ');
         return true;
     }
 
@@ -2951,12 +2951,12 @@ class helix3_lessc_parser {
     }
 
     // an unbounded string stopped by $end
-    protected function openString($end, &$out, $nestingOpen=null, $rejectStrs = null) {
+    protected function openString($end, &$out, $nestingOpen = null, $rejectStrs = null) {
         $oldWhite = $this->eatWhiteDefault;
         $this->eatWhiteDefault = false;
 
         $stop = array("'", '"', "@{", $end);
-        $stop = array_map(array("lessc", "preg_quote"), $stop);
+        $stop = array_map(array("helix3_lessc", "preg_quote"), $stop);
         // $stop[] = self::$commentMulti;
 
         if (!is_null($rejectStrs)) {
@@ -3032,7 +3032,7 @@ class helix3_lessc_parser {
 
         // look for either ending delim , escape, or string interpolation
         $patt = '([^\n]*?)(@\{|\\\\|' .
-            lessc::preg_quote($delim).')';
+            helix3_lessc::preg_quote($delim).')';
 
         $oldWhite = $this->eatWhiteDefault;
         $this->eatWhiteDefault = false;
@@ -3554,13 +3554,13 @@ class helix3_lessc_parser {
         }
 
         if (!isset(self::$literalCache[$what])) {
-            self::$literalCache[$what] = lessc::preg_quote($what);
+            self::$literalCache[$what] = helix3_lessc::preg_quote($what);
         }
 
         return $this->match(self::$literalCache[$what], $m, $eatWhitespace);
     }
 
-    protected function genericList(&$out, $parseItem, $delim="", $flatten=true) {
+    protected function genericList(&$out, $parseItem, $delim = "", $flatten = true) {
         $s = $this->seek();
         $items = array();
         while ($this->$parseItem($value)) {
@@ -3594,7 +3594,7 @@ class helix3_lessc_parser {
         } else {
             $validChars = $allowNewline ? "." : "[^\n]";
         }
-        if (!$this->match('('.$validChars.'*?)'.lessc::preg_quote($what), $m, !$until)) return false;
+        if (!$this->match('('.$validChars.'*?)'.helix3_lessc::preg_quote($what), $m, !$until)) return false;
         if ($until) $this->count -= strlen($what); // give back $what
         $out = $m[1];
         return true;
@@ -3633,7 +3633,7 @@ class helix3_lessc_parser {
     }
 
     // match something without consuming it
-    protected function peek($regex, &$out = null, $from=null) {
+    protected function peek($regex, &$out = null, $from = null) {
         if (is_null($from)) $from = $this->count;
         $r = '/'.$regex.'/Ais';
         $result = preg_match($r, $this->buffer, $out, null, $from);
@@ -3670,7 +3670,7 @@ class helix3_lessc_parser {
         }
     }
 
-    protected function pushBlock($selectors=null, $type=null) {
+    protected function pushBlock($selectors = null, $type = null) {
         $b = new stdclass;
         $b->parent = $this->env;
 

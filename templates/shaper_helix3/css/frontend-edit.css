@@ -82,20 +82,20 @@
   -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(82,168,236,.6);
   box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(82,168,236,.6);
 }
-.layout-edit input[type="radio"],
-.layout-edit input[type="checkbox"] {
+.layout-edit input[type="radio"]:not(.form-check-input),
+.layout-edit input[type="checkbox"]:not(.form-check-input) {
   margin: 4px 0 0;
   *margin-top: 0;
   margin-top: 1px \9;
   line-height: normal;
 }
-.layout-edit input[type="file"],
-.layout-edit input[type="image"],
-.layout-edit input[type="submit"],
-.layout-edit input[type="reset"],
-.layout-edit input[type="button"],
-.layout-edit input[type="radio"],
-.layout-edit input[type="checkbox"] {
+.layout-edit input[type="file"]:not(.form-check-input),
+.layout-edit input[type="image"]:not(.form-check-input),
+.layout-edit input[type="submit"]:not(.form-check-input),
+.layout-edit input[type="reset"]:not(.form-check-input),
+.layout-edit input[type="button"]:not(.form-check-input),
+.layout-edit input[type="radio"]:not(.form-check-input),
+.layout-edit input[type="checkbox"]:not(.form-check-input) {
   width: auto;
 }
 .layout-edit select,
@@ -992,7 +992,7 @@ svg {
 #mailto-window {
   margin: 20px;
 }
-#mailto-window >h2 {
+#mailto-window > h2 {
   font-size: 18px;
   margin-top: 0;
 }

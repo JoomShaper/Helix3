@@ -8,9 +8,11 @@
 //no direct accees
 defined ('_JEXEC') or die ('resticted aceess');
 
-class plgSystemTmp_helix3InstallerScript {
+class plgSystemTmp_helix3InstallerScript
+{
 
-    function postflight($type, $parent) {
+    function postflight($type, $parent)
+    {
         $db = JFactory::getDBO();
         $status = new stdClass;
         $status->plugins = array();
@@ -19,7 +21,8 @@ class plgSystemTmp_helix3InstallerScript {
         $manifest = $parent->getParent()->manifest;
         $plugins = $manifest->xpath('plugins/plugin');
 
-        foreach ($plugins as $key => $plugin) {
+        foreach ($plugins as $key => $plugin)
+        {
             $name = (string)$plugin->attributes()->plugin;
             $group = (string)$plugin->attributes()->group;
             $path = $src.'/plugins/'.$group;
@@ -32,17 +35,30 @@ class plgSystemTmp_helix3InstallerScript {
             $installer = new JInstaller;
             $result = $installer->install($path);
 
-            if ($result) {
-                $query = "UPDATE #__extensions SET enabled=1 WHERE type='plugin' AND element=".$db->Quote($name)." AND folder=".$db->Quote($group);
-                $db->setQuery($query);
-                $db->query();
-            }
+            if ($result)
+            {
+                $db = JFactory::getDBO();
+                $query = $db->getQuery(true);
+                $fields = array(
+                    $db->quoteName('enabled') . ' = 1'
+                );
 
+                $conditions = array(
+                    $db->quoteName('type') . ' = ' . $db->quote('plugin'),
+                    $db->quoteName('element') . ' = ' . $db->quote($name),
+                    $db->quoteName('folder') . ' = ' . $db->quote($group)
+                );
+
+                $query->update($db->quoteName('#__extensions'))->set($fields)->where($conditions);
+                $db->setQuery($query);
+                $db->execute();
+            }
         }
 
         $template_path = $src.'/template';
 
-        if (JFolder::exists( $template_path )) {
+        if (JFolder::exists( $template_path ))
+        {
             $installer = new JInstaller;
             $installer->install($template_path);
         }
@@ -52,11 +68,15 @@ class plgSystemTmp_helix3InstallerScript {
         $parent->getParent()->abort();
     }
 
-    public function abort($msg = null, $type = null){
-        if ($msg) {
+    public function abort($msg = null, $type = null)
+    {
+        if ($msg)
+        {
             JError::raiseWarning(100, $msg);
         }
-        foreach ($this->packages as $package) {
+
+        foreach ($this->packages as $package)
+        {
             $package['installer']->abort(null, $type);
         }
     }

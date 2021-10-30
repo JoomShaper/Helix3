@@ -20,64 +20,65 @@ jQuery(function ($) {
 		// child parent relation
 		var childParentEngine = function () {
 			var classes = new Array();
-			$("fieldset.parent, select.parent").each(function () {
-				var eleclass = $(this).attr("class").split(/\s/g);
-				var $key = $.inArray("parent", eleclass);
+			$(".parent:not(.child)").each(function () {
+				var elClass = $(this).attr("class").split(/\s/g);
+				var $key = $.inArray("parent", elClass);
 				if ($key != -1) {
-					classes.push(eleclass[$key + 1]);
+					classes.push(elClass[$key + 1]);
 				}
 			});
 
-			$("fieldset.parent, select.parent").each(function () {
+			$(".parent:not(.child)").each(function () {
 				var parent = $(this);
-				var eleclass = $(this).attr("class").split(/\s/g);
+				var elClass = $(this).attr("class").split(/\s/g);
 				var childClassName = ".child";
 				var conditionClassName = "";
 				var i;
 
-				for (i = 0; i < eleclass.length; i++) {
-					if ($.inArray(eleclass[i], classes) < 0) {
+				for (i = 0; i < elClass.length; i++) {
+					if ($.inArray(elClass[i], classes) < 0) {
 						continue;
 					} else {
-						var elecls = "." + eleclass[i];
+						var elCls = "." + elClass[i];
 
-						$(childClassName + elecls)
-							.parents(".control-group")
+						$(childClassName + elCls)
+							.closest(".control-group")
 							.hide();
-						if ($(parent).prop("type") == "fieldset") {
+
+						if ($(parent).prop("type") != "select-one") {
 							var selected = $(parent).find("input[type=radio]:checked");
 							var radios = $(parent).find("input[type=radio]");
-							var activeItems = conditionClassName + elecls + "_" + $(selected).val();
-							var childitem = $.trim(childClassName + elecls + activeItems);
+							var activeItems = conditionClassName + elCls + "_" + $(selected).val();
+							var childItem = $.trim(childClassName + elCls + activeItems);
+
 							setTimeout(function () {
-								$(childitem).parents(".control-group").show();
+								$(childItem).closest(".control-group").show();
 							}, 100);
 
 							$(radios).on("click", function (event) {
-								$(childClassName + elecls)
-									.parents(".control-group")
+								$(childClassName + elCls)
+									.closest(".control-group")
 									.hide();
-								$(childClassName + elecls + conditionClassName + elecls + "_" + $.trim($(this).val()))
-									.parents(".control-group")
+								$(childClassName + elCls + conditionClassName + elCls + "_" + $.trim($(this).val()))
+									.closest(".control-group")
 									.fadeIn();
 							});
 						} else if ($(parent).prop("type") == "select-one") {
 							var element = $(parent);
 							var selected = $(parent).find("option:selected");
-							var option = $(parent).find("option");
-							var activeItems = conditionClassName + elecls + "_" + $(selected).val();
-							var childitem = $.trim(childClassName + elecls + activeItems);
+							var activeItems = conditionClassName + elCls + "_" + $(selected).val();
+							var childItem = $.trim(childClassName + elCls + activeItems);
 
 							setTimeout(function () {
-								$(childitem).parents(".control-group").show();
+								$(childItem).closest(".control-group").show();
 							}, 100);
 
 							$(element).on("change", function (event) {
-								$(childClassName + elecls)
-									.parents(".control-group")
+								$(childClassName + elCls)
+									.closest(".control-group")
 									.hide();
-								$(childClassName + elecls + conditionClassName + elecls + "_" + $.trim($(this).val()))
-									.parents(".control-group")
+								$(childClassName + elCls + conditionClassName + elCls + "_" + $.trim($(this).val()))
+									.closest(".control-group")
 									.fadeIn();
 							});
 						}
@@ -85,8 +86,6 @@ jQuery(function ($) {
 				}
 			});
 		}; //end childParentEngine
-
-		// $(".info-labels").unwrap();
 
 		$(".group_separator").each(function () {
 			$(this).parent().prev().remove();

@@ -11,7 +11,7 @@ defined('JPATH_BASE') or die;
 if($displayData['params']->get('show_vote')) {
 
 $rating = (int) $displayData['item']->rating;
-$layout = JRequest::getCmd('view', 'article');
+$layout = JFactory::getApplication()->input->get('view', 'article');
 
 $rating_count = $displayData['item']->rating_count;
 if ($rating_count == '')

@@ -532,3 +532,12 @@
 	position: absolute;
 	right: 10px;
 }
+
+/* Radio */
+.controls .radio {
+	display: flex;
+}
+
+.controls .radio > .form-check {
+	margin-right: 16px;
+}

@@ -28,7 +28,7 @@ class JFormFieldIcon extends JFormField {
 			$arr[] = JHtml::_('select.option', $value, str_replace('fa-', '', $value) );
 		}
 
-		return JHtml::_('select.genericlist', $arr, $this->name, null, 'value', 'text', $this->value);
+		return JHtml::_('select.genericlist', $arr, $this->name, 'class="form-select"', 'value', 'text', $this->value);
 
 	}
 
@@ -754,6 +754,6 @@ class JFormFieldIcon extends JFormField {
 			'fa-window-minimize',
 			'fa-window-restore',
 			'fa-wpexplorer'
-			);
-}
+		);
+	}
 }

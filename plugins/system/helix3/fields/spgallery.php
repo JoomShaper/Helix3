@@ -48,11 +48,13 @@ class JFormFieldSpgallery extends JFormField {
         $basename = basename($src);
 
         $thumbnail = JPATH_ROOT . '/' . dirname($value) . '/' . JFile::stripExt($basename) . '_thumbnail.' . JFile::getExt($basename);
+        
         if(file_exists($thumbnail)) {
           $src = JURI::root(true) . '/' . dirname($value) . '/' . JFile::stripExt($basename) . '_thumbnail.' . JFile::getExt($basename);
         }
 
         $small_size = JPATH_ROOT . '/' . dirname($value) . '/' . JFile::stripExt($basename) . '_small.' . JFile::getExt($basename);
+        
         if(file_exists($small_size)) {
           $src = JURI::root(true) . '/' . dirname($value) . '/' . JFile::stripExt($basename) . '_small.' . JFile::getExt($basename);
         }
@@ -64,7 +66,7 @@ class JFormFieldSpgallery extends JFormField {
     $output .= '</ul>';
 
     $output .= '<input type="file" class="sp-gallery-item-upload" accept="image/*" style="display:none;">';
-    $output .= '<a class="btn btn-default btn-large btn-sp-gallery-item-upload" href="#"><i class="fa fa-plus"></i> Upload Images</a>';
+    $output .= '<a class="btn btn-default btn-outline-primary btn-sp-gallery-item-upload" href="#"><i class="fa fa-plus"></i> Upload Images</a>';
 
 
     $output .= '<input type="hidden" name="'. $this->name .'" data-name="'. $this->element['name'] .'_images" id="' . $this->id . '" value="' . htmlspecialchars($this->value, ENT_COMPAT, 'UTF-8')

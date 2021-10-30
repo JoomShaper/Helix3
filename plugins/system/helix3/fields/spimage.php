@@ -52,7 +52,7 @@ class JFormFieldSpimage extends JFormField
     $output .= '</div>';
 
     $output .= '<input type="file" class="sp-image-upload" accept="image/*" style="display:none;">';
-    $output .= '<a class="btn btn-info btn-sp-image-upload'. $class1 .'" href="#"><i class="fa fa-plus"></i> Upload Image</a>';
+    $output .= '<a class="btn btn-primary btn-sp-image-upload'. $class1 .'" href="#"><i class="fa fa-plus"></i> Upload Image</a>';
     $output .= '<a class="btn btn-danger btn-sp-image-remove'. $class2 .'" href="#"><i class="fa fa-minus-circle"></i> Remove Image</a>';
 
     $output .= '<input type="hidden" name="'. $this->name .'" id="' . $this->id . '" value="' . htmlspecialchars($this->value, ENT_COMPAT, 'UTF-8')

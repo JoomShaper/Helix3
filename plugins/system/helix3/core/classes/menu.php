@@ -559,9 +559,10 @@ class Helix3Menu {
 
 		$db	= JFactory::getDbo();
 		$query = $db->getQuery(true);
-		$query->select('id, title, module, position, content, showtitle, params');
+		$query->select('m.id, m.title, m.module, m.position, m.content, m.showtitle, m.params');
 		$query->from('#__modules AS m');
 		$query->where('m.published = 1');
+		$query->where('m.id = ' . $mod);
 
 		if (is_numeric($mod))
 		{
@@ -575,14 +576,14 @@ class Helix3Menu {
 		$date = JFactory::getDate();
 		$now = $date->toSql();
 		$nullDate = $db->getNullDate();
-		$query->where('(m.publish_up = '.$db->Quote($nullDate).' OR m.publish_up <= '.$db->Quote($now).')');
-		$query->where('(m.publish_down = '.$db->Quote($nullDate).' OR m.publish_down >= '.$db->Quote($now).')');
 
-		$query->where('m.access IN ('.$groups.')');
-		$query->where('m.client_id = '. $clientId);
+		$query->where('(m.publish_up IS NULL OR m.publish_up = ' . $db->Quote($nullDate) . ' OR m.publish_up <= ' . $db->Quote($now) . ')');
+		$query->where('(m.publish_down IS NULL OR m.publish_down = ' . $db->Quote($nullDate) . ' OR m.publish_down >= ' . $db->Quote($now) . ')');
+		$query->where('m.access IN (' . $groups . ')');
+		$query->where('m.client_id = ' . $clientId);
 
 		// Filter by language
-		if ($app->isSite() && $app->getLanguageFilter())
+		if ($app->isClient('site') && $app->getLanguageFilter())
 		{
 			$query->where('m.language IN (' . $db->Quote($lang) . ',' . $db->Quote('*') . ')');
 		}
@@ -607,6 +608,7 @@ class Helix3Menu {
 			$module->user		= $custom;
 			$module->name		= $custom ? $module->title : substr($file, 4);
 			$module->style		= null;
+			$module->client_id  = 1;
 			$module->position	= strtolower($module->position);
 			$clean[$module->id]	= $module;
 			echo JModuleHelper::renderModule($module, $options);

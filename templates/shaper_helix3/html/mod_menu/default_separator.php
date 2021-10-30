@@ -17,7 +17,7 @@ if ($item->menu_image)
 {
 	$linktype = JHtml::_('image', $item->menu_image, $item->title);
 
-	if ($item->params->get('menu_text', 1))
+	if ($item->getParams()->get('menu_text', 1))
 	{
 		$linktype .= '<a class="image-title">' . $item->title . '</a>';
 	}

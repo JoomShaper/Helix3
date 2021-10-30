@@ -7,29 +7,45 @@
 */
 //no direct accees
 defined ('_JEXEC') or die ('resticted aceess');
+//Load Helix
+$helix3_path = JPATH_PLUGINS . '/system/helix3/core/helix3.php';
+
+if (file_exists($helix3_path))
+{
+	require_once($helix3_path);
+	$this->helix3 = helix3::getInstance();
+}
+else
+{
+	die('Please install and activate helix plugin');
+}
+
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo $this->language; ?>" lang="<?php echo $this->language; ?>" dir="<?php echo $this->direction; ?>">
-<head>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <?php
-    $doc = JFactory::getDocument();
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <?php
+            $doc = JFactory::getDocument();
+            if ($favicon = $this->params->get('favicon'))
+            {
+                $doc->addFavicon( JURI::base(true) . '/' .  $favicon);
+            }
+            else
+            {
+                $doc->addFavicon( $this->baseurl . '/templates/'. $this->template .'/images/favicon.ico' );
+            }
+        ?>
 
-    if($favicon = $this->params->get('favicon')) {
-        $doc->addFavicon( JURI::base(true) . '/' .  $favicon);
-    } else {
-        $doc->addFavicon( $this->baseurl . '/templates/'. $this->template .'/images/favicon.ico' );
-    }
-    ?>
+        <jdoc:include type="head" />
 
-    <jdoc:include type="head" />
-   	<link rel="stylesheet" href="<?php echo $this->baseurl; ?>/media/jui/css/bootstrap.min.css" type="text/css" />
-	<link rel="stylesheet" href="<?php echo $this->baseurl; ?>/templates/<?php echo $this->template; ?>/css/frontend-edit.css" type="text/css" />
-    <link rel="stylesheet" href="<?php echo $this->baseurl; ?>/templates/<?php echo $this->template; ?>/css/template.css" type="text/css" />
-</head>
-<body class="contentpane">
-	<jdoc:include type="message" />
-	<jdoc:include type="component" />
-</body>
+        <link rel="stylesheet" href="<?php echo $this->baseurl; ?>/templates/<?php echo $this->template; ?>/css/bootstrap.min.css" type="text/css" />
+        <link rel="stylesheet" href="<?php echo $this->baseurl; ?>/templates/<?php echo $this->template; ?>/css/template.css" type="text/css" />
+        <link rel="stylesheet" href="<?php echo $this->baseurl; ?>/plugins/system/helix3/assets/css/system.j<?php echo JVERSION < 4 ? 3 : 4; ?>.min.css" type="text/css" />
+    </head>
+    <body class="contentpane">
+        <jdoc:include type="message" />
+        <jdoc:include type="component" />
+    </body>
 </html>

@@ -12,8 +12,8 @@ defined('_JEXEC') or die;
 JHtml::_('behavior.keepalive');
 
 ?>
-<div class="row">
-	<div class="col-sm-4 col-sm-offset-4 text-center">
+<div class="row justify-content-center">
+	<div class="col-lg-4">
 		<div class="login<?php echo $this->pageclass_sfx?>">
 			<?php if ($this->params->get('show_page_heading')) : ?>
 				<h1>
@@ -47,32 +47,26 @@ JHtml::_('behavior.keepalive');
 
 				<?php foreach ($this->form->getFieldset('credentials') as $field) : ?>
 					<?php if (!$field->hidden) : ?>
-						<div class="form-group">
-							<div class="group-control">
-								<?php echo $field->input; ?>
-							</div>
+						<div class="mb-3">
+							<?php echo $field->input; ?>
 						</div>
 					<?php endif; ?>
 				<?php endforeach; ?>
 
 				<?php if ($this->tfa): ?>
-					<div class="form-group">
-						<div class="group-control">
-							<?php echo $this->form->getField('secretkey')->input; ?>
-						</div>
+					<div class="mb-3">
+						<?php echo $this->form->getField('secretkey')->input; ?>
 					</div>
 				<?php endif; ?>
 
 				<?php if (JPluginHelper::isEnabled('system', 'remember')) : ?>
-					<div class="checkbox">
-						<label>
-							<input id="remember" type="checkbox" name="remember" class="inputbox" value="yes">
-							<?php echo JText::_('COM_USERS_LOGIN_REMEMBER_ME') ?>
-						</label>
+					<div class="mb-3 form-check">
+						<input id="remember" type="checkbox" name="remember" class="form-check-input" value="yes">
+						<label class="form-check-label" for="remember"><?php echo JText::_('COM_USERS_LOGIN_REMEMBER_ME') ?></label>
 					</div>
 				<?php endif; ?>
 
-				<div class="form-group">
+				<div class="mb-3">
 					<button type="submit" class="btn btn-primary btn-block">
 						<?php echo JText::_('JLOGIN'); ?>
 					</button>

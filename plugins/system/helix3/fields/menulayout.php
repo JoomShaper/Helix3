@@ -128,9 +128,9 @@ if($count > 4 && $count != 6)
 ?>
 
 
-<div class="row-fluid">
+<div class="row<?php echo JVERSION < 4 ? '-fluid' : ''; ?>">
 
-  <div class="span2">
+  <div class="<?php echo JVERSION < 4 ? 'span2' : 'col-lg-2'; ?>">
     <h3 class="sidebar-title"><?php echo JText::_('HELIX_MENU_DRAG_MODULE'); ?></h3>
     <div class="modules-list">
       <?php
@@ -143,19 +143,19 @@ if($count > 4 && $count != 6)
     </div>
   </div>
 
-  <div class="span10">
+  <div class="<?php echo JVERSION < 4 ? 'span10' : 'col-lg-10'; ?>">
 
     <div class="action-bar">
       <ul>
         <li>
-          <strong><?php echo JText::_('HELIX_MENU_SUB_WIDTH'); ?></strong> <input type="number" id="menuWidth" name="width" value="<?php echo $menu_width; ?>">
+          <strong><?php echo JText::_('HELIX_MENU_SUB_WIDTH'); ?></strong> <input type="number" id="menuWidth" class="form-control" name="width" value="<?php echo $menu_width; ?>">
         </li>
         <li id="sizeShape"><a href="#" class="add-layout btn btn-primary"><i class="fa fa-plus"></i> <?php echo JText::_('HELIX_MENU_MANAGE_LAYOUT'); ?></a></li>
-        <li class="btn-group">
-          <a class="alignment btn <?php echo ($align == 'left')?'active':''; ?>" data-al_flag="left" href="#"><?php echo JText::_('HELIX_GLOBAL_LEFT'); ?></a>
-          <a class="alignment btn <?php echo ($align == 'center')?'active':''; ?>" data-al_flag="center" href="#"><?php echo JText::_('HELIX_GLOBAL_CENTER'); ?></a>
-          <a class="alignment btn <?php echo ($align == 'right')?'active':''; ?>" data-al_flag="right" href="#"><?php echo JText::_('HELIX_GLOBAL_RIGHT'); ?></a>
-          <a class="alignment btn <?php echo ($align == 'full')?'active':''; ?>" data-al_flag="full" href="#"><?php echo JText::_('HELIX_GLOBAL_FULL'); ?></a>
+        <li class="btn-group d-inline-flex">
+          <a class="alignment btn<?php echo JVERSION < 4 ? '' : ' btn-default'; ?> <?php echo ($align == 'left') ? 'active' : ''; ?>" data-al_flag="left" href="#"><?php echo JText::_('HELIX_GLOBAL_LEFT'); ?></a>
+          <a class="alignment btn<?php echo JVERSION < 4 ? '' : ' btn-default'; ?> <?php echo ($align == 'center') ? 'active' : ''; ?>" data-al_flag="center" href="#"><?php echo JText::_('HELIX_GLOBAL_CENTER'); ?></a>
+          <a class="alignment btn<?php echo JVERSION < 4 ? '' : ' btn-default'; ?> <?php echo ($align == 'right') ? 'active' : ''; ?>" data-al_flag="right" href="#"><?php echo JText::_('HELIX_GLOBAL_RIGHT'); ?></a>
+          <a class="alignment btn<?php echo JVERSION < 4 ? '' : ' btn-default'; ?> <?php echo ($align == 'full') ? 'active' : ''; ?>" data-al_flag="full" href="#"><?php echo JText::_('HELIX_GLOBAL_FULL'); ?></a>
         </li>
         <li class="btn-group">
           <a class="layout-reset btn btn-success"href="#" data-current_item="<?php echo $current_menu_id; ?>"><i class="fa fa-refresh"></i> <?php echo JText::_('HELIX_GLOBAL_RESET'); ?></a>
@@ -302,7 +302,11 @@ if($count > 4 && $count != 6)
   <div class="sp-modal-dialog">
     <div class="sp-modal-content">
       <div class="sp-modal-header">
-        <button type="button" class="close" data-dismiss="spmodal" aria-hidden="true">&times;</button>
+		<?php if(JVERSION < 4) : ?>
+        	<button type="button" class="close" data-dismiss="spmodal" aria-hidden="true">&times;</button>
+		<?php else : ?>
+			<button type="button" class="btn-close" data-dismiss="spmodal" aria-hidden="true"></button>
+		<?php endif; ?>
         <h3 class="sp-modal-title" id="modal-label"><?php echo JText::_('HELIX_MENU_CHOOSE_LAYOUT'); ?></h3>
       </div>
       <div class="sp-modal-body">

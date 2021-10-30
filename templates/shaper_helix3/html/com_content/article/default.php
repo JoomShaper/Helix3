@@ -55,7 +55,7 @@ if ($this->print)
 // status
 $currentDate   = JFactory::getDate()->format('Y-m-d H:i:s');
 $isExpired  = JVERSION < 4
-	? (strtotime($this->item->publish_down) < strtotime(Factory::getDate())) && $this->item->publish_down != JFactory::getDbo()->getNullDate()
+	? (strtotime($this->item->publish_down) < strtotime(JFactory::getDate())) && $this->item->publish_down != JFactory::getDbo()->getNullDate()
 	: !is_null($this->item->publish_down) && $this->item->publish_down < $currentDate;
 
 ?>

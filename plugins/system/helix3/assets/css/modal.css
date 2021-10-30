@@ -75,6 +75,13 @@
 .sp-modal-header .close {
 	margin-top: -2px;
 }
+
+.sp-modal-header .btn-close {
+	position: absolute;
+	right: 20px;
+	top: 20px;
+}
+
 .sp-modal-title {
 	margin: 0;
 	line-height: 1.42857143;

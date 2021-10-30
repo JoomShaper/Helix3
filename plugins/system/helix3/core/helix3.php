@@ -67,6 +67,54 @@ class Helix3
 		return $params->get($key);
 	}
 
+	public static function loadHead()
+	{
+		$doc         = JFactory::getDocument();
+		$app         = JFactory::getApplication();
+		$option      = $app->input->get('option', '');
+		$view        = $app->input->get('view', '');
+		$layout        = $app->input->get('layout', '');
+
+		// Favicon
+		if ($favicon = self::getParam('favicon'))
+		{
+			$doc->addFavicon(JURI::base(true) . '/' . $favicon);
+		}
+		else
+		{
+			$doc->addFavicon(self::getTemplateUri() . '/images/favicon.ico');
+		}
+
+		// load legacy css
+		if ($view == 'form' && $layout == 'edit')
+		{
+			if (JVERSION < 4)
+			{
+				$doc->addStylesheet(JURI::base(true) . '/plugins/system/helix3/assets/css/system.j3.min.css');
+			}
+			else
+			{
+				$doc->addStylesheet(JURI::base(true) . '/plugins/system/helix3/assets/css/system.j4.min.css');
+			}
+		}
+
+		// web fonts
+		self::loadWebFonts();
+
+		JHtml::_('jquery.framework');
+
+		// Remove Joomla core bootstrap
+		if (JVERSION < 4)
+		{
+			JHtml::_('bootstrap.framework');
+			if(isset($doc->_scripts[JUri::base(true) . '/media/jui/js/bootstrap.min.js'])) {
+				unset($doc->_scripts[JUri::base(true) . '/media/jui/js/bootstrap.min.js']);
+			}
+		}
+
+		echo '<jdoc:include type="head" />';
+	}
+
 	//Body Class
 	public static function bodyClass($class = '')
 	{
@@ -219,7 +267,7 @@ class Helix3
 		//Remove Classes name
 		$class_remove = array('layout-column', 'column-active', 'col-sm-');
 
-		return trim(str_replace($class_remove, '', $col_name));
+		return (int) trim(str_replace($class_remove, '', $col_name));
 	}
 
 	public static function generatelayout()
@@ -232,11 +280,12 @@ class Helix3
 		$app         = JFactory::getApplication();
 		$option      = $app->input->get('option', '');
 		$view        = $app->input->get('view', '');
+		$layout        = $app->input->get('layout', '');
 		$pagebuilder = false;
 
 		if ($option == 'com_sppagebuilder')
 		{
-			$doc->addStylesheet( JURI::base(true) . '/plugins/system/helix3/assets/css/pagebuilder.css' );
+			$doc->addStylesheet(JURI::base(true) . '/plugins/system/helix3/assets/css/pagebuilder.css');
 			$pagebuilder = true;
 		}
 
@@ -866,6 +915,70 @@ class Helix3
 		}
 
 		return 0;
+	}
+
+	/**
+	 * Load Web Fonts
+	 */
+	public static function loadWebFonts()
+	{
+		//Body Font
+		$webfonts = array();
+
+		if (self::getParam('enable_body_font'))
+		{
+			$webfonts['body'] = self::getParam('body_font');
+		}
+
+		//Heading1 Font
+		if (self::getParam('enable_h1_font'))
+		{
+			$webfonts['h1'] = self::getParam('h1_font');
+		}
+
+		//Heading2 Font
+		if (self::getParam('enable_h2_font'))
+		{
+			$webfonts['h2'] = self::getParam('h2_font');
+		}
+
+		//Heading3 Font
+		if (self::getParam('enable_h3_font'))
+		{
+			$webfonts['h3'] = self::getParam('h3_font');
+		}
+
+		//Heading4 Font
+		if (self::getParam('enable_h4_font'))
+		{
+			$webfonts['h4'] = self::getParam('h4_font');
+		}
+
+		//Heading5 Font
+		if (self::getParam('enable_h5_font'))
+		{
+			$webfonts['h5'] = self::getParam('h5_font');
+		}
+
+		//Heading6 Font
+		if (self::getParam('enable_h6_font'))
+		{
+			$webfonts['h6'] = self::getParam('h6_font');
+		}
+
+		//Navigation Font
+		if (self::getParam('enable_navigation_font'))
+		{
+			$webfonts['.sp-megamenu-parent'] = self::getParam('navigation_font');
+		}
+
+		//Custom Font
+		if (self::getParam('enable_custom_font') && self::getParam('custom_font_selectors'))
+		{
+			$webfonts[self::getParam('custom_font_selectors')] = self::getParam('custom_font');
+		}
+
+		self::addGoogleFont($webfonts);
 	}
 
 	/**

@@ -12,8 +12,8 @@ defined('_JEXEC') or die;
 JHtml::_('behavior.keepalive');
 JHtml::_('behavior.formvalidation');
 ?>
-<div class="row">
-	<div class="col-sm-4 col-sm-offset-4">
+<div class="row justify-content-center">
+	<div class="col-md-4">
 		<div class="reset-complete<?php echo $this->pageclass_sfx?>">
 			<?php if ($this->params->get('show_page_heading')) : ?>
 				<h1>
@@ -25,11 +25,9 @@ JHtml::_('behavior.formvalidation');
 				<?php foreach ($this->form->getFieldsets() as $fieldset) : ?>
 					<?php foreach ($this->form->getFieldset($fieldset->name) as $name => $field) : ?>
 						<p><?php echo JText::_($fieldset->label); ?></p>
-						<div class="form-group">
+						<div class="mb-3">
 							<?php echo $field->label; ?>
-							<div class="group-control">
-								<?php echo $field->input; ?>
-							</div>
+							<?php echo $field->input; ?>
 						</div>
 					<?php endforeach; ?>
 				<?php endforeach; ?>

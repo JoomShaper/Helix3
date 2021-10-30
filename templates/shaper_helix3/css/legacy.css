@@ -263,20 +263,20 @@ input[type="color"]:focus,
   -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(82,168,236,.6);
   box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(82,168,236,.6);
 }
-input[type="radio"],
-input[type="checkbox"] {
+input[type="radio"]:not(.form-check-input),
+input[type="checkbox"]:not(.form-check-input) {
   margin: 4px 0 0;
   *margin-top: 0;
   margin-top: 1px \9;
   line-height: normal;
 }
-input[type="file"],
-input[type="image"],
-input[type="submit"],
-input[type="reset"],
-input[type="button"],
-input[type="radio"],
-input[type="checkbox"] {
+input[type="file"]:not(.form-check-input),
+input[type="image"]:not(.form-check-input),
+input[type="submit"]:not(.form-check-input),
+input[type="reset"]:not(.form-check-input),
+input[type="button"]:not(.form-check-input),
+input[type="radio"]:not(.form-check-input),
+input[type="checkbox"]:not(.form-check-input) {
   width: auto;
 }
 select,

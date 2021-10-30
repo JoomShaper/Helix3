@@ -11,7 +11,7 @@
     <description>Helix3 Framework - Joomla Template Framework by JoomShaper</description>
 
     <updateservers>
-        <server type="extension" priority="1" name="System - Helix3 Framework">http://www.joomshaper.com/updates/plg-system-helix3.xml</server>
+        <server type="extension" priority="1" name="System - Helix3 Framework">https://www.joomshaper.com/updates/plg-system-helix3.xml</server>
     </updateservers>
 
     <languages>

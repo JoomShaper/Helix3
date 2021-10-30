@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<extension version="3.8" type="template" client="site" method="upgrade">
+<extension version="3.9" type="template" client="site" method="upgrade">
     <name>shaper_helix3</name>
     <creationDate>Jan 2016</creationDate>
     <author>JoomShaper.com</author>
@@ -7,7 +7,7 @@
     <authorUrl>http://www.joomshaper.com</authorUrl>
     <copyright>Copyright (c) 2010 - 2020 JoomShaper.com. All rights reserved.</copyright>
     <license>http://www.gnu.org/licenses/gpl-2.0.html GPLv2 or later</license>
-    <version>2.5.8</version>
+    <version>3.0.0-alpha1</version>
     <description>Shaper Helix3 - Starter Template of Helix3 framework</description>
 
     <updateservers>
@@ -448,7 +448,7 @@
                     <option value="disabled">HELIX_DISABLED</option>
                 </field>
                 <field name="disqus_subdomain" type="text" class="child comment_engine comment_engine_disqus" label="HELIX_DISQUS_SUBDOMAIN" description="HELIX_DISQUS_SUBDOMAIN_DESC" />
-                <field name="disqus_devmode" type="radio" class="btn-group child comment_engine comment_engine_disqus" default="0" label="HELIX_DISQUS_DEV_MODE" description="HELIX_DISQUS_DEV_MODE_DESC">
+                <field name="disqus_devmode" type="radio" class="child comment_engine comment_engine_disqus" default="0" label="HELIX_DISQUS_DEV_MODE" description="HELIX_DISQUS_DEV_MODE_DESC">
                     <option value="0">HELIX_NO</option>
                     <option value="1">HELIX_YES</option>
                 </field>
@@ -456,7 +456,7 @@
                 <field name="fb_appID" type="text" class="child comment_engine comment_engine_facebook" label="HELIX_FB_ID" description="HELIX_FB_ID_DESC" />
                 <field name="fb_width" type="number" default="500" class="child comment_engine comment_engine_facebook" label="HELIX_FB_COMMENTS_WIDTH" description="HELIX_FB_COMMENTS_WIDTH_DESC" />
                 <field name="fb_cpp" type="number" default="10" class="child comment_engine comment_engine_facebook" label="HELIX_FB_COMMENTS_PER_PAGE" description="HELIX_FB_COMMENTS_PER_PAGE_DESC" />
-                <field name="comments_count" type="radio" default="0" class="btn-group child comment_engine comment_engine_disqus comment_engine_intensedebate comment_engine_facebook" label="HELIX_COMMENTS_COUNT" description="HELIX_COMMENTS_COUNT_DESC">
+                <field name="comments_count" type="radio" default="0" class="child comment_engine comment_engine_disqus comment_engine_intensedebate comment_engine_facebook" label="HELIX_COMMENTS_COUNT" description="HELIX_COMMENTS_COUNT_DESC">
                     <option value="0">HELIX_NO</option>
                     <option value="1">HELIX_YES</option>
                 </field>

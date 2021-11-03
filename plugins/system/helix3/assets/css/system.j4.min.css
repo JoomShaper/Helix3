@@ -5,6 +5,22 @@
 	--template-text-light: #fff;
 	--template-link-color: #2a69b8;
 	--template-special-color: #001b4c;
+	--template-bg-dark: hsl(var(--hue), 40%, 20%);
+	--template-bg-dark-3: hsl(var(--hue), 40%, 97%);
+	--template-bg-dark-5: hsl(var(--hue), 40%, 95%);
+	--template-bg-dark-7: hsl(var(--hue), 40%, 93%);
+	--template-bg-dark-10: hsl(var(--hue), 40%, 90%);
+	--template-bg-dark-15: hsl(var(--hue), 40%, 85%);
+	--template-bg-dark-20: hsl(var(--hue), 40%, 80%);
+	--template-bg-dark-30: hsl(var(--hue), 40%, 70%);
+	--template-bg-dark-40: hsl(var(--hue), 40%, 60%);
+	--template-bg-dark-50: hsl(var(--hue), 40%, 50%);
+	--template-bg-dark-60: hsl(var(--hue), 40%, 40%);
+	--template-bg-dark-65: hsl(var(--hue), 40%, 35%);
+	--template-bg-dark-70: hsl(var(--hue), 40%, 30%);
+	--template-bg-dark-75: hsl(var(--hue), 40%, 25%);
+	--template-bg-dark-80: hsl(var(--hue), 40%, 20%);
+	--template-bg-dark-90: hsl(var(--hue), 40%, 10%);
 }
 
 /* js tools */
@@ -253,7 +269,35 @@
 }
 
 /* Misc */
+.joomla-modal {
+	position: fixed !important;
+	z-index: 99991 !important;
+}
+
+.joomla-modal iframe {
+	width: 100%;
+}
+
+.joomla-modal iframe body {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+}
+
 .modal-dialog.jviewport-width80 {
 	width: 80vw;
 	max-width: none;
+}
+
+.jviewport-height70 {
+	height: 70vh;
+}
+
+[class*="jviewport-height"] iframe {
+	height: 100%;
+}
+
+.hidden {
+	display: none;
 }

@@ -662,16 +662,17 @@ article {
 	display: inline-block;
 	span.star {
 		font-family: "Font Awesome 5 Free";
-		font-weight: 700;
 		font-weight: normal;
 		font-style: normal;
 		display: inline-block;
+
 		&.active:before {
 			content: "\f005";
+			font-weight: 900;
 		}
+
 		&:before {
 			content: "\f005";
-			font-weight: 500;
 			padding-right: 5px;
 		}
 	}
@@ -681,6 +682,7 @@ article {
 	span.star:hover:before,
 	span.star:hover ~ span.star:before {
 		content: "\f005";
+		font-weight: 900;
 		cursor: pointer;
 	}
 }
@@ -915,6 +917,9 @@ article {
 
 #sp-bottom {
 	.sp-module {
+		ul {
+			display: block;
+		}
 		.sp-module-title {
 			text-transform: none;
 			font-weight: 400;
@@ -1934,3 +1939,12 @@ table.category {
 
 /* ******************  END:: SPPB 3 ******************* */
 /* **************************************************** */
+
+// legacy
+.pull-left {
+	float: left;
+}
+
+.pull-right {
+	float: right;
+}

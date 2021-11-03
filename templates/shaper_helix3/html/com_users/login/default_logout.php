@@ -9,8 +9,8 @@
 
 defined('_JEXEC') or die;
 ?>
-<div class="row">
-	<div class="col-sm-4 col-sm-offset-4">
+<div class="row justify-content-center">
+	<div class="col-lg-4">
 		<div class="logout<?php echo $this->pageclass_sfx?>">
 			<?php if ($this->params->get('show_page_heading')) : ?>
 				<h1>

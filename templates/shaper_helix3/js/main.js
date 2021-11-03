@@ -195,7 +195,10 @@ jQuery(function ($) {
 	// **************************************************** //
 
 	//Tooltip
-	$('[data-toggle="tooltip"]').tooltip();
+	var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-toggle="tooltip"]'));
+	var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+		return new bootstrap.Tooltip(tooltipTriggerEl);
+	});
 
 	// Article Ajax voting
 	$(document).on("click", ".sp-rating .star", function (event) {

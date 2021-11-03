@@ -230,9 +230,9 @@
 }
 .body-wrapper {
 	position: relative;
-	-webkit-transition: 0.5s;
 	transition: 0.5s;
 	right: 0;
+	visibility: visible;
 	backface-visibility: hidden;
 }
 
@@ -260,18 +260,25 @@
 	position: fixed;
 	top: 0;
 	right: 0;
-	-webkit-transform: translateX(320px);
 	transform: translateX(320px);
 	visibility: hidden;
 	overflow: inherit;
-	-webkit-transition: 0.5s;
 	transition: 0.5s;
 	z-index: 10000;
 	.offcanvas-inner {
+		> .alert {
+			margin: 20px;
+		}
+
 		.sp-module {
-			margin-top: 20px;
-			border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-			margin-bottom: 50px;
+			margin: 0;
+			padding: 30px;
+
+			&:not(:last-child) {
+				margin-bottom: 20px;
+				border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+			}
+
 			&:after {
 				display: none;
 			}
@@ -292,6 +299,10 @@
 			}
 
 			ul {
+				&.nav {
+					display: block;
+					margin: 0 -30px;
+				}
 				> li {
 					border: 0;
 					position: relative;
@@ -373,11 +384,6 @@
 					}
 				}
 			}
-
-			&:first-child {
-				margin-top: 0;
-				padding: 30px;
-			}
 		}
 		.search {
 			margin-top: 25px;
@@ -398,7 +404,6 @@
 	.transition(0.5s);
 	.body-wrapper {
 		right: 0;
-		-webkit-transform: translateX(-320px);
 		transform: translateX(-320px);
 	}
 	.body-wrapper:after {
@@ -410,7 +415,6 @@
 		visibility: visible;
 		z-index: 9999;
 		right: 0;
-		-webkit-transform: translateX(0);
 		transform: translateX(0);
 		ul.nav-child li {
 			padding-left: 10px;
@@ -1164,3 +1168,32 @@
 
 /* *************   END:: Helix 1.4 CSS Block   ************** */
 /* ********************************************************** */
+
+@media (min-width: 576px) {
+	.sp-menu-full.container {
+		width: 540px;
+	}
+}
+
+@media (min-width: 768px) {
+	.sp-menu-full.container {
+		width: 720px;
+	}
+}
+
+@media (min-width: 992px) {
+	.sp-menu-full.container {
+		width: 960px;
+	}
+}
+
+@media (min-width: 1200px) {
+	.sp-menu-full.container {
+		width: 1140px;
+	}
+}
+@media (min-width: 1400px) {
+	.sp-menu-full.container {
+		width: 1320px;
+	}
+}

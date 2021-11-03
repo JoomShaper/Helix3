@@ -26,5 +26,5 @@ if ($item->menu_image)
 <a class="separator <?php echo $anchor_css; ?>"<?php echo $title; ?>><?php echo $linktype; ?></a>
 <?php
 if(($module->position == 'offcanvas') && ($item->deeper)) {
-	echo '<span class="offcanvas-menu-toggler collapsed" data-toggle="collapse" data-target="#collapse-menu-'. $item->id .'"><i class="open-icon fa fa-angle-down"></i><i class="close-icon fa fa-angle-up"></i></span>';
+	echo '<span class="offcanvas-menu-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#collapse-menu-'. $item->id .'"><i class="open-icon fa fa-angle-down"></i><i class="close-icon fa fa-angle-up"></i></span>';
 }

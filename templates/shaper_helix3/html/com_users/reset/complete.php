@@ -13,7 +13,7 @@ JHtml::_('behavior.keepalive');
 JHtml::_('behavior.formvalidation');
 ?>
 <div class="row justify-content-center">
-	<div class="col-md-4">
+	<div class="col-lg-4">
 		<div class="reset-complete<?php echo $this->pageclass_sfx?>">
 			<?php if ($this->params->get('show_page_heading')) : ?>
 				<h1>

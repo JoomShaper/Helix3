@@ -41,11 +41,11 @@ else
         <jdoc:include type="head" />
 
         <link rel="stylesheet" href="<?php echo $this->baseurl; ?>/templates/<?php echo $this->template; ?>/css/bootstrap.min.css" type="text/css" />
+        <link rel="stylesheet" href="<?php echo $this->baseurl; ?>/templates/<?php echo $this->template; ?>/css/joomla-fontawesome.min.css" type="text/css" />
         <link rel="stylesheet" href="<?php echo $this->baseurl; ?>/templates/<?php echo $this->template; ?>/css/template.css" type="text/css" />
         <link rel="stylesheet" href="<?php echo $this->baseurl; ?>/plugins/system/helix3/assets/css/system.j<?php echo JVERSION < 4 ? 3 : 4; ?>.min.css" type="text/css" />
     </head>
-    <body class="contentpane">
-        <jdoc:include type="message" />
+    <body>
         <jdoc:include type="component" />
     </body>
 </html>

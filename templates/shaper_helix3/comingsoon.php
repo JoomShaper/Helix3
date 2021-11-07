@@ -35,7 +35,6 @@ else
 {
     $logo 		= $this->baseurl . '/templates/' . $this->template . '/images/presets/preset1/logo.png';
     $path 		= JPATH_ROOT . '/templates/' . $this->template . '/images/presets/preset1/logo.png';
-    $ratlogo 	= $this->baseurl . '/templates/' . $this->template . '/images/presets/preset1/logo@2x.png';
 }
 
 if (file_exists($path))
@@ -78,13 +77,22 @@ JHtml::_('jquery.framework');
     ?>
     <jdoc:include type="head" />
     <?php
-    $this->helix3->addCSS('bootstrap.min.css, font-awesome.min.css')
-        ->lessInit()->setLessVariables(array(
-            'preset'=>$this->helix3->Preset(),
-            'bg_color'=> $this->helix3->PresetParam('_bg'),
-            'text_color'=> $this->helix3->PresetParam('_text'),
-            'major_color'=> $this->helix3->PresetParam('_major')
-            ))
+	$megabgcolor = ($this->helix3->PresetParam('_megabg')) ? $this->helix3->PresetParam('_megabg') : '#ffffff';
+	$megabgtx = ($this->helix3->PresetParam('_megatx')) ? $this->helix3->PresetParam('_megatx') : '#333333';
+
+	$preloader_bg = ($this->helix3->getParam('preloader_bg')) ? $this->helix3->getParam('preloader_bg') : '#f5f5f5';
+	$preloader_tx = ($this->helix3->getParam('preloader_tx')) ? $this->helix3->getParam('preloader_tx') : '#f5f5f5';
+    $this->helix3->addCSS('bootstrap.min.css, joomla-fontawesome.min.css, font-awesome-v4-shims.min.css')
+		->lessInit()->setLessVariables(array(
+			'preset' => $this->helix3->Preset(),
+			'bg_color' => $this->helix3->PresetParam('_bg'),
+			'text_color' => $this->helix3->PresetParam('_text'),
+			'major_color' => $this->helix3->PresetParam('_major'),
+			'megabg_color' => $megabgcolor,
+			'megatx_color' => $megabgtx,
+			'preloader_bg' => $preloader_bg,
+			'preloader_tx' => $preloader_tx,
+		))
         ->addLess('master', 'template')
         ->addLess('presets',  'presets/'.$this->helix3->Preset())
     	->addJS('jquery.countdown.min.js');
@@ -115,7 +123,6 @@ JHtml::_('jquery.framework');
 							<img class="comingsoon-logo" alt="logo" src="<?php echo $logo; ?>" />
 						<?php else : ?>
 							<img class="sp-default-logo comingsoon-logo" alt="logo" src="<?php echo $logo; ?>" />
-							<img class="sp-retina-logo comingsoon-logo" alt="logo" src="<?php echo $ratlogo; ?>" width="<?php echo $logo_width; ?>" height="<?php echo  $logo_height; ?>" />
 						<?php endif; ?>
 					</div>
 

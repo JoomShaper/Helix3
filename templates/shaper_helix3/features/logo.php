@@ -48,20 +48,17 @@ class Helix3FeatureLogo {
 		$sitename = JFactory::getApplication()->get('sitename');
 
 		if( $this->helix3->getParam('mobile_logo') ) {
-			$custom_logo_class = ' hidden-xs';
+			$custom_logo_class = ' d-none d-md-block';
 		}
 
 		if( $this->helix3->getParam('logo_type') == 'image' ) {
 			if( $this->helix3->getParam('logo_image') ) {
 				$html .= '<div class="logo">';
 				$html .= '<a href="' . JURI::base(true) . '/">';
-					$html .= '<img class="sp-default-logo'. $custom_logo_class .'" src="' . $this->helix3->getParam('logo_image') . '" alt="'. $sitename .'">';
-					if( $this->helix3->getParam('logo_image_2x') ) {
-						$html .= '<img class="sp-retina-logo'. $custom_logo_class .'" src="' . $this->helix3->getParam('logo_image_2x') . '" alt="'. $sitename .'" width="' . $width . '" height="' . $height . '">';
-					}
-
+					$html .= '<img class="sp-default-logo'. $custom_logo_class .'" src="' . $this->helix3->getParam('logo_image') . '" srcset="'. ($this->helix3->getParam('logo_image_2x') ? $this->helix3->getParam('logo_image_2x') . ' 2x' : '') .'" alt="'. $sitename .'">';
+					
 					if( $this->helix3->getParam('mobile_logo') ) {
-						$html .= '<img class="sp-default-logo visible-xs" src="' . $this->helix3->getParam('mobile_logo') . '" alt="'. $sitename .'">';
+						$html .= '<img class="sp-default-logo d-block d-md-none" src="' . $this->helix3->getParam('mobile_logo') . '" alt="'. $sitename .'">';
 					}
 
 				$html .= '</a>';
@@ -71,10 +68,9 @@ class Helix3FeatureLogo {
 				$html .= '<div class="logo">';
 					$html .= '<a href="' . JURI::base(true) . '/">';
 						$html .= '<img class="sp-default-logo'. $custom_logo_class .'" src="' . $this->helix3->getTemplateUri() . '/images/presets/' . $this->helix3->Preset() . '/logo.png" alt="'. $sitename .'">';
-						$html .= '<img class="sp-retina-logo'. $custom_logo_class .'" src="' . $this->helix3->getTemplateUri() . '/images/presets/' . $this->helix3->Preset() . '/logo@2x.png" alt="'. $sitename .'" width="' . $width . '" height="' . $height . '">';
-
+						
 						if( $this->helix3->getParam('mobile_logo') ) {
-							$html .= '<img class="sp-default-logo visible-xs" src="' . $this->helix3->getParam('mobile_logo') . '" alt="'. $sitename .'">';
+							$html .= '<img class="sp-default-logo d-block d-md-none" src="' . $this->helix3->getParam('mobile_logo') . '" alt="'. $sitename .'">';
 						}
 					$html .= '</a>';
 				$html .= '</div>';

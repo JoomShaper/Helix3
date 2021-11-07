@@ -1082,6 +1082,7 @@ input[type="color"],
   -webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
   -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
   transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+  width: 100%;
   height: 38px;
 }
 select:focus,
@@ -1351,9 +1352,6 @@ ul.social-icons > li a {
 }
 #sp-header .logo p {
   margin: 5px 0 0;
-}
-#sp-header .sp-retina-logo {
-  display: none;
 }
 #sp-header.menu-fixed {
   position: fixed;
@@ -1942,9 +1940,6 @@ article.item {
 .sp-comingsoon .comingsoon-page-logo img {
   display: inline-block;
 }
-.sp-comingsoon .comingsoon-page-logo .sp-retina-logo {
-  display: none;
-}
 .sp-comingsoon .sp-comingsoon-title {
   margin-top: 130px;
   font-size: 42px;
@@ -2045,21 +2040,6 @@ article.item {
   font-size: 24px;
   line-height: 1;
   margin-bottom: 30px;
-}
-@media only screen and (-webkit-min-device-pixel-ratio: 1.5),only screen and (-moz-min-device-pixel-ratio: 1.5),only screen and (-o-min-device-pixel-ratio: 1.5),only screen and (min-device-pixel-ratio: 1.5) {
-  #sp-header .sp-default-logo {
-    display: none;
-  }
-  #sp-header .sp-retina-logo {
-    display: block;
-  }
-  .sp-comingsoon .comingsoon-page-logo .sp-retina-logo {
-    display: table;
-    margin: 0 auto;
-  }
-  .sp-comingsoon .comingsoon-page-logo .sp-default-logo {
-    display: none;
-  }
 }
 .sp-social-share ul {
   display: block;

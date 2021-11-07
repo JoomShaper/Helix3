@@ -19,7 +19,6 @@ if ($logo_image = $params->get('error_logo')) {
 } else {
     $logo 		= $this->baseurl . '/templates/' . $this->template . '/images/presets/preset1/logo.png';
     $path 		= JPATH_ROOT . '/templates/' . $this->template . '/images/presets/preset1/logo.png';
-    $ratlogo 	= $this->baseurl . '/templates/' . $this->template . '/images/presets/preset1/logo@2x.png';
 }
 
 //Favicon
@@ -35,7 +34,8 @@ if (file_exists($custom_css_path)) {
 	$doc->addStylesheet( $this->baseurl . '/templates/' . $this->template . '/css/custom.css' );
 }
 $doc->addStylesheet( $this->baseurl . '/templates/' . $this->template . '/css/bootstrap.min.css' );
-$doc->addStylesheet( $this->baseurl . '/templates/' . $this->template . '/css/font-awesome.min.css' );
+$doc->addStylesheet( $this->baseurl . '/templates/' . $this->template . '/css/joomla-fontawesome.min.css' );
+$doc->addStylesheet( $this->baseurl . '/templates/' . $this->template . '/css/font-awesome-v4-shims.min.css' );
 $doc->addStylesheet( $this->baseurl . '/templates/' . $this->template . '/css/template.css' );
 
 $doc->setTitle($this->error->getCode() . ' - '.$this->title);

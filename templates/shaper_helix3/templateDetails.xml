@@ -202,7 +202,6 @@
                 </field>
                 <field name="facebook" type="text" label="HELIX_SOCIAL_ICON_FACEBOOK" description="HELIX_SOCIAL_ICON_FACEBOOK_DESC" class="child social_icons social_icons_1" />
                 <field name="twitter" type="text" label="HELIX_SOCIAL_ICON_TWITTER" description="HELIX_SOCIAL_ICON_TWITTER_DESC" class="child social_icons social_icons_1" />
-                <field name="googleplus" type="text" label="HELIX_SOCIAL_ICON_GOOGLEPLUS" description="HELIX_SOCIAL_ICON_GOOGLEPLUS_DESC" class="child social_icons social_icons_1" />
                 <field name="pinterest" type="text" label="HELIX_SOCIAL_ICON_PINTEREST" description="HELIX_SOCIAL_ICON_PINTEREST_DESC" class="child social_icons social_icons_1" />
                 <field name="linkedin" type="text" label="HELIX_SOCIAL_ICON_LINKEDIN" description="HELIX_SOCIAL_ICON_LINKEDIN_DESC" class="child social_icons social_icons_1" />
                 <field name="dribbble" type="text" label="HELIX_SOCIAL_ICON_DRIBBBLE" description="HELIX_SOCIAL_ICON_DRIBBBLE_DESC" class="child social_icons social_icons_1" />

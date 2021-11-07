@@ -23,7 +23,6 @@ class Helix3FeatureSocial {
 
 		$facebook   = $this->helix3->getParam('facebook');
 		$twitter    = $this->helix3->getParam('twitter');
-		$googleplus = $this->helix3->getParam('googleplus');
 		$pinterest  = $this->helix3->getParam('pinterest');
 		$youtube    = $this->helix3->getParam('youtube');
 		$linkedin   = $this->helix3->getParam('linkedin');
@@ -35,7 +34,7 @@ class Helix3FeatureSocial {
 		$vk         = $this->helix3->getParam('vk');
 		$custom     = $this->helix3->getParam('custom');
 
-		if( $this->helix3->getParam('show_social_icons') && ( $facebook || $twitter || $googleplus || $pinterest || $youtube || $linkedin || $dribbble || $behance || $skype || $flickr || $vk ) ) {
+		if( $this->helix3->getParam('show_social_icons') && ( $facebook || $twitter || $pinterest || $youtube || $linkedin || $dribbble || $behance || $skype || $flickr || $vk ) ) {
 			$html  = '<ul class="social-icons">';
 
 			if( $facebook ) {
@@ -43,9 +42,6 @@ class Helix3FeatureSocial {
 			}
 			if( $twitter ) {
 				$html .= '<li><a target="_blank" href="'. $twitter .'" aria-label="twitter"><i class="fa fa-twitter"></i></a></li>';
-			}
-			if( $googleplus ) {
-				$html .= '<li><a target="_blank" href="'. $googleplus .'" aria-label="google plus"><i class="fa fa-google-plus"></i></a></li>';
 			}
 			if( $pinterest ) {
 				$html .= '<li><a target="_blank" href="'. $pinterest .'" aria-label="pinterest"><i class="fa fa-pinterest"></i></a></li>';

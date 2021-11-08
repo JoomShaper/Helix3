@@ -10,7 +10,7 @@ defined('_JEXEC') or die;
 
 ?>
 <?php JLoader::register('TagsHelperRoute', JPATH_BASE . '/components/com_tags/helpers/route.php'); ?>
-<div class="tagspopular<?php echo $moduleclass_sfx; ?>">
+<div class="tagspopular">
 <?php if (!count($list)) : ?>
 	<div class="alert alert-warning"><?php echo JText::_('MOD_TAGS_POPULAR_NO_ITEMS_FOUND'); ?></div>
 <?php else : ?>

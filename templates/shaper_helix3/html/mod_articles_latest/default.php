@@ -8,7 +8,7 @@
 
 defined('_JEXEC') or die;
 ?>
-<div class="latestnews<?php echo $moduleclass_sfx; ?>">
+<div class="latestnews">
 <?php foreach ($list as $item) :  ?>
 	<div itemscope itemtype="http://schema.org/Article">
 		<a href="<?php echo $item->link; ?>" itemprop="url">

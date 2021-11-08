@@ -10,12 +10,15 @@ defined('_JEXEC') or die;
 
 $msgList = $displayData['msgList'];
 
+$find = array('error', 'notice', 'message');
+$replace = array('danger', 'warning', 'success');
+
 ?>
 <div id="system-message-container">
 	<?php if (is_array($msgList) && !empty($msgList)) : ?>
 		<div id="system-message">
 			<?php foreach ($msgList as $type => $msgs) : ?>
-				<div class="alert alert-<?php echo str_replace('alert-error', 'alert-error alert-danger', $type); ?> alert-dismissible fade show">
+				<div class="alert alert-<?php echo str_replace($find, $replace, $type); ?> alert-dismissible fade show">
 					<?php // This requires JS so we should add it trough JS. Progressive enhancement and stuff. ?>
 					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="<?php echo JText::_('JClose'); ?>"></button>
 

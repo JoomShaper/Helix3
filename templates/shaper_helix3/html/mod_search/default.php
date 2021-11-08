@@ -8,7 +8,7 @@
 
 defined('_JEXEC') or die;
 ?>
-<div class="search<?php echo $moduleclass_sfx ?>">
+<div class="search">
 	<form action="<?php echo JRoute::_('index.php');?>" method="post">
 		<input name="searchword" id="mod-search-searchword" maxlength="<?php echo $maxlength; ?>"  class="form-control search-query" type="text" size="<?php echo $width; ?>" placeholder="<?php echo $text; ?>" />
 		<input type="hidden" name="task" value="search" />

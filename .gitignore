@@ -56,3 +56,4 @@ web.config.txt
 !/templates
 /templates/*
 !/templates/shaper_helix3
+!/templates/shaper_helix3/index.php

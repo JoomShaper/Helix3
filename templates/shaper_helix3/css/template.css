@@ -2692,3 +2692,6 @@ table.category tbody > tr td {
 .pull-right {
   float: right;
 }
+.hide {
+  display: none;
+}

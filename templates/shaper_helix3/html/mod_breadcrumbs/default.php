@@ -9,7 +9,7 @@
 defined('_JEXEC') or die;
 ?>
 
-<ol class="breadcrumb<?php echo $moduleclass_sfx; ?>">
+<ol class="breadcrumb">
 	<?php
 	if ($params->get('showHere', 1))
 	{
@@ -17,7 +17,7 @@ defined('_JEXEC') or die;
 	}
 	else
 	{
-		echo '<li><i class="fa fa-home"></i></li>';
+		echo '<li class="breadcrumb-item"><i class="fa fa-home"></i></li>';
 	}
 
 	// Get rid of duplicated entries on trail including home page when using multilanguage
@@ -38,7 +38,7 @@ defined('_JEXEC') or die;
 
 	foreach ($list as $key => $item) {
 		if ($key != $last_item_key) {
-			echo '<li>';
+			echo '<li class="breadcrumb-item">';
 			if (!empty($item->link)) {
 				echo '<a href="' . $item->link . '" class="pathway">' . $item->name . '</a>';
 			} else {
@@ -46,7 +46,7 @@ defined('_JEXEC') or die;
 			}
 			echo '</li>';
 		} elseif ($show_last) {
-			echo '<li class="active">' . $item->name . '</li>';
+			echo '<li class="breadcrumb-item active">' . $item->name . '</li>';
 		}
 	}
 	?>

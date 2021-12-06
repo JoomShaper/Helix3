@@ -41,37 +41,24 @@
 			.each(function () {
 				var $id = random_number();
 
-				$(this)
-					.find(".input-media")
-					.attr("id", "media-" + $id);
+				$(this).find(".input-media").attr("id", "media-" + $id);
 
 				//Preview
-				$(this)
-					.find(".image-preview")
-					.attr("id", "media-" + $id + "_preview_img");
-				$(this)
-					.find(".image-preview")
-					.find("img")
-					.attr("id", "media-" + $id + "_preview");
+				$(this).find(".image-preview").attr("id", "media-" + $id + "_preview_img");
+				$(this).find(".image-preview").find("img").attr("id", "media-" + $id + "_preview");
 
-				$(this)
-					.find("a.modal")
-					.attr("href", "index.php?option=com_media&view=images&tmpl=component&fieldid=" + "media-" + $id);
-				$(this)
-					.find("a.remove-media")
-					.attr("onClick", "jInsertFieldValue('', 'media-" + $id + "');return false;");
+				$(this).find("a.modal").attr("href", "index.php?option=com_media&view=images&tmpl=component&fieldid=" + "media-" + $id);
+				$(this).find("a.remove-media").attr("onClick", "jInsertFieldValue('', 'media-" + $id + "');return false;");
 
-				$(this)
-					.find("a.remove-media")
-					.on("click", function () {
-						$(this).closest(".media").find(".input-media").val("");
-					});
+				$(this).find("a.remove-media").on("click", function () {
+					$(this).closest(".media").find(".input-media").val("");
+				});
 			});
 
 		//Re-initialize modal
-		// SqueezeBox.assign($(this).find("a.modal"), {
-		// 	parse: "rel",
-		// });
+		SqueezeBox.assign($(this).find("a.modal"), {
+			parse: "rel",
+		});
 	};
 
 	//remove ids

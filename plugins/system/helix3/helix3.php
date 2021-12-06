@@ -60,7 +60,16 @@ class  plgSystemHelix3 extends JPlugin
                 $doc->addStyleSheet($plg_path . '/assets/css/menu.generator.css');
                 
                 JHtml::_('jquery.framework');
-                $doc->addScript($plg_path . '/assets/js/jquery-ui.min.js');
+
+                if(JVERSION < 4)
+                {
+                    JHtml::_('jquery.ui', array('core', 'more', 'sortable'));
+                    $doc->addScript($plg_path.'/assets/js/jquery-ui.draggable.min.js');
+                }
+                else
+                {
+                    $doc->addScript($plg_path . '/assets/js/jquery-ui.min.js');
+                }
                 // $doc->addScript($plg_path . '/assets/js/jquery.ui.core.min.js');
                 // $doc->addScript($plg_path . '/assets/js/jquery.ui.sortable.min.js');
                 // $doc->addScript($plg_path . '/assets/js/jquery-ui.draggable.min.js');

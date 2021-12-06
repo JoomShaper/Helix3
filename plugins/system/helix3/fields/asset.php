@@ -25,18 +25,21 @@ class JFormFieldAsset extends JFormField
 
     //Core scripts
     JHtml::_('jquery.framework');
-    $doc->addScript($helix_plg_url . '/assets/js/jquery-ui.min.js');
-    // $doc->addScript($helix_plg_url . '/assets/js/jquery.ui.core.min.js');
-    // $doc->addScript($helix_plg_url . '/assets/js/jquery.ui.sortable.min.js');
 
     if(JVERSION < 4)
     {
+      JHtml::_('jquery.ui', array('core', 'sortable'));
       JHtml::_('formbehavior.chosen', 'select');
+    }
+    else
+    {
+      $doc->addScript($helix_plg_url . '/assets/js/jquery-ui.min.js');
     }
 
     $doc->addScript($helix_plg_url . '/assets/js/helper.js');
     $doc->addScript($helix_plg_url . '/assets/js/webfont.js');
     $doc->addScript($helix_plg_url . '/assets/js/modal.js');
+    
     if(JVERSION < 4)
     {
       $doc->addScript($helix_plg_url . '/assets/js/admin.general.js');

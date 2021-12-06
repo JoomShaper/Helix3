@@ -160,7 +160,7 @@ jQuery(function ($) {
 		footerHtml +=
 			'<a href="https://www.joomshaper.com/documentation/helix-framework/helix3" target="_blank">Documentation</a><span>|</span>';
 		footerHtml +=
-			'<a href="https://www.facebook.com/groups/819713448150532/" target="_blank">Helix Community</a><span>|</span>';
+			'<a href="https://www.facebook.com/groups/helix.framework" target="_blank">Helix Community</a><span>|</span>';
 		footerHtml +=
 			'<a href="https://www.joomshaper.com/page-builder" target="_blank">Page Builder Pro</a><span>|</span>';
 		footerHtml +=
@@ -173,34 +173,25 @@ jQuery(function ($) {
 	});
 
 	//Media Button
-	$(".input-prepend, .input-append")
-		.find(".btn")
-		.each(function () {
-			if ($(this).is(".modal, .button-select")) {
-				$(this).addClass("btn-success");
-			} else {
-				$(this).addClass("btn-danger");
-			}
-		});
+	$(".input-prepend, .input-append").find(".btn").each(function () {
+		if ($(this).is(".modal, .button-select")) {
+			$(this).addClass("btn-success");
+		} else {
+			$(this).addClass("btn-danger");
+		}
+	});
 
-	$(".controls")
-		.find(".field-media-preview")
-		.each(function () {
-			$(this).insertBefore($(this).parent().find(".input-append"));
-		});
+	$(".controls").find(".field-media-preview").each(function () {
+		$(this).insertBefore($(this).parent().find(".input-append"));
+	});
 
-	$(".control-group .field-media-preview")
-		.not("img")
-		.each(function () {
-			$(this).append('<div id="preview_empty">No image selected.</div>');
-		});
+	$(".control-group .field-media-preview").not("img").each(function () {
+		$(this).append('<div id="preview_empty">No image selected.</div>');
+	});
 
 	// clear image
 	$(".helix-options .controls .field-media-wrapper .input-append").on("click", ".button-clear", function (event) {
-		$(this)
-			.closest(".field-media-wrapper")
-			.find(".field-media-preview")
-			.html('<div id="preview_empty">No image selected.</div>');
+		$(this).closest(".field-media-wrapper").find(".field-media-preview").html('<div id="preview_empty">No image selected.</div>');
 	});
 
 	//Add .btn-group class

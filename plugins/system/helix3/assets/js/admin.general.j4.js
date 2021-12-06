@@ -98,15 +98,13 @@ jQuery(function ($) {
 		$(".preset").parent().removeClass("controls").addClass("presets clearfix");
 
 		//Load Preset
-		$("#attrib-preset")
-			.find(".preset-control")
-			.each(function () {
-				if ($(this).hasClass(current_preset)) {
-					$(this).closest(".control-group").show();
-				} else {
-					$(this).closest(".control-group").hide();
-				}
-			});
+		$("#attrib-preset").find(".preset-control").each(function () {
+			if ($(this).hasClass(current_preset)) {
+				$(this).closest(".control-group").show();
+			} else {
+				$(this).closest(".control-group").hide();
+			}
+		});
 
 		//Change Preset
 		$(".preset").on("click", function (event) {
@@ -116,15 +114,13 @@ jQuery(function ($) {
 			$(".preset").removeClass("active");
 			$(this).addClass("active");
 
-			$("#attrib-preset")
-				.find(".preset-control")
-				.each(function () {
-					if ($(this).hasClass($that.data("preset"))) {
-						$(this).closest(".control-group").fadeIn();
-					} else {
-						$(this).closest(".control-group").hide();
-					}
-				});
+			$("#attrib-preset").find(".preset-control").each(function () {
+				if ($(this).hasClass($that.data("preset"))) {
+					$(this).closest(".control-group").fadeIn();
+				} else {
+					$(this).closest(".control-group").hide();
+				}
+			});
 
 			$("#template-preset").val($that.data("preset"));
 		});
@@ -165,7 +161,7 @@ jQuery(function ($) {
 		footerHtml +=
 			'<a href="https://www.joomshaper.com/documentation/helix-framework/helix3" target="_blank">Documentation</a><span>|</span>';
 		footerHtml +=
-			'<a href="https://www.facebook.com/groups/819713448150532/" target="_blank">Helix Community</a><span>|</span>';
+			'<a href="https://www.facebook.com/groups/helix.framework" target="_blank">Helix Community</a><span>|</span>';
 		footerHtml +=
 			'<a href="https://www.joomshaper.com/page-builder" target="_blank">Page Builder Pro</a><span>|</span>';
 		footerHtml +=

@@ -85,40 +85,38 @@ jQuery(function ($) {
 
 	// load layout from file
 
-	$(".layoutlist select")
-		.chosen()
-		.change(function () {
-			var $that = $(this),
-				layoutName = $that.val(),
-				data = {
-					action: "load",
-					layoutName: layoutName,
-				};
-
-			if (layoutName == "" || layoutName == " ") {
-				alert("You are doing somethings wrong.");
-			}
-
-			var request = {
-				option: "com_ajax",
-				plugin: "helix3",
-				data: data,
-				format: "raw",
+	$(".layoutlist select").chosen().change(function () {
+		var $that = $(this),
+			layoutName = $that.val(),
+			data = {
+				action: "load",
+				layoutName: layoutName,
 			};
 
-			$.ajax({
-				type: "POST",
-				data: request,
-				dataType: "html",
-				beforeSend: function () {},
-				success: function (response) {
-					$("#helix-layout-builder").empty();
-					$("#helix-layout-builder").append(response).fadeIn("normal");
-					jqueryUiLayout();
-				},
-			});
-			return false;
+		if (layoutName == "" || layoutName == " ") {
+			alert("You are doing somethings wrong.");
+		}
+
+		var request = {
+			option: "com_ajax",
+			plugin: "helix3",
+			data: data,
+			format: "raw",
+		};
+
+		$.ajax({
+			type: "POST",
+			data: request,
+			dataType: "html",
+			beforeSend: function () {},
+			success: function (response) {
+				$("#helix-layout-builder").empty();
+				$("#helix-layout-builder").append(response).fadeIn("normal");
+				jqueryUiLayout();
+			},
 		});
+		return false;
+	});
 
 	/*********   Lyout Builder JavaScript   **********/
 
@@ -149,7 +147,6 @@ jQuery(function ($) {
 		} else if (this.hasClass("input-media")) {
 			if (options.filed) {
 				$imgParent = this.parent(".media");
-				console.log($imgParent);
 				$imgParent.find("img.media-preview").each(function () {
 					$(this).attr("src", layoutbuilder_base + options.filed);
 				});
@@ -273,15 +270,12 @@ jQuery(function ($) {
 		var $parent = $(this).closest(".column-settings"),
 			flag = false;
 
-		$("#helix-layout-builder")
-			.find(".layout-column")
-			.not(".column-active")
-			.each(function (index, val) {
-				if ($(this).data("column_type") == "1") {
-					flag = true;
-					return false;
-				}
-			});
+		$("#helix-layout-builder").find(".layout-column").not(".column-active").each(function (index, val) {
+			if ($(this).data("column_type") == "1") {
+				flag = true;
+				return false;
+			}
+		});
 
 		if (flag) {
 			alert("Component Area Taken");
@@ -494,6 +488,7 @@ jQuery(function ($) {
 				new_item +=
 					'<div class="column"> <h6 class="col-title pull-left">None</h6> <a class="col-ops-set pull-right" href="#" ><i class="fa fa-gears"></i></a></div>';
 			}
+
 			new_item += "</div>";
 		}
 
@@ -522,11 +517,9 @@ jQuery(function ($) {
 		event.preventDefault();
 
 		if (confirm("Click Ok button to delete Row, Cancel to leave.") == true) {
-			$(this)
-				.closest(".layoutbuilder-section")
-				.slideUp(500, function () {
-					$(this).remove();
-				});
+			$(this).closest(".layoutbuilder-section").slideUp(500, function () {
+				$(this).remove();
+			});
 		}
 	});
 
@@ -542,54 +535,51 @@ jQuery(function ($) {
 	});
 
 	// Generate Layout JSON
-
 	function getGeneratedLayout() {
 		var item = [];
-		$("#helix-layout-builder")
-			.find(".layoutbuilder-section")
-			.each(function (index) {
-				var $row = $(this),
-					rowIndex = index,
-					rowObj = $row.data();
-				delete rowObj.sortableItem;
+		$("#helix-layout-builder").find(".layoutbuilder-section").each(function (index) {
+			var $row = $(this),
+				rowIndex = index,
+				rowObj = $row.data();
+			delete rowObj.sortableItem;
 
-				var activeLayout = $row.find(".column-layout.active"),
-					layoutArray = activeLayout.data("layout"),
-					layout = 12;
+			var activeLayout = $row.find(".column-layout.active"),
+				layoutArray = activeLayout.data("layout"),
+				layout = 12;
 
-				if (layoutArray != 12) {
-					layout = layoutArray.split(",").join("");
-				}
+			if (layoutArray != 12) {
+				layout = layoutArray.split(",").join("");
+			}
 
-				item[rowIndex] = {
-					type: "row",
-					layout: layout,
-					settings: rowObj,
-					attr: [],
+			item[rowIndex] = {
+				type: "row",
+				layout: layout,
+				settings: rowObj,
+				attr: [],
+			};
+
+			// Find Column Elements
+			$row.find(".layout-column").each(function (index) {
+				var $column = $(this),
+					colIndex = index,
+					className = $column.attr("class"),
+					colObj = $column.data();
+				delete colObj.sortableItem;
+
+				item[rowIndex].attr[colIndex] = {
+					type: "sp_col",
+					className: className,
+					settings: colObj,
 				};
-
-				// Find Column Elements
-				$row.find(".layout-column").each(function (index) {
-					var $column = $(this),
-						colIndex = index,
-						className = $column.attr("class"),
-						colObj = $column.data();
-					delete colObj.sortableItem;
-
-					item[rowIndex].attr[colIndex] = {
-						type: "sp_col",
-						className: className,
-						settings: colObj,
-					};
-				});
 			});
+		});
 
 		return item;
 	}
 
 	//On Submit
 	document.adminForm.onsubmit = function (event) {
-		//Webfonts
+		//WebFonts
 		$(".webfont").each(function () {
 			var $that = $(this),
 				webfont = {

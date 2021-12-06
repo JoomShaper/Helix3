@@ -169,6 +169,15 @@
 	-ms-box-sizing: border-box;
 }
 
+.form-group .form-control:disabled,
+.form-group .form-control[readonly] {
+	background-color: #e9ecef !important;
+}
+
+.form-group .minicolors-input {
+	min-width: 120px;
+}
+
 .form-group .form-control-w-auto {
 	width: auto;
 }
@@ -181,6 +190,37 @@
 	display: block;
 	margin-top: 10px;
 	color: #999;
+}
+
+.input-group-j3.input-group-j3 {
+	position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    width: 100%;
+}
+
+.input-group-j3:not(.has-validation)>:not(:last-child) {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.input-group-j3>:not(:first-child):not(.valid-feedback):not(.invalid-feedback) {
+    margin-left: -1px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.input-group-j3:not(.has-validation)>:not(:last-child) {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.input-group-j3>.form-control {
+    position: relative;
+    flex: 1 1 auto;
+    width: 1%;
+    min-width: 0;
 }
 
 .sp-modal .radio,

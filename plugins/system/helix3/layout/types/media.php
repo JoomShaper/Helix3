@@ -36,15 +36,11 @@ class SpTypeMedia
 			JHtml::_('jquery.framework');
 			JHtml::_('behavior.modal');
 
-			$output .= '<div class="media-preview add-on">';
-			$output .= '<div class="image-preview">';
-			$output .= '<img class="media-preview" ' . $src . ' alt="" height="100px">';
-			$output .= '</div>';
-			$output .= '</div>';
-
-			$output .= '<input type="hidden" data-attrname="'.$key.'" class="input-media addon-input" value="'.$attr['std'].'">';
+			$output .= '<div class="input-group-j3">';
+			$output .= '<input type="text" data-attrname="'.$key.'" class="input-media addon-input form-control form-control-w-auto" value="' . htmlspecialchars($attr['std'], ENT_COMPAT, 'UTF-8') . '" readonly="readonly">';
 			$output .= '<a class="modal sppb-btn sppb-btn-primary button-select" title="Select" rel="{handler: \'iframe\', size: {x: 800, y: 500}}">Select</a>';
 			$output .= ' <a class="sppb-btn sppb-btn-danger remove-media" href="#"><i class="icon-remove"></i></a>';
+			$output .= '</div>';
 		}
 		else
 		{

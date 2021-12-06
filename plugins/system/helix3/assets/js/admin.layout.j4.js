@@ -198,8 +198,6 @@ jQuery(function ($) {
 		
 		$clone.initColorPicker();
 		
-		$("#layout-modal").randomIds();
-		
 		$("#layout-modal").spmodal();
 	});
 	
@@ -237,8 +235,7 @@ jQuery(function ($) {
 		});
 		
 		$clone.initColorPicker();
-		
-		$("#layout-modal").randomIds();
+	
 		$("#layout-modal").spmodal();
 	});
 	

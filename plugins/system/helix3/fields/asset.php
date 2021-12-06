@@ -26,6 +26,8 @@ class JFormFieldAsset extends JFormField
     //Core scripts
     JHtml::_('jquery.framework');
 
+    $jVersion = JVERSION < 4 ? '' : '.j4';
+
     if(JVERSION < 4)
     {
       JHtml::_('jquery.ui', array('core', 'sortable'));
@@ -36,33 +38,18 @@ class JFormFieldAsset extends JFormField
       $doc->addScript($helix_plg_url . '/assets/js/jquery-ui.min.js');
     }
 
-    $doc->addScript($helix_plg_url . '/assets/js/helper.js');
+    $doc->addScript($helix_plg_url . '/assets/js/helper'. $jVersion .'.js');
     $doc->addScript($helix_plg_url . '/assets/js/webfont.js');
     $doc->addScript($helix_plg_url . '/assets/js/modal.js');
     
-    if(JVERSION < 4)
-    {
-      $doc->addScript($helix_plg_url . '/assets/js/admin.general.js');
-      $doc->addScript($helix_plg_url . '/assets/js/admin.layout.js');
-    }
-    else
-    {
-      $doc->addScript($helix_plg_url . '/assets/js/admin.general.j4.js');
-      $doc->addScript($helix_plg_url . '/assets/js/admin.layout.j4.js');
-    }
+    $doc->addScript($helix_plg_url . '/assets/js/admin.general'. $jVersion .'.js');
+    $doc->addScript($helix_plg_url . '/assets/js/admin.layout'. $jVersion .'.js');
 
     //CSS
     $doc->addStyleSheet($helix_plg_url . '/assets/css/bootstrap.css');
     $doc->addStyleSheet($helix_plg_url . '/assets/css/modal.css');
     $doc->addStyleSheet($helix_plg_url . '/assets/css/font-awesome.min.css');
-    if(JVERSION < 4)
-    {
-      $doc->addStyleSheet($helix_plg_url . '/assets/css/admin.general.css');
-    }
-    else
-    {
-      $doc->addStyleSheet($helix_plg_url . '/assets/css/admin.general.j4.css');
-    }
+    $doc->addStyleSheet($helix_plg_url . '/assets/css/admin.general'. $jVersion .'.css');
   }
 
   private function getVersion()

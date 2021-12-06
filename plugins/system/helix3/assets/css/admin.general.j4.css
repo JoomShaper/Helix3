@@ -231,12 +231,12 @@
 	list-style: none;
 	padding: 0;
 	margin: 0;
+	display: flex;
 }
 
 .button-group > li {
-	display: inline-block;
+	display: inline-flex;
 	position: relative;
-	float: left;
 }
 
 .button-group > li > .btn {
@@ -540,4 +540,10 @@
 
 .controls .radio > .form-check {
 	margin-right: 16px;
+}
+
+/* Button */
+.btn.btn-default {
+	background-color: #f8f9fa;
+	border-color: #f8f9fa;
 }

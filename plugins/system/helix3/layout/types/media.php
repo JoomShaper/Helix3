@@ -25,29 +25,73 @@ class SpTypeMedia
 			$src = '';
 		}
 
-		JHtml::_('jquery.framework');
-		// JHtml::_('behavior.modal'); // @todo
-		
 		$output  = '<div class="form-group">';
+
 		$output .= '<label>' . $attr['title'] . '</label>';
 		$output .= '<div class="media">';
 
-		$output .= '<div class="media-preview add-on">';
-		$output .= '<div class="image-preview">';
-		$output .= '<img class="media-preview" ' . $src . ' alt="" height="100px">';
-		$output .= '</div>';
-		$output .= '</div>';
+		// Joomla
+		if (JVERSION < 4)
+		{
+			JHtml::_('jquery.framework');
+			JHtml::_('behavior.modal');
 
-		$output .= '<input type="hidden" data-attrname="'.$key.'" class="input-media addon-input" value="'.$attr['std'].'">';
-		$output .= '<a class="modal1 sppb-btn sppb-btn-primary" title="Select" rel="{handler: \'iframe\', size: {x: 800, y: 500}}">Select</a>';
-		$output .= ' <a class="sppb-btn sppb-btn-danger remove-media" href="#"><i class="icon-remove"></i></a>';
+			$output .= '<div class="media-preview add-on">';
+			$output .= '<div class="image-preview">';
+			$output .= '<img class="media-preview" ' . $src . ' alt="" height="100px">';
+			$output .= '</div>';
+			$output .= '</div>';
+
+			$output .= '<input type="hidden" data-attrname="'.$key.'" class="input-media addon-input" value="'.$attr['std'].'">';
+			$output .= '<a class="modal sppb-btn sppb-btn-primary button-select" title="Select" rel="{handler: \'iframe\', size: {x: 800, y: 500}}">Select</a>';
+			$output .= ' <a class="sppb-btn sppb-btn-danger remove-media" href="#"><i class="icon-remove"></i></a>';
+		}
+		else
+		{
+			$url = 'index.php?option=com_media&view=media&tmpl=component';
+
+			$id = 'helix3_modal';
+			$modalHTML = JHtml::_(
+				'bootstrap.renderModal',
+				'imageModal_' . $id,
+				[
+					'url'         => $url,
+					'title'       => JText::_('JLIB_FORM_CHANGE_IMAGE'),
+					'closeButton' => true,
+					'height'      => '100%',
+					'width'       => '100%',
+					'modalWidth'  => '80',
+					'bodyHeight'  => '60',
+					'footer'      => '<button type="button" class="btn btn-success button-save-selected">' . JText::_('JSELECT') . '</button>'
+						. '<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">' . JText::_('JCANCEL') . '</button>',
+				]
+			);
+
+			$output .= '<joomla-field-media class="field-media-wrapper" type="image"
+					base-path="' . JUri::root() . '" root-folder="' . JComponentHelper::getParams('com_media')->get('file_path', 'images') . '" url="' . $url . '"
+					modal-container=".modal" modal-width="100%" modal-height="400px"
+					input=".field-media-input" button-select=".button-select" button-clear=".button-clear"
+					button-save-selected=".button-save-selected">';
+
+			$output .= $modalHTML;
+
+			$output .= '<div class="input-group">';
+			$output .= '<input type="text" data-attrname="' . $key . '" class="input-media addon-input form-control form-control-w-auto field-media-input" value="' . htmlspecialchars($attr['std'], ENT_COMPAT, 'UTF-8') . '" readonly="readonly">';
+			$output .= '<button type="button" class="btn btn-success button-select">' . JText::_('JLIB_FORM_BUTTON_SELECT') . '</button>';
+			$output .= '<button type="button" class="btn btn-danger button-clear"><span class="icon-times" aria-hidden="true"></span><span class="visually-hidden">' . JText::_('JLIB_FORM_BUTTON_CLEAR') . '</span></button>';
+			$output .= '</div>';
+
+			$output .= '</joomla-field-media>';
+
+		}
+
 		$output .= '</div>';
 
 		if ((isset($attr['desc']) ) && ( isset($attr['desc']) != ''))
 		{
 			$output .= '<p class="help-block">' . $attr['desc'] . '</p>';
 		}
-
+		
 		$output .= '</div>';
 
 		return $output;

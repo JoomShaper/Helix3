@@ -136,15 +136,6 @@ jQuery(function ($) {
 			} else {
 				this.removeAttr("checked");
 			}
-		} else if (this.hasClass("input-media")) {
-			if (options.filed) {
-				$imgParent = this.parent(".media");
-				console.log($imgParent);
-				$imgParent.find("img.media-preview").each(function () {
-					$(this).attr("src", layoutbuilder_base + options.filed);
-				});
-			}
-			this.val(options.filed);
 		} else {
 			this.val(options.filed);
 		}
@@ -510,17 +501,6 @@ jQuery(function ($) {
 					$(this).remove();
 				});
 		}
-	});
-
-	// Remove Media
-	$(document).on("click", ".remove-media", function () {
-		var $that = $(this),
-			$imgParent = $that.parent(".media");
-
-		$imgParent.find("img.media-preview").each(function () {
-			$(this).attr("src", "");
-			$(this).closest(".image-preview").css("display", "none");
-		});
 	});
 
 	// Generate Layout JSON

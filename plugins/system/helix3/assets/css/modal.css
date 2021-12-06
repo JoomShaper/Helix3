@@ -169,6 +169,10 @@
 	-ms-box-sizing: border-box;
 }
 
+.form-group .form-control-w-auto {
+	width: auto;
+}
+
 .form-group input.form-control {
 	min-height: 30px;
 }
@@ -593,4 +597,12 @@ fieldset[disabled] .sppb-btn-link:focus {
 }
 .sppb-btn-block + .sppb-btn-block {
 	margin-top: 5px;
+}
+
+/* Joomla 4 */
+#imageModal_helix3_modal {
+	width: 100vw;
+	height: 100vh;
+	left: 50%;
+	transform: translateX(-50%);
 }

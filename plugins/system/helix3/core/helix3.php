@@ -368,7 +368,7 @@ class Helix3
 
 				if (!empty($row->settings->background_image)) {
 
-					$row_css .= 'background-image:url("' . JURI::base(true) . '/' . $row->settings->background_image . '");';
+					$row_css .= 'background-image:url("' . JURI::base(true) . '/' . htmlspecialchars((JVERSION < 4 ? $row->settings->background_image : JHtml::cleanImageURL($row->settings->background_image)->url), ENT_COMPAT, 'UTF-8') . '");';
 
 					if (!empty($row->settings->background_repeat)) {
 						$row_css .= 'background-repeat:' . $row->settings->background_repeat . ';';

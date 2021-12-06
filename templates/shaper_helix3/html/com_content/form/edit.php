@@ -11,7 +11,7 @@ defined('_JEXEC') or die;
 
 JHtml::_('behavior.keepalive');
 JHtml::_('behavior.formvalidator');
-JHtml::_('formbehavior.chosen', '#jform_catid', null, array('disable_search_threshold' => 0));
+// JHtml::_('formbehavior.chosen', '#jform_catid', null, array('disable_search_threshold' => 0));
 
 $this->tab_name = 'com-content-form';
 $this->ignore_fieldsets = array('image-intro', 'image-full', 'jmetadata', 'sppostformats', 'item_associations');

@@ -57,13 +57,13 @@ $colGrid = array(
   <div class="sp-modal-dialog">
     <div class="sp-modal-content">
       <div class="sp-modal-header">
-        <button type="button" class="close" data-dismiss="spmodal" aria-hidden="true">&times;</button>
+        <button type="button" class="btn-close" data-dismiss="spmodal" aria-hidden="true">&times;</button>
         <h3 class="sp-modal-title" id="modal-label"></h3>
       </div>
       <div class="sp-modal-body"></div>
-      <div class="sp-modal-footer clearfix">
-        <a href="javascript:void(0)" class="sppb-btn sppb-btn-success pull-left" id="save-settings" data-dismiss="spmodal"><?php echo JText::_('HELIX_APPLY'); ?></a>
-        <button class="sppb-btn sppb-btn-danger pull-left" data-dismiss="spmodal" aria-hidden="true"><?php echo JText::_('HELIX_CANCEL'); ?></button>
+      <div class="sp-modal-footer">
+        <a href="javascript:void(0)" class="btn btn-success" id="save-settings" data-dismiss="spmodal"><?php echo JText::_('HELIX_APPLY'); ?></a>
+        <button class="btn btn-danger" data-dismiss="spmodal" aria-hidden="true"><?php echo JText::_('HELIX_CANCEL'); ?></button>
       </div>
     </div>
   </div>

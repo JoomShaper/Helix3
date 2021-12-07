@@ -98,13 +98,15 @@ jQuery(function ($) {
 		$(".preset").parent().removeClass("controls").addClass("presets clearfix");
 
 		//Load Preset
-		$("#attrib-preset").find(".preset-control").each(function () {
-			if ($(this).hasClass(current_preset)) {
-				$(this).closest(".control-group").show();
-			} else {
-				$(this).closest(".control-group").hide();
-			}
-		});
+		$("#attrib-preset")
+			.find(".preset-control")
+			.each(function () {
+				if ($(this).hasClass(current_preset)) {
+					$(this).closest(".control-group").show();
+				} else {
+					$(this).closest(".control-group").hide();
+				}
+			});
 
 		//Change Preset
 		$(".preset").on("click", function (event) {
@@ -114,13 +116,15 @@ jQuery(function ($) {
 			$(".preset").removeClass("active");
 			$(this).addClass("active");
 
-			$("#attrib-preset").find(".preset-control").each(function () {
-				if ($(this).hasClass($that.data("preset"))) {
-					$(this).closest(".control-group").fadeIn();
-				} else {
-					$(this).closest(".control-group").hide();
-				}
-			});
+			$("#attrib-preset")
+				.find(".preset-control")
+				.each(function () {
+					if ($(this).hasClass($that.data("preset"))) {
+						$(this).closest(".control-group").fadeIn();
+					} else {
+						$(this).closest(".control-group").hide();
+					}
+				});
 
 			$("#template-preset").val($that.data("preset"));
 		});

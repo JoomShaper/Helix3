@@ -334,24 +334,42 @@ class Helix3
 
 				$row_class = '';
 
+				$hidden_on_phone = isset($row->settings->hidden_xs) && $row->settings->hidden_xs ? true : false;
+				$hidden_on_tablet = isset($row->settings->hidden_sm) && $row->settings->hidden_sm ? true : false;
+				$hidden_on_desktop = isset($row->settings->hidden_md) && $row->settings->hidden_md ? true : false;
+
+				if ($hidden_on_desktop && $hidden_on_tablet && $hidden_on_phone)
+				{
+					$row_class = 'd-none';
+				}
+				else if ($hidden_on_desktop && $hidden_on_tablet)
+				{
+					$row_class = 'd-block d-md-none';
+				}
+				else if ($hidden_on_desktop && $hidden_on_phone)
+				{
+					$row_class = 'd-none d-md-block d-lg-none';
+				}
+				else if ($hidden_on_tablet && $hidden_on_phone)
+				{
+					$row_class = 'd-none d-lg-block';
+				}
+				else if ($hidden_on_desktop)
+				{
+					$row_class = 'd-lg-none';
+				}
+				else if ($hidden_on_tablet)
+				{
+					$row_class = 'd-md-none d-lg-block';
+				}
+				else if ($hidden_on_phone)
+				{
+					$row_class = 'd-none d-md-block';
+				}
+
 				if (!empty($row->settings->custom_class))
 				{
-					$row_class .= $row->settings->custom_class;
-				}
-
-				if (!empty($row->settings->hidden_xs))
-				{
-					$row_class .= ' hidden-xs';
-				}
-
-				if (!empty($row->settings->hidden_sm))
-				{
-					$row_class .= ' hidden-sm';
-				}
-
-				if (!empty($row->settings->hidden_md))
-				{
-					$row_class .= ' hidden-md';
+					$row_class .= ' ' . $row->settings->custom_class;
 				}
 
 				if ($row_class)
@@ -1131,7 +1149,7 @@ class Helix3
 		$cachetime = $app->get('cachetime', 15);
 
 		$all_scripts  = $doc->_scripts;
-		$cache_path   = JPATH_CACHE . '/com_templates/templates/' . self::getTemplate();
+		$cache_path   = JPATH_ROOT . '/cache/com_templates/templates/' . self::getTemplate();
 		$scripts      = array();
 		$root_url     = JURI::root(true);
 		$minifiedCode = '';
@@ -1153,7 +1171,7 @@ class Helix3
 					$scripts[] = $key;
 					$md5sum .= md5($key);
 					$compressed = \JShrink\Minifier::minify(file_get_contents($js_file), array('flaggedComments' => false));
-					$minifiedCode .= "/*------ " . JFile::getName($js_file) . " ------*/\n" . $compressed . "\n\n";//add file name to compressed JS
+					$minifiedCode .= "/*------ " . basename($js_file) . " ------*/\n" . $compressed . "\n\n";//add file name to compressed JS
 
 					unset($doc->_scripts[$key]); //Remove sripts
 				}
@@ -1201,7 +1219,7 @@ class Helix3
 		$app             = JFactory::getApplication();
 		$cachetime       = $app->get('cachetime', 15);
 		$all_stylesheets = $doc->_styleSheets;
-		$cache_path      = JPATH_CACHE . '/com_templates/templates/' . self::getTemplate();
+		$cache_path      = JPATH_ROOT . '/cache/com_templates/templates/' . self::getTemplate();
 		$stylesheets     = array();
 		$root_url        = JURI::root(true);
 		$minifiedCode    = '';
@@ -1242,9 +1260,9 @@ class Helix3
 					return "url('$url')";
 				}, $compressed);
 
-				$minifiedCode .= "/*------ " . JFile::getName($css_file) . " ------*/\n" . $fixUrl . "\n\n";//add file name to compressed css
+				$minifiedCode .= "/*------ " . basename($css_file) . " ------*/\n" . $fixUrl . "\n\n";//add file name to compressed css
 
-				unset($doc->_styleSheets[$key]); //Remove sripts
+				unset($doc->_styleSheets[$key]); //Remove scripts
 			}
 		}
 

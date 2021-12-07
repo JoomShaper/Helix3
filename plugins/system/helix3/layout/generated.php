@@ -57,7 +57,7 @@ $colGrid = array(
   <div class="sp-modal-dialog">
     <div class="sp-modal-content">
       <div class="sp-modal-header">
-        <button type="button" class="btn-close" data-dismiss="spmodal" aria-hidden="true">&times;</button>
+        <button type="button" class="<?php echo JVERSION < 4 ? 'close' : 'btn-close'; ?>" data-dismiss="spmodal" aria-hidden="true"><?php echo JVERSION < 4 ? '&times;' : ''; ?></button>
         <h3 class="sp-modal-title" id="modal-label"></h3>
       </div>
       <div class="sp-modal-body"></div>

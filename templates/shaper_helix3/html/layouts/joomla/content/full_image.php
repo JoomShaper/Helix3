@@ -11,14 +11,32 @@ $params  = $displayData->params;
 $attribs 		= json_decode($displayData->attribs);
 $images 		= json_decode($displayData->images);
 $full_image 	= '';
+$image_alt_text = '';
 
 if (isset($attribs->spfeatured_image) && $attribs->spfeatured_image != '')
 {
 	$full_image = $attribs->spfeatured_image;
+	if (isset($attribs->spfeatured_image_alt) && $attribs->spfeatured_image_alt)
+	{
+		$image_alt_text = $attribs->spfeatured_image_alt;
+	}
 }
 elseif(isset($images->image_fulltext) && !empty($images->image_fulltext))
 {
 	$full_image = $images->image_fulltext;
+}
+
+// if alt text is empty 
+if (empty($image_alt_text))
+{
+	if (isset($images->image_fulltext_alt) && $images->image_fulltext_alt)
+	{
+		$image_alt_text = $images->image_fulltext_alt;
+	}
+	else
+	{
+		$image_alt_text = $displayData->title;
+	}
 }
 ?>
 
@@ -29,6 +47,6 @@ elseif(isset($images->image_fulltext) && !empty($images->image_fulltext))
 		<?php if ($images->image_fulltext_caption):
 		echo 'class="caption"' . ' title="' . htmlspecialchars($images->image_fulltext_caption) . '"';
 		endif; ?>
-		src="<?php echo htmlspecialchars($full_image); ?>" alt="<?php echo htmlspecialchars($images->image_fulltext_alt); ?>" itemprop="image" />
+		src="<?php echo htmlspecialchars($full_image); ?>" alt="<?php echo htmlspecialchars($image_alt_text); ?>" itemprop="image" />
 	</div>
 <?php endif; ?>

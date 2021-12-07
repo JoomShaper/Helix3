@@ -48,7 +48,7 @@ class Helix3FeaturePreloader {
                             $output .= '<li></li>';
                             $output .= '<li></li>';
                         $output .= '</ul>'; //<!-- /.Audio Wave 2 loader -->
-                    $output .= '</div> >'; // <!-- /.wave-two-wrap -->
+                    $output .= '</div>'; // <!-- /.wave-two-wrap -->
 
                 } elseif ($getHelix3->getParam('preloader_animation') == 'audio-wave') {
                     // Audio Wave loader

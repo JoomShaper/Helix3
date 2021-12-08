@@ -4,20 +4,20 @@ a {
 a:hover {
   color: #2f3475;
 }
-.sp-megamenu-parent >li.active>a,
-.sp-megamenu-parent >li:hover>a {
+.sp-megamenu-parent > li.active > a,
+.sp-megamenu-parent > li:hover > a {
   color: #3d449a;
 }
-.sp-megamenu-parent .sp-dropdown li.sp-menu-item >a:hover {
+.sp-megamenu-parent .sp-dropdown li.sp-menu-item > a:hover {
   background: #3d449a;
 }
-.sp-megamenu-parent .sp-dropdown li.sp-menu-item.active>a {
+.sp-megamenu-parent .sp-dropdown li.sp-menu-item.active > a {
   color: #3d449a;
 }
-#offcanvas-toggler >i {
+#offcanvas-toggler > i {
   color: #000000;
 }
-#offcanvas-toggler >i:hover {
+#offcanvas-toggler > i:hover {
   color: #3d449a;
 }
 .btn-primary,
@@ -30,7 +30,7 @@ a:hover {
   border-color: #272c63;
   background-color: #2f3475;
 }
-ul.social-icons >li a:hover {
+ul.social-icons > li a:hover {
   color: #3d449a;
 }
 .sp-page-title {
@@ -39,16 +39,16 @@ ul.social-icons >li a:hover {
 .layout-boxed .body-innerwrapper {
   background: #ffffff;
 }
-.sp-module ul >li >a {
+.sp-module ul > li > a {
   color: #000000;
 }
-.sp-module ul >li >a:hover {
+.sp-module ul > li > a:hover {
   color: #3d449a;
 }
-.sp-module .latestnews >div >a {
+.sp-module .latestnews > div > a {
   color: #000000;
 }
-.sp-module .latestnews >div >a:hover {
+.sp-module .latestnews > div > a:hover {
   color: #3d449a;
 }
 .sp-module .tagscloud .tag-name:hover {
@@ -88,25 +88,25 @@ blockquote {
 .sp-comingsoon body {
   background-color: #3d449a;
 }
-.pagination>li>a,
-.pagination>li>span {
+.pagination > li > a,
+.pagination > li > span {
   color: #000000;
 }
-.pagination>li>a:hover,
-.pagination>li>a:focus,
-.pagination>li>span:hover,
-.pagination>li>span:focus {
+.pagination > li > a:hover,
+.pagination > li > a:focus,
+.pagination > li > span:hover,
+.pagination > li > span:focus {
   color: #000000;
 }
-.pagination>.active>a,
-.pagination>.active>span {
+.pagination > .active > a,
+.pagination > .active > span {
   border-color: #3d449a;
   background-color: #3d449a;
 }
-.pagination>.active>a:hover,
-.pagination>.active>a:focus,
-.pagination>.active>span:hover,
-.pagination>.active>span:focus {
+.pagination > .active > a:hover,
+.pagination > .active > a:focus,
+.pagination > .active > span:hover,
+.pagination > .active > span:focus {
   border-color: #3d449a;
   background-color: #3d449a;
 }

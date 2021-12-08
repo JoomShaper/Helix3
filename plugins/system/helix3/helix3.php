@@ -31,19 +31,28 @@ class  plgSystemHelix3 extends JPlugin
 
             if(is_null($activeMenu)) $template_style_id = 0;
             else $template_style_id = (int) $activeMenu->template_style_id;
-            if( $template_style_id > 0 ){
+            if ($template_style_id > 0)
+            {
+                $db = JFactory::getDbo();
+                $query = $db->getQuery(true);
+                $query->select(array('*'));
+                $query->from($db->quoteName('#__template_styles'));
+                $query->where($db->quoteName('client_id') . ' = 0');
+                $query->where($db->quoteName('id') . ' = ' . $db->quote($template_style_id));
+                $db->setQuery($query);
+                $style = $db->loadObject();
 
-                JTable::addIncludePath(JPATH_ADMINISTRATOR . '/components/com_templates/tables');
-                $style = JTable::getInstance('Style', 'TemplatesTable');
-                $style->load($template_style_id);
-
-                if( !empty($style->template) ) JFactory::getApplication()->setTemplate($style->template, $style->params);
+                if(!empty($style->template) && !empty($style->params))
+                {
+                    JFactory::getApplication()->setTemplate($style->template, $style->params);
+                }
             }
         }
     }
 
-    function onContentPrepareForm($form, $data) {
-
+    function onContentPrepareForm($form, $data)
+    {
+        $v = self::getVersion();
         $doc = JFactory::getDocument();
         $plg_path = JURI::root(true) . '/plugins/system/helix3';
         JForm::addFormPath(JPATH_PLUGINS.'/system/helix3/params');
@@ -54,27 +63,24 @@ class  plgSystemHelix3 extends JPlugin
 
             if($data['id'] && $data['parent_id'] == 1)
             {
-                $doc->addStyleSheet($plg_path . '/assets/css/bootstrap.css');
-                $doc->addStyleSheet($plg_path . '/assets/css/font-awesome.min.css');
-                $doc->addStyleSheet($plg_path . '/assets/css/modal.css');
-                $doc->addStyleSheet($plg_path . '/assets/css/menu.generator.css');
+                $doc->addStyleSheet($plg_path . '/assets/css/bootstrap.css?' . $v);
+                $doc->addStyleSheet($plg_path . '/assets/css/font-awesome.min.css?' . $v);
+                $doc->addStyleSheet($plg_path . '/assets/css/modal.css?' . $v);
+                $doc->addStyleSheet($plg_path . '/assets/css/menu.generator.css?' . $v);
                 
                 JHtml::_('jquery.framework');
 
                 if(JVERSION < 4)
                 {
                     JHtml::_('jquery.ui', array('core', 'more', 'sortable'));
-                    $doc->addScript($plg_path.'/assets/js/jquery-ui.draggable.min.js');
+                    $doc->addScript($plg_path.'/assets/js/jquery-ui.draggable.min.js?' . $v);
                 }
                 else
                 {
-                    $doc->addScript($plg_path . '/assets/js/jquery-ui.min.js');
+                    $doc->addScript($plg_path . '/assets/js/jquery-ui.min.js?' . $v);
                 }
-                // $doc->addScript($plg_path . '/assets/js/jquery.ui.core.min.js');
-                // $doc->addScript($plg_path . '/assets/js/jquery.ui.sortable.min.js');
-                // $doc->addScript($plg_path . '/assets/js/jquery-ui.draggable.min.js');
-                $doc->addScript($plg_path . '/assets/js/modal.js');
-                $doc->addScript( $plg_path . '/assets/js/menu.generator.js' );
+                $doc->addScript($plg_path . '/assets/js/modal.js?' . $v);
+                $doc->addScript($plg_path . '/assets/js/menu.generator.js?' . $v);
                 $form->loadFile('menu-parent', false);
 
             } else {
@@ -88,8 +94,8 @@ class  plgSystemHelix3 extends JPlugin
         //Article Post format
         if ($form->getName()=='com_content.article') {
             JHtml::_('jquery.framework');
-            $doc->addStyleSheet($plg_path.'/assets/css/font-awesome.min.css');
-            $doc->addScript($plg_path.'/assets/js/post-formats.js');
+            $doc->addStyleSheet($plg_path.'/assets/css/font-awesome.min.css?' . $v);
+            $doc->addScript($plg_path.'/assets/js/post-formats.js?' . $v);
 
             $tpl_path = JPATH_ROOT . '/templates/' . $this->getTemplateName();
 
@@ -201,7 +207,7 @@ class  plgSystemHelix3 extends JPlugin
         return $db->loadObject()->template;
     }
 
-    function onAfterRender__() {
+    function onAfterRender() {
         $app = JFactory::getApplication();
 
   		if ($app->isClient('administrator'))
@@ -216,4 +222,26 @@ class  plgSystemHelix3 extends JPlugin
 
   		JFactory::getApplication()->setBody($body);
     }
+
+    private static function getVersion()
+	{
+		$db = JFactory::getDBO();
+		$query = $db->getQuery(true);
+		$query
+			->select(array('*'))
+			->from($db->quoteName('#__extensions'))
+			->where($db->quoteName('type').' = '.$db->quote('plugin'))
+			->where($db->quoteName('element').' = '.$db->quote('helix3'))
+			->where($db->quoteName('folder').' = '.$db->quote('system'));
+		$db->setQuery($query);
+		$result = $db->loadObject();
+		$manifest_cache = json_decode($result->manifest_cache);
+		
+		if (isset($manifest_cache->version))
+		{
+			return $manifest_cache->version;
+		}
+		
+		return;
+	}
 }

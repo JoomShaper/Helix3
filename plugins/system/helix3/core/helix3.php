@@ -1129,7 +1129,7 @@ class Helix3
 			$excludes = explode(',', $excludes);
 			foreach ($excludes as $exclude)
 			{
-				if (JFile::getName($key) == trim($exclude))
+				if (basename($key) == trim($exclude))
 				{
 					$match = true;
 				}

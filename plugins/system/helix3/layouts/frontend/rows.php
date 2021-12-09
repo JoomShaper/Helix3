@@ -29,28 +29,54 @@ $output ='';
 
 $output .= '<div class="row">';
 
-foreach ($data['rowColumns'] as $key => $column){
-
+foreach ($data['rowColumns'] as $key => $column)
+{
     //Responsive Utilities
-    if (isset($column->settings->xs_col) && $column->settings->xs_col) {
-        $column->className = $column->settings->xs_col . ' ' . $column->className;
+    if (isset($column->settings->sm_col) && $column->settings->sm_col)
+    {
+        $column->className = str_replace('col-sm', 'col-md', $column->settings->sm_col) . ' ' . $column->className;
+    }
+    
+    if (isset($column->settings->xs_col) && $column->settings->xs_col)
+    {
+        $column->className = str_replace('col-xs', 'col', $column->settings->xs_col) . ' ' . $column->className;
     }
 
-    if (isset($column->settings->sm_col) && $column->settings->sm_col) {
-        $column->className = preg_replace('/col-sm-\d*/', $column->settings->sm_col, $column->className);
+    $hidden_on_phone = isset($column->settings->hidden_xs) && $column->settings->hidden_xs ? true : false;
+    $hidden_on_tablet = isset($column->settings->hidden_sm) && $column->settings->hidden_sm ? true : false;
+    $hidden_on_desktop = isset($column->settings->hidden_md) && $column->settings->hidden_md ? true : false;
+
+    $responsive_class = '';
+    if ($hidden_on_desktop && $hidden_on_tablet && $hidden_on_phone)
+    {
+        $responsive_class = 'd-none';
+    }
+    else if ($hidden_on_desktop && $hidden_on_tablet)
+    {
+        $responsive_class = 'd-block d-md-none';
+    }
+    else if ($hidden_on_desktop && $hidden_on_phone)
+    {
+        $responsive_class = 'd-none d-md-block d-lg-none';
+    }
+    else if ($hidden_on_tablet && $hidden_on_phone)
+    {
+        $responsive_class = 'd-none d-lg-block';
+    }
+    else if ($hidden_on_desktop)
+    {
+        $responsive_class = 'd-lg-none';
+    }
+    else if ($hidden_on_tablet)
+    {
+        $responsive_class = 'd-md-none d-lg-block';
+    }
+    else if ($hidden_on_phone)
+    {
+        $responsive_class = 'd-none d-md-block';
     }
 
-    if (isset($column->settings->hidden_md) && $column->settings->hidden_md) {
-        $column->className = $column->className . ' hidden-md hidden-lg';
-    }
-
-    if (isset($column->settings->hidden_sm) && $column->settings->hidden_sm) {
-        $column->className = $column->className . ' hidden-sm';
-    }
-
-    if (isset($column->settings->hidden_xs) && $column->settings->hidden_xs) {
-        $column->className = $column->className . ' hidden-xs';
-    }
+    $column->className = $column->className . ' ' . $responsive_class;
     //End Responsive Utilities
 
     if ($column->settings->column_type){ //Component

@@ -69,31 +69,29 @@ JHtml::addIncludePath(JPATH_COMPONENT . '/helpers');
 	<?php
 	$introcount = (count($this->intro_items));
 	$counter = 0;
-	$this->columns = $this->columns ?? 1;
 	?>
 
 	<?php if (!empty($this->intro_items)) : ?>
-		<?php foreach ($this->intro_items as $key => &$item) : ?>
-			<?php $rowcount = ((int) $key % (int) $this->columns) + 1; ?>
-			<?php if ($rowcount == 1) : ?>
-				<?php $row = $counter / $this->columns; ?>
-				<div class="items-row <?php echo 'row-' . $row; ?> row clearfix">
-			<?php endif; ?>
-			<div class="col-sm-<?php echo round((12 / $this->columns)); ?>">
-				<article class="item column-<?php echo $rowcount; ?><?php echo $item->state == 0 ? ' system-unpublished' : null; ?><?php echo $item->featured ? ' item-featured' : ''; ?>"
-					itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-					<?php
-					$this->item = & $item;
-					echo $this->loadTemplate('item');
-					?>
-				</article>
-				<!-- end item -->
-				<?php $counter++; ?>
-			</div><!-- end col-sm-* -->
-			<?php if (($rowcount == $this->columns) or ($counter == $introcount)) : ?>
-				</div><!-- end row -->
-			<?php endif; ?>
-		<?php endforeach; ?>
+		<?php $blogClass = $this->params->get('blog_class', ''); ?>
+		<?php if ((int) $this->params->get('num_columns') > 1) : ?>
+			<?php $blogClass .= 'cols-' . (int) $this->params->get('num_columns'); ?>	
+		<?php endif; ?>
+		<div class="article-list">
+			<div class="row row-<?php echo $counter + 1; ?> <?php echo $blogClass; ?>">
+			<?php foreach ($this->intro_items as $key => &$item) : ?>
+				<div class="col-lg-<?php echo round(12 / $this->params->get('num_columns')); ?>">
+					<div class="article"
+						itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+						<?php
+						$this->item = & $item;
+						echo $this->loadTemplate('item');
+						?>
+					</div>
+					<?php $counter++; ?>
+				</div>
+			<?php endforeach; ?>
+			</div>
+		</div>
 	<?php endif; ?>
 
 	<?php if (!empty($this->link_items)) : ?>

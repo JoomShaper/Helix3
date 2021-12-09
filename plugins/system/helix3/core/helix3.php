@@ -310,8 +310,6 @@ class Helix3
 
 		foreach ($rows as $key => $row)
 		{
-			//echo $key;
-
 			$rowColumns = self::rowColumns($row->attr);
 
 			if (!empty($rowColumns))
@@ -540,7 +538,7 @@ class Helix3
 
 			if ($column->settings->column_type)
 			{
-				$column->className = 'col-sm-' . (self::getColXsNo($column->className) + $absspan) . ' col-md-' . (self::getColXsNo($column->className) + $absspan);
+				$column->className = 'col-lg-' . (self::getColXsNo($column->className) + $absspan);
 				$cols[]            = $column;
 				$col_i++;
 			}
@@ -553,11 +551,11 @@ class Helix3
 					$last_col = ($totalPublished == $col_i) ? $absspan : 0;
 					if ($hasComponent)
 					{
-						$column->className = 'col-sm-' . self::getColXsNo($column->className) . ' col-md-' . self::getColXsNo($column->className);
+						$column->className = 'col-lg-' . self::getColXsNo($column->className);
 					}
 					else
 					{
-						$column->className = 'col-sm-' . (self::getColXsNo($column->className) + $last_col) . ' col-md-' . (self::getColXsNo($column->className) + $last_col);
+						$column->className = 'col-lg-' . (self::getColXsNo($column->className) + $last_col);
 					}
 
 					$cols[] = $column;

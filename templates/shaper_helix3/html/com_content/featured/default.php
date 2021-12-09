@@ -40,38 +40,41 @@ JHtml::addIncludePath(JPATH_COMPONENT . '/helpers');
 	<?php endforeach; ?>
 </div>
 <?php endif; ?>
+
 <?php
-	$introcount = (count($this->intro_items));
+	$introcount = count($this->intro_items);
 	$counter = 0;
 	$this->columns = $this->columns ?? 1;
 ?>
+
 <?php if (!empty($this->intro_items)) : ?>
-	<?php foreach ($this->intro_items as $key => &$item) : ?>
-
-		<?php
-		$key = ($key - $leadingcount) + 1;
-		$rowcount = (((int) $key - 1) % (int) $this->columns) + 1;
-		$row = $counter / $this->columns;
-
-		if ($rowcount == 1) : ?>
-
-		<div class="row cols-<?php echo (int) $this->columns;?>">
-		<?php endif; ?>
-			<article class="item column-<?php echo $rowcount;?><?php echo $item->state == 0 ? ' system-unpublished' : null; ?> col-sm-<?php echo round((12 / $this->columns));?>"
-				itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="article-list">
+		<?php foreach ($this->intro_items as $key => &$item) : ?>
 			<?php
-					$this->item = &$item;
-					echo $this->loadTemplate('item');
-			?>
-			</article>
+			$key = ($key - $leadingcount) + 1;
+			$rowcount = (((int) $key - 1) % (int) $this->columns) + 1;
+			$row = $counter / $this->columns;
+
+			if ($rowcount === 1) : ?>
+			<div class="row items-row cols-<?php echo (int) $this->columns; ?> <?php echo 'row-' . $row; ?> row">
+			<?php endif; ?>
+			
+			<div class="col-lg-<?php echo round(12 / $this->columns); ?> item column-<?php echo $rowcount; ?>">
+				<div class="article"
+					itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+					<?php
+						$this->item = &$item;
+						echo $this->loadTemplate('item');
+					?>
+				</div>
+			</div>
+			
 			<?php $counter++; ?>
-
 			<?php if (($rowcount == $this->columns) or ($counter == $introcount)) : ?>
-
-		</div>
-		<?php endif; ?>
-
-	<?php endforeach; ?>
+				</div>
+			<?php endif; ?>
+		<?php endforeach; ?>
+	</div>
 <?php endif; ?>
 
 <?php if (!empty($this->link_items)) : ?>

@@ -23,10 +23,10 @@ $usersConfig = JComponentHelper::getParams('com_users');
 		</div>
 	<?php endif; ?>
 	
-	<div id="form-login-username" class="form-group">
+	<div id="form-login-username" class="form-group mb-3">
 		<?php if (!$params->get('usetext')) : ?>
 			<div class="input-group">
-				<span class="input-group-addon">
+				<span class="input-group-text input-group-addon">
 					<i class="icon-user hasTooltip" title="<?php echo JText::_('MOD_LOGIN_VALUE_USERNAME') ?>"></i>
 				</span>
 				<input id="modlgn-username" type="text" name="username" class="form-control" tabindex="0" size="18" placeholder="<?php echo JText::_('MOD_LOGIN_VALUE_USERNAME') ?>" />
@@ -35,11 +35,12 @@ $usersConfig = JComponentHelper::getParams('com_users');
 			<input id="modlgn-username" type="text" name="username" class="form-control" tabindex="0" size="18" placeholder="<?php echo JText::_('MOD_LOGIN_VALUE_USERNAME') ?>" />
 		<?php endif; ?>
 	</div>
-	<div id="form-login-password" class="form-group">
+
+	<div id="form-login-password" class="form-group mb-3">
 		<div class="controls">
 			<?php if (!$params->get('usetext')) : ?>
 				<div class="input-group">
-					<span class="input-group-addon">
+					<span class="input-group-text input-group-addon">
 						<i class="icon-lock hasTooltip" title="<?php echo JText::_('JGLOBAL_PASSWORD') ?>"></i>
 					</span>
 					<input id="modlgn-passwd" type="password" name="password" class="form-control" tabindex="0" size="18" placeholder="<?php echo JText::_('JGLOBAL_PASSWORD') ?>" />
@@ -49,11 +50,12 @@ $usersConfig = JComponentHelper::getParams('com_users');
 			<?php endif; ?>
 		</div>
 	</div>
+	
 	<?php if (count($twofactormethods) > 1): ?>
-	<div id="form-login-secretkey" class="form-group">
+	<div id="form-login-secretkey" class="form-group mb-3">
 		<?php if (!$params->get('usetext')) : ?>
 			<div class="input-group">
-				<span class="input-group-addon hasTooltip" title="<?php echo JText::_('JGLOBAL_SECRETKEY_HELP'); ?>">
+				<span class="input-group-text input-group-addon hasTooltip" title="<?php echo JText::_('JGLOBAL_SECRETKEY_HELP'); ?>">
 					<i class="icon-help"></i>
 				</span>
 				<input id="modlgn-secretkey" autocomplete="off" type="text" name="secretkey" class="form-control" tabindex="0" size="18" placeholder="<?php echo JText::_('JGLOBAL_SECRETKEY') ?>" />
@@ -67,14 +69,12 @@ $usersConfig = JComponentHelper::getParams('com_users');
 	<?php endif; ?>
 
 	<?php if (JPluginHelper::isEnabled('system', 'remember')) : ?>
-	<div id="form-login-remember" class="form-group">
-		<div class="checkbox">
-			<label for="modlgn-remember"><input id="modlgn-remember" type="checkbox" name="remember" class="inputbox" value="yes"><?php echo JText::_('MOD_LOGIN_REMEMBER_ME') ?></label>
-		</div>
+	<div id="form-login-remember" class="form-check form-group mb-3">
+		<label for="modlgn-remember"><input id="modlgn-remember" type="checkbox" name="remember" class="form-check-input" value="yes"><?php echo JText::_('MOD_LOGIN_REMEMBER_ME') ?></label>
 	</div>
 	<?php endif; ?>
 
-	<div id="form-login-submit" class="form-group">
+	<div id="form-login-submit" class="form-group mb-3">
 		<button type="submit" tabindex="0" name="Submit" class="btn btn-primary"><?php echo JText::_('JLOGIN') ?></button>
 		<?php if ($usersConfig->get('allowUserRegistration')) : ?>
 			<a class="btn btn-success" href="<?php echo JRoute::_('index.php?option=com_users&view=registration&Itemid=' . UsersHelperRoute::getRegistrationRoute()); ?>"><?php echo JText::_('MOD_LOGIN_REGISTER'); ?> <span class="icon-arrow-right"></span></a>

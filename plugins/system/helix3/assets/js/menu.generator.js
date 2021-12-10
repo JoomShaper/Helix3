@@ -122,12 +122,12 @@ jQuery(function ($) {
 	//Remove Module
 	$(document).on("click", ".modules-container .fa-remove", function (event) {
 		event.preventDefault();
-		$(this)
-			.closest(".draggable-module")
-			.fadeOut(400)
-			.delay(400, function () {
-				$(this).remove();
-			});
+		var modules_container = $(this).closest(".modules-container");
+		$(this).closest(".draggable-module").remove();
+
+		if (!modules_container.find(".draggable-module").length) {
+			modules_container.empty();
+		}
 	});
 
 	$(".layout-reset").on("click", function (event) {

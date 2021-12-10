@@ -152,10 +152,10 @@ if($count > 4 && $count != 6)
         </li>
         <li id="sizeShape"><a href="#" class="add-layout btn btn-primary"><i class="fa fa-plus"></i> <?php echo JText::_('HELIX_MENU_MANAGE_LAYOUT'); ?></a></li>
         <li class="btn-group d-inline-flex">
-          <a class="alignment btn<?php echo JVERSION < 4 ? '' : ' btn-default'; ?> <?php echo ($align == 'left') ? 'active' : ''; ?>" data-al_flag="left" href="#"><?php echo JText::_('HELIX_GLOBAL_LEFT'); ?></a>
-          <a class="alignment btn<?php echo JVERSION < 4 ? '' : ' btn-default'; ?> <?php echo ($align == 'center') ? 'active' : ''; ?>" data-al_flag="center" href="#"><?php echo JText::_('HELIX_GLOBAL_CENTER'); ?></a>
-          <a class="alignment btn<?php echo JVERSION < 4 ? '' : ' btn-default'; ?> <?php echo ($align == 'right') ? 'active' : ''; ?>" data-al_flag="right" href="#"><?php echo JText::_('HELIX_GLOBAL_RIGHT'); ?></a>
-          <a class="alignment btn<?php echo JVERSION < 4 ? '' : ' btn-default'; ?> <?php echo ($align == 'full') ? 'active' : ''; ?>" data-al_flag="full" href="#"><?php echo JText::_('HELIX_GLOBAL_FULL'); ?></a>
+          <a class="alignment btn btn-default <?php echo ($align == 'left') ? 'active' : ''; ?>" data-al_flag="left" href="#"><?php echo JText::_('HELIX_GLOBAL_LEFT'); ?></a>
+          <a class="alignment btn btn-default <?php echo ($align == 'center') ? 'active' : ''; ?>" data-al_flag="center" href="#"><?php echo JText::_('HELIX_GLOBAL_CENTER'); ?></a>
+          <a class="alignment btn btn-default <?php echo ($align == 'right') ? 'active' : ''; ?>" data-al_flag="right" href="#"><?php echo JText::_('HELIX_GLOBAL_RIGHT'); ?></a>
+          <a class="alignment btn btn-default <?php echo ($align == 'full') ? 'active' : ''; ?>" data-al_flag="full" href="#"><?php echo JText::_('HELIX_GLOBAL_FULL'); ?></a>
         </li>
         <li class="btn-group">
           <a class="layout-reset btn btn-success"href="#" data-current_item="<?php echo $current_menu_id; ?>"><i class="fa fa-refresh"></i> <?php echo JText::_('HELIX_GLOBAL_RESET'); ?></a>

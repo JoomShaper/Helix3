@@ -183,7 +183,7 @@ jQuery(function ($) {
 
 		var $that = $(this),
 			template_id = $that.data("template_id"),
-			temp_settings = $.trim($that.prev().val());
+			temp_settings = $.trim($("#import-data").val());
 
 		if (temp_settings == "") {
 			return false;

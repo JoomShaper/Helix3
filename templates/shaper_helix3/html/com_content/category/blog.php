@@ -80,13 +80,13 @@ JHtml::addIncludePath(JPATH_COMPONENT . '/helpers');
 			<div class="row row-<?php echo $counter + 1; ?> <?php echo $blogClass; ?>">
 			<?php foreach ($this->intro_items as $key => &$item) : ?>
 				<div class="col-lg-<?php echo round(12 / $this->params->get('num_columns')); ?>">
-					<div class="article"
+					<article class="item"
 						itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
 						<?php
 						$this->item = & $item;
 						echo $this->loadTemplate('item');
 						?>
-					</div>
+					</article>
 					<?php $counter++; ?>
 				</div>
 			<?php endforeach; ?>

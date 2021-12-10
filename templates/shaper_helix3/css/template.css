@@ -1859,8 +1859,12 @@ article.item {
 }
 .helix-social-share .helix-social-share-icon ul li div a:hover,
 .helix-social-share .helix-social-share-icon ul li div a:focus {
-  background: #124ceb;
+  background: #26aae1;
   color: #fff;
+}
+.view-article nav.pagenavigation > ul {
+  display: flex;
+  justify-content: space-between;
 }
 #sp-bottom .sp-module ul {
   display: block;
@@ -2091,7 +2095,7 @@ table.category tbody > tr td {
   transition: 300ms;
 }
 .sp-pre-loader {
-  background: #f5f5f5;
+  background: #e6a6a6;
   height: 100%;
   left: 0;
   position: fixed;
@@ -2100,7 +2104,7 @@ table.category tbody > tr td {
   z-index: 99999;
 }
 .sp-pre-loader .sp-loader-clock {
-  border: 3px solid #333333;
+  border: 3px solid #a61dab;
   border-radius: 60px;
   bottom: 0;
   height: 80px;
@@ -2114,7 +2118,7 @@ table.category tbody > tr td {
 .sp-pre-loader .sp-loader-clock:after {
   content: "";
   position: absolute;
-  background-color: #333333;
+  background-color: #a61dab;
   top: 2px;
   left: 48%;
   height: 38px;
@@ -2128,7 +2132,7 @@ table.category tbody > tr td {
 .sp-pre-loader .sp-loader-clock:before {
   content: "";
   position: absolute;
-  background-color: #333333;
+  background-color: #a61dab;
   top: 6px;
   left: 48%;
   height: 35px;
@@ -2144,7 +2148,7 @@ table.category tbody > tr td {
   height: 80px;
   width: 80px;
   border-radius: 80px;
-  border: 3px solid rgba(51,51,51,0.7);
+  border: 3px solid rgba(166,29,171,0.7);
   left: 0;
   top: 0;
   right: 0;
@@ -2163,7 +2167,7 @@ table.category tbody > tr td {
   width: 11px;
   height: 11px;
   border-radius: 10px;
-  background-color: #333333;
+  background-color: #a61dab;
 }
 .sp-pre-loader .sp-loader-bubble-loop {
   position: absolute;
@@ -2175,7 +2179,7 @@ table.category tbody > tr td {
   bottom: 0;
   margin: auto;
   border-radius: 12px;
-  background-color: #333333;
+  background-color: #a61dab;
   -webkit-transform-origin: 50% 50%;
   transform-origin: 50% 50%;
   -webkit-animation: loader6 1s ease-in-out infinite;
@@ -2184,7 +2188,7 @@ table.category tbody > tr td {
 .sp-pre-loader .sp-loader-bubble-loop:before {
   content: "";
   position: absolute;
-  background-color: rgba(51,51,51,0.5);
+  background-color: rgba(166,29,171,0.5);
   top: 0px;
   left: -25px;
   height: 12px;
@@ -2194,7 +2198,7 @@ table.category tbody > tr td {
 .sp-pre-loader .sp-loader-bubble-loop:after {
   content: "";
   position: absolute;
-  background-color: rgba(51,51,51,0.5);
+  background-color: rgba(166,29,171,0.5);
   top: 0px;
   left: 25px;
   height: 12px;
@@ -2217,7 +2221,7 @@ table.category tbody > tr td {
   content: "";
   display: block;
   border-radius: 50%;
-  border: 2px solid #333333;
+  border: 2px solid #a61dab;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -2269,7 +2273,7 @@ table.category tbody > tr td {
   position: absolute;
   width: 2px;
   height: 0;
-  background-color: #333333;
+  background-color: #a61dab;
   bottom: 0;
 }
 .sp-pre-loader .wave-two li:nth-child(1) {
@@ -2305,7 +2309,7 @@ table.category tbody > tr td {
 .sp-pre-loader .sp-loader-audio-wave {
   width: 3em;
   height: 2em;
-  background: linear-gradient(#333333,#333333) 0 50%, linear-gradient(#333333,#333333) 0.625em 50%, linear-gradient(#333333,#333333) 1.25em 50%, linear-gradient(#333333,#333333) 1.875em 50%, linear-gradient(#333333,#333333) 2.5em 50%;
+  background: linear-gradient(#a61dab,#a61dab) 0 50%, linear-gradient(#a61dab,#a61dab) 0.625em 50%, linear-gradient(#a61dab,#a61dab) 1.25em 50%, linear-gradient(#a61dab,#a61dab) 1.875em 50%, linear-gradient(#a61dab,#a61dab) 2.5em 50%;
   background-repeat: no-repeat;
   background-size: 0.5em 0.25em, 0.5em 0.25em, 0.5em 0.25em, 0.5em 0.25em, 0.5em 0.25em;
   animation: audioWave 1.5s linear infinite;
@@ -2332,7 +2336,7 @@ table.category tbody > tr td {
   width: auto;
 }
 .sp-pre-loader .sp-loader-with-logo .line {
-  background: #333333;
+  background: #a61dab;
   bottom: 0;
   height: 5px;
   left: 0;
@@ -2425,27 +2429,27 @@ table.category tbody > tr td {
 }
 @keyframes audioWave {
   25% {
-    background: linear-gradient(#333333,#333333) 0 50%, linear-gradient(#333333,#333333) 0.625em 50%, linear-gradient(#333333,#333333) 1.25em 50%, linear-gradient(#333333,#333333) 1.875em 50%, linear-gradient(#333333,#333333) 2.5em 50%;
+    background: linear-gradient(#a61dab,#a61dab) 0 50%, linear-gradient(#a61dab,#a61dab) 0.625em 50%, linear-gradient(#a61dab,#a61dab) 1.25em 50%, linear-gradient(#a61dab,#a61dab) 1.875em 50%, linear-gradient(#a61dab,#a61dab) 2.5em 50%;
     background-repeat: no-repeat;
     background-size: 0.5em 2em, 0.5em 0.25em, 0.5em 0.25em, 0.5em 0.25em, 0.5em 0.25em;
   }
   37.5% {
-    background: linear-gradient(#333333,#333333) 0 50%, linear-gradient(#333333,#333333) 0.625em 50%, linear-gradient(#333333,#333333) 1.25em 50%, linear-gradient(#333333,#333333) 1.875em 50%, linear-gradient(#333333,#333333) 2.5em 50%;
+    background: linear-gradient(#a61dab,#a61dab) 0 50%, linear-gradient(#a61dab,#a61dab) 0.625em 50%, linear-gradient(#a61dab,#a61dab) 1.25em 50%, linear-gradient(#a61dab,#a61dab) 1.875em 50%, linear-gradient(#a61dab,#a61dab) 2.5em 50%;
     background-repeat: no-repeat;
     background-size: 0.5em 0.25em, 0.5em 2em, 0.5em 0.25em, 0.5em 0.25em, 0.5em 0.25em;
   }
   50% {
-    background: linear-gradient(#333333,#333333) 0 50%, linear-gradient(#333333,#333333) 0.625em 50%, linear-gradient(#333333,#333333) 1.25em 50%, linear-gradient(#333333,#333333) 1.875em 50%, linear-gradient(#333333,#333333) 2.5em 50%;
+    background: linear-gradient(#a61dab,#a61dab) 0 50%, linear-gradient(#a61dab,#a61dab) 0.625em 50%, linear-gradient(#a61dab,#a61dab) 1.25em 50%, linear-gradient(#a61dab,#a61dab) 1.875em 50%, linear-gradient(#a61dab,#a61dab) 2.5em 50%;
     background-repeat: no-repeat;
     background-size: 0.5em 0.25em, 0.5em 0.25em, 0.5em 2em, 0.5em 0.25em, 0.5em 0.25em;
   }
   62.5% {
-    background: linear-gradient(#333333,#333333) 0 50%, linear-gradient(#333333,#333333) 0.625em 50%, linear-gradient(#333333,#333333) 1.25em 50%, linear-gradient(#333333,#333333) 1.875em 50%, linear-gradient(#333333,#333333) 2.5em 50%;
+    background: linear-gradient(#a61dab,#a61dab) 0 50%, linear-gradient(#a61dab,#a61dab) 0.625em 50%, linear-gradient(#a61dab,#a61dab) 1.25em 50%, linear-gradient(#a61dab,#a61dab) 1.875em 50%, linear-gradient(#a61dab,#a61dab) 2.5em 50%;
     background-repeat: no-repeat;
     background-size: 0.5em 0.25em, 0.5em 0.25em, 0.5em 0.25em, 0.5em 2em, 0.5em 0.25em;
   }
   75% {
-    background: linear-gradient(#333333,#333333) 0 50%, linear-gradient(#333333,#333333) 0.625em 50%, linear-gradient(#333333,#333333) 1.25em 50%, linear-gradient(#333333,#333333) 1.875em 50%, linear-gradient(#333333,#333333) 2.5em 50%;
+    background: linear-gradient(#a61dab,#a61dab) 0 50%, linear-gradient(#a61dab,#a61dab) 0.625em 50%, linear-gradient(#a61dab,#a61dab) 1.25em 50%, linear-gradient(#a61dab,#a61dab) 1.875em 50%, linear-gradient(#a61dab,#a61dab) 2.5em 50%;
     background-repeat: no-repeat;
     background-size: 0.5em 0.25em, 0.5em 0.25em, 0.5em 0.25em, 0.5em 0.25em, 0.5em 2em;
   }

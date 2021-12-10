@@ -16,7 +16,7 @@ if ($params->get('show_post_format')) : ?>
 		<?php if ($format == 'audio') : ?>
 			<i class="fa fa-music" area-hidden="true"></i>
 		<?php elseif ($format == 'video') : ?>
-			<i class="fa fa-video-camera" area-hidden="true"></i>;
+			<i class="fa fa-video-camera" area-hidden="true"></i>
 		<?php elseif ($format == 'gallery') : ?>
 			<i class="fa fa-picture-o" area-hidden="true"></i>
 		<?php elseif ($format == 'quote') : ?>

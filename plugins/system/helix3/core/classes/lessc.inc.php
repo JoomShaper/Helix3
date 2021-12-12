@@ -1961,7 +1961,7 @@ class helix3_lessc {
     // inject array of unparsed strings into environment as variables
     protected function injectVariables($args) {
         $this->pushEnv();
-        $parser = new lessc_parser($this, __METHOD__);
+        $parser = new helix3_lessc_parser($this, __METHOD__);
         foreach ($args as $name => $strValue) {
             if ($name[0] !== '@') {
                 $name = '@' . $name;
@@ -2139,7 +2139,7 @@ class helix3_lessc {
     }
 
     protected function makeParser($name) {
-        $parser = new lessc_parser($this, $name);
+        $parser = new helix3_lessc_parser($this, $name);
         $parser->writeComments = $this->preserveComments;
 
         return $parser;
@@ -2377,7 +2377,7 @@ class helix3_lessc {
 
 // responsible for taking a string of LESS code and converting it into a
 // syntax tree
-class lessc_parser {
+class helix3_lessc_parser {
     protected static $nextBlockId = 0; // used to uniquely identify blocks
 
     protected static $precedence = array(

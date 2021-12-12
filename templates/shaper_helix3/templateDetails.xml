@@ -7,7 +7,7 @@
     <authorUrl>https://www.joomshaper.com</authorUrl>
     <copyright>Copyright (c) 2010 - 2021 JoomShaper.com. All rights reserved.</copyright>
     <license>http://www.gnu.org/licenses/gpl-2.0.html GPLv2 or later</license>
-    <version>3.0.0</version>
+    <version>3.0.1</version>
     <description>Shaper Helix3 - Starter Template of Helix3 framework</description>
 
     <updateservers>
@@ -82,6 +82,11 @@
 
                 <field type="asset" />
                 <field type="group" title="HELIX_GLOBAL" />
+                <field name="container_width" type="list" default="1140" label="HELIX_CONTAINER_WIDTH" description="HELIX_CONTAINER_WIDTH_DESC">
+                    <option value="1140">1140px</option>
+                    <option value="1320">1320px</option>
+                </field>
+
                 <field name="preloader" class="parent preloader" type="radio" default="0" label="HELIX_PRELOADER" description="HELIX_PRELOADER_DESC">
                     <option value="1">HELIX_YES</option>
                     <option value="0">HELIX_NO</option>

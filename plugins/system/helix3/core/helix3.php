@@ -272,7 +272,6 @@ class Helix3
 
 	public static function generatelayout()
 	{
-
 		self::getInstance()->addCSS('custom.css');
 		self::getInstance()->addJS('custom.js');
 
@@ -280,8 +279,9 @@ class Helix3
 		$app         = JFactory::getApplication();
 		$option      = $app->input->get('option', '');
 		$view        = $app->input->get('view', '');
-		$layout        = $app->input->get('layout', '');
+		$layout      = $app->input->get('layout', '');
 		$pagebuilder = false;
+		$params = JFactory::getApplication()->getTemplate(true)->params;
 
 		if ($option == 'com_sppagebuilder')
 		{
@@ -289,10 +289,21 @@ class Helix3
 			$pagebuilder = true;
 		}
 
+		// add container width
+		$container_width = (int) $params->get('container_width', 1140);
+		if ($container_width == 1140)
+		{
+			$container_css = "@media (min-width: 1400px) {\n";
+				$container_css .= ".container {\n";
+					$container_css .= "max-width: 1140px;\n";
+				$container_css .= "}\n";
+			$container_css .= "}";
+
+			self::getInstance()->addInlineCSS($container_css);
+		}
+
 		//Import Features
 		self::importFeatures();
-
-		$params = JFactory::getApplication()->getTemplate(true)->params;
 		$rows   = json_decode($params->get('layout'));
 
 		//Load from file if not exists in database

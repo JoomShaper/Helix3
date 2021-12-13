@@ -19,6 +19,7 @@ web.config.txt
 /cli
 /components
 /images
+/dist
 /includes
 /layouts
 /libraries

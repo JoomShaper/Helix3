@@ -110,6 +110,8 @@ class Helix3
 			if(isset($doc->_scripts[JUri::base(true) . '/media/jui/js/bootstrap.min.js'])) {
 				unset($doc->_scripts[JUri::base(true) . '/media/jui/js/bootstrap.min.js']);
 			}
+
+			$doc->addScript(JUri::root(true) . '/plugins/system/helix3/assets/js/bootstrap.legacy.js');
 		}
 
 		echo '<jdoc:include type="head" />';

@@ -13,7 +13,7 @@ $buttons = $displayData;
 // Load modal popup behavior
 JHtml::_('behavior.modal', 'a.modal-button');
 ?>
-<div id="editor-xtd-buttons" class="pull-left">
+<div id="editor-xtd-buttons" class="float-start">
 	<?php if ($buttons) : ?>
 		<?php foreach ($buttons as $button) : ?>
 			<?php echo JLayoutHelper::render('joomla.editors.buttons.button', $button); ?>

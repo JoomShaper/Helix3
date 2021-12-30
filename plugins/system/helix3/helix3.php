@@ -22,6 +22,36 @@ class  plgSystemHelix3 extends JPlugin
 
     protected $autoloadLanguage = true;
 
+    protected $app;
+
+    /**
+	 * Handle the event hook onAfterInitialize.
+	 * Here we can override the HTML functions.
+	 *
+	 * @return	void
+	 * @since	2.0.0
+	 */
+	public function onAfterInitialise()
+	{
+		$template = $this->getTemplateName();
+
+		if (isset($template) && !empty($template))
+		{
+			$bootstrapPath = JPATH_ROOT . '/plugins/system/helix3/html/layouts/libraries/cms/html/bootstrap.php';
+
+			if ($this->app->isClient('site') && \file_exists($bootstrapPath))
+			{
+				if (!class_exists('Helix3Bootstrap'))
+				{
+					require_once $bootstrapPath;
+				}
+
+				JHtml::register('bootstrap.tooltip', ['Helix3Bootstrap', 'tooltip']);
+				JHtml::register('bootstrap.popover', ['Helix3Bootstrap', 'popover']);
+			}
+		}
+	}
+
     // Copied style
     function onAfterDispatch() {
 

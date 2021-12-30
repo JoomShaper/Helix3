@@ -12,6 +12,10 @@ jQuery(function ($) {
 	function checkFormate() {
 		var formate = $(".post-formats input:checked").attr("value");
 
+		if (formate == undefined) {
+			formate = "standard";
+		}
+
 		if (typeof formate != "undefined") {
 			$(
 				"#jform_attribs_gallery, #jform_attribs_audio, #jform_attribs_audio, #jform_attribs_video, #jform_attribs_link_title, #jform_attribs_link_url, #jform_attribs_quote_text, #jform_attribs_quote_author, #jform_attribs_post_status"

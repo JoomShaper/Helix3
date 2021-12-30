@@ -1,0 +1,17 @@
+{
+	"name": "helix3",
+	"description": "[![Join the chat at https://gitter.im/JoomShaper/Helix3](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/JoomShaper/Helix3?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/JoomShaper/Helix3.git"
+	},
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/JoomShaper/Helix3/issues"
+	},
+	"homepage": "https://github.com/JoomShaper/Helix3#readme"
+}

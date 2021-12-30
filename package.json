@@ -13,5 +13,10 @@
 	"bugs": {
 		"url": "https://github.com/JoomShaper/Helix3/issues"
 	},
-	"homepage": "https://github.com/JoomShaper/Helix3#readme"
+	"homepage": "https://github.com/JoomShaper/Helix3#readme",
+	"dependencies": {
+		"gulp": "^4.0.2",
+		"gulp-clean": "^0.4.0",
+		"gulp-zip": "^5.1.0"
+	}
 }

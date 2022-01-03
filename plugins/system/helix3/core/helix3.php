@@ -1151,12 +1151,20 @@ class Helix3
 	}
 
 	public static function compressJS($excludes = '')
-	{//function to compress js files
-
+	{
 		require_once(__DIR__ . '/classes/Minifier.php');
 
 		$doc       = JFactory::getDocument();
 		$app       = JFactory::getApplication();
+		$view      = $app->input->get('view');
+		$layout    = $app->input->get('layout');
+		
+		// disable js compress for edit view
+		if($view == 'form' && $layout == 'edit')
+		{
+			return;
+		}
+
 		$cachetime = $app->get('cachetime', 15);
 
 		$all_scripts  = $doc->_scripts;
@@ -1181,7 +1189,14 @@ class Helix3
 				{
 					$scripts[] = $key;
 					$md5sum .= md5($key);
-					$compressed = \JShrink\Minifier::minify(file_get_contents($js_file), array('flaggedComments' => false));
+					if(self::isMinifiedJS($js_file))
+					{
+						$compressed = file_get_contents($js_file);
+					}
+					else
+					{
+						$compressed = \JShrink\Minifier::minify(file_get_contents($js_file), array('flaggedComments' => false));
+					}
 					$minifiedCode .= "/*------ " . basename($js_file) . " ------*/\n" . $compressed . "\n\n";//add file name to compressed JS
 
 					unset($doc->_scripts[$key]); //Remove sripts
@@ -1218,6 +1233,16 @@ class Helix3
 		}
 
 		return;
+	}
+
+	private static function isMinifiedJS($file)
+	{
+		$content = file_get_contents($file);
+		$contentLength = strlen($content);
+		$numberOfLines = preg_match_all("@[\r\n]@", $content);
+
+		return ($numberOfLines === 1)
+			|| (($numberOfLines * 100 / $contentLength) < 1);
 	}
 
 	//Compress CSS files

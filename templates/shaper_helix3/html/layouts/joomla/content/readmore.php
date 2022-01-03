@@ -20,7 +20,7 @@ $item = $displayData['item'];
 				echo JHtml::_('string.truncate', ($item->title), $params->get('readmore_limit'));
 			endif;
 		elseif ($params->get('show_readmore_title', 0) == 0) :
-			echo JText::_(JVERSION < 4 ? 'COM_CONTENT_READ_MORE' : 'JGLOBAL_READ_MORE');
+			echo JText::sprintf(JVERSION < 4 ? 'COM_CONTENT_READ_MORE_TITLE' : 'JGLOBAL_READ_MORE');
 		else :
 			echo JText::sprintf(JVERSION < 4 ? 'COM_CONTENT_READ_MORE_TITLE' : 'JGLOBAL_READ_MORE_TITLE', JHtml::_('string.truncate', ($item->title), $params->get('readmore_limit')));
 		endif; ?>

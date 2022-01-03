@@ -1019,6 +1019,7 @@ a {
   transition: color 400ms, background-color 400ms;
 }
 body {
+  font-size: 14px;
   line-height: 24px;
   -webkit-transition: all 400ms ease;
   transition: all 400ms ease;
@@ -1704,6 +1705,7 @@ article.item {
   padding: 100px 50px;
   position: relative;
   z-index: 1;
+  overflow: hidden;
 }
 .entry-link a h4 {
   margin: 0;
@@ -1715,13 +1717,15 @@ article.item {
 }
 .entry-link:before {
   position: absolute;
-  left: -60px;
-  font-size: 300px;
+  left: 0px;
+  font-size: 220px;
+  line-height: 1;
+  width: 300px;
+  height: 300px;
   content: "\f0c1";
   font-family: "Font Awesome 5 Free";
   font-weight: 700;
-  transform: rotate(90deg);
-  top: -75px;
+  top: 0px;
   color: rgba(255,255,255,0.15);
   z-index: -1;
 }
@@ -2698,4 +2702,7 @@ table.category tbody > tr td {
 }
 .hide {
   display: none;
+}
+.badge.badge-info {
+  background-color: #3d449a;
 }

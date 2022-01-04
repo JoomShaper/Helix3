@@ -20,6 +20,12 @@ else
 	die('Please install and activate helix plugin');
 }
 
+$app = JFactory::getApplication();
+$input = $app->input;
+$option = str_replace('_', '-', $input->get('option', '', 'STRING'));
+
+$body_class = $option;
+
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo $this->language; ?>" lang="<?php echo $this->language; ?>" dir="<?php echo $this->direction; ?>">
@@ -45,7 +51,7 @@ else
         <link rel="stylesheet" href="<?php echo $this->baseurl; ?>/templates/<?php echo $this->template; ?>/css/template.css" type="text/css" />
         <link rel="stylesheet" href="<?php echo $this->baseurl; ?>/plugins/system/helix3/assets/css/system.j<?php echo JVERSION < 4 ? 3 : 4; ?>.min.css" type="text/css" />
     </head>
-    <body>
+    <body class="<?php echo $body_class; ?>">
         <jdoc:include type="component" />
     </body>
 </html>

@@ -1,3 +1,19 @@
+#sbox-window {
+	width: 80% !important;
+	left: 50% !important;
+	transform: translateX(-50%);
+}
+
+@media (max-width: 767px) {
+	#sbox-window {
+		width: calc(100vw - 40px) !important;
+	}
+}
+
+#sbox-content > iframe {
+	width: 100%;
+}
+
 .com-media .well {
 	min-height: 20px;
 	padding: 19px;
@@ -12,6 +28,10 @@
 	box-shadow: inset 0 1px 1px rgb(0 0 0 / 5%);
 }
 
+.com-media #folderlist + .chzn-container {
+	width: 300px !important;
+}
+
 .com-media .row-fluid {
 	display: -ms-flexbox;
 	display: flex;
@@ -19,6 +39,7 @@
 	flex-wrap: wrap;
 	margin-right: -15px;
 	margin-left: -15px;
+	box-sizing: border-box;
 }
 
 .com-media .row-fluid [class*="span"] {
@@ -26,6 +47,7 @@
 	width: 100%;
 	padding-right: 15px;
 	padding-left: 15px;
+	box-sizing: border-box;
 }
 
 .com-media .span12 {
@@ -85,6 +107,7 @@
 }
 
 .com-media .thumbnails-media .thumbnail {
+	display: block;
 	background-color: #f4f4f4;
 	border-radius: 3px;
 	border: 0;
@@ -136,5 +159,56 @@
 }
 
 .com-media .thumbnails-media .thumbnail .small {
-	margin-top: 15px;
+	position: absolute;
+	left: 1px;
+	background-color: #fff;
+	border-color: rgba(0, 0, 0, 0.2);
+	bottom: 1px;
+	line-height: 26px;
+	border: 1px solid rgba(0, 0, 0, 0.1);
+	border-width: 1px 1px 0 0;
+	border-radius: 0 4px 0 4px;
+	z-index: 1;
+	padding: 0 5px;
+	line-height: 20px;
+	color: #555;
+}
+
+.com-media .thumbnails-media .thumbnail .img-preview img {
+	width: auto;
+	max-width: 100%;
+}
+
+.com-media .thumbnails-media .thumbnail > div:first-child {
+	position: relative;
+	z-index: 1;
+	width: 100%;
+	display: inline-block;
+}
+
+.com-media .thumbnails-media .thumbnail .selected > div:first-child:before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	border: 3px solid #46a546;
+	border-radius: 3px;
+	z-index: 4;
+}
+.com-media .thumbnails-media .thumbnail .selected > div:first-child:after {
+	font-family: "Font Awesome 5 Free";
+	font-weight: 700;
+	content: "\f00c";
+	position: absolute;
+	top: 0;
+	right: 0;
+	background-color: #46a546;
+	color: #fff;
+	line-height: 26px;
+	width: 26px;
+	border-color: rgba(0, 0, 0, 0.2);
+	box-shadow: 0 1px 2px rgb(0 0 0 / 5%);
+	border-radius: 0 3px;
 }

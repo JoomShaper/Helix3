@@ -64,7 +64,7 @@ if (empty($image_alt_text))
 			<a href="<?php echo JRoute::_(ContentHelperRoute::getArticleRoute($displayData->slug, $displayData->catid, $displayData->language)); ?>">
 		<?php endif; ?>
 		<img
-			<?php if ($images->image_intro_caption):
+			<?php if (isset($images->image_intro_caption) && $images->image_intro_caption):
 				echo 'class="caption"' . ' title="' . htmlspecialchars($images->image_intro_caption) . '"';
 			endif; ?>
 			src="<?php echo htmlspecialchars($intro_image); ?>" alt="<?php echo htmlspecialchars($image_alt_text); ?>" itemprop="thumbnailUrl"

@@ -86,7 +86,7 @@ class Helix3
 		}
 
 		// load legacy css
-		if ($view == 'form' && $layout == 'edit')
+		if (($view == 'form' && $layout == 'edit') || ($option = 'com_config' && $view == 'modules'))
 		{
 			if (JVERSION < 4)
 			{
@@ -1160,7 +1160,7 @@ class Helix3
 		$layout    = $app->input->get('layout');
 		
 		// disable js compress for edit view
-		if($view == 'form' && $layout == 'edit')
+		if($view == 'form' || $layout == 'edit')
 		{
 			return;
 		}

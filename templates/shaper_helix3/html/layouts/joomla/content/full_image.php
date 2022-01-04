@@ -44,7 +44,7 @@ if (empty($image_alt_text))
 	<?php $imgfloat = (empty($images->float_fulltext)) ? $params->get('float_fulltext') : $images->float_fulltext; ?>
 	<div class="pull-<?php echo htmlspecialchars($imgfloat); ?> entry-image full-image">
 		<img
-		<?php if ($images->image_fulltext_caption):
+		<?php if (isset($images->image_fulltext_caption) && $images->image_fulltext_caption):
 		echo 'class="caption"' . ' title="' . htmlspecialchars($images->image_fulltext_caption) . '"';
 		endif; ?>
 		src="<?php echo htmlspecialchars($full_image); ?>" alt="<?php echo htmlspecialchars($image_alt_text); ?>" itemprop="image" />

@@ -29,7 +29,7 @@ if (JVERSION < 4)
 			// Disable select boxes with no value selected.
 			jQuery('#advancedSearch').find('select').each(function(index, el) {
 				var el = jQuery(el);
-				if(!el.val()){
+				if(!el.val()) {
 					el.attr('disabled', 'disabled');
 				}
 			});
@@ -90,7 +90,7 @@ else
 					<?php echo JText::_('JSEARCH_FILTER_SUBMIT'); ?>
 				</button>
 			<?php else : ?>
-				<button name="Search" type="submit" class="btn btn-primary disabled">
+				<button name="Search" type="submit" class="btn btn-primary">
 					<span class="fas fa-search icon-white" aria-hidden="true"></span>
 					<?php echo JText::_('JSEARCH_FILTER_SUBMIT'); ?>
 				</button>

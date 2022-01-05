@@ -176,7 +176,9 @@ if (!$editoroptions)
 				<span class="fa fa-times" aria-hidden="true"></span> <?php echo JText::_('JCANCEL') ?>
 			</button>
 			<?php if ($params->get('save_history', 0) && $this->item->id) : ?>
-				<?php echo $this->form->getInput('contenthistory'); ?>
+				<div class="ms-2">
+					<?php echo $this->form->getInput('contenthistory'); ?>
+				</div>
 			<?php endif; ?>
 		</div>
 	</form>

@@ -142,7 +142,7 @@ textarea.form-control {
 .sp-megamenu-parent .sp-dropdown li.sp-menu-item span {
   display: block;
   padding: 10px;
-  color: #141414;
+  color: #333333;
   cursor: pointer;
 }
 .sp-megamenu-parent .sp-dropdown li.sp-menu-item > a.sp-group-title,
@@ -1879,7 +1879,7 @@ article.item {
 }
 .helix-social-share .helix-social-share-icon ul li div a:hover,
 .helix-social-share .helix-social-share-icon ul li div a:focus {
-  background: #1061cc;
+  background: #124ceb;
   color: #fff;
 }
 .view-article nav.pagenavigation > ul {
@@ -2716,7 +2716,7 @@ table.category tbody > tr td {
   display: none;
 }
 .badge.badge-info {
-  background-color: #1061cc;
+  background-color: #124ceb;
 }
 .btn:not([class*="btn-"]) {
   color: #fff;

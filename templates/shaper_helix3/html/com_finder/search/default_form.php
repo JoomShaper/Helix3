@@ -109,14 +109,18 @@ else
 			<?php if ($this->params->get('show_advanced_tips', 1)) : ?>
 				<div class="card card-outline-secondary mb-3">
 					<div class="card-body">
-						<?php echo JText::_('COM_FINDER_ADVANCED_TIPS_INTRO'); ?>
-						<?php echo JText::_('COM_FINDER_ADVANCED_TIPS_AND'); ?>
-						<?php echo JText::_('COM_FINDER_ADVANCED_TIPS_NOT'); ?>
-						<?php echo JText::_('COM_FINDER_ADVANCED_TIPS_OR'); ?>
-						<?php if ($this->params->get('tuplecount', 1) > 1) : ?>
-						<?php echo JText::_('COM_FINDER_ADVANCED_TIPS_PHRASE'); ?>
+						<?php if(JVERSION < 4) : ?>
+							<?php echo JText::_('COM_FINDER_ADVANCED_TIPS'); ?>
+						<?php else : ?>
+							<?php echo JText::_('COM_FINDER_ADVANCED_TIPS_INTRO'); ?>
+							<?php echo JText::_('COM_FINDER_ADVANCED_TIPS_AND'); ?>
+							<?php echo JText::_('COM_FINDER_ADVANCED_TIPS_NOT'); ?>
+							<?php echo JText::_('COM_FINDER_ADVANCED_TIPS_OR'); ?>
+							<?php if ($this->params->get('tuplecount', 1) > 1) : ?>
+							<?php echo JText::_('COM_FINDER_ADVANCED_TIPS_PHRASE'); ?>
+							<?php endif; ?>
+							<?php echo JText::_('COM_FINDER_ADVANCED_TIPS_OUTRO'); ?>
 						<?php endif; ?>
-						<?php echo JText::_('COM_FINDER_ADVANCED_TIPS_OUTRO'); ?>
 					</div>
 				</div>
 			<?php endif; ?>

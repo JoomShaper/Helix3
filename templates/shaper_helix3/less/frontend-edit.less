@@ -3,19 +3,6 @@
  *=======================================*/
 
 .layout-edit {
-	@import "legacy/variables";
-	@import "legacy/mixins";
-	@import "legacy/forms.less";
-	@import "legacy/wells.less";
-	@import "legacy/accordion.less";
-
-	//Edit
-	select.inputbox,
-	select {
-		width: 250px;
-		max-width: 100%;
-	}
-
 	.btn-toolbar {
 		margin-bottom: 20px;
 	}
@@ -109,6 +96,13 @@ svg {
 	}
 }
 
+//Choosen
+.chzn-container.chzn-container-multi {
+	input[type="text"] {
+		min-height: 30px;
+	}
+}
+
 #mailto-window {
 	margin: 20px;
 	> h2 {
@@ -118,32 +112,6 @@ svg {
 	input[type="text"],
 	input[type="email"] {
 		height: auto !important;
-	}
-}
-
-//Choosen
-.chzn-container.chzn-container-multi {
-	input[type="text"] {
-		min-height: 30px;
-	}
-}
-
-// Content edit
-.com-content-adminForm {
-	textarea {
-		width: 350px;
-		height: 100px;
-	}
-
-	.input-prepend.input-append {
-		.media-preview.add-on {
-			height: 34px;
-			line-height: 26px;
-		}
-		.modal.btn {
-			position: relative;
-			background: #ccc;
-		}
 	}
 }
 
@@ -171,13 +139,4 @@ svg {
 			}
 		}
 	}
-}
-
-/* *** Joomla 3.7 Compatibility *** */
-.edit.item-page .modal {
-	position: initial;
-}
-.edit.item-page .media-preview.add-on {
-	height: 34px;
-	line-height: 28px;
 }

@@ -109,7 +109,6 @@ $doc->addScriptdeclaration("\nvar sp_offanimation = '" . $this->params->get('off
 				'preloader_bg' => $preloader_bg,
 				'preloader_tx' => $preloader_tx,
 			))
-			// ->addLess('legacy/bootstrap', 'legacy')
 			->addLess('master', 'template');
 				
 			//RTL

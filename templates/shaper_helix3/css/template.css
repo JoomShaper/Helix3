@@ -1243,6 +1243,13 @@ textareainput[type="color"],
 textarea.uneditable-input {
   height: auto;
 }
+select {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 16px 12px;
+  appearance: none;
+}
 .scrollup {
   width: 40px;
   height: 40px;
@@ -2068,10 +2075,6 @@ article.item {
   font-size: 24px;
   margin: 0 5px;
 }
-.dl-horizontal dt {
-  margin: 8px 0;
-  text-align: left;
-}
 .page-header {
   padding-bottom: 15px;
 }
@@ -2714,6 +2717,152 @@ table.category tbody > tr td {
 }
 .badge.badge-info {
   background-color: #1061cc;
+}
+.btn:not([class*="btn-"]) {
+  color: #fff;
+  background-color: #6c757d;
+  border-color: #6c757d;
+}
+.btn:not([class*="btn-"]):hover {
+  color: #fff;
+  background-color: #5c636a;
+  border-color: #565e64;
+}
+.control-group {
+  margin-bottom: 16px;
+}
+.form-horizontal .control-label {
+  float: left;
+  width: 160px;
+  padding-top: 5px;
+  text-align: right;
+}
+.form-horizontal .controls {
+  margin-left: 180px;
+}
+.dl-horizontal dt {
+  float: left;
+  width: 160px;
+  overflow: hidden;
+  clear: left;
+  text-align: right;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.dl-horizontal dt img {
+  display: inline-block;
+}
+@media (max-width: 767px) {
+  .dl-horizontal dt {
+    float: none;
+    width: auto;
+    clear: none;
+    text-align: left;
+  }
+}
+@media (min-width: 768px) {
+  .dl-horizontal dd {
+    margin-left: 180px;
+  }
+}
+.input-prepend,
+.input-append {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  width: 100%;
+}
+.input-prepend > input[type="text"],
+.input-prepend > input[type="password"],
+.input-prepend > input[type="datetime"],
+.input-prepend > input[type="datetime-local"],
+.input-prepend > input[type="date"],
+.input-prepend > input[type="month"],
+.input-prepend > input[type="time"],
+.input-prepend > input[type="week"],
+.input-prepend > input[type="number"],
+.input-prepend > input[type="email"],
+.input-prepend > input[type="url"],
+.input-prepend > input[type="search"],
+.input-prepend > input[type="tel"],
+.input-prepend > input[type="color"],
+.input-append > input[type="text"],
+.input-append > input[type="password"],
+.input-append > input[type="datetime"],
+.input-append > input[type="datetime-local"],
+.input-append > input[type="date"],
+.input-append > input[type="month"],
+.input-append > input[type="time"],
+.input-append > input[type="week"],
+.input-append > input[type="number"],
+.input-append > input[type="email"],
+.input-append > input[type="url"],
+.input-append > input[type="search"],
+.input-append > input[type="tel"],
+.input-append > input[type="color"] {
+  position: relative;
+  flex: 1 1 auto;
+  width: 1%;
+  min-width: 0;
+}
+.input-prepend .add-on,
+.input-append .add-on {
+  display: flex;
+  align-items: center;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  text-align: center;
+  white-space: nowrap;
+  background-color: #e9ecef;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+}
+.input-prepend > :not(:first-child):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback),
+.input-append > :not(:first-child):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback) {
+  margin-left: -1px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.input-prepend > :not(:last-child),
+.input-append > :not(:last-child) {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.accordion {
+  margin-bottom: 20px;
+}
+.accordion-group {
+  margin-bottom: 2px;
+  border: 1px solid #e5e5e5;
+  border-radius: 4px;
+}
+.accordion-group .accordion-body {
+  padding: 0;
+}
+.accordion-heading {
+  border-bottom: 0;
+}
+.accordion-heading .accordion-toggle {
+  display: block;
+  padding: 8px 15px;
+}
+.accordion-toggle {
+  cursor: pointer;
+}
+.accordion-inner {
+  padding: 9px 15px;
+  border-top: 1px solid #e5e5e5;
+}
+.well {
+  min-height: 20px;
+  padding: 20px;
+  margin-bottom: 20px;
+  background-color: #f7f7f7;
+  border-radius: 0;
 }
 a.modal {
   position: initial !important;

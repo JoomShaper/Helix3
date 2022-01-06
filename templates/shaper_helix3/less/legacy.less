@@ -144,13 +144,15 @@
 // checkbox & radio
 .radio,
 .checkbox {
-	display: inline-block;
-	margin: 0 16px 16px 0px;
+	&:not(.btn-group) {
+		display: inline-block;
+		margin: 0 16px 16px 0px;
 
-	input[type="radio"],
-	input[type="checkbox"] {
-		margin-top: 2px;
-		margin-right: 8px;
+		input[type="radio"],
+		input[type="checkbox"] {
+			margin-top: 2px;
+			margin-right: 8px;
+		}
 	}
 }
 

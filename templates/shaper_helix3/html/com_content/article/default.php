@@ -111,7 +111,7 @@ $isExpired  = JVERSION < 4
 		<?php endif; ?>
 	<?php else : ?>
 		<?php if ($useDefList) : ?>
-			<div id="pop-print" class="btn hidden-print">
+			<div id="pop-print" class="d-print-none">
 				<?php echo JHtml::_('icon.print_screen', $this->item, $params); ?>
 			</div>
 		<?php endif; ?>

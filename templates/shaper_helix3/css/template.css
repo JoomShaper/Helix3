@@ -2812,15 +2812,15 @@ table.category tbody > tr td {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
 }
-.radio,
-.checkbox {
+.radio:not(.btn-group),
+.checkbox:not(.btn-group) {
   display: inline-block;
   margin: 0 16px 16px 0px;
 }
-.radio input[type="radio"],
-.radio input[type="checkbox"],
-.checkbox input[type="radio"],
-.checkbox input[type="checkbox"] {
+.radio:not(.btn-group) input[type="radio"],
+.radio:not(.btn-group) input[type="checkbox"],
+.checkbox:not(.btn-group) input[type="radio"],
+.checkbox:not(.btn-group) input[type="checkbox"] {
   margin-top: 2px;
   margin-right: 8px;
 }

@@ -639,13 +639,21 @@ class Helix3
 
 			if (file_exists($path . $src))
 			{
-				self::getInstance()->document->addStyleSheet(JURI::base(true) . '/templates/' . $template . '/css/' . $src, 'text/css', null, $attribs);
+				if (JVERSION < 4) {
+					self::getInstance()->document->addStyleSheet(JURI::base(TRUE) . '/templates/' . $template . '/css/' . $src, 'text/css', NULL, $attribs);
+				}else{
+					self::getInstance()->document->addStyleSheet(JURI::base(TRUE) . '/templates/' . $template . '/css/' . $src, [], $attribs);
+				}
 			}
 			else
 			{
 				if ($src != 'custom.css')
 				{
-					self::getInstance()->document->addStyleSheet($src, 'text/css', null, $attribs);
+					if (JVERSION < 4) {
+						self::getInstance()->document->addStyleSheet($src, 'text/css', NULL, $attribs);
+					}else{
+						self::getInstance()->document->addStyleSheet($src, [], $attribs);
+					}
 				}
 			}
 		}

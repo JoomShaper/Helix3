@@ -6,33 +6,37 @@
 * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
 */
 
+use Joomla\CMS\Factory;
+use Joomla\CMS\Form\FormField;
+use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Uri\Uri;
+
 //no direct accees
 defined ('_JEXEC') or die ('resticted aceess');
 
-jimport('joomla.form.formfield');
 
-class JFormFieldAsset extends JFormField
+class JFormFieldAsset extends FormField
 {
 	protected	$type = 'Asset';
 	
 	protected function getInput()
 	{
 		$v = $this->getVersion();
-		$helix_plg_url = JURI::root(true) . '/plugins/system/helix3';
-		$doc = JFactory::getDocument();
-		$doc->addScriptdeclaration('var layoutbuilder_base="' . JURI::root() . '";');
+		$helix_plg_url = Uri::root(true) . '/plugins/system/helix3';
+		$doc = Factory::getDocument();
+		$doc->addScriptdeclaration('var layoutbuilder_base="' . Uri::root() . '";');
 		$doc->addScriptDeclaration("var basepath = '{$helix_plg_url}';");
 		$doc->addScriptDeclaration("var pluginVersion = '{$v}';");
 		
 		//Core scripts
-		JHtml::_('jquery.framework');
+		HTMLHelper::_('jquery.framework');
 		
 		$jVersion = JVERSION < 4 ? '' : '.j4';
 		
-		if(JVERSION < 4)
+		if (JVERSION < 4)
 		{
-			JHtml::_('jquery.ui', array('core', 'sortable'));
-			JHtml::_('formbehavior.chosen', 'select');
+			HTMLHelper::_('jquery.ui', array('core', 'sortable'));
+			HTMLHelper::_('formbehavior.chosen', 'select');
 		}
 		else
 		{
@@ -55,7 +59,7 @@ class JFormFieldAsset extends JFormField
 	
 	private function getVersion()
 	{
-		$db = JFactory::getDBO();
+		$db = Factory::getDBO();
 		$query = $db->getQuery(true);
 		$query
 			->select(array('*'))

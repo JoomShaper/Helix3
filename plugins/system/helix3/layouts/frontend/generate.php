@@ -7,16 +7,19 @@
 */
 defined('_JEXEC') or die('Restricted Access');
 
-//
+use Joomla\CMS\Factory;
+use Joomla\CMS\Layout\FileLayout;
+
 
 //helper & model
 $menu_class   = JPATH_ROOT . '/plugins/system/helix3/core/classes/helix3.php';
 
-if (file_exists($menu_class)) {
+if (file_exists($menu_class))
+{
     require_once($menu_class);
 }
 
-$template       = JFactory::getApplication()->getTemplate();
+$template       = Factory::getApplication()->getTemplate();
 $themepath      = JPATH_THEMES . '/' . $template;
 $rows_file      = $themepath . '/html/layouts/helix3/frontend/rows.php';
 $lyt_thm_path   = $themepath . '/html/layouts/helix3/';
@@ -41,7 +44,7 @@ else{
 }
 
 
-$getLayout = new JLayoutFile('frontend.rows', $layout_path );
+$getLayout = new FileLayout('frontend.rows', $layout_path );
 
 $output .= $getLayout->render($data);
 

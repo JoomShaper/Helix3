@@ -6,12 +6,12 @@
 * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
 */
 
+use Joomla\CMS\Form\FormField;
+
 //no direct accees
 defined ('_JEXEC') or die ('resticted aceess');
 
-jimport('joomla.form.formfield');
-
-class JFormFieldButton extends JFormField
+class JFormFieldButton extends FormField
 {
 	protected $type = 'Button';
 	protected function getInput() {

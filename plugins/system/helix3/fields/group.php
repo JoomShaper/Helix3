@@ -6,21 +6,26 @@
 * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
 */
 
+use Joomla\CMS\Form\FormField;
+use Joomla\CMS\Language\Text;
+
 //no direct accees
 defined ('_JEXEC') or die ('resticted aceess');
 
-jimport('joomla.form.formfield');
-
-class JFormFieldGroup extends JFormField {
+class JFormFieldGroup extends FormField
+{
   protected $type = 'Group';
-  public function getInput() {
+
+  public function getInput()
+  {
     $text   = (string) $this->element['title'];
-    $subtitle  	= (!empty($this->element['subtitle'])) ? '<span>' . JText::_($this->element['subtitle']) . '</span>':'';
+    $subtitle  	= (!empty($this->element['subtitle'])) ? '<span>' . Text::_($this->element['subtitle']) . '</span>':'';
     $group = ($this->element['group']=='no')?'no_group':'in_group';
-    return '<div class="group_separator '.$group.'" title="'. JText::_($this->element['desc']) .'">' . JText::_($text) . $subtitle . '</div>';
+    return '<div class="group_separator '.$group.'" title="'. Text::_($this->element['desc']) .'">' . Text::_($text) . $subtitle . '</div>';
   }
 
-  public function getLabel(){
+  public function getLabel()
+  {
     return false;
   }
 }

@@ -6,6 +6,8 @@
 * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
 */
 
+use Joomla\CMS\HTML\HTMLHelper;
+
 //no direct accees
 defined ('_JEXEC') or die ('resticted aceess');
 
@@ -19,8 +21,8 @@ class SpTypeColor{
 		}
 
 		// Including fallback code for HTML5 non supported browsers.
-		JHtml::_('jquery.framework');
-		JHtml::_('script', 'system/html5fallback.js', false, true);
+		HTMLHelper::_('jquery.framework');
+		HTMLHelper::_('script', 'system/html5fallback.js', false, true);
 
 		$output  = '<div class="form-group">';
 		$output .= '<label>'.$attr['title'].'</label>';

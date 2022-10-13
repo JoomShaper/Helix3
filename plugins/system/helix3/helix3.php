@@ -9,17 +9,20 @@
 //no direct accees
 defined ('_JEXEC') or die ('resticted aceess');
 
-jimport('joomla.plugin.plugin');
-jimport( 'joomla.event.plugin' );
-jimport('joomla.registry.registry');
-
+use Joomla\CMS\Factory;
+use Joomla\CMS\Uri\Uri;
+use Joomla\CMS\Form\Form;
+use Joomla\Registry\Registry;
+use Joomla\CMS\Filesystem\File;
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Plugin\CMSPlugin;
 
-if(!class_exists('Helix3')) {
-  require_once (__DIR__ . '/core/helix3.php');
+if (!class_exists('Helix3'))
+{
+    require_once (__DIR__ . '/core/helix3.php');
 }
 
-class  plgSystemHelix3 extends JPlugin
+class  plgSystemHelix3 extends CMSPlugin
 {
 
     protected $autoloadLanguage = true;
@@ -48,8 +51,8 @@ class  plgSystemHelix3 extends JPlugin
 					require_once $bootstrapPath;
 				}
 
-				JHtml::register('bootstrap.tooltip', ['Helix3Bootstrap', 'tooltip']);
-				JHtml::register('bootstrap.popover', ['Helix3Bootstrap', 'popover']);
+				HTMLHelper::register('bootstrap.tooltip', ['Helix3Bootstrap', 'tooltip']);
+				HTMLHelper::register('bootstrap.popover', ['Helix3Bootstrap', 'popover']);
 			}
 		}
 	}
@@ -57,15 +60,16 @@ class  plgSystemHelix3 extends JPlugin
     // Copied style
     function onAfterDispatch() {
 
-        if(  !JFactory::getApplication()->isClient('administrator') ) {
+        if (!Factory::getApplication()->isClient('api') && !Factory::getApplication()->isClient('administrator'))
+        {
 
-            $activeMenu = JFactory::getApplication()->getMenu()->getActive();
+            $activeMenu = Factory::getApplication()->getMenu()->getActive();
 
-            if(is_null($activeMenu)) $template_style_id = 0;
+            if (is_null($activeMenu)) $template_style_id = 0;
             else $template_style_id = (int) $activeMenu->template_style_id;
             if ($template_style_id > 0)
             {
-                $db = JFactory::getDbo();
+                $db = Factory::getDbo();
                 $query = $db->getQuery(true);
                 $query->select(array('*'));
                 $query->from($db->quoteName('#__template_styles'));
@@ -76,7 +80,7 @@ class  plgSystemHelix3 extends JPlugin
 
                 if(!empty($style->template) && !empty($style->params))
                 {
-                    JFactory::getApplication()->setTemplate($style->template, $style->params);
+                    Factory::getApplication()->setTemplate($style->template, $style->params);
                 }
             }
         }
@@ -85,13 +89,13 @@ class  plgSystemHelix3 extends JPlugin
     function onContentPrepareForm($form, $data)
     {
         $v = self::getVersion();
-        $doc = JFactory::getDocument();
-        $plg_path = JURI::root(true) . '/plugins/system/helix3';
-        $plg_path2 = JURI::root() . 'plugins/system/helix3';
-        JForm::addFormPath(JPATH_PLUGINS.'/system/helix3/params');
+        $doc = Factory::getDocument();
+        $plg_path = Uri::root(true) . '/plugins/system/helix3';
+        $plg_path2 = Uri::root() . 'plugins/system/helix3';
+        Form::addFormPath(JPATH_PLUGINS.'/system/helix3/params');
 
         if ($form->getName()=='com_menus.item') { //Add Helix menu params to the menu item
-            JHtml::_('jquery.framework');
+            HTMLHelper::_('jquery.framework');
             $data = (array)$data;
 
             if($data['id'] && $data['parent_id'] == 1)
@@ -101,11 +105,11 @@ class  plgSystemHelix3 extends JPlugin
                 $doc->addStyleSheet($plg_path . '/assets/css/modal.css?' . $v);
                 $doc->addStyleSheet($plg_path . '/assets/css/menu.generator.css?' . $v);
                 
-                JHtml::_('jquery.framework');
+                HTMLHelper::_('jquery.framework');
 
                 if(JVERSION < 4)
                 {
-                    JHtml::_('jquery.ui', array('core', 'more', 'sortable'));
+                    HTMLHelper::_('jquery.ui', array('core', 'more', 'sortable'));
                     $doc->addScript($plg_path.'/assets/js/jquery-ui.draggable.min.js?' . $v);
                 }
                 else
@@ -125,17 +129,19 @@ class  plgSystemHelix3 extends JPlugin
         }
 
         //Article Post format
-        if ($form->getName() == 'com_content.article') {
-            JHtml::_('jquery.framework');
+        if ($form->getName() == 'com_content.article')
+        {
+            HTMLHelper::_('jquery.framework');
             $doc->addStyleSheet($plg_path.'/assets/css/font-awesome.min.css?' . $v);
             $doc->addScript($plg_path.'/assets/js/post-formats.js?' . $v);
 
             $tpl_path = JPATH_ROOT . '/templates/' . $this->getTemplateName();
 
-            if(JFile::exists( $tpl_path . '/post-formats.xml' )) {
-                JForm::addFormPath($tpl_path);
+            if (File::exists( $tpl_path . '/post-formats.xml' ))
+            {
+                Form::addFormPath($tpl_path);
             } else {
-                JForm::addFormPath(JPATH_PLUGINS . '/system/helix3/params');
+                Form::addFormPath(JPATH_PLUGINS . '/system/helix3/params');
             }
 
             $form->loadFile('post-formats', false);
@@ -149,7 +155,7 @@ class  plgSystemHelix3 extends JPlugin
 
         if ($option == 'com_templates.style' && !empty($data->id)) {
 
-            $params = new JRegistry;
+            $params = new Registry;
             $params->loadString($data->params);
 
             $email       = $params->get('joomshaper_email');
@@ -162,7 +168,7 @@ class  plgSystemHelix3 extends JPlugin
                 $extra_query = 'joomshaper_email=' . urlencode($email);
                 $extra_query .='&amp;joomshaper_license_key=' . urlencode($license_key);
 
-                $db = JFactory::getDbo();
+                $db = Factory::getDbo();
 
                 $fields = array(
                     $db->quoteName('extra_query') . '=' . $db->quote($extra_query),
@@ -181,17 +187,18 @@ class  plgSystemHelix3 extends JPlugin
 
     public function onAfterRoute()
     {
-        $japps = JFactory::getApplication();
+        $japps = Factory::getApplication();
 
         if ( $japps->isClient('administrator') )
         {
-            $user = JFactory::getUser();
+            $user = Factory::getUser();
 
-            if( !in_array( 8, $user->groups ) ){
+            if ( !in_array( 8, $user->groups ) )
+            {
                 return false;
             }
 
-            $inputs = JFactory::getApplication()->input;
+            $inputs = Factory::getApplication()->input;
 
             $option         = $inputs->get ( 'option', '' );
             $id             = $inputs->get ( 'id', '0', 'INT' );
@@ -199,10 +206,10 @@ class  plgSystemHelix3 extends JPlugin
 
             if ( strtolower( $option ) == 'com_templates' && $id && $helix3task == "export" )
             {
-               $db = JFactory::getDbo();
-               $query = $db->getQuery(true);
+                $db = Factory::getDbo();
+                $query = $db->getQuery(true);
 
-               $query
+                $query
                     ->select( '*' )
                     ->from( $db->quoteName( '#__template_styles' ) )
                     ->where( $db->quoteName( 'id' ) . ' = ' . $db->quote( $id ) . ' AND ' . $db->quoteName( 'client_id' ) . ' = 0' );
@@ -229,7 +236,7 @@ class  plgSystemHelix3 extends JPlugin
 
     private function getTemplateName()
     {
-        $db = JFactory::getDbo();
+        $db = Factory::getDbo();
         $query = $db->getQuery(true);
         $query->select($db->quoteName(array('template')));
         $query->from($db->quoteName('#__template_styles'));
@@ -241,24 +248,24 @@ class  plgSystemHelix3 extends JPlugin
     }
 
     function onAfterRender() {
-        $app = JFactory::getApplication();
+        $app = Factory::getApplication();
 
-  		if ($app->isClient('administrator'))
+        if ($app->isClient('administrator'))
         {
-  			return;
-  		}
-          
-        $body = JFactory::getApplication()->getBody();
-  		$preset = Helix3::Preset();
+            return;
+        }
+            
+        $body = Factory::getApplication()->getBody();
+        $preset = Helix3::Preset();
 
-  		$body = str_replace('{helix_preset}', $preset, $body);
-
-  		JFactory::getApplication()->setBody($body);
+        $body = str_replace('{helix_preset}', $preset, $body);
+        
+        Factory::getApplication()->setBody($body);
     }
 
     private static function getVersion()
 	{
-		$db = JFactory::getDBO();
+		$db = Factory::getDBO();
 		$query = $db->getQuery(true);
 		$query
 			->select(array('*'))

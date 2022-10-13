@@ -6,12 +6,14 @@
 * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
 */
 
+use Joomla\CMS\Factory;
+use Joomla\CMS\Form\FormField;
+
 //no direct accees
 defined ('_JEXEC') or die ('resticted aceess');
 
-jimport('joomla.form.formfield');
-
-class JFormFieldLayout extends JFormField {
+class JFormFieldLayout extends FormField
+{
 
   protected $type = 'Layout';
 
@@ -57,8 +59,8 @@ class JFormFieldLayout extends JFormField {
   //Get template name
   private static function getTemplate()
   {
-    $id = (int) JFactory::getApplication()->input->get('id', 0);
-    $db = JFactory::getDbo();
+    $id = (int) Factory::getApplication()->input->get('id', 0);
+    $db = Factory::getDbo();
     $query = $db->getQuery(true);
     $query->select($db->quoteName(array('template')));
     $query->from($db->quoteName('#__template_styles'));

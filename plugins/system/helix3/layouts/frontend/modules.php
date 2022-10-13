@@ -5,12 +5,16 @@
 * @copyright (c) 2010 - 2021 JoomShaper
 * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
 */
+
+use Joomla\CMS\Filter\OutputFilter;
+
 defined('_JEXEC') or die('Restricted Access');
 
 //helper & model
 $menu_class   = JPATH_ROOT . '/plugins/system/helix3/core/classes/helix3.php';
 
-if (file_exists($menu_class)) {
+if (file_exists($menu_class))
+{
     require_once($menu_class);
 }
 
@@ -18,7 +22,7 @@ $data = $displayData;
 
 $output ='';
 
-    $output .= '<div id="sp-' . JFilterOutput::stringURLSafe($data->settings->name) . '" class="' . $data->className . '">';
+    $output .= '<div id="sp-' . OutputFilter::stringURLSafe($data->settings->name) . '" class="' . $data->className . '">';
 
         $output .= '<div class="sp-column ' . ($data->settings->custom_class) . '">';
 

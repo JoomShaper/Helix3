@@ -6,21 +6,27 @@
 * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
 */
 
+use Joomla\CMS\Factory;
+use Joomla\CMS\Filesystem\File;
+use Joomla\CMS\Form\FormField;
+use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Uri\Uri;
+
 //no direct accees
 defined ('_JEXEC') or die ('resticted aceess');
 
-class JFormFieldSpimage extends JFormField
+class JFormFieldSpimage extends FormField
 {
 
   protected $type = 'Spimage';
 
   protected function getInput()
   {
-    $doc = JFactory::getDocument();
+    $doc = Factory::getDocument();
 
-    JHtml::_('jquery.framework');
+    HTMLHelper::_('jquery.framework');
 
-    $plg_path = JURI::root(true) . '/plugins/system/helix3';
+    $plg_path = Uri::root(true) . '/plugins/system/helix3';
     $doc->addScript($plg_path . '/assets/js/spimage.js');
     $doc->addStyleSheet($plg_path . '/assets/css/spimage.css');
 
@@ -35,15 +41,17 @@ class JFormFieldSpimage extends JFormField
     $output  = '<div class="sp-image-field clearfix">';
     $output .= '<div class="sp-image-upload-wrapper">';
 
-    if($this->value) {
+    if ($this->value)
+    {
       $data_src = $this->value;
-      $src = JURI::root(true) . '/' . $data_src;
+      $src = Uri::root(true) . '/' . $data_src;
 
       $basename = basename($data_src);
-      $thumbnail = JPATH_ROOT . '/' . dirname($data_src) . '/' . JFile::stripExt($basename) . '_thumbnail.' . JFile::getExt($basename);
+      $thumbnail = JPATH_ROOT . '/' . dirname($data_src) . '/' . File::stripExt($basename) . '_thumbnail.' . File::getExt($basename);
 
-      if(file_exists($thumbnail)) {
-        $src = JURI::root(true) . '/' . dirname($data_src) . '/' . JFile::stripExt($basename) . '_thumbnail.' . JFile::getExt($basename);
+      if (file_exists($thumbnail))
+      {
+        $src = Uri::root(true) . '/' . dirname($data_src) . '/' . File::stripExt($basename) . '_thumbnail.' . File::getExt($basename);
       }
 
       $output .= '<img src="'. $src .'" data-src="' . $data_src . '" alt="">';

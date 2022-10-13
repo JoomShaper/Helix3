@@ -1,17 +1,19 @@
 <?php
 /**
-* @package Helix3 Framework
-* @author JoomShaper https://www.joomshaper.com
-* @copyright (c) 2010 - 2021 JoomShaper
-* @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
-*/
+ * @package Helix3 Framework
+ * @author JoomShaper https://www.joomshaper.com
+ * @copyright (c) 2010 - 2021 JoomShaper
+ * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
+ */
+
+use Joomla\CMS\Factory;
+use Joomla\CMS\Form\FormField;
+use Joomla\CMS\Filesystem\Folder;
 
 //no direct accees
 defined ('_JEXEC') or die ('resticted aceess');
 
-jimport('joomla.form.formfield');
-
-class JFormFieldLayoutlist extends JFormField
+class JFormFieldLayoutlist extends FormField
 {
   protected $type = 'Layoutlist';
 
@@ -19,7 +21,7 @@ class JFormFieldLayoutlist extends JFormField
   {
     $template  = self::getTemplate();
     $layoutPath = JPATH_SITE.'/templates/'.$template.'/layout/';
-    $laoutlist = JFolder::files($layoutPath, '.json');
+    $laoutlist = Folder::files($layoutPath, '.json');
 
     $htmls = '<div class="layoutlist"><select id="'.$this->id.'" class="form-select" name="'.$this->name.'">';
     
@@ -47,8 +49,8 @@ class JFormFieldLayoutlist extends JFormField
   //Get template name
   private static function getTemplate()
   {
-    $id = (int) JFactory::getApplication()->input->get('id', 0);
-    $db = JFactory::getDbo();
+    $id = (int) Factory::getApplication()->input->get('id', 0);
+    $db = Factory::getDbo();
     $query = $db->getQuery(true);
     $query->select($db->quoteName(array('template')));
     $query->from($db->quoteName('#__template_styles'));

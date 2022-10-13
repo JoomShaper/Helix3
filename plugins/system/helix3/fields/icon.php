@@ -6,14 +6,14 @@
 * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
 */
 
+use Joomla\CMS\Form\FormField;
+use Joomla\CMS\HTML\HTMLHelper;
+
 //no direct accees
 defined ('_JEXEC') or die ('resticted aceess');
 
-jimport('joomla.form.formfield');
-
-jimport('joomla.html.html.select');
-
-class JFormFieldIcon extends JFormField {
+class JFormFieldIcon extends FormField
+{
 
 	protected $type = 'Icon';
 
@@ -22,18 +22,20 @@ class JFormFieldIcon extends JFormField {
 		$icons = $this->getIconsList();
 
 		$arr = array();
-		$arr[] = JHtml::_('select.option', '', '' );
+		$arr[] = HTMLHelper::_('select.option', '', '' );
 
-		foreach ($icons as $value) {
-			$arr[] = JHtml::_('select.option', $value, str_replace('fa-', '', $value) );
+		foreach ($icons as $value)
+		{
+			$arr[] = HTMLHelper::_('select.option', $value, str_replace('fa-', '', $value) );
 		}
 
-		return JHtml::_('select.genericlist', $arr, $this->name, 'class="form-select"', 'value', 'text', $this->value);
+		return HTMLHelper::_('select.genericlist', $arr, $this->name, 'class="form-select"', 'value', 'text', $this->value);
 
 	}
 
 	/*Icons List*/
-	private static function getIconsList() {
+	private static function getIconsList()
+	{
 		return array(
 			'fa-500px',
 			'fa-adjust',

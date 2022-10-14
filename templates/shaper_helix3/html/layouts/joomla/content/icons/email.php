@@ -6,13 +6,15 @@
  * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or later
 */
 
+use Joomla\CMS\Language\Text;
+
 defined('_JEXEC') or die;
 
 $params = $displayData['params'];
 ?>
 <?php if ($params->get('show_icons')) : ?>
 	<span class="icon-envelope" aria-hidden="true"></span>
-	<?php echo JText::_('JGLOBAL_EMAIL'); ?>
+	<?php echo Text::_('JGLOBAL_EMAIL'); ?>
 <?php else : ?>
-	<?php echo JText::_('JGLOBAL_EMAIL'); ?>
+	<?php echo Text::_('JGLOBAL_EMAIL'); ?>
 <?php endif; ?>

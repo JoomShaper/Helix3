@@ -6,9 +6,11 @@
  * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or later
 */
 
+use Joomla\CMS\HTML\HTMLHelper;
+
 defined('_JEXEC') or die;
 
-JHtml::_('behavior.framework');
+HTMLHelper::_('behavior.framework');
 
 ?>
 <fieldset class="<?php echo !empty($displayData->formclass) ? $displayData->formclass : 'form-horizontal'; ?>">
@@ -27,8 +29,8 @@ JHtml::_('behavior.framework');
 			$showon = $displayData->form->getFieldAttribute($field->fieldname, 'showon');
 			if (!empty($showon))
 			{
-				JHtml::_('jquery.framework');
-				JHtml::_('script', 'jui/cms.js', false, true);
+				HTMLHelper::_('jquery.framework');
+				HTMLHelper::_('script', 'jui/cms.js', false, true);
 
 				$id = $displayData->form->getFormControl();
 				$showon = explode(':', $showon, 2);

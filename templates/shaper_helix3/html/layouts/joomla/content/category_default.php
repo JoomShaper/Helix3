@@ -6,6 +6,10 @@
  * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or later
 */
 
+use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
+use Joomla\CMS\Layout\LayoutHelper;
+
 defined('JPATH_BASE') or die;
 
 // Note that this layout opens a div with the page class suffix. If you do not use the category children
@@ -35,12 +39,12 @@ $tagsData = $displayData->get('category')->tags->itemTags;
 		
 		<?php if($params->get('show_category_title', 1)) : ?>
 			<h2>
-				<?php echo JHtml::_('content.prepare', $displayData->get('category')->title, '', $extension . '.category.title'); ?>
+				<?php echo HTMLHelper::_('content.prepare', $displayData->get('category')->title, '', $extension . '.category.title'); ?>
 			</h2>
 		<?php endif; ?>
 
 		<?php if ($params->get('show_cat_tags', 1)) : ?>
-			<?php echo JLayoutHelper::render('joomla.content.tags', $tagsData); ?>
+			<?php echo LayoutHelper::render('joomla.content.tags', $tagsData); ?>
 		<?php endif; ?>
 
 		<?php if ($params->get('show_description', 1) || $params->def('show_description_image', 1)) : ?>
@@ -49,7 +53,7 @@ $tagsData = $displayData->get('category')->tags->itemTags;
 					<img src="<?php echo $displayData->get('category')->getParams()->get('image'); ?>" alt="<?php echo htmlspecialchars($displayData->get('category')->getParams()->get('image_alt')); ?>"/>
 				<?php endif; ?>
 				<?php if ($params->get('show_description') && $displayData->get('category')->description) : ?>
-					<?php echo JHtml::_('content.prepare', $displayData->get('category')->description, '', $extension . '.category'); ?>
+					<?php echo HTMLHelper::_('content.prepare', $displayData->get('category')->description, '', $extension . '.category'); ?>
 				<?php endif; ?>
 				<div class="clr"></div>
 			</div>
@@ -60,7 +64,7 @@ $tagsData = $displayData->get('category')->tags->itemTags;
 		<?php if ($displayData->get('children') && $displayData->maxLevel != 0) : ?>
 			<div class="cat-children">
 				<h3>
-					<?php echo JTEXT::_('JGLOBAL_SUBCATEGORIES'); ?>
+					<?php echo Text::_('JGLOBAL_SUBCATEGORIES'); ?>
 				</h3>
 
 				<?php echo $displayData->loadTemplate('children'); ?>

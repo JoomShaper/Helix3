@@ -6,13 +6,15 @@
  * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or later
 */
 
+use Joomla\CMS\Language\Text;
+
 defined('_JEXEC') or die;
 
 $params = $displayData['params'];
 ?>
 <?php if ($params->get('show_icons')) : ?>
 	<span class="icon-plus" aria-hidden="true"></span>
-	<?php echo JText::_('JNEW'); ?>
+	<?php echo Text::_('JNEW'); ?>
 <?php else : ?>
-	<?php echo JText::_('JNEW') . '&#160;'; ?>
+	<?php echo Text::_('JNEW') . '&#160;'; ?>
 <?php endif; ?>

@@ -7,11 +7,15 @@
 * @license     GNU General Public License version 2 or later; see LICENSE.txt
 */
 
+use Joomla\CMS\Router\Route;
+use Joomla\CMS\Language\Text;
+use Joomla\CMS\HTML\HTMLHelper;
+
 defined('_JEXEC') or die;
 
-JHtml::_('behavior.keepalive');
-JHtml::_('behavior.formvalidator');
-// JHtml::_('formbehavior.chosen', '#jform_catid', null, array('disable_search_threshold' => 0));
+HTMLHelper::_('behavior.keepalive');
+HTMLHelper::_('behavior.formvalidator');
+// HTMLHelper::_('formbehavior.chosen', '#jform_catid', null, array('disable_search_threshold' => 0));
 
 $this->tab_name = 'com-content-form';
 $this->ignore_fieldsets = array('image-intro', 'image-full', 'jmetadata', 'sppostformats', 'item_associations');
@@ -36,10 +40,10 @@ if (!$editoroptions)
 		</div>
 	<?php endif ?>
 	
-	<form action="<?php echo JRoute::_('index.php?option=com_content&a_id=' . (int) $this->item->id); ?>" method="post" name="adminForm" id="adminForm" class="form-validate form-vertical com-content-adminForm">
+	<form action="<?php echo Route::_('index.php?option=com_content&a_id=' . (int) $this->item->id); ?>" method="post" name="adminForm" id="adminForm" class="form-validate form-vertical com-content-adminForm">
 		<fieldset>
-			<?php echo JHtml::_((JVERSION < 4 ? 'bootstrap' : 'uitab') . '.startTabSet', $this->tab_name, array('active' => 'editor')); ?>
-			<?php echo JHtml::_((JVERSION < 4 ? 'bootstrap' : 'uitab') . '.addTab', $this->tab_name, 'editor', JText::_('COM_CONTENT_ARTICLE_CONTENT')); ?>
+			<?php echo HTMLHelper::_((JVERSION < 4 ? 'bootstrap' : 'uitab') . '.startTabSet', $this->tab_name, array('active' => 'editor')); ?>
+			<?php echo HTMLHelper::_((JVERSION < 4 ? 'bootstrap' : 'uitab') . '.addTab', $this->tab_name, 'editor', Text::_('COM_CONTENT_ARTICLE_CONTENT')); ?>
 				<?php echo $this->form->renderField('title'); ?>
 
 				<?php if (is_null($this->item->id)) : ?>
@@ -51,9 +55,9 @@ if (!$editoroptions)
 				<?php if ($this->captchaEnabled) : ?>
 					<?php echo $this->form->renderField('captcha'); ?>
 				<?php endif; ?>
-			<?php echo JHtml::_((JVERSION < 4 ? 'bootstrap' : 'uitab') . '.endTab'); ?>
+			<?php echo HTMLHelper::_((JVERSION < 4 ? 'bootstrap' : 'uitab') . '.endTab'); ?>
 			
-			<?php echo JHtml::_((JVERSION < 4 ? 'bootstrap' : 'uitab') . '.addTab', $this->tab_name, 'sppostformats', JText::_('BLOG_OPTIONS')); ?>
+			<?php echo HTMLHelper::_((JVERSION < 4 ? 'bootstrap' : 'uitab') . '.addTab', $this->tab_name, 'sppostformats', Text::_('BLOG_OPTIONS')); ?>
 				<?php $attribs = json_decode($this->item->attribs); ?>
 				<?php echo $this->form->renderField('spfeatured_image','attribs', (isset($attribs->spfeatured_image)? $attribs->spfeatured_image: '')); ?>
 				<?php echo $this->form->renderField('post_format','attribs', (isset($attribs->post_format)? $attribs->post_format: '')); ?>
@@ -65,10 +69,10 @@ if (!$editoroptions)
 				<?php echo $this->form->renderField('quote_text','attribs',(isset($attribs->quote_text)? $attribs->quote_text: '')); ?>
 				<?php echo $this->form->renderField('quote_author','attribs',(isset($attribs->quote_author)? $attribs->quote_author: '')); ?>
 				<?php echo $this->form->renderField('post_status','attribs',(isset($attribs->post_status)? $attribs->post_status: '')); ?>
-			<?php echo JHtml::_((JVERSION < 4 ? 'bootstrap' : 'uitab') . '.endTab'); ?>
+			<?php echo HTMLHelper::_((JVERSION < 4 ? 'bootstrap' : 'uitab') . '.endTab'); ?>
 
 			<?php if ($params->get('show_urls_images_frontend')) : ?>
-			<?php echo JHtml::_((JVERSION < 4 ? 'bootstrap' : 'uitab') . '.addTab', $this->tab_name, 'images', JText::_('COM_CONTENT_IMAGES_AND_URLS')); ?>
+			<?php echo HTMLHelper::_((JVERSION < 4 ? 'bootstrap' : 'uitab') . '.addTab', $this->tab_name, 'images', Text::_('COM_CONTENT_IMAGES_AND_URLS')); ?>
 				<?php echo $this->form->renderField('image_intro', 'images'); ?>
 				<?php echo $this->form->renderField('image_intro_alt', 'images'); ?>
 				<?php echo $this->form->renderField('image_intro_caption', 'images'); ?>
@@ -98,12 +102,12 @@ if (!$editoroptions)
 						<?php echo $this->form->getInput('targetc', 'urls'); ?>
 					</div>
 				</div>
-			<?php echo JHtml::_((JVERSION < 4 ? 'bootstrap' : 'uitab') . '.endTab'); ?>
+			<?php echo HTMLHelper::_((JVERSION < 4 ? 'bootstrap' : 'uitab') . '.endTab'); ?>
 			<?php endif; ?>
 
 			<?php echo JLayoutHelper::render('joomla.edit.params', $this); ?>
 
-			<?php echo JHtml::_((JVERSION < 4 ? 'bootstrap' : 'uitab') . '.addTab', $this->tab_name, 'publishing', JText::_('COM_CONTENT_PUBLISHING')); ?>
+			<?php echo HTMLHelper::_((JVERSION < 4 ? 'bootstrap' : 'uitab') . '.addTab', $this->tab_name, 'publishing', Text::_('COM_CONTENT_PUBLISHING')); ?>
 				<?php echo $this->form->renderField('catid'); ?>
 				<?php echo $this->form->renderField('tags'); ?>
 				<?php if ($params->get('save_history', 0)) : ?>
@@ -129,34 +133,34 @@ if (!$editoroptions)
 						<div class="control-label">
 						</div>
 						<div class="controls">
-							<?php echo JText::_('COM_CONTENT_ORDERING'); ?>
+							<?php echo Text::_('COM_CONTENT_ORDERING'); ?>
 						</div>
 					</div>
 				<?php endif; ?>
-			<?php echo JHtml::_((JVERSION < 4 ? 'bootstrap' : 'uitab') . '.endTab'); ?>
+			<?php echo HTMLHelper::_((JVERSION < 4 ? 'bootstrap' : 'uitab') . '.endTab'); ?>
 
 			<?php if (JVERSION < 4): ?>
-				<?php echo JHtml::_('bootstrap.addTab', $this->tab_name, 'language', JText::_('JFIELD_LANGUAGE_LABEL')); ?>
+				<?php echo HTMLHelper::_('bootstrap.addTab', $this->tab_name, 'language', Text::_('JFIELD_LANGUAGE_LABEL')); ?>
 					<?php echo $this->form->renderField('language'); ?>
-				<?php echo JHtml::_('bootstrap.endTab'); ?>
+				<?php echo HTMLHelper::_('bootstrap.endTab'); ?>
 			<?php else: ?>
 				<?php if (Joomla\CMS\Language\Multilanguage::isEnabled()) : ?>
-					<?php echo JHtml::_('uitab.addTab', $this->tab_name, 'language', JText::_('JFIELD_LANGUAGE_LABEL')); ?>
+					<?php echo HTMLHelper::_('uitab.addTab', $this->tab_name, 'language', Text::_('JFIELD_LANGUAGE_LABEL')); ?>
 						<?php echo $this->form->renderField('language'); ?>
-					<?php echo JHtml::_('uitab.endTab'); ?>
+					<?php echo HTMLHelper::_('uitab.endTab'); ?>
 				<?php else: ?>
 					<?php echo $this->form->renderField('language'); ?>
 				<?php endif; ?>
 			<?php endif ?>
 
 			<?php if ($params->get('show_publishing_options', 1) == 1) : ?>
-				<?php echo JHtml::_((JVERSION < 4 ? 'bootstrap' : 'uitab') . '.addTab', $this->tab_name, 'metadata', JText::_('COM_CONTENT_METADATA')); ?>
+				<?php echo HTMLHelper::_((JVERSION < 4 ? 'bootstrap' : 'uitab') . '.addTab', $this->tab_name, 'metadata', Text::_('COM_CONTENT_METADATA')); ?>
 					<?php echo $this->form->renderField('metadesc'); ?>
 					<?php echo $this->form->renderField('metakey'); ?>
-				<?php echo JHtml::_((JVERSION < 4 ? 'bootstrap' : 'uitab') . '.endTab'); ?>
+				<?php echo HTMLHelper::_((JVERSION < 4 ? 'bootstrap' : 'uitab') . '.endTab'); ?>
 			<?php endif; ?>
 
-			<?php echo JHtml::_((JVERSION < 4 ? 'bootstrap' : 'uitab') . '.endTabSet'); ?>
+			<?php echo HTMLHelper::_((JVERSION < 4 ? 'bootstrap' : 'uitab') . '.endTabSet'); ?>
 	
 			<input type="hidden" name="task" value="" />
 			<input type="hidden" name="return" value="<?php echo $this->return_page; ?>" />
@@ -165,15 +169,15 @@ if (!$editoroptions)
 				<input type="hidden" name="jform[catid]" value="<?php echo $this->params->get('catid', 1); ?>" />
 			<?php endif; ?>
 		
-			<?php echo JHtml::_('form.token'); ?>
+			<?php echo HTMLHelper::_('form.token'); ?>
 		</fieldset>
 
 		<div class="btn-toolbar mt-2">
 			<button type="button" class="btn btn-primary" onclick="Joomla.submitbutton('article.save')">
-				<span class="fa fa-check" aria-hidden="true"></span> <?php echo JText::_('JSAVE') ?>
+				<span class="fa fa-check" aria-hidden="true"></span> <?php echo Text::_('JSAVE') ?>
 			</button>
 			<button type="button" class="btn btn-secondary ms-2" onclick="Joomla.submitbutton('article.cancel')">
-				<span class="fa fa-times" aria-hidden="true"></span> <?php echo JText::_('JCANCEL') ?>
+				<span class="fa fa-times" aria-hidden="true"></span> <?php echo Text::_('JCANCEL') ?>
 			</button>
 			<?php if ($params->get('save_history', 0) && $this->item->id) : ?>
 				<div class="ms-2">

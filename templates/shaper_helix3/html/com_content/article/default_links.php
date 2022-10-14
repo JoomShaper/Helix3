@@ -7,6 +7,8 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
+use Joomla\CMS\HTML\HTMLHelper;
+
 defined('_JEXEC') or die;
 
 // Create shortcut
@@ -60,7 +62,7 @@ if ($urls && (!empty($urls->urla) || !empty($urls->urlb) || !empty($urls->urlc))
 							break;
 						case 3:
 							// open in a modal window
-							JHtml::_('behavior.modal', 'a.modal');
+							HTMLHelper::_('behavior.modal', 'a.modal');
 							echo '<a class="modal" href="' . htmlspecialchars($link) . '"  rel="{handler: \'iframe\', size: {x:600, y:600}}">' .
 								htmlspecialchars($label) . ' </a>';
 							break;

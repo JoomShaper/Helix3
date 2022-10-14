@@ -6,6 +6,9 @@
  * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or later
 */
 
+use Joomla\CMS\Language\Text;
+use Joomla\CMS\Router\Route;
+
 defined('JPATH_BASE') or die;
 
 if (!isset($displayData['item']->catslug))
@@ -18,8 +21,8 @@ if (!isset($displayData['item']->catslug))
 	<i class="fa fa-folder-open-o" area-hidden="true"></i>
 	<?php $title = $this->escape($displayData['item']->category_title); ?>
 	<?php if ($displayData['params']->get('link_category') && $displayData['item']->catslug) : ?>
-		<?php echo '<a href="' . JRoute::_(ContentHelperRoute::getCategoryRoute($displayData['item']->catslug)) . '" itemprop="genre" data-toggle="tooltip" title="' . JText::_('COM_CONTENT_CONTENT_TYPE_CATEGORY') . '">' . $title . '</a>'; ?>
+		<?php echo '<a href="' . Route::_(ContentHelperRoute::getCategoryRoute($displayData['item']->catslug)) . '" itemprop="genre" data-toggle="tooltip" title="' . Text::_('COM_CONTENT_CONTENT_TYPE_CATEGORY') . '">' . $title . '</a>'; ?>
 	<?php else : ?>
-		<?php echo '<span itemprop="genre" itemprop="genre" data-toggle="tooltip" title="' . JText::_('COM_CONTENT_CONTENT_TYPE_CATEGORY') . '">' . $title . '</span>'; ?>
+		<?php echo '<span itemprop="genre" itemprop="genre" data-toggle="tooltip" title="' . Text::_('COM_CONTENT_CONTENT_TYPE_CATEGORY') . '">' . $title . '</span>'; ?>
 	<?php endif; ?>
 </dd>

@@ -6,12 +6,14 @@
  * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or later
 */
 
+use Joomla\CMS\Factory;
+
 //no direct access
 defined('_JEXEC') or die('Restricted Access');
 
 if ($displayData['params']->get('disqus_subdomain') != '')
 {
-	$doc = JFactory::getDocument();
+	$doc = Factory::getDocument();
 
 	if (!defined('HELIX_COMMENTS_DISQUS_COUNT'))
 	{

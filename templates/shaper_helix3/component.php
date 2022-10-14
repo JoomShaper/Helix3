@@ -7,6 +7,10 @@
 */
 //no direct accees
 defined ('_JEXEC') or die ('resticted aceess');
+
+use Joomla\CMS\Factory;
+use Joomla\CMS\Uri\Uri;
+
 //Load Helix
 $helix3_path = JPATH_PLUGINS . '/system/helix3/core/helix3.php';
 
@@ -20,7 +24,7 @@ else
 	die('Please install and activate helix plugin');
 }
 
-$app = JFactory::getApplication();
+$app = Factory::getApplication();
 $input = $app->input;
 $option = str_replace('_', '-', $input->get('option', '', 'STRING'));
 
@@ -33,10 +37,10 @@ $body_class = $option;
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <?php
-            $doc = JFactory::getDocument();
+            $doc = Factory::getDocument();
             if ($favicon = $this->params->get('favicon'))
             {
-                $doc->addFavicon( JURI::base(true) . '/' .  $favicon);
+                $doc->addFavicon( Uri::base(true) . '/' .  $favicon);
             }
             else
             {

@@ -9,12 +9,17 @@
 //no direct accees
 defined ('_JEXEC') or die ('resticted aceess');
 
-$doc = JFactory::getDocument();
-$params = JFactory::getApplication()->getTemplate('true')->params;
+use Joomla\CMS\Document\Renderer\Html\HeadRenderer;
+use Joomla\CMS\Factory;
+use Joomla\CMS\Uri\Uri;
+use Joomla\CMS\Language\Text;
+
+$doc = Factory::getDocument();
+$params = Factory::getApplication()->getTemplate('true')->params;
 
 //Error Logo
 if ($logo_image = $params->get('error_logo')) {
-	 $logo = JURI::root() . '/' .  $logo_image;
+	 $logo = Uri::root() . '/' .  $logo_image;
 	 $path = JPATH_ROOT . '/' .  $logo_image;
 } else {
     $logo 		= $this->baseurl . '/templates/' . $this->template . '/images/presets/preset1/logo.png';
@@ -23,7 +28,7 @@ if ($logo_image = $params->get('error_logo')) {
 
 //Favicon
 if($favicon = $params->get('favicon')) {
-    $doc->addFavicon( JURI::base(true) . '/' .  $favicon);
+    $doc->addFavicon( Uri::base(true) . '/' .  $favicon);
 } else {
     $doc->addFavicon( $this->baseurl . '/templates/' . $this->template . '/images/favicon.ico' );
 }
@@ -46,14 +51,14 @@ if(!class_exists('JDocumentRendererHead')) {
     require_once($head);
   }
 }
-$header_renderer = new JDocumentRendererHead($doc);
+$header_renderer = new HeadRenderer($doc);
 $header_contents = $header_renderer->render(null);
 
 //background image
 $error_bg = '';
 $hascs_bg = '';
 if ($err_bg = $params->get('error_bg')) {
-	$error_bg 	= JURI::root() . $err_bg;
+	$error_bg 	= Uri::root() . $err_bg;
 	$hascs_bg 	= 'has-background';
 }
 
@@ -89,7 +94,7 @@ if ($err_bg = $params->get('error_bg')) {
 								<?php // Make the first assignment to setError() outside the loop so the loop does not skip Exceptions ?>
 								<?php $this->setError($this->_error->getPrevious()); ?>
 								<?php while ($loop === true) : ?>
-									<p><strong><?php echo JText::_('JERROR_LAYOUT_PREVIOUS_ERROR'); ?></strong></p>
+									<p><strong><?php echo Text::_('JERROR_LAYOUT_PREVIOUS_ERROR'); ?></strong></p>
 									<p><?php echo htmlspecialchars($this->_error->getMessage(), ENT_QUOTES, 'UTF-8'); ?></p>
 									<?php echo $this->renderBacktrace(); ?>
 									<?php $loop = $this->setError($this->_error->getPrevious()); ?>
@@ -100,7 +105,7 @@ if ($err_bg = $params->get('error_bg')) {
 						</div>
 					<?php endif; ?>
 
-					<a class="btn btn-primary btn-lg" href="<?php echo $this->baseurl; ?>/" title="<?php echo JText::_('HOME'); ?>"><i class="fa fa-chevron-left"></i> <?php echo JText::_('HELIX_GO_BACK'); ?></a>
+					<a class="btn btn-primary btn-lg" href="<?php echo $this->baseurl; ?>/" title="<?php echo Text::_('HOME'); ?>"><i class="fa fa-chevron-left"></i> <?php echo Text::_('HELIX_GO_BACK'); ?></a>
 					<?php echo $doc->getBuffer('modules', '404', array('style' => 'sp_xhtml')); ?>
 				</div>
 			</div>

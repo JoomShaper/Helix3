@@ -6,6 +6,8 @@
  * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or later
 */
 
+use Joomla\CMS\Language\Text;
+
 defined('_JEXEC') or die;
 ?>
 
@@ -13,7 +15,7 @@ defined('_JEXEC') or die;
 	<?php
 	if ($params->get('showHere', 1))
 	{
-		echo '<span>' . JText::_('MOD_BREADCRUMBS_HERE') . '&#160;</span>';
+		echo '<span>' . Text::_('MOD_BREADCRUMBS_HERE') . '&#160;</span>';
 	}
 	else
 	{

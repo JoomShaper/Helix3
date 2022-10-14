@@ -8,6 +8,10 @@
 //no direct accees
 defined ('_JEXEC') or die('resticted aceess');
 
+use Joomla\CMS\Factory;
+use Joomla\CMS\Image\Image;
+use Joomla\CMS\Uri\Uri;
+
 class Helix3FeatureLogo {
 
 	private $helix3;
@@ -24,8 +28,6 @@ class Helix3FeatureLogo {
 
 		//Retina Image
 		if( $this->helix3->getParam('logo_type') == 'image' ) {
-			jimport('joomla.image.image');
-
 			if( $this->helix3->getParam('logo_image') ) {
 				$path = JPATH_ROOT . '/' . $this->helix3->getParam('logo_image');
 			} else {
@@ -33,7 +35,7 @@ class Helix3FeatureLogo {
 			}
 
 			if(file_exists($path)) {
-				$image = new JImage( $path );
+				$image = new Image( $path );
 				$width 	= $image->getWidth();
 				$height = $image->getHeight();
 			} else {
@@ -45,7 +47,7 @@ class Helix3FeatureLogo {
 
 		$html  = '';
 		$custom_logo_class = '';
-		$sitename = JFactory::getApplication()->get('sitename');
+		$sitename = Factory::getApplication()->get('sitename');
 
 		if( $this->helix3->getParam('mobile_logo') ) {
 			$custom_logo_class = ' d-none d-lg-block';
@@ -54,7 +56,7 @@ class Helix3FeatureLogo {
 		if( $this->helix3->getParam('logo_type') == 'image' ) {
 			if( $this->helix3->getParam('logo_image') ) {
 				$html .= '<div class="logo">';
-				$html .= '<a href="' . JURI::base(true) . '/">';
+				$html .= '<a href="' . Uri::base(true) . '/">';
 					$html .= '<img class="sp-default-logo'. $custom_logo_class .'" src="' . $this->helix3->getParam('logo_image') . '" srcset="'. ($this->helix3->getParam('logo_image_2x') ? $this->helix3->getParam('logo_image_2x') . ' 2x' : '') .'" alt="'. $sitename .'">';
 					
 					if( $this->helix3->getParam('mobile_logo') ) {
@@ -66,7 +68,7 @@ class Helix3FeatureLogo {
 				$html .= '</div>';
 			} else {
 				$html .= '<div class="logo">';
-					$html .= '<a href="' . JURI::base(true) . '/">';
+					$html .= '<a href="' . Uri::base(true) . '/">';
 						$html .= '<img class="sp-default-logo'. $custom_logo_class .'" src="' . $this->helix3->getTemplateUri() . '/images/presets/' . $this->helix3->Preset() . '/logo.png" alt="'. $sitename .'">';
 						
 						if( $this->helix3->getParam('mobile_logo') ) {
@@ -78,9 +80,9 @@ class Helix3FeatureLogo {
 
 		} else {
 			if( $this->helix3->getParam('logo_text') ) {
-				$html .= '<h1 class="logo"> <a href="' . JURI::base(true) . '/">' . $this->helix3->getParam('logo_text') . '</a></h1>';
+				$html .= '<h1 class="logo"> <a href="' . Uri::base(true) . '/">' . $this->helix3->getParam('logo_text') . '</a></h1>';
 			} else {
-				$html .= '<h1 class="logo"> <a href="' . JURI::base(true) . '/">' . $sitename . '</a></h1>';
+				$html .= '<h1 class="logo"> <a href="' . Uri::base(true) . '/">' . $sitename . '</a></h1>';
 			}
 
 			if( $this->helix3->getParam('logo_slogan') ) {

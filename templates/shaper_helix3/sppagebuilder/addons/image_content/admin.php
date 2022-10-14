@@ -2,71 +2,74 @@
 /**
 * @package SP Page Builder
 * @author JoomShaper https://www.joomshaper.com
-* @copyright (c) 2010 - 2021 JoomShaper
+* @copyright (c) 2010 - 2022 JoomShaper
 * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or later
 */
-//no direct accees
-defined ('_JEXEC') or die ('restricted aceess');
+
+//No direct access
+defined ('_JEXEC') or die ('restricted access');
+
+use Joomla\CMS\Language\Text;
 
 SpAddonsConfig::addonConfig(
 array(
 	'type'=>'content',
 	'addon_name'=>'sp_image_content',
-	'title'=>JText::_('COM_SPPAGEBUILDER_ADDON_IMAGE_CONTENT'),
-	'desc'=>JText::_('COM_SPPAGEBUILDER_ADDON_IMAGE_CONTENT_DESC'),
+	'title'=>Text::_('COM_SPPAGEBUILDER_ADDON_IMAGE_CONTENT'),
+	'desc'=>Text::_('COM_SPPAGEBUILDER_ADDON_IMAGE_CONTENT_DESC'),
 	'attr'=>array(
 		'general' => array(
 
 			'admin_label'=>array(
 				'type'=>'text',
-				'title'=>JText::_('COM_SPPAGEBUILDER_ADDON_ADMIN_LABEL'),
-				'desc'=>JText::_('COM_SPPAGEBUILDER_ADDON_ADMIN_LABEL_DESC'),
+				'title'=>Text::_('COM_SPPAGEBUILDER_ADDON_ADMIN_LABEL'),
+				'desc'=>Text::_('COM_SPPAGEBUILDER_ADDON_ADMIN_LABEL_DESC'),
 				'std'=> ''
 			),
 
 			'separator1'=>array(
 				'type'=>'separator',
-				'title'=>JText::_('COM_SPPAGEBUILDER_ADDON_IMAGE_CONTENT_IMAGE')
+				'title'=>Text::_('COM_SPPAGEBUILDER_ADDON_IMAGE_CONTENT_IMAGE')
 			),
 
 			'image'=>array(
 				'type'=>'media',
-				'title'=>JText::_('COM_SPPAGEBUILDER_ADDON_IMAGE_CONTENT_IMAGE'),
+				'title'=>Text::_('COM_SPPAGEBUILDER_ADDON_IMAGE_CONTENT_IMAGE'),
 			),
 
 			'image_alignment'=>array(
 				'type'=>'select',
-				'title'=>JText::_('COM_SPPAGEBUILDER_ADDON_IMAGE_CONTENT_IMAGE_ALIGNMENT'),
-				'desc'=>JText::_('COM_SPPAGEBUILDER_ADDON_IMAGE_CONTENT_IMAGE_ALIGNMENT_DESC'),
+				'title'=>Text::_('COM_SPPAGEBUILDER_ADDON_IMAGE_CONTENT_IMAGE_ALIGNMENT'),
+				'desc'=>Text::_('COM_SPPAGEBUILDER_ADDON_IMAGE_CONTENT_IMAGE_ALIGNMENT_DESC'),
 				'values'=>array(
-					'left'=>JText::_('COM_SPPAGEBUILDER_GLOBAL_LEFT'),
-					'right'=>JText::_('COM_SPPAGEBUILDER_GLOBAL_RIGHT'),
+					'left'=>Text::_('COM_SPPAGEBUILDER_GLOBAL_LEFT'),
+					'right'=>Text::_('COM_SPPAGEBUILDER_GLOBAL_RIGHT'),
 				),
 				'std'=>'left',
 			),
 
 			'separator2'=>array(
 				'type'=>'separator',
-				'title'=>JText::_('COM_SPPAGEBUILDER_ADDON_IMAGE_CONTENT_CONTENT')
+				'title'=>Text::_('COM_SPPAGEBUILDER_ADDON_IMAGE_CONTENT_CONTENT')
 			),
 
 			'title'=>array(
 				'type'=>'text',
-				'title'=>JText::_('COM_SPPAGEBUILDER_ADDON_IMAGE_CONTENT_TITLE'),
-				'desc'=>JText::_('COM_SPPAGEBUILDER_ADDON_IMAGE_CONTENT_TITLE_DESC'),
+				'title'=>Text::_('COM_SPPAGEBUILDER_ADDON_IMAGE_CONTENT_TITLE'),
+				'desc'=>Text::_('COM_SPPAGEBUILDER_ADDON_IMAGE_CONTENT_TITLE_DESC'),
 			),
 
 			'heading_selector'=>array(
 				'type'=>'select',
-				'title'=>JText::_('COM_SPPAGEBUILDER_ADDON_HEADINGS'),
-				'desc'=>JText::_('COM_SPPAGEBUILDER_ADDON_HEADINGS_DESC'),
+				'title'=>Text::_('COM_SPPAGEBUILDER_ADDON_HEADINGS'),
+				'desc'=>Text::_('COM_SPPAGEBUILDER_ADDON_HEADINGS_DESC'),
 				'values'=>array(
-					'h1'=>JText::_('COM_SPPAGEBUILDER_ADDON_HEADINGS_H1'),
-					'h2'=>JText::_('COM_SPPAGEBUILDER_ADDON_HEADINGS_H2'),
-					'h3'=>JText::_('COM_SPPAGEBUILDER_ADDON_HEADINGS_H3'),
-					'h4'=>JText::_('COM_SPPAGEBUILDER_ADDON_HEADINGS_H4'),
-					'h5'=>JText::_('COM_SPPAGEBUILDER_ADDON_HEADINGS_H5'),
-					'h6'=>JText::_('COM_SPPAGEBUILDER_ADDON_HEADINGS_H6'),
+					'h1'=>Text::_('COM_SPPAGEBUILDER_ADDON_HEADINGS_H1'),
+					'h2'=>Text::_('COM_SPPAGEBUILDER_ADDON_HEADINGS_H2'),
+					'h3'=>Text::_('COM_SPPAGEBUILDER_ADDON_HEADINGS_H3'),
+					'h4'=>Text::_('COM_SPPAGEBUILDER_ADDON_HEADINGS_H4'),
+					'h5'=>Text::_('COM_SPPAGEBUILDER_ADDON_HEADINGS_H5'),
+					'h6'=>Text::_('COM_SPPAGEBUILDER_ADDON_HEADINGS_H6'),
 				),
 				'std'=>'h3',
 				'depends'=>array(array('title', '!=', '')),
@@ -74,30 +77,30 @@ array(
 
 			'title_fontsize'=>array(
 				'type'=>'number',
-				'title'=>JText::_('COM_SPPAGEBUILDER_ADDON_TITLE_FONT_SIZE'),
-				'desc'=>JText::_('COM_SPPAGEBUILDER_ADDON_TITLE_FONT_SIZE_DESC'),
+				'title'=>Text::_('COM_SPPAGEBUILDER_ADDON_TITLE_FONT_SIZE'),
+				'desc'=>Text::_('COM_SPPAGEBUILDER_ADDON_TITLE_FONT_SIZE_DESC'),
 				'std'=>'',
 				'depends'=>array(array('title', '!=', '')),
 			),
 
 			'title_lineheight'=>array(
 				'type'=>'text',
-				'title'=>JText::_('COM_SPPAGEBUILDER_ADDON_TITLE_LINE_HEIGHT'),
+				'title'=>Text::_('COM_SPPAGEBUILDER_ADDON_TITLE_LINE_HEIGHT'),
 				'std'=>'',
 				'depends'=>array(array('title', '!=', '')),
 			),
 
 			'title_fontstyle'=>array(
 				'type'=>'select',
-				'title'=> JText::_('COM_SPPAGEBUILDER_ADDON_TITLE_FONT_STYLE'),
+				'title'=> Text::_('COM_SPPAGEBUILDER_ADDON_TITLE_FONT_STYLE'),
 				'values'=>array(
-					'underline'=> JText::_('COM_SPPAGEBUILDER_GLOBAL_FONT_STYLE_UNDERLINE'),
-					'uppercase'=> JText::_('COM_SPPAGEBUILDER_GLOBAL_FONT_STYLE_UPPERCASE'),
-					'italic'=> JText::_('COM_SPPAGEBUILDER_GLOBAL_FONT_STYLE_ITALIC'),
-					'lighter'=> JText::_('COM_SPPAGEBUILDER_GLOBAL_FONT_STYLE_LIGHTER'),
-					'normal'=> JText::_('COM_SPPAGEBUILDER_GLOBAL_FONT_STYLE_NORMAL'),
-					'bold'=> JText::_('COM_SPPAGEBUILDER_GLOBAL_FONT_STYLE_BOLD'),
-					'bolder'=> JText::_('COM_SPPAGEBUILDER_GLOBAL_FONT_STYLE_BOLDER'),
+					'underline'=> Text::_('COM_SPPAGEBUILDER_GLOBAL_FONT_STYLE_UNDERLINE'),
+					'uppercase'=> Text::_('COM_SPPAGEBUILDER_GLOBAL_FONT_STYLE_UPPERCASE'),
+					'italic'=> Text::_('COM_SPPAGEBUILDER_GLOBAL_FONT_STYLE_ITALIC'),
+					'lighter'=> Text::_('COM_SPPAGEBUILDER_GLOBAL_FONT_STYLE_LIGHTER'),
+					'normal'=> Text::_('COM_SPPAGEBUILDER_GLOBAL_FONT_STYLE_NORMAL'),
+					'bold'=> Text::_('COM_SPPAGEBUILDER_GLOBAL_FONT_STYLE_BOLD'),
+					'bolder'=> Text::_('COM_SPPAGEBUILDER_GLOBAL_FONT_STYLE_BOLDER'),
 				),
 				'multiple'=>true,
 				'std'=>'',
@@ -106,7 +109,7 @@ array(
 
 			'title_letterspace'=>array(
 				'type'=>'select',
-				'title'=>JText::_('COM_SPPAGEBUILDER_GLOBAL_LETTER_SPACING'),
+				'title'=>Text::_('COM_SPPAGEBUILDER_GLOBAL_LETTER_SPACING'),
 				'values'=>array(
 					'0'=> 'Default',
 					'1px'=> '1px',
@@ -126,60 +129,60 @@ array(
 
 			'title_fontweight'=>array(
 				'type'=>'text',
-				'title'=>JText::_('COM_SPPAGEBUILDER_ADDON_TITLE_FONT_WEIGHT'),
-				'desc'=>JText::_('COM_SPPAGEBUILDER_ADDON_TITLE_FONT_WEIGHT_DESC'),
+				'title'=>Text::_('COM_SPPAGEBUILDER_ADDON_TITLE_FONT_WEIGHT'),
+				'desc'=>Text::_('COM_SPPAGEBUILDER_ADDON_TITLE_FONT_WEIGHT_DESC'),
 				'std'=>'',
 				'depends'=>array(array('title', '!=', '')),
 			),
 
 			'title_text_color'=>array(
 				'type'=>'color',
-				'title'=>JText::_('COM_SPPAGEBUILDER_ADDON_TITLE_TEXT_COLOR'),
-				'desc'=>JText::_('COM_SPPAGEBUILDER_ADDON_TITLE_TEXT_COLOR_DESC'),
+				'title'=>Text::_('COM_SPPAGEBUILDER_ADDON_TITLE_TEXT_COLOR'),
+				'desc'=>Text::_('COM_SPPAGEBUILDER_ADDON_TITLE_TEXT_COLOR_DESC'),
 				'depends'=>array(array('title', '!=', '')),
 			),
 
 			'title_margin_top'=>array(
 				'type'=>'number',
-				'title'=>JText::_('COM_SPPAGEBUILDER_ADDON_TITLE_MARGIN_TOP'),
-				'desc'=>JText::_('COM_SPPAGEBUILDER_ADDON_TITLE_MARGIN_TOP_DESC'),
+				'title'=>Text::_('COM_SPPAGEBUILDER_ADDON_TITLE_MARGIN_TOP'),
+				'desc'=>Text::_('COM_SPPAGEBUILDER_ADDON_TITLE_MARGIN_TOP_DESC'),
 				'placeholder'=>'10',
 				'depends'=>array(array('title', '!=', '')),
 			),
 
 			'title_margin_bottom'=>array(
 				'type'=>'number',
-				'title'=>JText::_('COM_SPPAGEBUILDER_ADDON_TITLE_MARGIN_BOTTOM'),
-				'desc'=>JText::_('COM_SPPAGEBUILDER_ADDON_TITLE_MARGIN_BOTTOM_DESC'),
+				'title'=>Text::_('COM_SPPAGEBUILDER_ADDON_TITLE_MARGIN_BOTTOM'),
+				'desc'=>Text::_('COM_SPPAGEBUILDER_ADDON_TITLE_MARGIN_BOTTOM_DESC'),
 				'placeholder'=>'10',
 				'depends'=>array(array('title', '!=', '')),
 			),
 
 			'text'=>array(
 				'type'=>'editor',
-				'title'=>JText::_('COM_SPPAGEBUILDER_ADDON_IMAGE_CONTENT_CONTENT'),
-				'desc'=>JText::_('COM_SPPAGEBUILDER_ADDON_IMAGE_CONTENT_CONTENT_DESC'),
+				'title'=>Text::_('COM_SPPAGEBUILDER_ADDON_IMAGE_CONTENT_CONTENT'),
+				'desc'=>Text::_('COM_SPPAGEBUILDER_ADDON_IMAGE_CONTENT_CONTENT_DESC'),
 			),
 
 			//Button
 			'button_text'=>array(
 				'type'=>'text',
-				'title'=>JText::_('COM_SPPAGEBUILDER_GLOBAL_BUTTON_TEXT'),
-				'desc'=>JText::_('COM_SPPAGEBUILDER_GLOBAL_BUTTON_TEXT_DESC'),
+				'title'=>Text::_('COM_SPPAGEBUILDER_GLOBAL_BUTTON_TEXT'),
+				'desc'=>Text::_('COM_SPPAGEBUILDER_GLOBAL_BUTTON_TEXT_DESC'),
 				'std'=>'Button Text',
 			),
 
 			'button_fontstyle'=>array(
 				'type'=>'select',
-				'title'=> JText::_('COM_SPPAGEBUILDER_GLOBAL_BUTTON_FONT_STYLE'),
+				'title'=> Text::_('COM_SPPAGEBUILDER_GLOBAL_BUTTON_FONT_STYLE'),
 				'values'=>array(
-					'underline'=> JText::_('COM_SPPAGEBUILDER_GLOBAL_FONT_STYLE_UNDERLINE'),
-					'uppercase'=> JText::_('COM_SPPAGEBUILDER_GLOBAL_FONT_STYLE_UPPERCASE'),
-					'italic'=> JText::_('COM_SPPAGEBUILDER_GLOBAL_FONT_STYLE_ITALIC'),
-					'lighter'=> JText::_('COM_SPPAGEBUILDER_GLOBAL_FONT_STYLE_LIGHTER'),
-					'normal'=> JText::_('COM_SPPAGEBUILDER_GLOBAL_FONT_STYLE_NORMAL'),
-					'bold'=> JText::_('COM_SPPAGEBUILDER_GLOBAL_FONT_STYLE_BOLD'),
-					'bolder'=> JText::_('COM_SPPAGEBUILDER_GLOBAL_FONT_STYLE_BOLDER'),
+					'underline'=> Text::_('COM_SPPAGEBUILDER_GLOBAL_FONT_STYLE_UNDERLINE'),
+					'uppercase'=> Text::_('COM_SPPAGEBUILDER_GLOBAL_FONT_STYLE_UPPERCASE'),
+					'italic'=> Text::_('COM_SPPAGEBUILDER_GLOBAL_FONT_STYLE_ITALIC'),
+					'lighter'=> Text::_('COM_SPPAGEBUILDER_GLOBAL_FONT_STYLE_LIGHTER'),
+					'normal'=> Text::_('COM_SPPAGEBUILDER_GLOBAL_FONT_STYLE_NORMAL'),
+					'bold'=> Text::_('COM_SPPAGEBUILDER_GLOBAL_FONT_STYLE_BOLD'),
+					'bolder'=> Text::_('COM_SPPAGEBUILDER_GLOBAL_FONT_STYLE_BOLDER'),
 				),
 				'multiple'=>true,
 				'std'=>'',
@@ -190,7 +193,7 @@ array(
 
 			'button_letterspace'=>array(
 				'type'=>'select',
-				'title'=>JText::_('COM_SPPAGEBUILDER_GLOBAL_BUTTON_LETTER_SPACING'),
+				'title'=>Text::_('COM_SPPAGEBUILDER_GLOBAL_BUTTON_LETTER_SPACING'),
 				'values'=>array(
 					'0'=> 'Default',
 					'1px'=> '1px',
@@ -213,8 +216,8 @@ array(
 			'button_url'=>array(
 				'type'=>'media',
 				'format'=>'attachment',
-				'title'=>JText::_('COM_SPPAGEBUILDER_GLOBAL_BUTTON_URL'),
-				'desc'=>JText::_('COM_SPPAGEBUILDER_GLOBAL_BUTTON_URL_DESC'),
+				'title'=>Text::_('COM_SPPAGEBUILDER_GLOBAL_BUTTON_URL'),
+				'desc'=>Text::_('COM_SPPAGEBUILDER_GLOBAL_BUTTON_URL_DESC'),
 				'placeholder'=>'http://',
 				'depends'=> array(
 					array('button_text', '!=', ''),
@@ -223,11 +226,11 @@ array(
 
 			'button_target'=>array(
 				'type'=>'select',
-				'title'=>JText::_('COM_SPPAGEBUILDER_GLOBAL_LINK_NEWTAB'),
-				'desc'=>JText::_('COM_SPPAGEBUILDER_GLOBAL_LINK_NEWTAB_DESC'),
+				'title'=>Text::_('COM_SPPAGEBUILDER_GLOBAL_LINK_NEWTAB'),
+				'desc'=>Text::_('COM_SPPAGEBUILDER_GLOBAL_LINK_NEWTAB_DESC'),
 				'values'=>array(
-					''=>JText::_('COM_SPPAGEBUILDER_ADDON_GLOBAL_TARGET_SAME_WINDOW'),
-					'_blank'=>JText::_('COM_SPPAGEBUILDER_ADDON_GLOBAL_TARGET_NEW_WINDOW'),
+					''=>Text::_('COM_SPPAGEBUILDER_ADDON_GLOBAL_TARGET_SAME_WINDOW'),
+					'_blank'=>Text::_('COM_SPPAGEBUILDER_ADDON_GLOBAL_TARGET_NEW_WINDOW'),
 				),
 				'depends'=> array(
 					array('button_text', '!=', ''),
@@ -236,17 +239,17 @@ array(
 
 			'button_type'=>array(
 				'type'=>'select',
-				'title'=>JText::_('COM_SPPAGEBUILDER_GLOBAL_BUTTON_STYLE'),
-				'desc'=>JText::_('COM_SPPAGEBUILDER_GLOBAL_BUTTON_STYLE_DESC'),
+				'title'=>Text::_('COM_SPPAGEBUILDER_GLOBAL_BUTTON_STYLE'),
+				'desc'=>Text::_('COM_SPPAGEBUILDER_GLOBAL_BUTTON_STYLE_DESC'),
 				'values'=>array(
-					'default'=>JText::_('COM_SPPAGEBUILDER_GLOBAL_DEFAULT'),
-					'primary'=>JText::_('COM_SPPAGEBUILDER_GLOBAL_PRIMARY'),
-					'success'=>JText::_('COM_SPPAGEBUILDER_GLOBAL_SUCCESS'),
-					'info'=>JText::_('COM_SPPAGEBUILDER_GLOBAL_INFO'),
-					'warning'=>JText::_('COM_SPPAGEBUILDER_GLOBAL_WARNING'),
-					'danger'=>JText::_('COM_SPPAGEBUILDER_GLOBAL_DANGER'),
-					'link'=>JText::_('COM_SPPAGEBUILDER_GLOBAL_LINK'),
-					'custom'=>JText::_('COM_SPPAGEBUILDER_GLOBAL_CUSTOM'),
+					'default'=>Text::_('COM_SPPAGEBUILDER_GLOBAL_DEFAULT'),
+					'primary'=>Text::_('COM_SPPAGEBUILDER_GLOBAL_PRIMARY'),
+					'success'=>Text::_('COM_SPPAGEBUILDER_GLOBAL_SUCCESS'),
+					'info'=>Text::_('COM_SPPAGEBUILDER_GLOBAL_INFO'),
+					'warning'=>Text::_('COM_SPPAGEBUILDER_GLOBAL_WARNING'),
+					'danger'=>Text::_('COM_SPPAGEBUILDER_GLOBAL_DANGER'),
+					'link'=>Text::_('COM_SPPAGEBUILDER_GLOBAL_LINK'),
+					'custom'=>Text::_('COM_SPPAGEBUILDER_GLOBAL_CUSTOM'),
 				),
 				'std'=>'default',
 				'depends'=> array(
@@ -256,12 +259,12 @@ array(
 
 			'button_appearance'=>array(
 				'type'=>'select',
-				'title'=>JText::_('COM_SPPAGEBUILDER_GLOBAL_BUTTON_APPEARANCE'),
-				'desc'=>JText::_('COM_SPPAGEBUILDER_GLOBAL_BUTTON_APPEARANCE_DESC'),
+				'title'=>Text::_('COM_SPPAGEBUILDER_GLOBAL_BUTTON_APPEARANCE'),
+				'desc'=>Text::_('COM_SPPAGEBUILDER_GLOBAL_BUTTON_APPEARANCE_DESC'),
 				'values'=>array(
-					''=>JText::_('COM_SPPAGEBUILDER_GLOBAL_BUTTON_APPEARANCE_FLAT'),
-					'outline'=>JText::_('COM_SPPAGEBUILDER_GLOBAL_BUTTON_APPEARANCE_OUTLINE'),
-					'3d'=>JText::_('COM_SPPAGEBUILDER_GLOBAL_BUTTON_APPEARANCE_3D'),
+					''=>Text::_('COM_SPPAGEBUILDER_GLOBAL_BUTTON_APPEARANCE_FLAT'),
+					'outline'=>Text::_('COM_SPPAGEBUILDER_GLOBAL_BUTTON_APPEARANCE_OUTLINE'),
+					'3d'=>Text::_('COM_SPPAGEBUILDER_GLOBAL_BUTTON_APPEARANCE_3D'),
 				),
 				'std'=>'flat',
 				'depends'=> array(
@@ -271,8 +274,8 @@ array(
 
 			'button_background_color'=>array(
 				'type'=>'color',
-				'title'=>JText::_('COM_SPPAGEBUILDER_GLOBAL_BUTTON_BACKGROUND_COLOR'),
-				'desc'=>JText::_('COM_SPPAGEBUILDER_GLOBAL_BUTTON_BACKGROUND_COLOR_DESC'),
+				'title'=>Text::_('COM_SPPAGEBUILDER_GLOBAL_BUTTON_BACKGROUND_COLOR'),
+				'desc'=>Text::_('COM_SPPAGEBUILDER_GLOBAL_BUTTON_BACKGROUND_COLOR_DESC'),
 				'std' => '#444444',
 				'depends'=> array(
 					array('button_type', '=', 'custom'),
@@ -282,8 +285,8 @@ array(
 
 			'button_color'=>array(
 				'type'=>'color',
-				'title'=>JText::_('COM_SPPAGEBUILDER_GLOBAL_BUTTON_COLOR'),
-				'desc'=>JText::_('COM_SPPAGEBUILDER_GLOBAL_BUTTON_COLOR_DESC'),
+				'title'=>Text::_('COM_SPPAGEBUILDER_GLOBAL_BUTTON_COLOR'),
+				'desc'=>Text::_('COM_SPPAGEBUILDER_GLOBAL_BUTTON_COLOR_DESC'),
 				'std' => '#fff',
 				'depends'=> array(
 					array('button_type', '=', 'custom'),
@@ -293,8 +296,8 @@ array(
 
 			'button_background_color_hover'=>array(
 				'type'=>'color',
-				'title'=>JText::_('COM_SPPAGEBUILDER_GLOBAL_BUTTON_BACKGROUND_COLOR_HOVER'),
-				'desc'=>JText::_('COM_SPPAGEBUILDER_GLOBAL_BUTTON_BACKGROUND_COLOR_HOVER_DESC'),
+				'title'=>Text::_('COM_SPPAGEBUILDER_GLOBAL_BUTTON_BACKGROUND_COLOR_HOVER'),
+				'desc'=>Text::_('COM_SPPAGEBUILDER_GLOBAL_BUTTON_BACKGROUND_COLOR_HOVER_DESC'),
 				'std' => '#222',
 				'depends'=> array(
 					array('button_type', '=', 'custom'),
@@ -304,8 +307,8 @@ array(
 
 			'button_color_hover'=>array(
 				'type'=>'color',
-				'title'=>JText::_('COM_SPPAGEBUILDER_GLOBAL_BUTTON_COLOR_HOVER'),
-				'desc'=>JText::_('COM_SPPAGEBUILDER_GLOBAL_BUTTON_COLOR_HOVER_DESC'),
+				'title'=>Text::_('COM_SPPAGEBUILDER_GLOBAL_BUTTON_COLOR_HOVER'),
+				'desc'=>Text::_('COM_SPPAGEBUILDER_GLOBAL_BUTTON_COLOR_HOVER_DESC'),
 				'std' => '#fff',
 				'depends'=> array(
 					array('button_type', '=', 'custom'),
@@ -315,14 +318,14 @@ array(
 
 			'button_size'=>array(
 				'type'=>'select',
-				'title'=>JText::_('COM_SPPAGEBUILDER_GLOBAL_BUTTON_SIZE'),
-				'desc'=>JText::_('COM_SPPAGEBUILDER_GLOBAL_BUTTON_SIZE_DESC'),
+				'title'=>Text::_('COM_SPPAGEBUILDER_GLOBAL_BUTTON_SIZE'),
+				'desc'=>Text::_('COM_SPPAGEBUILDER_GLOBAL_BUTTON_SIZE_DESC'),
 				'values'=>array(
-					''=>JText::_('COM_SPPAGEBUILDER_GLOBAL_BUTTON_SIZE_DEFAULT'),
-					'lg'=>JText::_('COM_SPPAGEBUILDER_GLOBAL_BUTTON_SIZE_LARGE'),
-					'xlg'=>JText::_('COM_SPPAGEBUILDER_GLOBAL_BUTTON_SIZE_XLARGE'),
-					'sm'=>JText::_('COM_SPPAGEBUILDER_GLOBAL_BUTTON_SIZE_SMALL'),
-					'xs'=>JText::_('COM_SPPAGEBUILDER_GLOBAL_BUTTON_SIZE_EXTRA_SAMLL'),
+					''=>Text::_('COM_SPPAGEBUILDER_GLOBAL_BUTTON_SIZE_DEFAULT'),
+					'lg'=>Text::_('COM_SPPAGEBUILDER_GLOBAL_BUTTON_SIZE_LARGE'),
+					'xlg'=>Text::_('COM_SPPAGEBUILDER_GLOBAL_BUTTON_SIZE_XLARGE'),
+					'sm'=>Text::_('COM_SPPAGEBUILDER_GLOBAL_BUTTON_SIZE_SMALL'),
+					'xs'=>Text::_('COM_SPPAGEBUILDER_GLOBAL_BUTTON_SIZE_EXTRA_SAMLL'),
 				),
 				'depends'=> array(
 					array('button_text', '!=', ''),
@@ -331,12 +334,12 @@ array(
 
 			'button_shape'=>array(
 				'type'=>'select',
-				'title'=>JText::_('COM_SPPAGEBUILDER_GLOBAL_BUTTON_SHAPE'),
-				'desc'=>JText::_('COM_SPPAGEBUILDER_GLOBAL_BUTTON_SHAPE_DESC'),
+				'title'=>Text::_('COM_SPPAGEBUILDER_GLOBAL_BUTTON_SHAPE'),
+				'desc'=>Text::_('COM_SPPAGEBUILDER_GLOBAL_BUTTON_SHAPE_DESC'),
 				'values'=>array(
-					'rounded'=>JText::_('COM_SPPAGEBUILDER_GLOBAL_BUTTON_SHAPE_ROUNDED'),
-					'square'=>JText::_('COM_SPPAGEBUILDER_GLOBAL_BUTTON_SHAPE_SQUARE'),
-					'round'=>JText::_('COM_SPPAGEBUILDER_GLOBAL_BUTTON_SHAPE_ROUND'),
+					'rounded'=>Text::_('COM_SPPAGEBUILDER_GLOBAL_BUTTON_SHAPE_ROUNDED'),
+					'square'=>Text::_('COM_SPPAGEBUILDER_GLOBAL_BUTTON_SHAPE_SQUARE'),
+					'round'=>Text::_('COM_SPPAGEBUILDER_GLOBAL_BUTTON_SHAPE_ROUND'),
 				),
 				'depends'=> array(
 					array('button_text', '!=', ''),
@@ -345,11 +348,11 @@ array(
 
 			'button_block'=>array(
 				'type'=>'select',
-				'title'=>JText::_('COM_SPPAGEBUILDER_GLOBAL_BUTTON_BLOCK'),
-				'desc'=>JText::_('COM_SPPAGEBUILDER_GLOBAL_BUTTON_BLOCK_DESC'),
+				'title'=>Text::_('COM_SPPAGEBUILDER_GLOBAL_BUTTON_BLOCK'),
+				'desc'=>Text::_('COM_SPPAGEBUILDER_GLOBAL_BUTTON_BLOCK_DESC'),
 				'values'=>array(
-					''=>JText::_('JNO'),
-					'sppb-btn-block'=>JText::_('JYES'),
+					''=>Text::_('JNO'),
+					'sppb-btn-block'=>Text::_('JYES'),
 				),
 				'depends'=> array(
 					array('button_text', '!=', ''),
@@ -358,8 +361,8 @@ array(
 
 			'button_icon'=>array(
 				'type'=>'icon',
-				'title'=>JText::_('COM_SPPAGEBUILDER_GLOBAL_BUTTON_ICON'),
-				'desc'=>JText::_('COM_SPPAGEBUILDER_GLOBAL_BUTTON_ICON_DESC'),
+				'title'=>Text::_('COM_SPPAGEBUILDER_GLOBAL_BUTTON_ICON'),
+				'desc'=>Text::_('COM_SPPAGEBUILDER_GLOBAL_BUTTON_ICON_DESC'),
 				'depends'=> array(
 					array('button_text', '!=', ''),
 				)
@@ -367,10 +370,10 @@ array(
 
 			'button_icon_position'=>array(
 				'type'=>'select',
-				'title'=>JText::_('COM_SPPAGEBUILDER_GLOBAL_BUTTON_ICON_POSITION'),
+				'title'=>Text::_('COM_SPPAGEBUILDER_GLOBAL_BUTTON_ICON_POSITION'),
 				'values'=>array(
-					'left'=>JText::_('COM_SPPAGEBUILDER_GLOBAL_LEFT'),
-					'right'=>JText::_('COM_SPPAGEBUILDER_GLOBAL_RIGHT'),
+					'left'=>Text::_('COM_SPPAGEBUILDER_GLOBAL_LEFT'),
+					'right'=>Text::_('COM_SPPAGEBUILDER_GLOBAL_RIGHT'),
 				),
 				'depends'=> array(
 					array('button_text', '!=', ''),
@@ -379,8 +382,8 @@ array(
 
 			'class'=>array(
 				'type'=>'text',
-				'title'=>JText::_('COM_SPPAGEBUILDER_ADDON_CLASS'),
-				'desc'=>JText::_('COM_SPPAGEBUILDER_ADDON_CLASS_DESC'),
+				'title'=>Text::_('COM_SPPAGEBUILDER_ADDON_CLASS'),
+				'desc'=>Text::_('COM_SPPAGEBUILDER_ADDON_CLASS_DESC'),
 				'std'=>''
 			),
 

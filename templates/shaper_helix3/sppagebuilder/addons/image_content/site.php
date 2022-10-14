@@ -1,14 +1,18 @@
 <?php
 /**
- * @package SP Page Builder
- * @author JoomShaper https://www.joomshaper.com
- * @copyright (c) 2010 - 2021 JoomShaper
- * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or later
+* @package SP Page Builder
+* @author JoomShaper https://www.joomshaper.com
+* @copyright (c) 2010 - 2022 JoomShaper
+* @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or later
 */
-//no direct accees
-defined ('_JEXEC') or die ('restricted aceess');
 
-class SppagebuilderAddonImage_content extends SppagebuilderAddons{
+use Joomla\CMS\Uri\Uri;
+
+//No direct access
+defined ('_JEXEC') or die ('restricted access');
+
+class SppagebuilderAddonImage_content extends SppagebuilderAddons
+{
 
 	public function render() {
     
@@ -55,7 +59,7 @@ class SppagebuilderAddonImage_content extends SppagebuilderAddons{
 			$output  = '<div class="sppb-addon sppb-addon-image-content aligment-'. $image_alignment .' clearfix ' . $class . '">';
 
 			//Image
-			$output .= '<div style="background-image: url(' . JURI::base(true) . '/' . $image . ');" class="sppb-image-holder">';
+			$output .= '<div style="background-image: url(' . Uri::base(true) . '/' . $image . ');" class="sppb-image-holder">';
 			$output .= '</div>';
 
 			//Content

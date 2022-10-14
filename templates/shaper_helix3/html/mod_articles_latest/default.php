@@ -6,6 +6,9 @@
  * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or later
 */
 
+use Joomla\CMS\Language\Text;
+use Joomla\CMS\HTML\HTMLHelper;
+
 defined('_JEXEC') or die;
 ?>
 <div class="latestnews">
@@ -16,7 +19,7 @@ defined('_JEXEC') or die;
 				<?php echo $item->title; ?>
 			</span>
 		</a>
-		<small><?php echo JHtml::_('date', $item->created, JText::_('DATE_FORMAT_LC3')); ?></small>
+		<small><?php echo HTMLHelper::_('date', $item->created, Text::_('DATE_FORMAT_LC3')); ?></small>
 	</div>
 <?php endforeach; ?>
 </div>

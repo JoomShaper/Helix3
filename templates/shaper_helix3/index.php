@@ -9,8 +9,13 @@
 //no direct accees
 defined('_JEXEC') or die('restricted access');
 
-$doc = JFactory::getDocument();
-$app = JFactory::getApplication();
+use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
+use Joomla\CMS\Router\Route;
+use Joomla\CMS\Uri\Uri;
+
+$doc = Factory::getDocument();
+$app = Factory::getApplication();
 $menu = $app->getMenu()->getActive();
 
 //Load Helix
@@ -29,7 +34,7 @@ else
 //Coming Soon
 if ($this->helix3->getParam('comingsoon_mode'))
 {
-	header("Location: " . JRoute::_(JUri::root(true) . "/index.php?tmpl=comingsoon", false));
+	header("Location: " . Route::_(Uri::root(true) . "/index.php?tmpl=comingsoon", false));
 	exit();
 }
 
@@ -55,7 +60,7 @@ $body_classes .= ' off-canvas-menu-init';
 //Body Background Image
 if ($bg_image = $this->helix3->getParam('body_bg_image'))
 {
-	$body_style = 'background-image: url(' . JURI::base(true) . '/' . $bg_image . ');';
+	$body_style = 'background-image: url(' . Uri::base(true) . '/' . $bg_image . ');';
 	$body_style .= 'background-repeat: ' . $this->helix3->getParam('body_bg_repeat') . ';';
 	$body_style .= 'background-size: ' . $this->helix3->getParam('body_bg_size') . ';';
 	$body_style .= 'background-attachment: ' . $this->helix3->getParam('body_bg_attachment') . ';';
@@ -137,13 +142,13 @@ $doc->addScriptdeclaration("\nvar sp_offanimation = '" . $this->params->get('off
 		
 		<!-- Off Canvas Menu -->
 		<div class="offcanvas-menu">
-			<a href="#" class="close-offcanvas" aria-label="Close"><i class="fa fa-remove" aria-hidden="true" title="<?php echo JText::_('HELIX_CLOSE_MENU'); ?>"></i></a>
+			<a href="#" class="close-offcanvas" aria-label="Close"><i class="fa fa-remove" aria-hidden="true" title="<?php echo Text::_('HELIX_CLOSE_MENU'); ?>"></i></a>
 			<div class="offcanvas-inner">
 				<?php if ($this->helix3->countModules('offcanvas')) : ?>
-					<jdoc:include type="modules" name="offcanvas" style="sp_xhtml" />
+					<jdoc:include type="modules" name="offcanvas" style="sp_xhtml"/>
 				<?php else : ?>
 					<p class="alert alert-warning">
-						<?php echo JText::_('HELIX_NO_MODULE_OFFCANVAS'); ?>
+						<?php echo Text::_('HELIX_NO_MODULE_OFFCANVAS'); ?>
 					</p>
 				<?php endif; ?>
 			</div>
@@ -174,7 +179,7 @@ $doc->addScriptdeclaration("\nvar sp_offanimation = '" . $this->params->get('off
 				
 		<!-- Go to top -->
 		<?php if ($this->params->get('goto_top')) : ?>
-			<a href="javascript:void(0)" class="scrollup" aria-label="<?php echo JText::_('HELIX_GOTO_TOP'); ?>">&nbsp;</a>
+			<a href="javascript:void(0)" class="scrollup" aria-label="<?php echo Text::_('HELIX_GOTO_TOP'); ?>">&nbsp;</a>
 		<?php endif; ?>
 	</body>
 </html>

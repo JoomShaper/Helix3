@@ -9,8 +9,14 @@
 //no direct accees
 defined ('_JEXEC') or die ('resticted aceess');
 
-$doc = JFactory::getDocument();
-$app = JFactory::getApplication();
+use Joomla\CMS\Factory;
+use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Uri\Uri;
+use Joomla\CMS\Language\Text;
+use Joomla\CMS\Router\Route;
+
+$doc = Factory::getDocument();
+$app = Factory::getApplication();
 
 require_once JPATH_ADMINISTRATOR . '/components/com_users/helpers/users.php';
 
@@ -23,14 +29,14 @@ $twofactormethods = UsersHelper::getTwoFactorMethods();
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?php
     if($favicon = $this->params->get('favicon')) {
-        $doc->addFavicon( JURI::base(true) . '/' .  $favicon);
+        $doc->addFavicon( Uri::base(true) . '/' .  $favicon);
     } else {
         $doc->addFavicon( $this->baseurl . '/templates/'. $this->template .'/images/favicon.ico' );
     }
     ?>
 
     <jdoc:include type="head" />
-   	<link rel="stylesheet" href="<?php echo $this->baseurl; ?>/templates/<?php echo $this->template; ?>/css/bootstrap.min.css" type="text/css" />
+	<link rel="stylesheet" href="<?php echo $this->baseurl; ?>/templates/<?php echo $this->template; ?>/css/bootstrap.min.css" type="text/css" />
 	<link rel="stylesheet" href="<?php echo $this->baseurl; ?>/templates/<?php echo $this->template; ?>/css/template.css" type="text/css" />
 <body>
 	<div class="container">
@@ -50,32 +56,32 @@ $twofactormethods = UsersHelper::getTwoFactorMethods();
 							<p>
 								<?php echo $app->get('offline_message'); ?>
 							</p>
-						<?php elseif ($app->get('display_offline_message', 1) == 2 && str_replace(' ', '', JText::_('JOFFLINE_MESSAGE')) != '') : ?>
+						<?php elseif ($app->get('display_offline_message', 1) == 2 && str_replace(' ', '', Text::_('JOFFLINE_MESSAGE')) != '') : ?>
 							<p>
-								<?php echo JText::_('JOFFLINE_MESSAGE'); ?>
+								<?php echo Text::_('JOFFLINE_MESSAGE'); ?>
 							</p>
 						<?php endif; ?>
-						<form action="<?php echo JRoute::_('index.php', true); ?>" method="post" id="form-login">
+						<form action="<?php echo Route::_('index.php', true); ?>" method="post" id="form-login">
 							<div class="form-group" id="form-login-username">
-								<input name="username" id="username" type="text" class="form-control" placeholder="<?php echo JText::_('JGLOBAL_USERNAME'); ?>" size="18" />
+								<input name="username" id="username" type="text" class="form-control" placeholder="<?php echo Text::_('JGLOBAL_USERNAME'); ?>" size="18" />
 							</div>
 							
 							<div class="form-group" id="form-login-password">
-								<input type="password" name="password" class="form-control" size="18" placeholder="<?php echo JText::_('JGLOBAL_PASSWORD'); ?>" id="passwd" />
+								<input type="password" name="password" class="form-control" size="18" placeholder="<?php echo Text::_('JGLOBAL_PASSWORD'); ?>" id="passwd" />
 							</div>
 							<?php if (count($twofactormethods) > 1) : ?>
 							<div class="form-group" id="form-login-secretkey">
-								<input type="text" name="secretkey" class="form-control" size="18" placeholder="<?php echo JText::_('JGLOBAL_SECRETKEY'); ?>" id="secretkey" />
+								<input type="text" name="secretkey" class="form-control" size="18" placeholder="<?php echo Text::_('JGLOBAL_SECRETKEY'); ?>" id="secretkey" />
 							</div>
 							<?php endif; ?>
 							<div class="form-group" id="submit-buton">
-								<input type="submit" name="Submit" class="btn btn-success login" value="<?php echo JText::_('JLOGIN'); ?>" />
+								<input type="submit" name="Submit" class="btn btn-success login" value="<?php echo Text::_('JLOGIN'); ?>" />
 							</div>
 
 							<input type="hidden" name="option" value="com_users" />
 							<input type="hidden" name="task" value="user.login" />
-							<input type="hidden" name="return" value="<?php echo base64_encode(JUri::base()); ?>" />
-							<?php echo JHtml::_('form.token'); ?>
+							<input type="hidden" name="return" value="<?php echo base64_encode(Uri::base()); ?>" />
+							<?php echo HTMLHelper::_('form.token'); ?>
 						</form>
 					</div>
 

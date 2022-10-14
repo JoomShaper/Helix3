@@ -10,17 +10,22 @@
 defined ('_JEXEC') or die ('resticted aceess');
 
 use Joomla\CMS\Factory;
-use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Uri\Uri;
-use Joomla\CMS\Language\Text;
 use Joomla\CMS\Router\Route;
+use Joomla\CMS\Language\Text;
+use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Helper\AuthenticationHelper;
 
 $doc = Factory::getDocument();
 $app = Factory::getApplication();
 
-require_once JPATH_ADMINISTRATOR . '/components/com_users/helpers/users.php';
+$twofactormethods	= [];
 
-$twofactormethods = UsersHelper::getTwoFactorMethods();
+if(version_compare(JVERSION, '4.2.0', '<'))
+{
+	$twofactormethods 	= AuthenticationHelper::getTwoFactorMethods();
+}
+
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo $this->language; ?>" lang="<?php echo $this->language; ?>" dir="<?php echo $this->direction; ?>">

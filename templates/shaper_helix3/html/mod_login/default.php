@@ -15,8 +15,6 @@ use Joomla\CMS\Component\ComponentHelper;
 
 defined('_JEXEC') or die;
 
-require_once JPATH_SITE . '/components/com_users/helpers/route.php';
-
 HTMLHelper::_('behavior.keepalive');
 HTMLHelper::_('bootstrap.tooltip');
 
@@ -58,21 +56,23 @@ $usersConfig = ComponentHelper::getParams('com_users');
 		</div>
 	</div>
 	
-	<?php if (count($twofactormethods) > 1): ?>
-	<div id="form-login-secretkey" class="form-group mb-3">
-		<?php if (!$params->get('usetext')) : ?>
-			<div class="input-group">
-				<span class="input-group-text input-group-addon hasTooltip" title="<?php echo Text::_('JGLOBAL_SECRETKEY_HELP'); ?>">
-					<i class="icon-help"></i>
-				</span>
-				<input id="modlgn-secretkey" autocomplete="off" type="text" name="secretkey" class="form-control" tabindex="0" size="18" placeholder="<?php echo Text::_('JGLOBAL_SECRETKEY') ?>" />
-			</div>
-		<?php else: ?>
-			<div class="input-group">
-				<input id="modlgn-secretkey" autocomplete="off" type="text" name="secretkey" class="form-control" tabindex="0" size="18" placeholder="<?php echo Text::_('JGLOBAL_SECRETKEY') ?>" />
-			</div>
+	<?php if (version_compare(JVERSION, '4.2.0', '<')) : ?>
+		<?php if (count($twofactormethods) > 1): ?>
+		<div id="form-login-secretkey" class="form-group mb-3">
+			<?php if (!$params->get('usetext')) : ?>
+				<div class="input-group">
+					<span class="input-group-text input-group-addon hasTooltip" title="<?php echo Text::_('JGLOBAL_SECRETKEY_HELP'); ?>">
+						<i class="icon-help"></i>
+					</span>
+					<input id="modlgn-secretkey" autocomplete="off" type="text" name="secretkey" class="form-control" tabindex="0" size="18" placeholder="<?php echo Text::_('JGLOBAL_SECRETKEY') ?>" />
+				</div>
+			<?php else: ?>
+				<div class="input-group">
+					<input id="modlgn-secretkey" autocomplete="off" type="text" name="secretkey" class="form-control" tabindex="0" size="18" placeholder="<?php echo Text::_('JGLOBAL_SECRETKEY') ?>" />
+				</div>
+			<?php endif; ?>
+		</div>
 		<?php endif; ?>
-	</div>
 	<?php endif; ?>
 
 	<?php if (PluginHelper::isEnabled('system', 'remember')) : ?>
@@ -84,17 +84,17 @@ $usersConfig = ComponentHelper::getParams('com_users');
 	<div id="form-login-submit" class="form-group mb-3">
 		<button type="submit" tabindex="0" name="Submit" class="btn btn-primary"><?php echo Text::_('JLOGIN') ?></button>
 		<?php if ($usersConfig->get('allowUserRegistration')) : ?>
-			<a class="btn btn-success" href="<?php echo Route::_('index.php?option=com_users&view=registration&Itemid=' . UsersHelperRoute::getRegistrationRoute()); ?>"><?php echo Text::_('MOD_LOGIN_REGISTER'); ?> <span class="icon-arrow-right"></span></a>
+			<a class="btn btn-success" href="<?php echo Route::_('index.php?option=com_users&view=registration'); ?>"><?php echo Text::_('MOD_LOGIN_REGISTER'); ?> <span class="icon-arrow-right"></span></a>
 		<?php endif; ?>
 	</div>
 
 	<ul class="form-links">
 		<li>
-			<a href="<?php echo Route::_('index.php?option=com_users&view=remind&Itemid=' . UsersHelperRoute::getRemindRoute()); ?>">
+			<a href="<?php echo Route::_('index.php?option=com_users&view=remind'); ?>">
 			<?php echo Text::_('MOD_LOGIN_FORGOT_YOUR_USERNAME'); ?></a>
 		</li>
 		<li>
-			<a href="<?php echo Route::_('index.php?option=com_users&view=reset&Itemid=' . UsersHelperRoute::getResetRoute()); ?>">
+			<a href="<?php echo Route::_('index.php?option=com_users&view=reset'); ?>">
 			<?php echo Text::_('MOD_LOGIN_FORGOT_YOUR_PASSWORD'); ?></a>
 		</li>
 	</ul>

@@ -6,11 +6,11 @@
 * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
 */
 
-use Joomla\CMS\Form\FormField;
-use Joomla\CMS\Language\Text;
-
 //no direct accees
 defined ('_JEXEC') or die ('resticted aceess');
+
+use Joomla\CMS\Form\FormField;
+use Joomla\CMS\Language\Text;
 
 class JFormFieldGroup extends FormField
 {

@@ -6,12 +6,13 @@
 * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
 */
 
+//no direct accees
+defined ('_JEXEC') or die ('resticted aceess');
+
 use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\Menu\SiteMenu;
 
-//no direct accees
-defined ('_JEXEC') or die ('resticted aceess');
 
 $current_menu_id = $this->form->getValue('id');
 

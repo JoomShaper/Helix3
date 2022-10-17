@@ -6,6 +6,9 @@
  * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
  */
 
+ //no direct access
+defined('_JEXEC') or die ('restricted access');
+
 use Joomla\CMS\Factory;
 use Joomla\CMS\Filesystem\File;
 use Joomla\CMS\Filesystem\Folder;
@@ -14,8 +17,6 @@ use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Layout\FileLayout;
 use Joomla\CMS\Uri\Uri;
 
-//no direct access
-defined('_JEXEC') or die ('restricted access');
 class Helix3
 {
 

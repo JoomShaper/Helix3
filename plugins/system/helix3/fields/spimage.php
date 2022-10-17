@@ -6,14 +6,14 @@
 * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
 */
 
+//no direct accees
+defined ('_JEXEC') or die ('resticted aceess');
+
 use Joomla\CMS\Factory;
 use Joomla\CMS\Filesystem\File;
 use Joomla\CMS\Form\FormField;
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Uri\Uri;
-
-//no direct accees
-defined ('_JEXEC') or die ('resticted aceess');
 
 class JFormFieldSpimage extends FormField
 {

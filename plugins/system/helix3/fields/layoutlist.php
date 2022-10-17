@@ -6,12 +6,12 @@
  * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
  */
 
+ //no direct accees
+defined ('_JEXEC') or die ('resticted aceess');
+
 use Joomla\CMS\Factory;
 use Joomla\CMS\Form\FormField;
 use Joomla\CMS\Filesystem\Folder;
-
-//no direct accees
-defined ('_JEXEC') or die ('resticted aceess');
 
 class JFormFieldLayoutlist extends FormField
 {

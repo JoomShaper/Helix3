@@ -13,14 +13,14 @@ use Joomla\CMS\HTML\HTMLHelper;
 defined('_JEXEC') or die;
 
 foreach ($list as $item) : ?>
-	<li <?php if ($_SERVER['PHP_SELF'] == Router::_(ContentHelperRoute::getCategoryRoute($item->id))) echo ' class="active"';?>>
-		<a href="<?php echo Router::_(ContentHelperRoute::getCategoryRoute($item->id)); ?>">
+	<li <?php if ($_SERVER['PHP_SELF'] == Router::_(JVERSION < 4 ? ContentHelperRoute::getCategoryRoute($item->id) : Joomla\Component\Content\Site\Helper\RouteHelper::getCategoryRoute($item->id))) echo ' class="active"';?>>
+		<a href="<?php echo Router::_(JVERSION < 4 ? ContentHelperRoute::getCategoryRoute($item->id) : Joomla\Component\Content\Site\Helper\RouteHelper::getCategoryRoute($item->id)); ?>">
 		<?php echo $item->title;?>
 			<?php if ($params->get('numitems')) : ?>
 				(<?php echo $item->numitems; ?>)
 			<?php endif; ?>
 		</a>
-   		
+
 		<?php if ($params->get('show_description', 0)) : ?>
 			<?php echo HTMLHelper::_('content.prepare', $item->description, $item->getParams(), 'mod_articles_categories.content'); ?>
 		<?php endif; ?>

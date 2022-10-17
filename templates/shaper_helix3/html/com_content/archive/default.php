@@ -3,28 +3,31 @@
  * @package     Joomla.Site
  * @subpackage  com_content
  *
- * @copyright   Copyright (C) 2005 - 2015 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2022 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
+defined('_JEXEC') or die;
 
 use Joomla\CMS\Router\Route;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\HTML\HTMLHelper;
 
-defined('_JEXEC') or die;
-
-HTMLHelper::addIncludePath(JPATH_COMPONENT . '/helpers');
-HTMLHelper::_('formbehavior.chosen', 'select');
-// HTMLHelper::_('behavior.caption');
+if (version_compare(JVERSION, '4.0.0', '<'))
+{
+	HTMLHelper::addIncludePath(JPATH_COMPONENT . '/helpers');
+	HTMLHelper::_('formbehavior.chosen', 'select');
+	HTMLHelper::_('behavior.caption');
+}
 ?>
 <div class="archive<?php echo $this->pageclass_sfx;?>">
 <?php if ($this->params->get('show_page_heading', 1)) : ?>
-<div class="page-header">
-<h1>
-	<?php echo $this->escape($this->params->get('page_heading')); ?>
-</h1>
-</div>
+	<div class="page-header">
+		<h1>
+			<?php echo $this->escape($this->params->get('page_heading')); ?>
+		</h1>
+	</div>
 <?php endif; ?>
+
 <form id="adminForm" action="<?php echo Route::_('index.php')?>" method="post" class="form-inline">
 	<fieldset class="filters">
 	<div class="filter-search">

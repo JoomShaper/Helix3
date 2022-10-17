@@ -8,10 +8,11 @@
  */
 
 use Joomla\CMS\Factory;
-use Joomla\CMS\Layout\LayoutHelper;
-use Joomla\CMS\Router\Router;
 use Joomla\CMS\Uri\Uri;
+use Joomla\CMS\Router\Route;
 use Joomla\Registry\Registry;
+use Joomla\CMS\Layout\LayoutHelper;
+use Joomla\Component\Content\Site\Helper\RouteHelper;
 
 defined('_JEXEC') or die;
 
@@ -74,13 +75,13 @@ $isUnpublished = JVERSION < 4 ? ($this->item->state == 0 || strtotime($this->ite
 
 <?php if ($params->get('show_readmore') && $this->item->readmore) :
 	if ($params->get('access-view')) :
-		$link = Router::_(ContentHelperRoute::getArticleRoute($this->item->slug, $this->item->catid, $this->item->language));
+		$link = Route::_(RouteHelper::getArticleRoute($this->item->slug, $this->item->catid, $this->item->language));
 	else :
 		$menu = Factory::getApplication()->getMenu();
 		$active = $menu->getActive();
 		$itemId = $active->id;
-		$link1 = Router::_('index.php?option=com_users&view=login&Itemid=' . $itemId);
-		$returnURL = Router::_(ContentHelperRoute::getArticleRoute($this->item->slug, $this->item->catid, $this->item->language));
+		$link1 = Route::_('index.php?option=com_users&view=login&Itemid=' . $itemId);
+		$returnURL = Route::_(RouteHelper::getArticleRoute($this->item->slug, $this->item->catid, $this->item->language));
 		$link = new Uri($link1);
 		$link->setVar('return', base64_encode($returnURL));
 	endif; ?>

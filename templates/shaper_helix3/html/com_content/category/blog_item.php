@@ -13,6 +13,7 @@ use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Layout\LayoutHelper;
 use Joomla\CMS\Router\Route;
 use Joomla\CMS\Uri\Uri;
+use Joomla\Component\Content\Site\Helper\RouteHelper;
 
 defined('_JEXEC') or die;
 
@@ -72,13 +73,13 @@ $post_format = $post_attribs->get('post_format', 'standard');
 
 <?php if ($params->get('show_readmore') && $this->item->readmore) :
 	if ($params->get('access-view')) :
-		$link = Route::_(ContentHelperRoute::getArticleRoute($this->item->slug, $this->item->catid, $this->item->language));
+		$link = Route::_(RouteHelper::getArticleRoute($this->item->slug, $this->item->catid, $this->item->language));
 	else :
 		$menu = Factory::getApplication()->getMenu();
 		$active = $menu->getActive();
 		$itemId = $active->id;
 		$link1 = Route::_('index.php?option=com_users&view=login&Itemid=' . $itemId);
-		$returnURL = Route::_(ContentHelperRoute::getArticleRoute($this->item->slug, $this->item->catid, $this->item->language));
+		$returnURL = Route::_(RouteHelper::getArticleRoute($this->item->slug, $this->item->catid, $this->item->language));
 		$link = new Uri($link1);
 		$link->setVar('return', base64_encode($returnURL));
 	endif; ?>

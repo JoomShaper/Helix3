@@ -19,7 +19,7 @@ JLoader::register('TagsHelperRoute', JPATH_BASE . '/components/com_tags/helpers/
 
 <?php if (!empty($displayData)) : ?>
 	<div class="tags">
-	    <span><?php echo Text::_('HELIX_TAGS'); ?>: </span>
+	<span><?php echo Text::_('HELIX_TAGS'); ?>: </span>
 		<?php foreach ($displayData as $i => $tag) : ?>
 			<?php if (in_array($tag->access, Access::getAuthorisedViewLevels(Factory::getUser()->get('id')))) : ?>
 				<?php $tagParams = new Registry($tag->params); ?>

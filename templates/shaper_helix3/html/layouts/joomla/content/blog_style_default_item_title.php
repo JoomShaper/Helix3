@@ -6,12 +6,12 @@
  * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or later
 */
 
+defined('_JEXEC') or die;
+
 use Joomla\CMS\Factory;
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\Router\Route;
-
-defined('_JEXEC') or die;
 
 // Create a shortcut for params.
 $params = $displayData->params;
@@ -27,7 +27,7 @@ $isExpired         = JVERSION < 4 ? $displayData->publish_down < $currentDate &&
 	<?php if ($params->get('show_title')) : ?>
 		<h2 itemprop="name">
 			<?php if ($params->get('link_titles') && $params->get('access-view')) : ?>
-				<a href="<?php echo Route::_(ContentHelperRoute::getArticleRoute($displayData->slug, $displayData->catid, $displayData->language)); ?>" itemprop="url">
+				<a href="<?php echo Route::_(version_compare(JVERSION, '4.0.0', '<') ? ContentHelperRoute::getArticleRoute($displayData->slug, $displayData->catid, $displayData->language) : Joomla\Component\Content\Site\Helper\RouteHelper::getArticleRoute($displayData->slug, $displayData->catid, $displayData->language)); ?>" itemprop="url">
 				<?php echo $this->escape($displayData->title); ?></a>
 			<?php else : ?>
 				<?php echo $this->escape($displayData->title); ?>

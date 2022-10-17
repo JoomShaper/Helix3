@@ -8,15 +8,18 @@
 
 defined('_JEXEC') or die;
 
+use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Layout\LayoutHelper;
+
 $buttons = $displayData;
 
 // Load modal popup behavior
-JHtml::_('behavior.modal', 'a.modal-button');
+HTMLHelper::_('behavior.modal', 'a.modal-button');
 ?>
 <div id="editor-xtd-buttons" class="float-start">
 	<?php if ($buttons) : ?>
 		<?php foreach ($buttons as $button) : ?>
-			<?php echo JLayoutHelper::render('joomla.editors.buttons.button', $button); ?>
+			<?php echo LayoutHelper::render('joomla.editors.buttons.button', $button); ?>
 		<?php endforeach; ?>
 	<?php endif; ?>
 </div>

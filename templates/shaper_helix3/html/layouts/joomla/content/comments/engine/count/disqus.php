@@ -6,10 +6,10 @@
  * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or later
 */
 
-use Joomla\CMS\Factory;
-
 //no direct access
 defined('_JEXEC') or die('Restricted Access');
+
+use Joomla\CMS\Factory;
 
 if ($displayData['params']->get('disqus_subdomain') != '')
 {
@@ -20,6 +20,7 @@ if ($displayData['params']->get('disqus_subdomain') != '')
 		ob_start();
 
 		$devmode = $displayData['params']->get('disqus_devmode');
+		
 		if ($devmode)
 		{
 			echo 'var disqus_developer = "1";';

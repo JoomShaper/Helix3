@@ -7,6 +7,8 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
+defined('_JEXEC') or die;
+
 use Joomla\CMS\Factory;
 use Joomla\CMS\Uri\Uri;
 use Joomla\CMS\Router\Route;
@@ -15,9 +17,10 @@ use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Layout\FileLayout;
 use Joomla\CMS\Layout\LayoutHelper;
 
-defined('_JEXEC') or die;
-
-HTMLHelper::addIncludePath(JPATH_COMPONENT . '/helpers');
+if (version_compare(JVERSION, '4.0.0', '<'))
+{
+	HTMLHelper::addIncludePath(JPATH_COMPONENT . '/helpers');
+}
 
 // Create shortcuts to some parameters.
 $params  = $this->item->params;

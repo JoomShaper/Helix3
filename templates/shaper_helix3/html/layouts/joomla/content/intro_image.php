@@ -6,12 +6,12 @@
  * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or later
 */
 
+defined('_JEXEC') or die;
+
 use Joomla\CMS\Factory;
 use Joomla\CMS\Filesystem\File;
 use Joomla\CMS\Router\Route;
 use Joomla\CMS\Uri\Uri;
-
-defined('_JEXEC') or die;
 
 $tplParams 		= Factory::getApplication()->getTemplate(true)->params;
 $params  		= $displayData->params;
@@ -67,7 +67,7 @@ if (empty($image_alt_text))
 	<?php $imgfloat = empty($images->float_intro) ? $params->get('float_intro') : $images->float_intro; ?>
 	<div class="pull-<?php echo htmlspecialchars($imgfloat, ENT_COMPAT, 'UTF-8'); ?> entry-image intro-image">
 		<?php if ($params->get('link_titles') && $params->get('access-view')) : ?>
-			<a href="<?php echo Route::_(ContentHelperRoute::getArticleRoute($displayData->slug, $displayData->catid, $displayData->language)); ?>">
+			<a href="<?php echo Route::_(version_compare(JVERSION, '4.0.0', '<') ? ContentHelperRoute::getArticleRoute($displayData->slug, $displayData->catid, $displayData->language) : Joomla\Component\Content\Site\Helper\RouteHelper::getArticleRoute($displayData->slug, $displayData->catid, $displayData->language)); ?>">
 		<?php endif; ?>
 		<img
 			<?php if (isset($images->image_intro_caption) && $images->image_intro_caption):

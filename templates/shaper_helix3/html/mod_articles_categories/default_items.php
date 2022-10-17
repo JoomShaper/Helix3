@@ -6,11 +6,11 @@
  * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or later
 */
 
+defined('_JEXEC') or die;
+
 use Joomla\CMS\Router\Router;
 use Joomla\CMS\Helper\ModuleHelper;
 use Joomla\CMS\HTML\HTMLHelper;
-
-defined('_JEXEC') or die;
 
 foreach ($list as $item) : ?>
 	<li <?php if ($_SERVER['PHP_SELF'] == Router::_(JVERSION < 4 ? ContentHelperRoute::getCategoryRoute($item->id) : Joomla\Component\Content\Site\Helper\RouteHelper::getCategoryRoute($item->id))) echo ' class="active"';?>>

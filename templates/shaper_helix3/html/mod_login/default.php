@@ -6,14 +6,14 @@
  * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or later
 */
 
+defined('_JEXEC') or die;
+
 use Joomla\CMS\Uri\Uri;
 use Joomla\CMS\Router\Route;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Plugin\PluginHelper;
 use Joomla\CMS\Component\ComponentHelper;
-
-defined('_JEXEC') or die;
 
 HTMLHelper::_('behavior.keepalive');
 HTMLHelper::_('bootstrap.tooltip');

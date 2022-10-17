@@ -6,9 +6,9 @@
  * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or later
 */
 
-use Joomla\CMS\Layout\LayoutHelper;
-
 defined('JPATH_BASE') or die;
+
+use Joomla\CMS\Layout\LayoutHelper;
 
 $blockPosition = $displayData['params']->get('info_block_position', 0);
 ?>

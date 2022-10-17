@@ -6,11 +6,12 @@
  * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or later
 */
 
+defined('JPATH_BASE') or die;
+
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\Layout\LayoutHelper;
 
-defined('JPATH_BASE') or die;
 
 // Note that this layout opens a div with the page class suffix. If you do not use the category children
 // layout you need to close this div either by overriding this file or in your main layout.

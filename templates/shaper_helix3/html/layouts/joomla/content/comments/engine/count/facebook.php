@@ -6,11 +6,11 @@
  * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or later
 */
 
-use Joomla\CMS\Factory;
-use Joomla\CMS\Language\Text;
-
 //no direct access
 defined('_JEXEC') or die('Restricted Access');
+
+use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
 
 if ($displayData['params']->get('fb_appID') != '')
 {

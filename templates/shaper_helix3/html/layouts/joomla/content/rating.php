@@ -6,10 +6,10 @@
  * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or later
 */
 
+defined('JPATH_BASE') or die;
+
 use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Text;
-
-defined('JPATH_BASE') or die;
 
 if($displayData['params']->get('show_vote')) {
 

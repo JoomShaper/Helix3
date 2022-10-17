@@ -7,11 +7,11 @@
 * @license     GNU General Public License version 2 or later; see LICENSE.txt
 */
 
+defined('_JEXEC') or die;
+
 use Joomla\CMS\Router\Route;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\HTML\HTMLHelper;
-
-defined('_JEXEC') or die;
 
 HTMLHelper::_('behavior.keepalive');
 HTMLHelper::_('behavior.formvalidator');

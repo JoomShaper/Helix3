@@ -7,14 +7,14 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
+defined('_JEXEC') or die;
+
 use Joomla\CMS\Factory;
 use Joomla\CMS\Uri\Uri;
 use Joomla\CMS\Router\Route;
 use Joomla\Registry\Registry;
 use Joomla\CMS\Layout\LayoutHelper;
 use Joomla\Component\Content\Site\Helper\RouteHelper;
-
-defined('_JEXEC') or die;
 
 // Create a shortcut for params.
 $params  = &$this->item->params;

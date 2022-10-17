@@ -6,11 +6,11 @@
  * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or later
 */
 
+defined('_JEXEC') or die;
+
 use Joomla\CMS\Helper\RouteHelper;
 use Joomla\CMS\Router\Route;
 use Joomla\CMS\Language\Text;
-
-defined('_JEXEC') or die;
 
 ?>
 <?php JLoader::register('TagsHelperRoute', JPATH_BASE . '/components/com_tags/helpers/route.php'); ?>

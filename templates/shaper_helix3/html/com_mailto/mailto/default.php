@@ -7,13 +7,15 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
+defined('_JEXEC') or die;
+
 use Joomla\CMS\Factory;
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\Router\Router;
 use Joomla\CMS\Uri\Uri;
 
-defined('_JEXEC') or die;
+
 HTMLHelper::_('behavior.core');
 HTMLHelper::_('behavior.keepalive');
 

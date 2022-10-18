@@ -257,7 +257,7 @@ class Helix3Menu {
 		}
 		else if ( ( $item->parent_id == 1 ) && ($item->megamenu == 0 ))
 		{
-			$menulayout = json_decode($this->_items[$item->id]->getParams()->get('menulayout'));
+			$menulayout = json_decode(!empty($this->_items[$item->id]->getParams()->get('menulayout')) ? $this->_items[$item->id]->getParams()->get('menulayout') : '');
 
 			if ($menulayout)
 			{
@@ -292,7 +292,7 @@ class Helix3Menu {
 
 		$dropdown_style = 'width: '. $dropdown_width .'px;';
 
-		$layout = json_decode($this->_items[$item->id]->getParams()->get('menulayout'));
+		$layout = json_decode(!empty($this->_items[$item->id]->getParams()->get('menulayout')) ? $this->_items[$item->id]->getParams()->get('menulayout') : '');
 		$sub_alignment = $this->_items[$item->id]->getParams()->get('dropdown_position', 'right');
 
 		if (isset($layout->menuAlign) && $layout->menuAlign)
@@ -458,7 +458,7 @@ class Helix3Menu {
 		}
 		else if ( ( $item->parent_id == 1 ) && ( $item->megamenu == 0 ) )
 		{
-			$menulayout = json_decode( $this->_items[$item->id]->getParams()->get('menulayout') );
+			$menulayout = json_decode( !empty($this->_items[$item->id]->getParams()->get('menulayout')) ? $this->_items[$item->id]->getParams()->get('menulayout') : '' );
 
 			if ( $menulayout )
 			{

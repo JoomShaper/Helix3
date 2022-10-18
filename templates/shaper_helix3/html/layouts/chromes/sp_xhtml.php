@@ -17,15 +17,15 @@ if ($module->content === null || $module->content === '')
 	return;
 }
 
-$moduleTag     = htmlspecialchars($params->get('module_tag', 'div'), ENT_QUOTES, 'UTF-8');
+$moduleTag     = htmlspecialchars(!empty($params->get('module_tag', 'div')) ? $params->get('module_tag', 'div') : '', ENT_QUOTES, 'UTF-8');
 $bootstrapSize = (int) $params->get('bootstrap_size', 0);
 $moduleClass   = $bootstrapSize !== 0 ? ' col-sm-' . $bootstrapSize : '';
-$headerTag     = htmlspecialchars($params->get('header_tag', 'h3'), ENT_QUOTES, 'UTF-8');
-$headerClass   = htmlspecialchars($params->get('header_class', 'sp-module-title'), ENT_COMPAT, 'UTF-8');
+$headerTag     = htmlspecialchars(!empty($params->get('header_tag', 'h3')) ? $params->get('header_tag', 'h3') : '', ENT_QUOTES, 'UTF-8');
+$headerClass   = htmlspecialchars(!empty($params->get('header_class', 'sp-module-title')) ? $params->get('header_class', 'sp-module-title') : '', ENT_COMPAT, 'UTF-8');
 
 if ($module->content)
 {
-    echo '<' . $moduleTag . ' class="sp-module ' . htmlspecialchars($params->get('moduleclass_sfx'), ENT_COMPAT, 'UTF-8') . $moduleClass . '">';
+    echo '<' . $moduleTag . ' class="sp-module ' . htmlspecialchars(!empty($params->get('moduleclass_sfx')) ? $params->get('moduleclass_sfx') : '', ENT_COMPAT, 'UTF-8') . $moduleClass . '">';
         if ($module->showtitle)
         {
             echo '<' . $headerTag . ' class="' . $headerClass . '">' . $module->title . '</' . $headerTag . '>';

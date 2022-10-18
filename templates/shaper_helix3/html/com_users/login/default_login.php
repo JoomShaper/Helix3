@@ -27,7 +27,7 @@ HTMLHelper::_('behavior.keepalive');
 				</h1>
 			<?php endif; ?>
 
-			<?php if (($this->params->get('logindescription_show') == 1 && str_replace(' ', '', $this->params->get('login_description')) != '') || $this->params->get('login_image') != '') : ?>
+			<?php if (($this->params->get('logindescription_show') == 1 && str_replace(' ', '', !empty($this->params->get('login_description')) ? $this->params->get('login_description') : '') != '') || $this->params->get('login_image') != '') : ?>
 			<div class="login-description">
 			<?php endif; ?>
 
@@ -39,7 +39,7 @@ HTMLHelper::_('behavior.keepalive');
 					<img src="<?php echo $this->escape($this->params->get('login_image')); ?>" class="login-image" alt="<?php echo Text::_('COM_USERS_LOGIN_IMAGE_ALT')?>"/>
 				<?php endif; ?>
 
-			<?php if (($this->params->get('logindescription_show') == 1 && str_replace(' ', '', $this->params->get('login_description')) != '') || $this->params->get('login_image') != '') : ?>
+			<?php if (($this->params->get('logindescription_show') == 1 && str_replace(' ', '', !empty($this->params->get('login_description')) ? $this->params->get('login_description') : '') != '') || $this->params->get('login_image') != '') : ?>
 			</div>
 			<?php endif; ?>
 

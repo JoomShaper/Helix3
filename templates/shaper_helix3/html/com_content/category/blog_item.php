@@ -31,8 +31,8 @@ $post_format = $post_attribs->get('post_format', 'standard');
 
 ?>
 
-<?php if ($this->item->state == 0 || strtotime($this->item->publish_up) > strtotime(Factory::getDate())
-	|| ((strtotime($this->item->publish_down) < strtotime(Factory::getDate())) && $this->item->publish_down != Factory::getDbo()->getNullDate())) : ?>
+<?php if ($this->item->state == 0 || strtotime(!empty($this->item->publish_up) ? $this->item->publish_up : '') > strtotime(Factory::getDate())
+	|| ((strtotime(!empty($this->item->publish_down) ? $this->item->publish_down : '') < strtotime(Factory::getDate())) && $this->item->publish_down != Factory::getDbo()->getNullDate())) : ?>
 	<div class="system-unpublished">
 <?php endif; ?>
 
@@ -87,8 +87,8 @@ $post_format = $post_attribs->get('post_format', 'standard');
 
 <?php endif; ?>
 
-<?php if ($this->item->state == 0 || strtotime($this->item->publish_up) > strtotime(Factory::getDate())
-	|| ((strtotime($this->item->publish_down) < strtotime(Factory::getDate())) && $this->item->publish_down != Factory::getDbo()->getNullDate())) : ?>
+<?php if ($this->item->state == 0 || strtotime(!empty($this->item->publish_up) ? $this->item->publish_up : '') > strtotime(Factory::getDate())
+	|| ((strtotime(!empty($this->item->publish_down) ? $this->item->publish_down : '') < strtotime(Factory::getDate())) && $this->item->publish_down != Factory::getDbo()->getNullDate())) : ?>
 </div>
 <?php endif; ?>
 

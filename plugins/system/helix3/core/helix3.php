@@ -643,13 +643,13 @@ class Helix3
 
 			if (file_exists($path . $src))
 			{
-				self::getInstance()->document->addStyleSheet(Uri::base(true) . '/templates/' . $template . '/css/' . $src, 'text/css', null, $attribs);
+				self::getInstance()->document->addStyleSheet(Uri::base(true) . '/templates/' . $template . '/css/' . $src, [], $attribs);
 			}
 			else
 			{
 				if ($src != 'custom.css')
 				{
-					self::getInstance()->document->addStyleSheet($src, 'text/css', null, $attribs);
+					self::getInstance()->document->addStyleSheet($src, [], $attribs);
 				}
 			}
 		}

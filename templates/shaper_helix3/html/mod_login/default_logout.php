@@ -8,14 +8,13 @@
 
 defined('_JEXEC') or die;
 
-use Joomla\CMS\Uri\Uri;
 use Joomla\CMS\Router\Route;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\HTML\HTMLHelper;
 
 HTMLHelper::_('behavior.keepalive');
 ?>
-<form action="<?php echo Route::_(Uri::getInstance()->toString(), true, $params->get('usesecure')); ?>" method="post" id="login-form">
+<form action="<?php echo Route::_('index.php', true, $params->get('usesecure', 0)); ?>" method="post" id="login-form">
 <?php if ($params->get('greeting')) : ?>
 	<div class="login-greeting">
 	<?php if ($params->get('name') == 0) : {

@@ -8,7 +8,6 @@
 
 defined('_JEXEC') or die;
 
-use Joomla\CMS\Uri\Uri;
 use Joomla\CMS\Router\Route;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\HTML\HTMLHelper;
@@ -21,7 +20,7 @@ HTMLHelper::_('bootstrap.tooltip');
 $usersConfig = ComponentHelper::getParams('com_users');
 
 ?>
-<form action="<?php echo Route::_(Uri::getInstance()->toString(), true, $params->get('usesecure')); ?>" method="post" id="login-form">
+<form action="<?php echo Route::_('index.php', true, $params->get('usesecure', 0)); ?>" method="post" id="login-form">
 	<?php if ($params->get('pretext')) : ?>
 		<div class="form-group pretext">
 			<p><?php echo $params->get('pretext'); ?></p>

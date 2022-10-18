@@ -13,8 +13,12 @@ use Joomla\CMS\Layout\LayoutHelper;
 
 $buttons = $displayData;
 
-// Load modal popup behavior
-HTMLHelper::_('behavior.modal', 'a.modal-button');
+if (version_compare(JVERSION, '4.0.0', '<'))
+{
+	// Load modal popup behavior
+	HTMLHelper::_('behavior.modal', 'a.modal-button');
+}
+
 ?>
 <div id="editor-xtd-buttons" class="float-start">
 	<?php if ($buttons) : ?>

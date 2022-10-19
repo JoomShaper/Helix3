@@ -258,7 +258,7 @@ class  plgSystemHelix3 extends CMSPlugin
         $body = Factory::getApplication()->getBody();
         $preset = Helix3::Preset();
 
-        $body = str_replace('{helix_preset}', $preset, $body);
+        $body = str_replace('{helix_preset}', !empty($preset) ? $preset : '', $body);
         
         Factory::getApplication()->setBody($body);
     }

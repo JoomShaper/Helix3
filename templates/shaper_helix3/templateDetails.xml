@@ -74,7 +74,6 @@
         <folder>js/</folder>
         <folder>layout/</folder>
         <folder>less/</folder>
-        <folder>sppagebuilder/</folder>
     </files>
     <config>
         <fields name="params">

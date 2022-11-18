@@ -1183,6 +1183,11 @@ class Helix3
 		{
 			$js_file = str_replace($root_url, JPATH_ROOT, $key);
 
+			// disable js compress for sp_pagebuilder
+			if(strpos($js_file, 'com_sppagebuilder')) {
+				continue;
+			}
+
 			if (strpos($js_file, JPATH_ROOT) === false) {
 				$js_file = JPATH_ROOT . $key;
 			}
@@ -1269,6 +1274,11 @@ class Helix3
 		foreach ($all_stylesheets as $key => $value)
 		{
 			$css_file = str_replace($root_url, JPATH_ROOT, $key);
+
+			// disable css compress for sp_pagebuilder
+			if(strpos($css_file, 'com_sppagebuilder')) {
+				continue;
+			}
 
 			if (strpos($css_file, JPATH_ROOT) === false) {
 				$css_file = JPATH_ROOT . $key;

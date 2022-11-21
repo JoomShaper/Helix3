@@ -68,6 +68,28 @@ if (JVERSION < 4)
 }
 else
 {
+	HTMLHelper::_('jquery.framework');
+
+	$script = "
+	jQuery(function() {";
+
+	$script .= "
+		jQuery('.ads').on('click', function(e){
+			if(jQuery('#advancedSearch').hasClass('hide')) {
+				jQuery('#advancedSearch').removeClass('hide');
+				jQuery('#advancedSearch').slideDown(300);
+				
+			} else {
+				jQuery('#advancedSearch').addClass('hide');
+				jQuery('#advancedSearch').slideUp(300);
+			}
+		});";
+
+	$script .= "
+	});";
+
+	Factory::getDocument()->addScriptDeclaration($script);
+
 	if ($this->params->get('show_autosuggest', 1))
 	{
 		$this->document->getWebAssetManager()->usePreset('awesomplete');
@@ -101,16 +123,27 @@ else
 				</button>
 			<?php endif; ?>
 			<?php if ($this->params->get('show_advanced', 1)) : ?>
-				<a class="btn btn-secondary" data-bs-toggle="collapse" href="#advancedSearch" role="button" aria-expanded="false" aria-controls="advancedSearch">
-					<span class="fas fa-search-plus" aria-hidden="true"></span>
-					<?php echo Text::_('COM_FINDER_ADVANCED_SEARCH_TOGGLE'); ?>
-				</a>
+				<?php if (JVERSION < 4) : ?>
+					<a class="btn btn-secondary" data-bs-toggle="collapse" href="#advancedSearch" role="button" aria-expanded="false" aria-controls="advancedSearch">
+						<span class="fas fa-search-plus" aria-hidden="true"></span>
+						<?php echo Text::_('COM_FINDER_ADVANCED_SEARCH_TOGGLE'); ?>
+					</a>
+				<?php else : ?>
+					<a class="btn btn-secondary ads" role="button">
+						<span class="fas fa-search-plus" aria-hidden="true"></span>
+						<?php echo Text::_('COM_FINDER_ADVANCED_SEARCH_TOGGLE'); ?>
+					</a>
+				<?php endif; ?>
 			<?php endif; ?>
 		</div>
 	</fieldset>
 
 	<?php if ($this->params->get('show_advanced', 1)) : ?>
+		<?php if(JVERSION < 4) : ?>
 		<div id="advancedSearch" class="js-finder-advanced collapse<?php if ($this->params->get('expand_advanced', 0)) echo ' show'; ?>">
+		<?php else : ?>
+		<div id="advancedSearch" class="js-finder-advanced<?php echo ($this->params->get('expand_advanced', 0)) ? '' : ' hide'; ?>" style="<?php if(!$this->params->get('expand_advanced', 0)) { echo 'display:none'; }?>">
+		<?php endif; ?>
 			<?php if ($this->params->get('show_advanced_tips', 1)) : ?>
 				<div class="card card-outline-secondary mb-3">
 					<div class="card-body">

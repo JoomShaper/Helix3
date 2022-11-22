@@ -9,6 +9,7 @@
 
 defined('_JEXEC') or die;
 
+use Joomla\CMS\Factory;
 use Joomla\CMS\Router\Route;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\HTML\HTMLHelper;
@@ -30,6 +31,13 @@ if (!$editoroptions)
 {
 	$params->show_urls_images_frontend = '0';
 }
+
+$document  = Factory::getDocument();
+
+// Alerts progressive enhancement
+$document->getWebAssetManager()
+    ->useStyle('webcomponent.joomla-alert')
+    ->useScript('messages');
 ?>
 <div class="edit item-page<?php echo $this->pageclass_sfx; ?>">
 	<?php if ($params->get('show_page_heading')): ?>
@@ -58,7 +66,7 @@ if (!$editoroptions)
 			<?php echo HTMLHelper::_((JVERSION < 4 ? 'bootstrap' : 'uitab') . '.endTab'); ?>
 			
 			<?php echo HTMLHelper::_((JVERSION < 4 ? 'bootstrap' : 'uitab') . '.addTab', $this->tab_name, 'sppostformats', Text::_('BLOG_OPTIONS')); ?>
-				<?php $attribs = json_decode($this->item->attribs); ?>
+				<?php $attribs = json_decode(is_null($this->item->attribs) ? '' : $this->item->attribs); ?>
 				<?php echo $this->form->renderField('spfeatured_image','attribs', (isset($attribs->spfeatured_image)? $attribs->spfeatured_image: '')); ?>
 				<?php echo $this->form->renderField('post_format','attribs', (isset($attribs->post_format)? $attribs->post_format: '')); ?>
 				<?php echo $this->form->renderField('gallery','attribs', (isset($attribs->gallery)? $attribs->gallery: '')); ?>

@@ -46,7 +46,7 @@ use Joomla\CMS\Router\Route;
 				<?php if ($this->params->get('logout_redirect_url')) : ?>
 					<input type="hidden" name="return" value="<?php echo base64_encode($this->params->get('logout_redirect_url', $this->form->getValue('return'))); ?>" />
 				<?php else : ?>
-					<input type="hidden" name="return" value="<?php echo base64_encode($this->params->get('logout_redirect_menuitem', $this->form->getValue('return'))); ?>" />
+					<input type="hidden" name="return" value="<?php echo !empty($this->params->get('logout_redirect_menuitem')) ? base64_encode($this->params->get('logout_redirect_menuitem', $this->form->getValue('return'))) : ''; ?>" />
 				<?php endif; ?>
 				<?php echo HTMLHelper::_('form.token'); ?>
 			</form>

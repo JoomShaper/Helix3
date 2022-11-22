@@ -10,6 +10,7 @@
 defined ('_JEXEC') or die ('resticted aceess');
 
 use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\Form\FormField;
 use Joomla\CMS\Filesystem\Folder;
 
@@ -34,8 +35,8 @@ class JFormFieldLayoutlist extends FormField
     }
     
     $htmls .= '</select></div>';
-    $htmls .= '<div class="layout-button-wrap"><a href="#" class="btn btn-success layout-save-action" data-action="save">'. JText::_('HELIX_SAVE_COPY') .'</a>';
-    $htmls .= '<a href="#" class="btn btn-danger layout-del-action" data-action="remove">'. JText::_('HELIX_DELETE') .'</a></div>';
+    $htmls .= '<div class="layout-button-wrap"><a href="#" class="btn btn-success layout-save-action" data-action="save">'. Text::_('HELIX_SAVE_COPY') .'</a>';
+    $htmls .= '<a href="#" class="btn btn-danger layout-del-action" data-action="remove">'. Text::_('HELIX_DELETE') .'</a></div>';
 
     return $htmls;
   }

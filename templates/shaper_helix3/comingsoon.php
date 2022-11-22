@@ -217,7 +217,7 @@ HTMLHelper::_('jquery.framework');
 
 	<script type="text/javascript">
 		jQuery(function($) {
-			$('#sp-comingsoon-countdown').countdown('<?php echo trim($comingsoon_date[2]); ?>/<?php echo trim($comingsoon_date[1]); ?>/<?php echo trim($comingsoon_date[0]); ?>', function(event) {
+			$('#sp-comingsoon-countdown').countdown('<?php echo trim($comingsoon_date[0]); ?>/<?php echo trim($comingsoon_date[1]); ?>/<?php echo trim($comingsoon_date[2]); ?>', function(event) {
 			    $(this).html(event.strftime('<div class="days"><span class="number">%-D</span><span class="string">%!D:<?php echo Text::_("HELIX_DAY"); ?>,<?php echo Text::_("HELIX_DAYS"); ?>;</span></div><div class="hours"><span class="number">%H</span><span class="string">%!H:<?php echo Text::_("HELIX_HOUR"); ?>,<?php echo Text::_("HELIX_HOURS"); ?>;</span></div><div class="minutes"><span class="number">%M</span><span class="string">%!M:<?php echo Text::_("HELIX_MINUTE"); ?>,<?php echo Text::_("HELIX_MINUTES"); ?>;</span></div><div class="seconds"><span class="number">%S</span><span class="string">%!S:<?php echo Text::_("HELIX_SECOND"); ?>,<?php echo Text::_("HELIX_SECONDS"); ?>;</span></div>'));
 			});
 		});

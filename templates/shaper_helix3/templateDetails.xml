@@ -238,7 +238,7 @@
                 <field name="comingsoon_bg" type="media" preview="true" label="HELIX_COMINGSOON_BG" description="HELIX_COMINGSOON_BG_DESC" class="child comingsoon comingsoon_1" />
                 <field name="comingsoon_logo" type="media" preview="true" label="HELIX_COMINGSOON_LOGO" description="HELIX_COMINGSOON_LOGO_DESC" class="child comingsoon comingsoon_1" />
                 <field name="comingsoon_title" type="text" default="Coming Soon Title" label="HELIX_COMINGSOON_TITLE" description="HELIX_COMINGSOON_TITLE_DESC" class="child comingsoon comingsoon_1" />
-                <field name="comingsoon_date" type="calendar" default="5-10-2018" format="%d-%m-%Y" label="HELIX_COMINGSOON_DATE" description="HELIX_COMINGSOON_DATE_DESC" class="child comingsoon comingsoon_1" />
+                <field name="comingsoon_date" type="calendar" showtime="false" translateformat="true" filter="user_utc" label="HELIX_COMINGSOON_DATE" description="HELIX_COMINGSOON_DATE_DESC" class="child comingsoon comingsoon_1" />
                 <field name="comingsoon_content" type="textarea" default="Coming soon content" label="HELIX_COMINGSOON_CONTENT" description="HELIX_COMINGSOON_CONTENT_DESC" filter="raw" class="child comingsoon comingsoon_1" />
 
                 <!--Error Page-->

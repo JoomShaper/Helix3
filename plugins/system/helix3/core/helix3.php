@@ -1269,6 +1269,14 @@ class Helix3
 		$root_url        = Uri::root(true);
 		$minifiedCode    = '';
 		$md5sum          = '';
+		$view      = $app->input->get('view');
+		$layout    = $app->input->get('layout');
+		
+		// disable css compress for edit view
+		if($view == 'form' || $layout == 'edit')
+		{
+			return;
+		}
 
 		//Check all local stylesheets
 		foreach ($all_stylesheets as $key => $value)

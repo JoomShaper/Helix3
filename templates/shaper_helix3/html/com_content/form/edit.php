@@ -81,7 +81,7 @@ $document->getWebAssetManager()
 			<?php echo HTMLHelper::_((JVERSION < 4 ? 'bootstrap' : 'uitab') . '.endTab'); ?>
 			
 			<?php echo HTMLHelper::_((JVERSION < 4 ? 'bootstrap' : 'uitab') . '.addTab', $this->tab_name, 'sppostformats', Text::_('BLOG_OPTIONS')); ?>
-				<?php $attribs = json_decode($this->item->attribs); ?>
+				<?php $attribs = json_decode(is_null($this->item->attribs) ? '' : $this->item->attribs); ?>
 				<?php echo $this->form->renderField('spfeatured_image','attribs', (isset($attribs->spfeatured_image)? $attribs->spfeatured_image: '')); ?>
 				<?php echo $this->form->renderField('post_format','attribs', (isset($attribs->post_format)? $attribs->post_format: 'standard')); ?>
 				<?php echo $this->form->renderField('gallery','attribs', (isset($attribs->gallery)? $attribs->gallery: '')); ?>

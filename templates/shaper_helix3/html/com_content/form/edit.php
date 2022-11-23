@@ -27,6 +27,13 @@ if (JVERSION < 4)
 
 if (JVERSION >= 4)
 {
+	$document  = Factory::getDocument();
+
+	// Alerts progressive enhancement
+	$document->getWebAssetManager()
+		->useStyle('webcomponent.joomla-alert')
+		->useScript('messages');
+
 	Factory::getApplication()
             ->getDocument()
             ->getWebAssetManager()
@@ -46,13 +53,6 @@ if (!$editoroptions)
 {
 	$params->show_urls_images_frontend = '0';
 }
-
-$document  = Factory::getDocument();
-
-// Alerts progressive enhancement
-$document->getWebAssetManager()
-    ->useStyle('webcomponent.joomla-alert')
-    ->useScript('messages');
 ?>
 <div class="edit item-page<?php echo $this->pageclass_sfx; ?>">
 	<?php if ($params->get('show_page_heading')): ?>

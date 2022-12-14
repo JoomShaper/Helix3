@@ -8,13 +8,13 @@
 
 defined('_JEXEC') or die;
 
-use Joomla\CMS\Router\Router;
 use Joomla\CMS\Helper\ModuleHelper;
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Router\Route;
 
 foreach ($list as $item) : ?>
-	<li <?php if ($_SERVER['PHP_SELF'] == Router::_(JVERSION < 4 ? ContentHelperRoute::getCategoryRoute($item->id) : Joomla\Component\Content\Site\Helper\RouteHelper::getCategoryRoute($item->id))) echo ' class="active"';?>>
-		<a href="<?php echo Router::_(JVERSION < 4 ? ContentHelperRoute::getCategoryRoute($item->id) : Joomla\Component\Content\Site\Helper\RouteHelper::getCategoryRoute($item->id)); ?>">
+	<li <?php if ($_SERVER['PHP_SELF'] == Route::_(JVERSION < 4 ? ContentHelperRoute::getCategoryRoute($item->id) : Joomla\Component\Content\Site\Helper\RouteHelper::getCategoryRoute($item->id))) echo ' class="active"';?>>
+		<a href="<?php echo Route::_(JVERSION < 4 ? ContentHelperRoute::getCategoryRoute($item->id) : Joomla\Component\Content\Site\Helper\RouteHelper::getCategoryRoute($item->id)); ?>">
 		<?php echo $item->title;?>
 			<?php if ($params->get('numitems')) : ?>
 				(<?php echo $item->numitems; ?>)

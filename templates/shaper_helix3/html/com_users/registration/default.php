@@ -7,10 +7,14 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
+use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
+use Joomla\CMS\Router\Route;
+
 defined('_JEXEC') or die;
 
-JHtml::_('behavior.keepalive');
-JHtml::_('behavior.formvalidator');
+HTMLHelper::_('behavior.keepalive');
+HTMLHelper::_('behavior.formvalidator');
 ?>
 <div class="row justify-content-center">
 	<div class="col-lg-4">
@@ -19,7 +23,7 @@ JHtml::_('behavior.formvalidator');
 				<h1><?php echo $this->escape($this->params->get('page_heading')); ?></h1>
 			<?php endif; ?>
 
-			<form id="member-registration" action="<?php echo JRoute::_('index.php?option=com_users&task=registration.register'); ?>" method="post" class="form-validate" enctype="multipart/form-data">
+			<form id="member-registration" action="<?php echo Route::_('index.php?option=com_users&task=registration.register'); ?>" method="post" class="form-validate" enctype="multipart/form-data">
 
 				<?php foreach ($this->form->getFieldsets() as $fieldset): // Iterate through the form fieldsets and display each one.?>
 					<?php $fields = $this->form->getFieldset($fieldset->name);?>
@@ -31,7 +35,7 @@ JHtml::_('behavior.formvalidator');
 								<div class="mb-3">
 									<?php echo $field->label; ?>
 									<?php if (!$field->required && $field->type != 'Spacer') : ?>
-										<span class="optional"><?php echo JText::_('COM_USERS_OPTIONAL');?></span>
+										<span class="optional"><?php echo Text::_('COM_USERS_OPTIONAL');?></span>
 									<?php endif; ?>
 									
 									<?php echo $field->input; ?>
@@ -42,12 +46,12 @@ JHtml::_('behavior.formvalidator');
 				<?php endforeach;?>
 
 				<div class="form-group">
-					<button type="submit" class="btn btn-primary validate"><?php echo JText::_('JREGISTER');?></button>
-					<a class="btn btn-danger" href="<?php echo JRoute::_('');?>" title="<?php echo JText::_('JCANCEL');?>"><?php echo JText::_('JCANCEL');?></a>
+					<button type="submit" class="btn btn-primary validate"><?php echo Text::_('JREGISTER');?></button>
+					<a class="btn btn-danger" href="<?php echo Route::_('');?>" title="<?php echo Text::_('JCANCEL');?>"><?php echo Text::_('JCANCEL');?></a>
 					<input type="hidden" name="option" value="com_users" />
 					<input type="hidden" name="task" value="registration.register" />
 				</div>
-				<?php echo JHtml::_('form.token');?>
+				<?php echo HTMLHelper::_('form.token');?>
 			</form>
 		</div>
 	</div>

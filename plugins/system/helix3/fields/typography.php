@@ -1,17 +1,20 @@
 <?php
+
 /**
-* @package Helix3 Framework
-* @author JoomShaper https://www.joomshaper.com
-* @copyright (c) 2010 - 2021 JoomShaper
-* @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
-*/
+ * @package Helix3 Framework
+ * @author JoomShaper https://www.joomshaper.com
+ * @copyright (c) 2010 - 2021 JoomShaper
+ * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
+ */
 
 //no direct accees
 defined ('_JEXEC') or die ('resticted aceess');
 
-jimport('joomla.form.formfield');
+use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
+use Joomla\CMS\Form\FormField;
 
-class JFormFieldTypography extends JFormField
+class JFormFieldTypography extends FormField
 {
   protected $type = 'Typography';
 
@@ -47,7 +50,7 @@ class JFormFieldTypography extends JFormField
     $html .= '<div class="row row-fluid">';
 
     $html .= '<div class="col-sm-3 span3 font-families">';
-    $html .= '<label class="control-label"><strong>'. JText::_('HELIX_FONT_FAMILY') .'</strong></label>';
+    $html .= '<label class="control-label"><strong>'. Text::_('HELIX_FONT_FAMILY') .'</strong></label>';
     $html .= '<select class="list-font-families form-select">';
 
     foreach ($items as $item) {
@@ -63,7 +66,7 @@ class JFormFieldTypography extends JFormField
 
     //Font Weight
     $html .= '<div class="col-sm-2 span2 font-weight">';
-    $html .= '<label class="control-label"><strong>'. JText::_('HELIX_FONT_WEIGHT_STYLE') .'</strong></label>';
+    $html .= '<label class="control-label"><strong>'. Text::_('HELIX_FONT_WEIGHT_STYLE') .'</strong></label>';
     $html .= '<select class="list-font-weight form-select">';
 
     if(isset($value->fontFamily)) {
@@ -85,7 +88,7 @@ class JFormFieldTypography extends JFormField
 
     //Font Subsets
     $html .= '<div class="col-sm-2 span2 font-subsets">';
-    $html .= '<label class="control-label"><strong>'. JText::_('HELIX_FONT_SUBSET') .'</strong></label>';
+    $html .= '<label class="control-label"><strong>'. Text::_('HELIX_FONT_SUBSET') .'</strong></label>';
     $html .= '<select class="list-font-subset form-select">';
 
     if(isset($value->fontFamily)) {
@@ -108,7 +111,7 @@ class JFormFieldTypography extends JFormField
     //Font Size
     $fontSize = (isset($value->fontSize))?$value->fontSize:'';
     $html .= '<div class="col-sm-2 span2 font-size">';
-    $html .= '<label class="control-label"><strong>'. JText::_('HELIX_FONT_SIZE') .'</strong></label>';
+    $html .= '<label class="control-label"><strong>'. Text::_('HELIX_FONT_SIZE') .'</strong></label>';
     $html .= '<input type="number" value="'. $fontSize .'" class="form-control webfont-size" min="1" placeholder="14">';
     $html .= '</div>';
 
@@ -140,8 +143,8 @@ class JFormFieldTypography extends JFormField
   //Get template name
   private static function getTemplate()
   {
-    $id = (int) JFactory::getApplication()->input->get('id', 0);
-    $db = JFactory::getDbo();
+    $id = (int) Factory::getApplication()->input->get('id', 0);
+    $db = Factory::getDbo();
     $query = $db->getQuery(true);
     $query->select($db->quoteName(array('template')));
     $query->from($db->quoteName('#__template_styles'));

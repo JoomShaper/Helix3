@@ -7,13 +7,15 @@
 */
 
 defined('_JEXEC') or die;
+
+use Joomla\CMS\Language\Text;
 ?>
 
 <ol class="breadcrumb">
 	<?php
 	if ($params->get('showHere', 1))
 	{
-		echo '<span>' . JText::_('MOD_BREADCRUMBS_HERE') . '&#160;</span>';
+		echo '<span>' . Text::_('MOD_BREADCRUMBS_HERE') . '&#160;</span>';
 	}
 	else
 	{

@@ -8,6 +8,8 @@
 
 defined('_JEXEC') or die;
 
+use Joomla\CMS\Language\Text;
+
 $msgList = $displayData['msgList'];
 
 $find = array('error', 'notice', 'message');
@@ -20,10 +22,10 @@ $replace = array('danger', 'warning', 'success');
 			<?php foreach ($msgList as $type => $msgs) : ?>
 				<div class="alert alert-<?php echo str_replace($find, $replace, $type); ?> alert-dismissible fade show">
 					<?php // This requires JS so we should add it trough JS. Progressive enhancement and stuff. ?>
-					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="<?php echo JText::_('JClose'); ?>"></button>
+					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="<?php echo Text::_('JClose'); ?>"></button>
 
 					<?php if (!empty($msgs)) : ?>
-						<h4 class="alert-heading"><?php echo JText::_($type); ?></h4>
+						<h4 class="alert-heading"><?php echo Text::_($type); ?></h4>
 						<div>
 							<?php foreach ($msgs as $msg) : ?>
 								<p><?php echo $msg; ?></p>

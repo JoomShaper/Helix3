@@ -8,6 +8,8 @@
 
 defined('_JEXEC') or die;
 
+use Joomla\CMS\HTML\HTMLHelper;
+
 $canEdit = $displayData['params']->get('access-edit');
 $articleId = $displayData['item']->id;
 ?>
@@ -17,7 +19,7 @@ $articleId = $displayData['item']->id;
 		<div class="icons">
 			<div class="float-end">
 				<div>
-					<?php echo JHtml::_('icon.edit', $displayData['item'], $displayData['params']); ?>
+					<?php echo HTMLHelper::_('icon.edit', $displayData['item'], $displayData['params']); ?>
 				</div>
 			</div>
 		</div>
@@ -34,20 +36,20 @@ $articleId = $displayData['item']->id;
 					<?php // Note the actions class is deprecated. Use dropdown-menu instead. ?>
 					<ul class="dropdown-menu">
 						<?php if ($displayData['params']->get('show_print_icon')) : ?>
-							<li class="print-icon dropdown-item"> <?php echo JHtml::_('icon.print_popup', $displayData['item'], $displayData['params']); ?> </li>
+							<li class="print-icon dropdown-item"> <?php echo HTMLHelper::_('icon.print_popup', $displayData['item'], $displayData['params']); ?> </li>
 						<?php endif; ?>
 						<?php if ($displayData['params']->get('show_email_icon')) : ?>
-							<li class="email-icon dropdown-item"> <?php echo JHtml::_('icon.email', $displayData['item'], $displayData['params']); ?> </li>
+							<li class="email-icon dropdown-item"> <?php echo HTMLHelper::_('icon.email', $displayData['item'], $displayData['params']); ?> </li>
 						<?php endif; ?>
 						<?php if ($canEdit) : ?>
-							<li class="edit-icon dropdown-item"> <?php echo JHtml::_('icon.edit', $displayData['item'], $displayData['params']); ?> </li>
+							<li class="edit-icon dropdown-item"> <?php echo HTMLHelper::_('icon.edit', $displayData['item'], $displayData['params']); ?> </li>
 						<?php endif; ?>
 					</ul>
 				</div>
 			<?php endif; ?>
 		<?php else : ?>
 			<div class="pull-right">
-				<?php echo JHtml::_('icon.print_screen', $displayData['item'], $displayData['params']); ?>
+				<?php echo HTMLHelper::_('icon.print_screen', $displayData['item'], $displayData['params']); ?>
 			</div>
 		<?php endif; ?>
 	</div>

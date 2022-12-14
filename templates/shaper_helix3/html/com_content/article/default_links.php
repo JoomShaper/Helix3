@@ -9,6 +9,8 @@
 
 defined('_JEXEC') or die;
 
+use Joomla\CMS\HTML\HTMLHelper;
+
 // Create shortcut
 $urls = json_decode($this->item->urls);
 
@@ -60,7 +62,7 @@ if ($urls && (!empty($urls->urla) || !empty($urls->urlb) || !empty($urls->urlc))
 							break;
 						case 3:
 							// open in a modal window
-							JHtml::_('behavior.modal', 'a.modal');
+							HTMLHelper::_('behavior.modal', 'a.modal');
 							echo '<a class="modal" href="' . htmlspecialchars($link) . '"  rel="{handler: \'iframe\', size: {x:600, y:600}}">' .
 								htmlspecialchars($label) . ' </a>';
 							break;

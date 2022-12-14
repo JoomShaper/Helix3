@@ -9,6 +9,9 @@
 //no direct accees
 defined ('_JEXEC') or die('resticted aceess');
 
+use Joomla\CMS\Factory;
+use Joomla\CMS\Uri\Uri;
+
 class Helix3FeaturePreloader {
 
 	private $helix3;
@@ -20,7 +23,7 @@ class Helix3FeaturePreloader {
 
 	public function renderFeature() {
 
-		$app = JFactory::getApplication();
+		$app = Factory::getApplication();
 		//Load Helix
 		$helix3_path = JPATH_PLUGINS . '/system/helix3/core/helix3.php';
 		if (file_exists($helix3_path)) {
@@ -64,9 +67,9 @@ class Helix3FeaturePreloader {
                 } elseif ($getHelix3->getParam('preloader_animation') == 'logo') {
 
                     if ($getHelix3->getParam('logo_image')) {
-                        $logo = JUri::root() . '/' . $getHelix3->getParam('logo_image');
+                        $logo = Uri::root() . '/' . $getHelix3->getParam('logo_image');
                     } else {
-                        $logo = JUri::root() . '/templates/' . $app->getTemplate() . '/images/presets/' . $getHelix3->Preset() . '/logo.png';
+                        $logo = Uri::root() . '/templates/' . $app->getTemplate() . '/images/presets/' . $getHelix3->Preset() . '/logo.png';
                     }
 
                     // Line loader with logo

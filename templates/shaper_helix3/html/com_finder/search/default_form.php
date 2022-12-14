@@ -8,11 +8,16 @@
 
 defined ('_JEXEC') or die();
 
+use Joomla\CMS\Factory;
+use Joomla\CMS\Router\Route;
+use Joomla\CMS\Language\Text;
+use Joomla\CMS\HTML\HTMLHelper;
+
 if (JVERSION < 4)
 {
 	if ($this->params->get('show_advanced', 1) || $this->params->get('show_autosuggest', 1))
 	{
-		JHtml::_('jquery.framework');
+		HTMLHelper::_('jquery.framework');
 	
 		$script = "
 		jQuery(function() {";
@@ -41,11 +46,11 @@ if (JVERSION < 4)
 		*/
 		if ($this->params->get('show_autosuggest', 1))
 		{
-			JHtml::_('script', 'jui/jquery.autocomplete.min.js', array('version' => 'auto', 'relative' => true));
+			HTMLHelper::_('script', 'jui/jquery.autocomplete.min.js', array('version' => 'auto', 'relative' => true));
 	
 			$script .= "
 			var suggest = jQuery('#q').autocomplete({
-				serviceUrl: '" . JRoute::_('index.php?option=com_finder&task=suggestions.suggest&format=json&tmpl=component') . "',
+				serviceUrl: '" . Route::_('index.php?option=com_finder&task=suggestions.suggest&format=json&tmpl=component') . "',
 				paramName: 'q',
 				minChars: 1,
 				maxHeight: 400,
@@ -58,20 +63,42 @@ if (JVERSION < 4)
 		$script .= "
 		});";
 	
-		JFactory::getDocument()->addScriptDeclaration($script);
+		Factory::getDocument()->addScriptDeclaration($script);
 	}
 }
 else
 {
+	HTMLHelper::_('jquery.framework');
+
+	$script = "
+	jQuery(function() {";
+
+	$script .= "
+		jQuery('.ads').on('click', function(e){
+			if(jQuery('#advancedSearch').hasClass('hide')) {
+				jQuery('#advancedSearch').removeClass('hide');
+				jQuery('#advancedSearch').slideDown(300);
+				
+			} else {
+				jQuery('#advancedSearch').addClass('hide');
+				jQuery('#advancedSearch').slideUp(300);
+			}
+		});";
+
+	$script .= "
+	});";
+
+	Factory::getDocument()->addScriptDeclaration($script);
+
 	if ($this->params->get('show_autosuggest', 1))
 	{
 		$this->document->getWebAssetManager()->usePreset('awesomplete');
-		$this->document->addScriptOptions('finder-search', array('url' => JRoute::_('index.php?option=com_finder&task=suggestions.suggest&format=json&tmpl=component')));
+		$this->document->addScriptOptions('finder-search', array('url' => Route::_('index.php?option=com_finder&task=suggestions.suggest&format=json&tmpl=component')));
 	}
 }
 ?>
 
-<form action="<?php echo JRoute::_($this->query->toUri()); ?>" id="finder-search" method="get" class="js-finder-searchform">
+<form action="<?php echo Route::_($this->query->toUri()); ?>" id="finder-search" method="get" class="js-finder-searchform">
 	<?php echo $this->getFields(); ?>
 
 	<?php //DISABLED UNTIL WEIRD VALUES CAN BE TRACKED DOWN. ?>
@@ -80,52 +107,63 @@ else
 	<?php endif; ?>
 	<fieldset class="word mb-3">
 		<label for="q" class="form-label">
-			<?php echo JText::_('COM_FINDER_SEARCH_TERMS'); ?>
+			<?php echo Text::_('COM_FINDER_SEARCH_TERMS'); ?>
 		</label>
 		<div class="input-group">
 			<input type="text" id="q" name="q" class="js-finder-search-query form-control" value="<?php echo $this->escape($this->query->input); ?>">
 			<?php if ($this->escape($this->query->input) != '' || $this->params->get('allow_empty_query')) : ?>
 				<button name="Search" type="submit" class="btn btn-primary">
 					<span class="fas fa-search icon-white" aria-hidden="true"></span>
-					<?php echo JText::_('JSEARCH_FILTER_SUBMIT'); ?>
+					<?php echo Text::_('JSEARCH_FILTER_SUBMIT'); ?>
 				</button>
 			<?php else : ?>
 				<button name="Search" type="submit" class="btn btn-primary">
 					<span class="fas fa-search icon-white" aria-hidden="true"></span>
-					<?php echo JText::_('JSEARCH_FILTER_SUBMIT'); ?>
+					<?php echo Text::_('JSEARCH_FILTER_SUBMIT'); ?>
 				</button>
 			<?php endif; ?>
 			<?php if ($this->params->get('show_advanced', 1)) : ?>
-				<a class="btn btn-secondary" data-bs-toggle="collapse" href="#advancedSearch" role="button" aria-expanded="false" aria-controls="advancedSearch">
-					<span class="fas fa-search-plus" aria-hidden="true"></span>
-					<?php echo JText::_('COM_FINDER_ADVANCED_SEARCH_TOGGLE'); ?>
-				</a>
+				<?php if (JVERSION < 4) : ?>
+					<a class="btn btn-secondary" data-bs-toggle="collapse" href="#advancedSearch" role="button" aria-expanded="false" aria-controls="advancedSearch">
+						<span class="fas fa-search-plus" aria-hidden="true"></span>
+						<?php echo Text::_('COM_FINDER_ADVANCED_SEARCH_TOGGLE'); ?>
+					</a>
+				<?php else : ?>
+					<a class="btn btn-secondary ads" role="button">
+						<span class="fas fa-search-plus" aria-hidden="true"></span>
+						<?php echo Text::_('COM_FINDER_ADVANCED_SEARCH_TOGGLE'); ?>
+					</a>
+				<?php endif; ?>
 			<?php endif; ?>
 		</div>
 	</fieldset>
 
 	<?php if ($this->params->get('show_advanced', 1)) : ?>
+		<?php if(JVERSION < 4) : ?>
 		<div id="advancedSearch" class="js-finder-advanced collapse<?php if ($this->params->get('expand_advanced', 0)) echo ' show'; ?>">
+		<?php else : ?>
+		<div id="advancedSearch" class="js-finder-advanced<?php echo ($this->params->get('expand_advanced', 0)) ? '' : ' hide'; ?>" style="<?php if(!$this->params->get('expand_advanced', 0)) { echo 'display:none'; }?>">
+		<?php endif; ?>
 			<?php if ($this->params->get('show_advanced_tips', 1)) : ?>
 				<div class="card card-outline-secondary mb-3">
 					<div class="card-body">
 						<?php if(JVERSION < 4) : ?>
-							<?php echo JText::_('COM_FINDER_ADVANCED_TIPS'); ?>
+							<?php echo Text::_('COM_FINDER_ADVANCED_TIPS'); ?>
 						<?php else : ?>
-							<?php echo JText::_('COM_FINDER_ADVANCED_TIPS_INTRO'); ?>
-							<?php echo JText::_('COM_FINDER_ADVANCED_TIPS_AND'); ?>
-							<?php echo JText::_('COM_FINDER_ADVANCED_TIPS_NOT'); ?>
-							<?php echo JText::_('COM_FINDER_ADVANCED_TIPS_OR'); ?>
+							<?php echo Text::_('COM_FINDER_ADVANCED_TIPS_INTRO'); ?>
+							<?php echo Text::_('COM_FINDER_ADVANCED_TIPS_AND'); ?>
+							<?php echo Text::_('COM_FINDER_ADVANCED_TIPS_NOT'); ?>
+							<?php echo Text::_('COM_FINDER_ADVANCED_TIPS_OR'); ?>
 							<?php if ($this->params->get('tuplecount', 1) > 1) : ?>
-							<?php echo JText::_('COM_FINDER_ADVANCED_TIPS_PHRASE'); ?>
+							<?php echo Text::_('COM_FINDER_ADVANCED_TIPS_PHRASE'); ?>
 							<?php endif; ?>
-							<?php echo JText::_('COM_FINDER_ADVANCED_TIPS_OUTRO'); ?>
+							<?php echo Text::_('COM_FINDER_ADVANCED_TIPS_OUTRO'); ?>
 						<?php endif; ?>
 					</div>
 				</div>
 			<?php endif; ?>
 			<div id="finder-filter-window">
-				<?php echo JHtml::_('filter.select', $this->query, $this->params); ?>
+				<?php echo HTMLHelper::_('filter.select', $this->query, $this->params); ?>
 			</div>
 		</div>
 	<?php endif; ?>

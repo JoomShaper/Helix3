@@ -9,20 +9,29 @@
 //no direct accees
 defined ('_JEXEC') or die ('resticted aceess');
 
-jimport('joomla.plugin.plugin');
-jimport('joomla.filesystem.folder');
-jimport('joomla.filesystem.file');
-jimport('joomla.registry.registry');
-jimport('joomla.image.image');
+use Joomla\CMS\Factory;
+use Joomla\CMS\Http\Http;
+use Joomla\CMS\Language\Text;
+use Joomla\CMS\Menu\SiteMenu;
+use Joomla\Registry\Registry;
+use Joomla\CMS\Filesystem\File;
+use Joomla\CMS\Session\Session;
+use Joomla\CMS\Plugin\CMSPlugin;
+use Joomla\CMS\Filesystem\Folder;
+use Joomla\CMS\Component\ComponentHelper;
+use Joomla\CMS\Helper\MediaHelper;
+use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Uri\Uri;
+
 
 require_once __DIR__ . '/classes/image.php';
 
-class plgAjaxHelix3 extends JPlugin
+class plgAjaxHelix3 extends CMSPlugin
 {
 
   function onAjaxHelix3()
   {
-    $input = JFactory::getApplication()->input;
+    $input = Factory::getApplication()->input;
     $action = $input->post->get('action', '', 'STRING');
 
     if($action=='upload_image') {
@@ -58,7 +67,7 @@ class plgAjaxHelix3 extends JPlugin
           $report['action'] = 'remove';
           $report['status'] = 'true';
         }
-        $report['layout'] = JFolder::files($layoutPath, '.json');
+        $report['layout'] = Folder::files($layoutPath, '.json');
         break;
 
         case 'save':
@@ -72,7 +81,7 @@ class plgAjaxHelix3 extends JPlugin
           fwrite($file, $content);
           fclose($file);
         }
-        $report['layout'] = JFolder::files($layoutPath, '.json');
+        $report['layout'] = Folder::files($layoutPath, '.json');
         break;
 
         case 'load':
@@ -104,7 +113,7 @@ class plgAjaxHelix3 extends JPlugin
 
         case 'voting':
 
-        if (JSession::checkToken()) {
+        if (Session::checkToken()) {
           return json_encode($report);
         }
 
@@ -124,7 +133,7 @@ class plgAjaxHelix3 extends JPlugin
         {
           $userIP = $_SERVER['REMOTE_ADDR'];
 
-          $db    = JFactory::getDbo();
+          $db    = Factory::getDbo();
           $query = $db->getQuery(true);
 
           $query->select('*')
@@ -219,10 +228,10 @@ class plgAjaxHelix3 extends JPlugin
         $template_path = JPATH_SITE . '/templates/' . self::getTemplate()->template . '/webfonts/webfonts.json';
         $plugin_path   = JPATH_PLUGINS . '/system/helix3/assets/webfonts/webfonts.json';
 
-        if(JFile::exists( $template_path )) {
-          $json = JFile::read( $template_path );
+        if(File::exists( $template_path )) {
+          $json = file_get_contents($template_path);
         } else {
-          $json = JFile::read( $plugin_path );
+          $json = file_get_contents($plugin_path);
         }
 
         $webfonts   = json_decode($json);
@@ -256,25 +265,23 @@ class plgAjaxHelix3 extends JPlugin
         //Font variant
         case 'updateFonts':
 
-        jimport( 'joomla.filesystem.folder' );
-        jimport('joomla.http.http');
-
         $template_path = JPATH_SITE . '/templates/' . self::getTemplate()->template . '/webfonts';
 
-        if(!JFolder::exists( $template_path )) {
-          JFolder::create( $template_path, 0755 );
+        if (!Folder::exists( $template_path ))
+        {
+          Folder::create( $template_path, 0755 );
         }
 
-        $tplRegistry = new JRegistry();
+        $tplRegistry = new Registry();
         $tplParams = $tplRegistry->loadString(self::getTemplate()->params);
         $gfont_api = $tplParams->get('gfont_api', 'AIzaSyBVybAjpiMHzNyEm3ncA_RZ4WETKsLElDg');
         $url  = 'https://www.googleapis.com/webfonts/v1/webfonts?key='. $gfont_api;
-        $http = new JHttp();
+        $http = new Http();
         $str  = $http->get($url);
 
         if($str->code == 200) {
           // if successfully updated
-          if ( JFile::write( $template_path . '/webfonts.json', $str->body )) {
+          if ( File::write( $template_path . '/webfonts.json', $str->body )) {
             echo "<p class='font-update-success'>Google Webfonts list successfully updated! Please refresh your browser.</p>";
           } else {
             echo "<p class='font-update-failed'>Google Webfonts update failed. Please make sure that your template folder is writable.</p>";
@@ -303,7 +310,7 @@ class plgAjaxHelix3 extends JPlugin
 
         $settings   = $data['settings'];
 
-        $db = JFactory::getDbo();
+        $db = Factory::getDbo();
 
         $query = $db->getQuery(true);
 
@@ -333,7 +340,7 @@ class plgAjaxHelix3 extends JPlugin
   }
 
   static public function getItemRating($pk = 0){
-    $db    = JFactory::getDbo();
+    $db    = Factory::getDbo();
     $query = $db->getQuery(true);
     $query->select('ROUND(rating_sum / rating_count, 0) AS rating, rating_count')
     ->from($db->quoteName('#__content_rating'))
@@ -358,7 +365,7 @@ class plgAjaxHelix3 extends JPlugin
       $item = $items[$current_menu_id];
     }
 
-    $menuItems = new JMenuSite;
+    $menuItems = new SiteMenu();
 
     $no_child = true;
     $count = 0;
@@ -460,7 +467,7 @@ class plgAjaxHelix3 extends JPlugin
   static public function create_menu($current_menu_id)
   {
     $items = self::menuItems();
-    $menus = new JMenuSite;
+    $menus = new SiteMenu();
 
     if (isset($items[$current_menu_id]))
     {
@@ -476,7 +483,7 @@ class plgAjaxHelix3 extends JPlugin
 
   static public function menuItems()
   {
-    $menus = new JMenuSite;
+    $menus = new SiteMenu();
     $menus = $menus->getMenu();
     $new = array();
     foreach ($menus as $item) {
@@ -487,7 +494,7 @@ class plgAjaxHelix3 extends JPlugin
 
   static public function loadNewLayout($layout_data = null){
 
-    $lang = JFactory::getLanguage();
+    $lang = Factory::getLanguage();
     $lang->load('tpl_' . self::getTemplate()->template, JPATH_SITE, $lang->getName(), true);
 
     ob_start();
@@ -512,7 +519,7 @@ class plgAjaxHelix3 extends JPlugin
     if ($layout_data) {
       foreach ($layout_data as $row) {
         $rowSettings = self::getSettings($row->settings);
-        $name = JText::_('HELIX_SECTION_TITLE');
+        $name = Text::_('HELIX_SECTION_TITLE');
 
         if (isset($row->settings->name)) {
           $name = $row->settings->name;
@@ -527,7 +534,7 @@ class plgAjaxHelix3 extends JPlugin
             <div class="settings-right pull-right">
               <ul class="button-group">
                 <li>
-                  <a class="btn btn-default btn-small btn-sm add-columns" href="#"><i class="fa fa-columns"></i> <?php echo JText::_('HELIX_ADD_COLUMNS'); ?></a>
+                  <a class="btn btn-default btn-small btn-sm add-columns" href="#"><i class="fa fa-columns"></i> <?php echo Text::_('HELIX_ADD_COLUMNS'); ?></a>
                   <ul class="column-list">
                     <?php
                     $_active = '';
@@ -550,9 +557,9 @@ class plgAjaxHelix3 extends JPlugin
                     <li><a href="#" class="hasTooltip column-layout-custom column-layout custom <?php echo $active; ?>" data-layout="<?php echo $customLayout; ?>" data-type='custom' data-original-title="<strong>Custom Layout</strong>"></a></li>
                   </ul>
                 </li>
-                <li><a class="btn btn-small add-row" href="#"><i class="fa fa-bars"></i> <?php echo JText::_('HELIX_ADD_ROW'); ?></a></li>
-                <li><a class="btn btn-small row-ops-set" href="#"><i class="fa fa-gears"></i> <?php echo JText::_('HELIX_SETTINGS'); ?></a></li>
-                <li><a class="btn btn-danger btn-small remove-row" href="#"><i class="fa fa-times"></i> <?php echo JText::_('HELIX_REMOVE'); ?></a></li>
+                <li><a class="btn btn-small add-row" href="#"><i class="fa fa-bars"></i> <?php echo Text::_('HELIX_ADD_ROW'); ?></a></li>
+                <li><a class="btn btn-small row-ops-set" href="#"><i class="fa fa-gears"></i> <?php echo Text::_('HELIX_SETTINGS'); ?></a></li>
+                <li><a class="btn btn-danger btn-small remove-row" href="#"><i class="fa fa-times"></i> <?php echo Text::_('HELIX_REMOVE'); ?></a></li>
               </ul>
             </div>
           </div>
@@ -585,24 +592,26 @@ class plgAjaxHelix3 extends JPlugin
 
     }
 
-    static public function getSettings($config = null)
+  static public function getSettings($config = null)
 	{
       $data = '';
+
       if (count((array) $config))
-	  {
+      {
         foreach ($config as $key => $value)
-		{
+        {
           $data .= ' data-'.$key.'="'.$value.'"';
         }
       }
+
       return $data;
     }
 
     //Get template name
-    private static function getTemplate()
+  private static function getTemplate()
 	{
 
-      $db = JFactory::getDbo();
+      $db = Factory::getDbo();
       $query = $db->getQuery(true);
       $query->select($db->quoteName(array('template', 'params')));
       $query->from($db->quoteName('#__template_styles'));
@@ -614,40 +623,40 @@ class plgAjaxHelix3 extends JPlugin
     }
 
     // Upload File
-    private function upload_image()
+  private function upload_image()
 	{
-      $input = JFactory::getApplication()->input;
+      $input = Factory::getApplication()->input;
       $image = $input->files->get('image');
       $imageonly = $input->post->get('imageonly', false, 'BOOLEAN');
 
-      $tplRegistry = new JRegistry();
+      $tplRegistry = new Registry();
       $tplParams = $tplRegistry->loadString(self::getTemplate()->params);
 
       $report = array();
 
       // User is not authorised
-      if (!JFactory::getUser()->authorise('core.create', 'com_media'))
+      if (!Factory::getUser()->authorise('core.create', 'com_media'))
       {
         $report['status'] = false;
-        $report['output'] = JText::_('You are not authorised to upload file.');
+        $report['output'] = Text::_('You are not authorised to upload file.');
         echo json_encode($report);
         die;
       }
 
       if(count($image))
-	  {
+      {
 
         if ($image['error'] == UPLOAD_ERR_OK) {
 
           $error = false;
 
-          $params = JComponentHelper::getParams('com_media');
+          $params = ComponentHelper::getParams('com_media');
 
           // Total length of post back data in bytes.
           $contentLength = (int) $_SERVER['CONTENT_LENGTH'];
 
           // Instantiate the media helper
-          $mediaHelper = new JHelperMedia;
+          $mediaHelper = new MediaHelper;
 
           // Maximum allowed size of post back data in MB.
           $postMaxSize = $mediaHelper->toBytes(ini_get('post_max_size'));
@@ -658,7 +667,7 @@ class plgAjaxHelix3 extends JPlugin
           // Check for the total size of post back data.
           if (($postMaxSize > 0 && $contentLength > $postMaxSize) || ($memoryLimit != -1 && $contentLength > $memoryLimit)) {
             $report['status'] = false;
-            $report['output'] = JText::_('Total size of upload exceeds the limit.');
+            $report['output'] = Text::_('Total size of upload exceeds the limit.');
             $error = true;
             echo json_encode($report);
             die;
@@ -670,18 +679,18 @@ class plgAjaxHelix3 extends JPlugin
           if (($image['error'] == 1) || ($uploadMaxSize > 0 && $image['size'] > $uploadMaxSize) || ($uploadMaxFileSize > 0 && $image['size'] > $uploadMaxFileSize))
           {
             $report['status'] = false;
-            $report['output'] = JText::_('This file is too large to upload.');
+            $report['output'] = Text::_('This file is too large to upload.');
             $error = true;
           }
 
           // Upload if no error found
           if(!$error) {
             // Organised folder structure
-            $date = JFactory::getDate();
-            $folder = JHtml::_('date', $date, 'Y') . '/' . JHtml::_('date', $date, 'm') . '/' . JHtml::_('date', $date, 'd');
+            $date = Factory::getDate();
+            $folder = HTMLHelper::_('date', $date, 'Y') . '/' . HTMLHelper::_('date', $date, 'm') . '/' . HTMLHelper::_('date', $date, 'd');
 
             if(!file_exists( JPATH_ROOT . '/images/' . $folder )) {
-              JFolder::create(JPATH_ROOT . '/images/' . $folder, 0755);
+              Folder::create(JPATH_ROOT . '/images/' . $folder, 0755);
             }
 
             $name = $image['name'];
@@ -701,7 +710,7 @@ class plgAjaxHelix3 extends JPlugin
             } while(file_exists($dest));
             // End Do not override
 
-            if(JFile::upload($path, $dest)) {
+            if(File::upload($path, $dest)) {
 
               $sizes = array();
 
@@ -721,7 +730,7 @@ class plgAjaxHelix3 extends JPlugin
                 $sizes['large']  = explode('x', strtolower($tplParams->get('image_large_size', '600X600')));
               }
 
-              $sources = Helix3Image::createThumbs($dest, $sizes, $folder, $base_name, $ext);
+              $sources = Helix3Image::createThumbs($dest, $folder, $base_name, $ext, $sizes);
 
               if(file_exists(JPATH_ROOT . '/images/' . $folder . '/' . $base_name . '_thumbnail.' . $ext)) {
                 $src = 'images/' . $folder . '/'  . $base_name . '_thumbnail.' . $ext;
@@ -730,16 +739,16 @@ class plgAjaxHelix3 extends JPlugin
               $report['status'] = true;
 
               if($imageonly) {
-                $report['output'] = '<img src="'. JURI::root(true) . '/' . $src . '" data-src="'. $data_src .'" alt="">';
+                $report['output'] = '<img src="'. Uri::root(true) . '/' . $src . '" data-src="'. $data_src .'" alt="">';
               } else {
-                $report['output'] = '<li data-src="'. $data_src .'"><a href="#" class="btn btn-mini btn-danger btn-remove-image">Delete</a><img src="'. JURI::root(true) . '/' . $src . '" alt=""></li>';
+                $report['output'] = '<li data-src="'. $data_src .'"><a href="#" class="btn btn-mini btn-danger btn-remove-image">Delete</a><img src="'. Uri::root(true) . '/' . $src . '" alt=""></li>';
               }
             }
           }
         }
       } else {
         $report['status'] = false;
-        $report['output'] = JText::_('Upload Failed!');
+        $report['output'] = Text::_('Upload Failed!');
       }
 
       echo json_encode($report);
@@ -748,53 +757,53 @@ class plgAjaxHelix3 extends JPlugin
     }
 
     // Delete File
-    private function remove_image()
+  private function remove_image()
 	{
       $report = array();
 
-      if (!JFactory::getUser()->authorise('core.delete', 'com_media'))
+      if (!Factory::getUser()->authorise('core.delete', 'com_media'))
       {
         $report['status'] = false;
-        $report['output'] = JText::_('You are not authorised to delete file.');
+        $report['output'] = Text::_('You are not authorised to delete file.');
         echo json_encode($report);
         die;
       }
 
-      $input = JFactory::getApplication()->input;
+      $input = Factory::getApplication()->input;
       $src = $input->post->get('src', '', 'STRING');
 
       $path = JPATH_ROOT . '/' . $src;
 
       if(file_exists($path)) {
 
-        if(JFile::delete($path)) {
+        if(File::delete($path)) {
 
           $basename = basename($src);
-          $small = JPATH_ROOT . '/' . dirname($src) . '/' . JFile::stripExt($basename) . '_small.' . JFile::getExt($basename);
-          $thumbnail = JPATH_ROOT . '/' . dirname($src) . '/' . JFile::stripExt($basename) . '_thumbnail.' . JFile::getExt($basename);
-          $medium = JPATH_ROOT . '/' . dirname($src) . '/' . JFile::stripExt($basename) . '_medium.' . JFile::getExt($basename);
-          $large = JPATH_ROOT . '/' . dirname($src) . '/' . JFile::stripExt($basename) . '_large.' . JFile::getExt($basename);
+          $small = JPATH_ROOT . '/' . dirname($src) . '/' . File::stripExt($basename) . '_small.' . File::getExt($basename);
+          $thumbnail = JPATH_ROOT . '/' . dirname($src) . '/' . File::stripExt($basename) . '_thumbnail.' . File::getExt($basename);
+          $medium = JPATH_ROOT . '/' . dirname($src) . '/' . File::stripExt($basename) . '_medium.' . File::getExt($basename);
+          $large = JPATH_ROOT . '/' . dirname($src) . '/' . File::stripExt($basename) . '_large.' . File::getExt($basename);
 
           if(file_exists($small)) {
-            JFile::delete($small);
+            File::delete($small);
           }
 
           if(file_exists($thumbnail)) {
-            JFile::delete($thumbnail);
+            File::delete($thumbnail);
           }
 
           if(file_exists($medium)) {
-            JFile::delete($medium);
+            File::delete($medium);
           }
 
           if(file_exists($large)) {
-            JFile::delete($large);
+            File::delete($large);
           }
 
           $report['status'] = true;
         } else {
           $report['status'] = false;
-          $report['output'] = JText::_('Delete failed');
+          $report['output'] = Text::_('Delete failed');
         }
       } else {
         $report['status'] = true;

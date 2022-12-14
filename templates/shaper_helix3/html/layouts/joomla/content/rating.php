@@ -8,10 +8,13 @@
 
 defined('JPATH_BASE') or die;
 
+use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
+
 if($displayData['params']->get('show_vote')) {
 
 $rating = (int) $displayData['item']->rating;
-$layout = JFactory::getApplication()->input->get('view', 'article');
+$layout = Factory::getApplication()->input->get('view', 'article');
 
 $rating_count = $displayData['item']->rating_count;
 if ($rating_count == '')
@@ -27,7 +30,7 @@ if ($layout == 'article')
 }
 ?>
 <dd class="post_rating" id="post_vote_<?php echo $displayData['item']->id; ?>">
-	<?php echo JText::_('HELIX3_ARTICLE_RATING'); ?>: <div class="voting-symbol<?php echo $class_name; ?>">
+	<?php echo Text::_('HELIX3_ARTICLE_RATING'); ?>: <div class="voting-symbol<?php echo $class_name; ?>">
 	<?php
 		$j = 0;
 		for($i = $rating; $i < 5; $i++)
@@ -43,6 +46,6 @@ if ($layout == 'article')
 	?>
 	</div>
 	<span class="ajax-loader fa fa-spinner fa-spin"></span>
-	<span class="voting-result">( <?php echo ($rating_count>1) ? $rating_count . ' ' . JText::_('HELIX3_COUNT_RATINGS') : $rating_count . ' ' . JText::_('HELIX3_COUNT_RATING'); ?> )</span>
+	<span class="voting-result">( <?php echo ($rating_count>1) ? $rating_count . ' ' . Text::_('HELIX3_COUNT_RATINGS') : $rating_count . ' ' . Text::_('HELIX3_COUNT_RATING'); ?> )</span>
 </dd>
 <?php }

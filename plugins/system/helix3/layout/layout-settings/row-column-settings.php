@@ -1,13 +1,15 @@
 <?php
 /**
-* @package Helix3 Framework
-* @author JoomShaper https://www.joomshaper.com
-* @copyright (c) 2010 - 2021 JoomShaper
-* @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
-*/
+ * @package Helix3 Framework
+ * @author JoomShaper https://www.joomshaper.com
+ * @copyright (c) 2010 - 2021 JoomShaper
+ * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
+ */
 
 //no direct accees
 defined ('_JEXEC') or die ('resticted aceess');
+
+use Joomla\CMS\Language\Text;
 
 $rowSettings = array(
 	'type'=>'general',
@@ -16,128 +18,128 @@ $rowSettings = array(
 
 		'name' => array(
 			'type'		=> 'text',
-			'title'		=> JText::_('HELIX_SECTION_TITLE'),
-			'desc'		=> JText::_('HELIX_SECTION_TITLE_DESC'),
+			'title'		=> Text::_('HELIX_SECTION_TITLE'),
+			'desc'		=> Text::_('HELIX_SECTION_TITLE_DESC'),
 			'std'		=> ''
 			),
 		'background_color' => array(
 			'type'		=> 'color',
-			'title'		=> JText::_('HELIX_SECTION_BACKGROUND_COLOR'),
-			'desc'		=> JText::_('HELIX_SECTION_BACKGROUND_COLOR_DESC')
+			'title'		=> Text::_('HELIX_SECTION_BACKGROUND_COLOR'),
+			'desc'		=> Text::_('HELIX_SECTION_BACKGROUND_COLOR_DESC')
 			),
 		'color' => array(
 			'type'		=> 'color',
-			'title'		=> JText::_('HELIX_SECTION_TEXT_COLOR'),
-			'desc'		=> JText::_('HELIX_SECTION_TEXT_COLOR_DESC')
+			'title'		=> Text::_('HELIX_SECTION_TEXT_COLOR'),
+			'desc'		=> Text::_('HELIX_SECTION_TEXT_COLOR_DESC')
 			),
 		'background_image' => array(
 			'type'		=> 'media',
-			'title'		=> JText::_('HELIX_SECTION_BACKGROUND_IMAGE'),
-			'desc'		=> JText::_('HELIX_SECTION_BACKGROUND_IMAGE_DESC'),
+			'title'		=> Text::_('HELIX_SECTION_BACKGROUND_IMAGE'),
+			'desc'		=> Text::_('HELIX_SECTION_BACKGROUND_IMAGE_DESC'),
 			'std'		=> '',
 			),
 		'background_repeat'=>array(
 			'type'=>'select',
-			'title'=>JText::_('HELIX_BG_REPEAT'),
-			'desc'=>JText::_('HELIX_BG_REPEAT_DESC'),
+			'title'=>Text::_('HELIX_BG_REPEAT'),
+			'desc'=>Text::_('HELIX_BG_REPEAT_DESC'),
 			'values'=>array(
-				'no-repeat'=>JText::_('HELIX_BG_REPEAT_NO'),
-				'repeat'=>JText::_('HELIX_BG_REPEAT_ALL'),
-				'repeat-x'=>JText::_('HELIX_BG_REPEAT_HORIZ'),
-				'repeat-y'=>JText::_('HELIX_BG_REPEAT_VERTI'),
-				'inherit'=>JText::_('HELIX_BG_REPEAT_INHERIT'),
+				'no-repeat'=>Text::_('HELIX_BG_REPEAT_NO'),
+				'repeat'=>Text::_('HELIX_BG_REPEAT_ALL'),
+				'repeat-x'=>Text::_('HELIX_BG_REPEAT_HORIZ'),
+				'repeat-y'=>Text::_('HELIX_BG_REPEAT_VERTI'),
+				'inherit'=>Text::_('HELIX_BG_REPEAT_INHERIT'),
 				),
 			'std'=>'no-repeat',
 			),
 		'background_size' => array(
 			'type'		=> 'select',
-			'title'=>JText::_('HELIX_BG_SIZE'),
-			'desc'=>JText::_('HELIX_BG_SIZE_DESC'),
+			'title'=>Text::_('HELIX_BG_SIZE'),
+			'desc'=>Text::_('HELIX_BG_SIZE_DESC'),
 			'values'=>array(
-				'cover'=>JText::_('HELIX_BG_COVER'),
-				'contain'=>JText::_('HELIX_BG_CONTAIN'),
-				'inherit'=>JText::_('HELIX_BG_INHERIT'),
+				'cover'=>Text::_('HELIX_BG_COVER'),
+				'contain'=>Text::_('HELIX_BG_CONTAIN'),
+				'inherit'=>Text::_('HELIX_BG_INHERIT'),
 				),
 			'std'=>'cover',
 			),
 		'background_attachment'=>array(
 			'type'=>'select',
-			'title'=>JText::_('HELIX_BG_ATTACHMENT'),
-			'desc'=>JText::_('HELIX_BG_ATTACHMENT_DESC'),
+			'title'=>Text::_('HELIX_BG_ATTACHMENT'),
+			'desc'=>Text::_('HELIX_BG_ATTACHMENT_DESC'),
 			'values'=>array(
-				'fixed'=>JText::_('HELIX_BG_ATTACHMENT_FIXED'),
-				'scroll'=>JText::_('HELIX_BG_ATTACHMENT_SCROLL'),
-				'inherit'=>JText::_('HELIX_BG_ATTACHMENT_INHERIT'),
+				'fixed'=>Text::_('HELIX_BG_ATTACHMENT_FIXED'),
+				'scroll'=>Text::_('HELIX_BG_ATTACHMENT_SCROLL'),
+				'inherit'=>Text::_('HELIX_BG_ATTACHMENT_INHERIT'),
 				),
 			'std'=>'fixed',
 			),
 		'background_position' => array(
 			'type'		=> 'select',
-			'title'=>JText::_('HELIX_BG_POSITION'),
-			'desc'=>JText::_('HELIX_BG_POSITION_DESC'),
+			'title'=>Text::_('HELIX_BG_POSITION'),
+			'desc'=>Text::_('HELIX_BG_POSITION_DESC'),
 			'values'=>array(
-				'0 0'=>JText::_('HELIX_BG_POSITION_LEFT_TOP'),
-				'0 50%'=>JText::_('HELIX_BG_POSITION_LEFT_CENTER'),
-				'0 100%'=>JText::_('HELIX_BG_POSITION_LEFT_BOTTOM'),
-				'50% 0'=>JText::_('HELIX_BG_POSITION_CENTER_TOP'),
-				'50% 50%'=>JText::_('HELIX_BG_POSITION_CENTER_CENTER'),
-				'50% 100%'=>JText::_('HELIX_BG_POSITION_CENTER_BOTTOM'),
-				'100% 0'=>JText::_('HELIX_BG_POSITION_RIGHT_TOP'),
-				'100% 50%'=>JText::_('HELIX_BG_POSITION_RIGHT_CENTER'),
-				'100% 100%'=>JText::_('HELIX_BG_POSITION_RIGHT_BOTTOM'),
+				'0 0'=>Text::_('HELIX_BG_POSITION_LEFT_TOP'),
+				'0 50%'=>Text::_('HELIX_BG_POSITION_LEFT_CENTER'),
+				'0 100%'=>Text::_('HELIX_BG_POSITION_LEFT_BOTTOM'),
+				'50% 0'=>Text::_('HELIX_BG_POSITION_CENTER_TOP'),
+				'50% 50%'=>Text::_('HELIX_BG_POSITION_CENTER_CENTER'),
+				'50% 100%'=>Text::_('HELIX_BG_POSITION_CENTER_BOTTOM'),
+				'100% 0'=>Text::_('HELIX_BG_POSITION_RIGHT_TOP'),
+				'100% 50%'=>Text::_('HELIX_BG_POSITION_RIGHT_CENTER'),
+				'100% 100%'=>Text::_('HELIX_BG_POSITION_RIGHT_BOTTOM'),
 				),
 			'std'=>'0 0',
 			),
 		'link_color' => array(
 			'type'		=> 'color',
-			'title'		=> JText::_('HELIX_LINK_COLOR'),
-			'desc'		=> JText::_('HELIX_LINK_COLOR_DESC')
+			'title'		=> Text::_('HELIX_LINK_COLOR'),
+			'desc'		=> Text::_('HELIX_LINK_COLOR_DESC')
 			),
 		'link_hover_color' => array(
 			'type'		=> 'color',
-			'title'		=> JText::_('HELIX_LINK_HOVER_COLOR'),
-			'desc'		=> JText::_('HELIX_LINK_HOVER_COLOR_DESC')
+			'title'		=> Text::_('HELIX_LINK_HOVER_COLOR'),
+			'desc'		=> Text::_('HELIX_LINK_HOVER_COLOR_DESC')
 			),
 		'hidden_xs' 		=> array(
 			'type'		=> 'checkbox',
-			'title'		=> JText::_('HELIX_HIDDEN_MOBILE'),
-			'desc'		=> JText::_('HELIX_HIDDEN_MOBILE_DESC'),
+			'title'		=> Text::_('HELIX_HIDDEN_MOBILE'),
+			'desc'		=> Text::_('HELIX_HIDDEN_MOBILE_DESC'),
 			'std'		=> '',
 			),
 		'hidden_sm' 		=> array(
 			'type'		=> 'checkbox',
-			'title'		=> JText::_('HELIX_HIDDEN_TABLET'),
-			'desc'		=> JText::_('HELIX_HIDDEN_TABLET_DESC'),
+			'title'		=> Text::_('HELIX_HIDDEN_TABLET'),
+			'desc'		=> Text::_('HELIX_HIDDEN_TABLET_DESC'),
 			'std'		=> '',
 			),
 		'hidden_md' 		=> array(
 			'type'		=> 'checkbox',
-			'title'		=> JText::_('HELIX_HIDDEN_DESKTOP'),
-			'desc'		=> JText::_('HELIX_HIDDEN_DESKTOP_DESC'),
+			'title'		=> Text::_('HELIX_HIDDEN_DESKTOP'),
+			'desc'		=> Text::_('HELIX_HIDDEN_DESKTOP_DESC'),
 			'std'		=> '',
 			),
 		'padding' => array(
 			'type'		=> 'text',
-			'title'		=> JText::_('HELIX_PADDING'),
-			'desc'		=> JText::_('HELIX_PADDING_DESC'),
+			'title'		=> Text::_('HELIX_PADDING'),
+			'desc'		=> Text::_('HELIX_PADDING_DESC'),
 			'std'		=> ''
 			),
 		'margin' => array(
 			'type'		=> 'text',
-			'title'		=> JText::_('HELIX_MARGIN'),
-			'desc'		=> JText::_('HELIX_MARGIN_DESC'),
+			'title'		=> Text::_('HELIX_MARGIN'),
+			'desc'		=> Text::_('HELIX_MARGIN_DESC'),
 			'std'		=> ''
 			),
 		'fluidrow' 		=> array(
 			'type'		=> 'checkbox',
-			'title'		=> JText::_('HELIX_ROW_FULL_WIDTH'),
-			'desc'		=> JText::_('HELIX_ROW_FULL_WIDTH_DESC'),
+			'title'		=> Text::_('HELIX_ROW_FULL_WIDTH'),
+			'desc'		=> Text::_('HELIX_ROW_FULL_WIDTH_DESC'),
 			'std'		=> '',
 			),
 		'custom_class' => array(
 			'type'		=> 'text',
-			'title'		=> JText::_('HELIX_CUSTOM_CLASS'),
-			'desc'		=> JText::_('HELIX_CUSTOM_CLASS_DESC'),
+			'title'		=> Text::_('HELIX_CUSTOM_CLASS'),
+			'desc'		=> Text::_('HELIX_CUSTOM_CLASS_DESC'),
 			'std'		=> ''
 			),
 		)
@@ -150,39 +152,39 @@ $columnSettings = array(
 
 		'column_type' => array(
 			'type'		=> 'checkbox',
-			'title'		=> JText::_('HELIX_COMPONENT'),
-			'desc'		=> JText::_('HELIX_COMPONENT_DESC'),
+			'title'		=> Text::_('HELIX_COMPONENT'),
+			'desc'		=> Text::_('HELIX_COMPONENT_DESC'),
 			'std'=>'',
 			),
 		'name' => array(
 			'type'		=> 'select',
-			'title'		=> JText::_('HELIX_MODULE_POSITION'),
-			'desc'		=> JText::_('HELIX_MODULE_POSITION_DESC'),
+			'title'		=> Text::_('HELIX_MODULE_POSITION'),
+			'desc'		=> Text::_('HELIX_MODULE_POSITION_DESC'),
 			'values'	=> array(),
 			'std'=>'none',
 			),
 		'hidden_xs' 		=> array(
 			'type'		=> 'checkbox',
-			'title'		=> JText::_('HELIX_HIDDEN_MOBILE'),
-			'desc'		=> JText::_('HELIX_HIDDEN_MOBILE_DESC'),
+			'title'		=> Text::_('HELIX_HIDDEN_MOBILE'),
+			'desc'		=> Text::_('HELIX_HIDDEN_MOBILE_DESC'),
 			'std'		=> '',
 			),
 		'hidden_sm' 		=> array(
 			'type'		=> 'checkbox',
-			'title'		=> JText::_('HELIX_HIDDEN_TABLET'),
-			'desc'		=> JText::_('HELIX_HIDDEN_TABLET_DESC'),
+			'title'		=> Text::_('HELIX_HIDDEN_TABLET'),
+			'desc'		=> Text::_('HELIX_HIDDEN_TABLET_DESC'),
 			'std'		=> '',
 			),
 		'hidden_md' 		=> array(
 			'type'		=> 'checkbox',
-			'title'		=> JText::_('HELIX_HIDDEN_DESKTOP'),
-			'desc'		=> JText::_('HELIX_HIDDEN_DESKTOP_DESC'),
+			'title'		=> Text::_('HELIX_HIDDEN_DESKTOP'),
+			'desc'		=> Text::_('HELIX_HIDDEN_DESKTOP_DESC'),
 			'std'		=> '',
 			),
 		'sm_col' 		=> array(
 			'type'		=> 'select',
-			'title'		=> JText::_('HELIX_TABLET_LAYOUT'),
-			'desc'		=> JText::_('HELIX_TABLET_LAYOUT_DESC'),
+			'title'		=> Text::_('HELIX_TABLET_LAYOUT'),
+			'desc'		=> Text::_('HELIX_TABLET_LAYOUT_DESC'),
 			'values'	=> array(
 				'' => "",
 				'col-sm-1' => 'col-md-1',
@@ -202,8 +204,8 @@ $columnSettings = array(
 			),
 		'xs_col' 		=> array(
 			'type'		=> 'select',
-			'title'		=> JText::_('HELIX_MOBILE_LAYOUT'),
-			'desc'		=> JText::_('HELIX_MOBILE_LAYOUT_DESC'),
+			'title'		=> Text::_('HELIX_MOBILE_LAYOUT'),
+			'desc'		=> Text::_('HELIX_MOBILE_LAYOUT_DESC'),
 			'values'	=> array(
 				'' => "",
 				'col-xs-1' => 'col-1',
@@ -223,8 +225,8 @@ $columnSettings = array(
 			),
 		'custom_class' => array(
 			'type'		=> 'text',
-			'title'		=> JText::_('HELIX_CUSTOM_CLASS'),
-			'desc'		=> JText::_('HELIX_CUSTOM_CLASS_DESC'),
+			'title'		=> Text::_('HELIX_CUSTOM_CLASS'),
+			'desc'		=> Text::_('HELIX_CUSTOM_CLASS_DESC'),
 			'std'		=> ''
 			),
 		)

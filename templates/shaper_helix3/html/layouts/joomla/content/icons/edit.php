@@ -8,11 +8,14 @@
 
 defined('_JEXEC') or die;
 
+use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
+
 $article = $displayData['article'];
 
-$currentDate   = JFactory::getDate()->format('Y-m-d H:i:s');
+$currentDate   = Factory::getDate()->format('Y-m-d H:i:s');
 $isUnpublished = ($article->publish_up > $currentDate)
-	|| ($article->publish_down < $currentDate && $article->publish_down !== JFactory::getDbo()->getNullDate());
+	|| ($article->publish_down < $currentDate && $article->publish_down !== Factory::getDbo()->getNullDate());
 
 $icon = $article->state ? 'edit' : 'eye-close';
 
@@ -22,4 +25,4 @@ if ($isUnpublished)
 }
 ?>
 <span class="icon-<?php echo $icon; ?>" aria-hidden="true"></span>
-<?php echo JText::_('JGLOBAL_EDIT'); ?>
+<?php echo Text::_('JGLOBAL_EDIT'); ?>

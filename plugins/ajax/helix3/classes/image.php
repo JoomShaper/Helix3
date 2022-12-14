@@ -11,7 +11,7 @@ defined ('_JEXEC') or die ('resticted aceess');
 
 class Helix3Image {
 
-	public static function createThumbs($src, $sizes = array(), $folder, $base_name, $ext)
+	public static function createThumbs($src, $folder, $base_name, $ext, $sizes = array())
 	{
 		
 		list($originalWidth, $originalHeight) = getimagesize($src);

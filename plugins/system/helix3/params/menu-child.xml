@@ -3,8 +3,8 @@
 	<fields name="params" addfieldpath="/plugins/system/helix3/fields">
 	<fieldset name="spsubmenu" label="HELIX_SUB_MENU">
         <field name="dropdown_position" type="radio" class="btn-group" default="right" label="HELIX_MENU_DROPDOWN_POSITION" description="HELIX_MENU_DROPDOWN_POSITION_DESC">
-        	<option value="left">HELIX_GLOBAL_LEFT</option>
-        	<option value="right">HELIX_GLOBAL_RIGHT</option>
+			<option value="left">HELIX_GLOBAL_LEFT</option>
+			<option value="right">HELIX_GLOBAL_RIGHT</option>
         </field>	
         <field name="showmenutitle" type="radio" default="1" class="btn-group" label="HELIX_MENU_SHOW_TITLE" description="HELIX_MENU_SHOW_TITLE_DESC">
 			<option value="1">HELIX_YES</option>

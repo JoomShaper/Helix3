@@ -6,6 +6,8 @@
  * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or later
 */
 
+use Joomla\CMS\Filter\OutputFilter;
+
 defined('_JEXEC') or die;
 
 // Note. It is important to remove spaces between elements.
@@ -29,7 +31,7 @@ if (isset($item_decode->icon) && $item_decode->icon) {
 }
 
 $flink = $item->flink;
-$flink = JFilterOutput::ampReplace(htmlspecialchars($flink));
+$flink = OutputFilter::ampReplace(htmlspecialchars($flink));
 
 switch ($item->browserNav) :
 	default:

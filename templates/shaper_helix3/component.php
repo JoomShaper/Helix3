@@ -55,7 +55,7 @@ $body_class = $option;
         <link rel="stylesheet" href="<?php echo $this->baseurl; ?>/templates/<?php echo $this->template; ?>/css/template.css" type="text/css" />
         <link rel="stylesheet" href="<?php echo $this->baseurl; ?>/plugins/system/helix3/assets/css/system.j<?php echo JVERSION < 4 ? 3 : 4; ?>.min.css" type="text/css" />
     </head>
-    <body class="<?php echo $body_class; ?>">
+    <body class="<?php echo $this->helix3->bodyClass($body_class); ?>">
         <jdoc:include type="component" />
     </body>
 </html>

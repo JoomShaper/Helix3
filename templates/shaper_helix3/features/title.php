@@ -8,6 +8,9 @@
 //no direct accees
 defined ('_JEXEC') or die('resticted aceess');
 
+use Joomla\CMS\Factory;
+use Joomla\CMS\Uri\Uri;
+
 class Helix3FeatureTitle {
 
 	private $helix3;
@@ -19,7 +22,7 @@ class Helix3FeatureTitle {
 
 	public function renderFeature() {
 
-		$app 		= JFactory::getApplication();
+		$app 		= Factory::getApplication();
 		$menuitem   = $app->getMenu()->getActive(); // get the active item
 
 		if($menuitem) {
@@ -41,7 +44,7 @@ class Helix3FeatureTitle {
 				}
 
 				if($page_title_bg_image) {
-					$style .= 'background-image: url(' . JURI::root(true) . '/' . $page_title_bg_image . ');';
+					$style .= 'background-image: url(' . Uri::root(true) . '/' . $page_title_bg_image . ');';
 				}
 
 				if( $style ) {

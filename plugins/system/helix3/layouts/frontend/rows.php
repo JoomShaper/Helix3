@@ -1,20 +1,24 @@
 <?php
 /**
-* @package Helix3 Framework
-* @author JoomShaper https://www.joomshaper.com
-* @copyright (c) 2010 - 2021 JoomShaper
-* @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
-*/
+ * @package Helix3 Framework
+ * @author JoomShaper https://www.joomshaper.com
+ * @copyright (c) 2010 - 2021 JoomShaper
+ * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
+ */
 defined('_JEXEC') or die('Restricted Access');
+
+use Joomla\CMS\Factory;
+use Joomla\CMS\Layout\FileLayout;
 
 //helper & model
 $helix3_class   = JPATH_ROOT . '/plugins/system/helix3/core/classes/helix3.php';
 
-if (file_exists($helix3_class)) {
+if (file_exists($helix3_class))
+{
     require_once($helix3_class);
 }
 
-$template       = JFactory::getApplication()->getTemplate();
+$template       = Factory::getApplication()->getTemplate();
 $themepath      = JPATH_THEMES . '/' . $template;
 $carea_file     = $themepath . '/html/layouts/helix3/frontend/conponentarea.php';
 $module_file    = $themepath . '/html/layouts/helix3/frontend/modules.php';
@@ -79,13 +83,15 @@ foreach ($data['rowColumns'] as $key => $column)
     $column->className = $column->className . ' ' . $responsive_class;
     //End Responsive Utilities
 
-    if ($column->settings->column_type){ //Component
-        $getLayout = new JLayoutFile('frontend.conponentarea', $layout_path_carea );
+    if ($column->settings->column_type)
+    { //Component
+        $getLayout = new FileLayout('frontend.conponentarea', $layout_path_carea );
         $output .= $getLayout->render($column);
     }
-    else { // Module
+    else
+    { // Module
 
-        $getLayout = new JLayoutFile('frontend.modules', $layout_path_module );
+        $getLayout = new FileLayout('frontend.modules', $layout_path_module );
         $output .= $getLayout->render($column);
     }
 }

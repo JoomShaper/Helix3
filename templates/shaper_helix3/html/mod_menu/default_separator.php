@@ -6,6 +6,8 @@
  * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or later
 */
 
+use Joomla\CMS\HTML\HTMLHelper;
+
 defined('_JEXEC') or die;
 
 $title      = $item->anchor_title ? ' title="' . $item->anchor_title . '"' : '';
@@ -15,7 +17,7 @@ $linktype   = $item->title;
 
 if ($item->menu_image)
 {
-	$linktype = JHtml::_('image', $item->menu_image, $item->title);
+	$linktype = HTMLHelper::_('image', $item->menu_image, $item->title);
 
 	if ($item->getParams()->get('menu_text', 1))
 	{

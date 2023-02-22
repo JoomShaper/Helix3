@@ -9,9 +9,9 @@
 //no direct accees
 defined ('_JEXEC') or die ('resticted aceess');
 
-jimport('joomla.form.formfield');
+use Joomla\CMS\Form\FormField;
 
-class JFormFieldMegamenu extends JFormField
+class JFormFieldMegamenu extends FormField
 {
   protected $type = "Megamenu";
 

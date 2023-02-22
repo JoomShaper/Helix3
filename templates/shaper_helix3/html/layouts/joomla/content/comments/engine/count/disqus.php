@@ -9,15 +9,18 @@
 //no direct access
 defined('_JEXEC') or die('Restricted Access');
 
+use Joomla\CMS\Factory;
+
 if ($displayData['params']->get('disqus_subdomain') != '')
 {
-	$doc = JFactory::getDocument();
+	$doc = Factory::getDocument();
 
 	if (!defined('HELIX_COMMENTS_DISQUS_COUNT'))
 	{
 		ob_start();
 
 		$devmode = $displayData['params']->get('disqus_devmode');
+		
 		if ($devmode)
 		{
 			echo 'var disqus_developer = "1";';

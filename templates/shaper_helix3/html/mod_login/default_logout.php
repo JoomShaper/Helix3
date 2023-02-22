@@ -6,15 +6,15 @@
  * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or later
 */
 
-use Joomla\CMS\HTML\HTMLHelper;
+defined('_JEXEC') or die;
+
 use Joomla\CMS\Router\Route;
 use Joomla\CMS\Language\Text;
-
-defined('_JEXEC') or die;
+use Joomla\CMS\HTML\HTMLHelper;
 
 HTMLHelper::_('behavior.keepalive');
 ?>
-<form action="<?php echo Route::_('index.php?option=com_users&task=user.logout'); ?>" method="post" id="login-form">
+<form action="<?php echo Route::_('index.php', true, $params->get('usesecure', 0)); ?>" method="post" id="login-form">
 <?php if ($params->get('greeting')) : ?>
 	<div class="login-greeting">
 	<?php if ($params->get('name') == 0) : {

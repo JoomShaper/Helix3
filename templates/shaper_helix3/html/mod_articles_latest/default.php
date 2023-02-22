@@ -7,6 +7,10 @@
 */
 
 defined('_JEXEC') or die;
+
+use Joomla\CMS\Language\Text;
+use Joomla\CMS\HTML\HTMLHelper;
+
 ?>
 <div class="latestnews">
 <?php foreach ($list as $item) :  ?>
@@ -16,7 +20,7 @@ defined('_JEXEC') or die;
 				<?php echo $item->title; ?>
 			</span>
 		</a>
-		<small><?php echo JHtml::_('date', $item->created, JText::_('DATE_FORMAT_LC3')); ?></small>
+		<small><?php echo HTMLHelper::_('date', $item->created, Text::_('DATE_FORMAT_LC3')); ?></small>
 	</div>
 <?php endforeach; ?>
 </div>

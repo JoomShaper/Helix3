@@ -9,15 +9,26 @@
 
 defined('_JEXEC') or die;
 
-JHtml::addIncludePath(JPATH_COMPONENT . '/helpers');
+use Joomla\CMS\Factory;
+use Joomla\CMS\Uri\Uri;
+use Joomla\CMS\Router\Route;
+use Joomla\CMS\Language\Text;
+use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Layout\FileLayout;
+use Joomla\CMS\Layout\LayoutHelper;
+
+if (version_compare(JVERSION, '4.0.0', '<'))
+{
+	HTMLHelper::addIncludePath(JPATH_COMPONENT . '/helpers');
+}
 
 // Create shortcuts to some parameters.
 $params  = $this->item->params;
-$tpl_params 	= JFactory::getApplication()->getTemplate(true)->params;
+$tpl_params 	= Factory::getApplication()->getTemplate(true)->params;
 $images  = json_decode($this->item->images);
 $urls    = json_decode($this->item->urls);
 $canEdit = $params->get('access-edit');
-$user    = JFactory::getUser();
+$user    = Factory::getUser();
 $info    = $params->get('info_block_position', 0);
 $useDefList = ($params->get('show_modify_date') || $params->get('show_publish_date') || $params->get('show_create_date')
 	|| $params->get('show_hits') || $params->get('show_category') || $params->get('show_parent_category') || $params->get('show_author'));
@@ -34,13 +45,13 @@ if(isset($article_attribs->spfeatured_image) && $article_attribs->spfeatured_ima
 }
 
 //opengraph
-$document = JFactory::getDocument();
-$document->addCustomTag('<meta property="og:url" content="'.JURI::current().'" />');
+$document = Factory::getDocument();
+$document->addCustomTag('<meta property="og:url" content="'.Uri::current().'" />');
 $document->addCustomTag('<meta property="og:type" content="article" />');
 $document->addCustomTag('<meta property="og:title" content="'. $this->item->title .'" />');
-$document->addCustomTag('<meta property="og:description" content="'. JHtml::_('string.truncate', $this->item->introtext, 155, false, false ) .'" />');
+$document->addCustomTag('<meta property="og:description" content="'. HTMLHelper::_('string.truncate', $this->item->introtext, 155, false, false ) .'" />');
 if ($article_image) {
-	$document->addCustomTag('<meta property="og:image" content="'. JURI::root().$article_image.'" />');
+	$document->addCustomTag('<meta property="og:image" content="'. Uri::root().$article_image.'" />');
 	$document->addCustomTag('<meta property="og:image:width" content="600" />');
 	$document->addCustomTag('<meta property="og:image:height" content="315" />');
 }
@@ -53,14 +64,14 @@ if ($this->print)
 }
 
 // status
-$currentDate   = JFactory::getDate()->format('Y-m-d H:i:s');
+$currentDate   = Factory::getDate()->format('Y-m-d H:i:s');
 $isExpired  = JVERSION < 4
-	? (strtotime($this->item->publish_down) < strtotime(JFactory::getDate())) && $this->item->publish_down != JFactory::getDbo()->getNullDate()
+	? (strtotime($this->item->publish_down) < strtotime(Factory::getDate())) && $this->item->publish_down != Factory::getDbo()->getNullDate()
 	: !is_null($this->item->publish_down) && $this->item->publish_down < $currentDate;
 
 ?>
 <article class="item item-page<?php echo $this->pageclass_sfx . ($this->item->featured) ? ' item-featured' : ''; ?>" itemscope itemtype="http://schema.org/Article">
-	<meta itemprop="inLanguage" content="<?php echo ($this->item->language === '*') ? JFactory::getConfig()->get('language') : $this->item->language; ?>" />
+	<meta itemprop="inLanguage" content="<?php echo ($this->item->language === '*') ? Factory::getConfig()->get('language') : $this->item->language; ?>" />
 	<?php if ($this->params->get('show_page_heading', 1)) : ?>
 	<div class="page-header">
 		<h1> <?php echo $this->escape($this->params->get('page_heading')); ?> </h1>
@@ -74,45 +85,45 @@ $isExpired  = JVERSION < 4
 
 	<?php
 		if($post_format=='standard') {
-			echo JLayoutHelper::render('joomla.content.full_image', $this->item);
+			echo LayoutHelper::render('joomla.content.full_image', $this->item);
 		} else {
-			echo JLayoutHelper::render('joomla.content.post_formats.post_' . $post_format, array('params' => $params, 'item' => $this->item));
+			echo LayoutHelper::render('joomla.content.post_formats.post_' . $post_format, array('params' => $params, 'item' => $this->item));
 		}
 	?>
 
 	<div class="entry-header<?php echo $has_post_format ? ' has-post-format': ''; ?>">
 		
 		<?php if (!$this->print && $useDefList && ($info == 0 || $info == 2)) : ?>
-			<?php echo JLayoutHelper::render('joomla.content.info_block.block', array('item' => $this->item, 'params' => $params, 'position' => 'above')); ?>
+			<?php echo LayoutHelper::render('joomla.content.info_block.block', array('item' => $this->item, 'params' => $params, 'position' => 'above')); ?>
 		<?php endif; ?>
 
 		<?php if ($params->get('show_title') || $params->get('show_author')) : ?>
-			<?php echo JLayoutHelper::render('joomla.content.post_formats.icons',  $post_format); ?>
+			<?php echo LayoutHelper::render('joomla.content.post_formats.icons',  $post_format); ?>
 			<h2 itemprop="name">
 				<?php if ($params->get('show_title')) : ?>
 					<?php echo $this->escape($this->item->title); ?>
 				<?php endif; ?>
 			</h2>
 			<?php if ($this->item->state == 0) : ?>
-				<span class="label label-warning"><?php echo JText::_('JUNPUBLISHED'); ?></span>
+				<span class="label label-warning"><?php echo Text::_('JUNPUBLISHED'); ?></span>
 			<?php endif; ?>
-			<?php if (strtotime($this->item->publish_up) > strtotime(JFactory::getDate())) : ?>
-				<span class="label label-warning"><?php echo JText::_('JNOTPUBLISHEDYET'); ?></span>
+			<?php if (strtotime($this->item->publish_up) > strtotime(Factory::getDate())) : ?>
+				<span class="label label-warning"><?php echo Text::_('JNOTPUBLISHEDYET'); ?></span>
 			<?php endif; ?>
 			<?php if ($isExpired) : ?>
-				<span class="label label-warning"><?php echo JText::_('JEXPIRED'); ?></span>
+				<span class="label label-warning"><?php echo Text::_('JEXPIRED'); ?></span>
 			<?php endif; ?>
 		<?php endif; ?>
 	</div>
 
 	<?php if (!$this->print) : ?>
 		<?php if ($canEdit || $params->get('show_print_icon') || $params->get('show_email_icon')) : ?>
-			<?php echo JLayoutHelper::render('joomla.content.icons', array('params' => $params, 'item' => $this->item, 'print' => false)); ?>
+			<?php echo LayoutHelper::render('joomla.content.icons', array('params' => $params, 'item' => $this->item, 'print' => false)); ?>
 		<?php endif; ?>
 	<?php else : ?>
 		<?php if ($useDefList) : ?>
-			<div id="pop-print" class="btn hidden-print">
-				<?php echo JHtml::_('icon.print_screen', $this->item, $params); ?>
+			<div id="pop-print" class="d-print-none">
+				<?php echo HTMLHelper::_('icon.print_screen', $this->item, $params); ?>
 			</div>
 		<?php endif; ?>
 	<?php endif; ?>
@@ -127,7 +138,7 @@ $isExpired  = JVERSION < 4
 	<?php endif; ?>
 	<?php if ($params->get('access-view')):?>
 
-	<?php //echo JLayoutHelper::render('joomla.content.full_image', $this->item); ?>
+	<?php //echo LayoutHelper::render('joomla.content.full_image', $this->item); ?>
 
 	<?php
 	if (!empty($this->item->pagination) && $this->item->pagination && !$this->item->paginationposition && !$this->item->paginationrelative):
@@ -142,11 +153,11 @@ $isExpired  = JVERSION < 4
 	</div>
 
 	<?php if (!$this->print && $useDefList && ($info == 1 || $info == 2)) : ?>
-		<?php echo JLayoutHelper::render('joomla.content.info_block.block', array('item' => $this->item, 'params' => $params, 'position' => 'below')); ?>
+		<?php echo LayoutHelper::render('joomla.content.info_block.block', array('item' => $this->item, 'params' => $params, 'position' => 'below')); ?>
 	<?php  endif; ?>
 
 	<?php if ($info == 0 && $params->get('show_tags', 1) && !empty($this->item->tags->itemTags)) : ?>
-		<?php $this->item->tagLayout = new JLayoutFile('joomla.content.tags'); ?>
+		<?php $this->item->tagLayout = new FileLayout('joomla.content.tags'); ?>
 		<?php echo $this->item->tagLayout->render($this->item->tags->itemTags); ?>
 	<?php endif; ?>
 
@@ -163,25 +174,25 @@ if (!empty($this->item->pagination) && $this->item->pagination && $this->item->p
 	<?php echo $this->item->introtext; ?>
 	<?php //Optional link to let them register to see the whole article. ?>
 	<?php if ($params->get('show_readmore') && $this->item->fulltext != null) :
-		$redirectUrl = urlencode(base64_encode(JURI::current()));  
-		$link1 = JRoute::_('index.php?option=com_users&view=login&return='.$redirectUrl);
-		$link = new JUri($link1);?>
+		$redirectUrl = urlencode(base64_encode(Uri::current()));  
+		$link1 = Route::_('index.php?option=com_users&view=login&return='.$redirectUrl);
+		$link = new Uri($link1);?>
 	<p class="readmore">
 		<a href="<?php echo $link; ?>">
 		<?php $attribs = json_decode($this->item->attribs); ?>
 		<?php
 		if ($attribs->alternative_readmore == null) :
-			echo JText::_('COM_CONTENT_REGISTER_TO_READ_MORE');
+			echo Text::_('COM_CONTENT_REGISTER_TO_READ_MORE');
 		elseif ($readmore = $this->item->alternative_readmore) :
 			echo $readmore;
 			if ($params->get('show_readmore_title', 0) != 0) :
-				echo JHtml::_('string.truncate', ($this->item->title), $params->get('readmore_limit'));
+				echo HTMLHelper::_('string.truncate', ($this->item->title), $params->get('readmore_limit'));
 			endif;
 		elseif ($params->get('show_readmore_title', 0) == 0) :
-			echo JText::sprintf('COM_CONTENT_READ_MORE_TITLE');
+			echo Text::sprintf('COM_CONTENT_READ_MORE_TITLE');
 		else :
-			echo JText::_('COM_CONTENT_READ_MORE');
-			echo JHtml::_('string.truncate', ($this->item->title), $params->get('readmore_limit'));
+			echo Text::_('COM_CONTENT_READ_MORE');
+			echo HTMLHelper::_('string.truncate', ($this->item->title), $params->get('readmore_limit'));
 		endif; ?>
 		</a>
 	</p>
@@ -199,10 +210,10 @@ if (!empty($this->item->pagination) && $this->item->pagination && $this->item->p
 	<?php if(!$this->print) : ?>
 		<div class="article-footer-wrap">
 			<div class="article-footer-top">
-				<?php echo JLayoutHelper::render('joomla.content.rating', array('item' => $this->item, 'params' => $params)) ?>
-				<?php echo JLayoutHelper::render('joomla.content.social_share.share', $this->item); //Helix Social Share ?>
+				<?php echo LayoutHelper::render('joomla.content.rating', array('item' => $this->item, 'params' => $params)) ?>
+				<?php echo LayoutHelper::render('joomla.content.social_share.share', $this->item); //Helix Social Share ?>
 			</div>
-			<?php echo JLayoutHelper::render('joomla.content.comments.comments', $this->item); //Helix Comment ?>
+			<?php echo LayoutHelper::render('joomla.content.comments.comments', $this->item); //Helix Comment ?>
 		</div>
 	<?php endif; ?>
 

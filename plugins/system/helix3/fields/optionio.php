@@ -9,15 +9,17 @@
 //no direct accees
 defined ('_JEXEC') or die ('resticted aceess');
 
-jimport('joomla.form.formfield');
+use Joomla\CMS\Factory;
+use Joomla\CMS\Form\FormField;
+use Joomla\CMS\Language\Text;
 
-class JFormFieldOptionio extends JFormField
+class JFormFieldOptionio extends FormField
 {
 	protected $type = 'optionio';
 
 	protected function getInput()
 	{
-		$input = JFactory::getApplication()->input;
+		$input = Factory::getApplication()->input;
 		$template_id = $input->get('id',0,'INT');
 
 		$url_cureent =  "//$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
@@ -26,11 +28,11 @@ class JFormFieldOptionio extends JFormField
 
 		$output = '';
 		$output .= '<div class="import-export clearfix" style="margin-bottom:30px;">';
-		$output .= '<a class="btn btn-success" target="_blank" href="'. $export_url .'">'. JText::_("HELIX_SETTINGS_EXPORT") .'</a>';
+		$output .= '<a class="btn btn-success" target="_blank" href="'. $export_url .'">'. Text::_("HELIX_SETTINGS_EXPORT") .'</a>';
 		$output .= '</div>';
 		$output .= '<div class="import-export clearfix">';
 		$output .= '<textarea id="import-data" name="import-data" rows="5" style="margin-bottom:20px;"></textarea>';
-		$output .= '<div><a id="import-settings" class="btn btn-primary" data-template_id="'. $template_id .'" target="_blank" href="#">'. JText::_("HELIX_SETTINGS_IMPORT") .'</a></div>';
+		$output .= '<div><a id="import-settings" class="btn btn-primary" data-template_id="'. $template_id .'" target="_blank" href="#">'. Text::_("HELIX_SETTINGS_IMPORT") .'</a></div>';
 		$output .= '</div>';
 
 		return $output;

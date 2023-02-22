@@ -7,8 +7,15 @@
 */
 
 defined('_JEXEC') or die;
-$doc = JFactory::getDocument();
-$app = JFactory::getApplication();
+
+use Joomla\CMS\Factory;
+use Joomla\CMS\Uri\Uri;
+use Joomla\CMS\Image\Image;
+use Joomla\CMS\Language\Text;
+use Joomla\CMS\HTML\HTMLHelper;
+
+$doc = Factory::getDocument();
+$app = Factory::getApplication();
 
 //Load Helix
 $helix3_path = JPATH_PLUGINS.'/system/helix3/core/helix3.php';
@@ -28,7 +35,7 @@ $custom_css_path = JPATH_ROOT . '/templates/' . $this->template . '/css/custom.c
 //Comingsoon Logo
 if ($logo_image = $this->params->get('comingsoon_logo'))
 {
-	$logo = JURI::root() . '/' .  $logo_image;
+	$logo = Uri::root() . '/' .  $logo_image;
 	$path = JPATH_ROOT . '/' .  $logo_image;
 }
 else
@@ -39,7 +46,7 @@ else
 
 if (file_exists($path))
 {
-	$image 		 = new JImage( $path );
+	$image 		 = new Image( $path );
 	$logo_width  = $image->getWidth();
 	$logo_height = $image->getHeight();
 }
@@ -58,7 +65,7 @@ if ($comingsoon_title)
 $comingsoon_date = explode('-', $this->params->get("comingsoon_date"));
 
 //Load jQuery
-JHtml::_('jquery.framework');
+HTMLHelper::_('jquery.framework');
 ?>
 <!DOCTYPE html>
 <html class="sp-comingsoon" xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo $this->language; ?>" lang="<?php echo $this->language; ?>" dir="<?php echo $this->direction; ?>">
@@ -68,7 +75,7 @@ JHtml::_('jquery.framework');
     <?php
 		if($favicon = $this->helix3->getParam('favicon'))
 		{
-			$doc->addFavicon( JURI::base(true) . '/' .  $favicon);
+			$doc->addFavicon( Uri::base(true) . '/' .  $favicon);
 		}
 		else
 		{
@@ -108,7 +115,7 @@ JHtml::_('jquery.framework');
 		$hascs_bg = '';
 		if ($cs_bg = $this->params->get('comingsoon_bg'))
 		{
-			$comingsoon_bg 	= JURI::root() . $cs_bg;
+			$comingsoon_bg 	= Uri::root() . $cs_bg;
 			$hascs_bg 		= 'has-background';
 		}
     ?>
@@ -210,8 +217,8 @@ JHtml::_('jquery.framework');
 
 	<script type="text/javascript">
 		jQuery(function($) {
-			$('#sp-comingsoon-countdown').countdown('<?php echo trim($comingsoon_date[2]); ?>/<?php echo trim($comingsoon_date[1]); ?>/<?php echo trim($comingsoon_date[0]); ?>', function(event) {
-			    $(this).html(event.strftime('<div class="days"><span class="number">%-D</span><span class="string">%!D:<?php echo JText::_("HELIX_DAY"); ?>,<?php echo JText::_("HELIX_DAYS"); ?>;</span></div><div class="hours"><span class="number">%H</span><span class="string">%!H:<?php echo JText::_("HELIX_HOUR"); ?>,<?php echo JText::_("HELIX_HOURS"); ?>;</span></div><div class="minutes"><span class="number">%M</span><span class="string">%!M:<?php echo JText::_("HELIX_MINUTE"); ?>,<?php echo JText::_("HELIX_MINUTES"); ?>;</span></div><div class="seconds"><span class="number">%S</span><span class="string">%!S:<?php echo JText::_("HELIX_SECOND"); ?>,<?php echo JText::_("HELIX_SECONDS"); ?>;</span></div>'));
+			$('#sp-comingsoon-countdown').countdown('<?php echo trim($comingsoon_date[0]); ?>/<?php echo trim($comingsoon_date[1]); ?>/<?php echo trim($comingsoon_date[2]); ?>', function(event) {
+			    $(this).html(event.strftime('<div class="days"><span class="number">%-D</span><span class="string">%!D:<?php echo Text::_("HELIX_DAY"); ?>,<?php echo Text::_("HELIX_DAYS"); ?>;</span></div><div class="hours"><span class="number">%H</span><span class="string">%!H:<?php echo Text::_("HELIX_HOUR"); ?>,<?php echo Text::_("HELIX_HOURS"); ?>;</span></div><div class="minutes"><span class="number">%M</span><span class="string">%!M:<?php echo Text::_("HELIX_MINUTE"); ?>,<?php echo Text::_("HELIX_MINUTES"); ?>;</span></div><div class="seconds"><span class="number">%S</span><span class="string">%!S:<?php echo Text::_("HELIX_SECOND"); ?>,<?php echo Text::_("HELIX_SECONDS"); ?>;</span></div>'));
 			});
 		});
 	</script>

@@ -1,18 +1,22 @@
 <?php
 /**
-* @package Helix3 Framework
-* @author JoomShaper https://www.joomshaper.com
-* @copyright (c) 2010 - 2021 JoomShaper
-* @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
-*/
+ * @package Helix3 Framework
+ * @author JoomShaper https://www.joomshaper.com
+ * @copyright (c) 2010 - 2021 JoomShaper
+ * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
+ */
 
 //no direct accees
 defined ('_JEXEC') or die ('resticted aceess');
 
-$types = JFolder::files( dirname( __FILE__ ) . '/types', '\.php$', false, true);
+use Joomla\CMS\Language\Text;
+use Joomla\CMS\Filesystem\Folder;
+
+$types = Folder::files( dirname( __FILE__ ) . '/types', '\.php$', false, true);
 
 
-foreach ($types as $type) {
+foreach ($types as $type)
+{
   require_once $type;
 }
 
@@ -44,7 +48,7 @@ $colGrid = array(
   <div class="save-box">
     <div class="form-group">
       <label>
-        <?php echo JText::_('HELIX_ENTER_LAYOUT_NAME'); ?>
+        <?php echo Text::_('HELIX_ENTER_LAYOUT_NAME'); ?>
         <input class="form-control addon-input addon-name" type="text" data-attrname="layout_name" value="" placeholder="">
       </label>
     </div>
@@ -62,8 +66,8 @@ $colGrid = array(
       </div>
       <div class="sp-modal-body"></div>
       <div class="sp-modal-footer">
-        <a href="javascript:void(0)" class="btn btn-success" id="save-settings" data-dismiss="spmodal"><?php echo JText::_('HELIX_APPLY'); ?></a>
-        <button class="btn btn-danger" data-dismiss="spmodal" aria-hidden="true"><?php echo JText::_('HELIX_CANCEL'); ?></button>
+        <a href="javascript:void(0)" class="btn btn-success" id="save-settings" data-dismiss="spmodal"><?php echo Text::_('HELIX_APPLY'); ?></a>
+        <button class="btn btn-danger" data-dismiss="spmodal" aria-hidden="true"><?php echo Text::_('HELIX_CANCEL'); ?></button>
       </div>
     </div>
   </div>
@@ -75,13 +79,13 @@ $colGrid = array(
 
       <div class="settings-left pull-left">
         <a class="row-move" href="#"><i class="fa fa-arrows"></i></a>
-        <strong class="section-title"><?php echo JText::_('HELIX_SECTION_TITLE'); ?></strong>
+        <strong class="section-title"><?php echo Text::_('HELIX_SECTION_TITLE'); ?></strong>
       </div>
 
       <div class="settings-right pull-right">
         <ul class="button-group">
           <li>
-            <a class="btn btn-default btn-small btn-sm add-columns" href="#"><i class="fa fa-columns"></i> <?php echo JText::_('HELIX_ADD_COLUMNS'); ?></a>
+            <a class="btn btn-default btn-small btn-sm add-columns" href="#"><i class="fa fa-columns"></i> <?php echo Text::_('HELIX_ADD_COLUMNS'); ?></a>
             <ul class="column-list">
               <?php
               foreach ($colGrid as $key => $grid){
@@ -93,9 +97,9 @@ $colGrid = array(
               <li><a href="#" class="hasTooltip column-layout-custom column-layout custom <?php echo $active; ?>" data-layout="" data-type='custom' data-original-title="<strong>Custom Layout</strong>"></a></li>
             </ul>
           </li>
-          <li><a class="btn btn-default btn-small btn-sm add-row" href="#"><i class="fa fa-bars"></i> <?php echo JText::_('HELIX_ADD_ROW'); ?></a></li>
-          <li><a class="btn btn-default btn-small btn-sm row-ops-set" href="#"><i class="fa fa-gears"></i> <?php echo JText::_('HELIX_SETTINGS'); ?></a></li>
-          <li><a class="btn btn-danger btn-small remove-row" href="#"><i class="fa fa-times"></i> <?php echo JText::_('HELIX_REMOVE'); ?></a></li>
+          <li><a class="btn btn-default btn-small btn-sm add-row" href="#"><i class="fa fa-bars"></i> <?php echo Text::_('HELIX_ADD_ROW'); ?></a></li>
+          <li><a class="btn btn-default btn-small btn-sm row-ops-set" href="#"><i class="fa fa-gears"></i> <?php echo Text::_('HELIX_SETTINGS'); ?></a></li>
+          <li><a class="btn btn-danger btn-small remove-row" href="#"><i class="fa fa-times"></i> <?php echo Text::_('HELIX_REMOVE'); ?></a></li>
         </ul>
       </div>
 
@@ -103,7 +107,7 @@ $colGrid = array(
     <div class="row ui-sortable">
       <div class="layout-column col-sm-12">
         <div class="column">
-          <h6 class="col-title pull-left"><?php echo JText::_('HELIX_NONE'); ?></h6>
+          <h6 class="col-title pull-left"><?php echo Text::_('HELIX_NONE'); ?></h6>
           <a class="col-ops-set pull-right" href="#" ><i class="fa fa-gears"></i></a>
         </div>
       </div>
@@ -120,7 +124,7 @@ $colGrid = array(
   if ($layout_data) {
     foreach ($layout_data as $row) {
       $rowSettings = RowColumnSettings::getSettings($row->settings);
-      $name = JText::_('HELIX_SECTION_TITLE');
+      $name = Text::_('HELIX_SECTION_TITLE');
 
       if (isset($row->settings->name)) {
         $name = $row->settings->name;
@@ -136,7 +140,7 @@ $colGrid = array(
           <div class="settings-right pull-right">
             <ul class="button-group">
               <li>
-                <a class="btn btn-default btn-small btn-sm add-columns" href="#"><i class="fa fa-columns"></i> <?php echo JText::_('HELIX_ADD_COLUMNS'); ?></a>
+                <a class="btn btn-default btn-small btn-sm add-columns" href="#"><i class="fa fa-columns"></i> <?php echo Text::_('HELIX_ADD_COLUMNS'); ?></a>
                 <ul class="column-list">
                   <?php
                   $active = '';
@@ -159,9 +163,9 @@ $colGrid = array(
                   <li><a href="#" class="hasTooltip column-layout-custom column-layout custom <?php echo $active; ?>" data-layout="<?php echo $customLayout; ?>" data-type='custom' data-original-title="<strong>Custom Layout</strong>"></a></li>
                 </ul>
               </li>
-              <li><a class="btn btn-default btn-small btn-sm add-row" href="#"><i class="fa fa-bars"></i> <?php echo JText::_('HELIX_ADD_ROW'); ?></a></li>
-              <li><a class="btn btn-default btn-small btn-sm row-ops-set" href="#"><i class="fa fa-gears"></i> <?php echo JText::_('HELIX_SETTINGS'); ?></a></li>
-              <li><a class="btn btn-danger btn-small remove-row" href="#"><i class="fa fa-times"></i> <?php echo JText::_('HELIX_REMOVE'); ?></a></li>
+              <li><a class="btn btn-default btn-small btn-sm add-row" href="#"><i class="fa fa-bars"></i> <?php echo Text::_('HELIX_ADD_ROW'); ?></a></li>
+              <li><a class="btn btn-default btn-small btn-sm row-ops-set" href="#"><i class="fa fa-gears"></i> <?php echo Text::_('HELIX_SETTINGS'); ?></a></li>
+              <li><a class="btn btn-danger btn-small remove-row" href="#"><i class="fa fa-times"></i> <?php echo Text::_('HELIX_REMOVE'); ?></a></li>
             </ul>
           </div>
         </div>

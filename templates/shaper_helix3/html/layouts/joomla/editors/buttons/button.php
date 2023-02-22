@@ -8,6 +8,8 @@
 
 defined('_JEXEC') or die;
 
+use Joomla\CMS\Uri\Uri;
+
 $button = $displayData;
 
 ?>
@@ -15,7 +17,7 @@ $button = $displayData;
 	<?php
 		$class    = ($button->get('class')) ? $button->get('class') : null;
 		$class	 .= ($button->get('modal')) ? ' modal-button' : null;
-		$href     = ($button->get('link')) ? ' href="' . JUri::base() . $button->get('link') . '"' : null;
+		$href     = ($button->get('link')) ? ' href="' . Uri::base() . $button->get('link') . '"' : null;
 		$onclick  = ($button->get('onclick')) ? ' onclick="' . $button->get('onclick') . '"' : ' onclick="IeCursorFix(); return false;"';
 		$title    = ($button->get('title')) ? $button->get('title') : $button->get('text');
 	?>

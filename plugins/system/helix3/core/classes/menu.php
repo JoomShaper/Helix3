@@ -9,6 +9,11 @@
 //no direct accees
 defined ('_JEXEC') or die ('resticted aceess');
 
+use Joomla\CMS\Factory;
+use Joomla\CMS\Router\Route;
+use Joomla\CMS\Filter\OutputFilter;
+use Joomla\CMS\Helper\ModuleHelper;
+
 class Helix3Menu {
 
 	protected $_items = array();
@@ -20,7 +25,7 @@ class Helix3Menu {
 
 	function __construct($class = '', $name = '')
 	{
-		$this->app = JFactory::getApplication();
+		$this->app = Factory::getApplication();
 		$this->template = $this->app->getTemplate(true);
 		$this->_params = $this->template->params;
 		$this->extraclass = $class;
@@ -40,7 +45,7 @@ class Helix3Menu {
 
 	public function initMenu()
 	{
-		$app 	= JFactory::getApplication();
+		$app 	= Factory::getApplication();
 		$menu  	= $app->getMenu('site');
 
 		$attributes 	= array('menutype');
@@ -127,11 +132,11 @@ class Helix3Menu {
 
 			if (strcasecmp(substr($item->flink, 0, 4), 'http') && (strpos($item->flink, 'index.php?') !== false))
 			{
-				$item->flink = JRoute::_($item->flink, true, $item->getParams()->get('secure'));
+				$item->flink = Route::_($item->flink, true, $item->getParams()->get('secure'));
 			}
 			else
 			{
-				$item->flink = JRoute::_($item->flink);
+				$item->flink = Route::_($item->flink);
 			}
 
 			// We prevent the double encoding because for some reason the $item is shared for menu modules and we get double encoding
@@ -252,7 +257,7 @@ class Helix3Menu {
 		}
 		else if ( ( $item->parent_id == 1 ) && ($item->megamenu == 0 ))
 		{
-			$menulayout = json_decode($this->_items[$item->id]->getParams()->get('menulayout'));
+			$menulayout = json_decode(!empty($this->_items[$item->id]->getParams()->get('menulayout')) ? $this->_items[$item->id]->getParams()->get('menulayout') : '');
 
 			if ($menulayout)
 			{
@@ -287,7 +292,7 @@ class Helix3Menu {
 
 		$dropdown_style = 'width: '. $dropdown_width .'px;';
 
-		$layout = json_decode($this->_items[$item->id]->getParams()->get('menulayout'));
+		$layout = json_decode(!empty($this->_items[$item->id]->getParams()->get('menulayout')) ? $this->_items[$item->id]->getParams()->get('menulayout') : '');
 		$sub_alignment = $this->_items[$item->id]->getParams()->get('dropdown_position', 'right');
 
 		if (isset($layout->menuAlign) && $layout->menuAlign)
@@ -453,7 +458,7 @@ class Helix3Menu {
 		}
 		else if ( ( $item->parent_id == 1 ) && ( $item->megamenu == 0 ) )
 		{
-			$menulayout = json_decode( $this->_items[$item->id]->getParams()->get('menulayout') );
+			$menulayout = json_decode( !empty($this->_items[$item->id]->getParams()->get('menulayout')) ? $this->_items[$item->id]->getParams()->get('menulayout') : '' );
 
 			if ( $menulayout )
 			{
@@ -519,7 +524,7 @@ class Helix3Menu {
 		}
 
 		$flink = $item->flink;
-		$flink = str_replace('&amp;', '&', JFilterOutput::ampReplace(htmlspecialchars($flink)));
+		$flink = str_replace('&amp;', '&', OutputFilter::ampReplace(htmlspecialchars($flink)));
 
 		$output = '';
 		$options ='';
@@ -551,13 +556,13 @@ class Helix3Menu {
 	//Load Module by id or position
 	private function load_module($mod)
 	{
-		$app		= JFactory::getApplication();
-		$user		= JFactory::getUser();
+		$app		= Factory::getApplication();
+		$user		= Factory::getUser();
 		$groups		= implode(',', $user->getAuthorisedViewLevels());
-		$lang 		= JFactory::getLanguage()->getTag();
+		$lang 		= Factory::getLanguage()->getTag();
 		$clientId 	= (int) $app->getClientId();
 
-		$db	= JFactory::getDbo();
+		$db	= Factory::getDbo();
 		$query = $db->getQuery(true);
 		$query->select('m.id, m.title, m.module, m.position, m.content, m.showtitle, m.params');
 		$query->from('#__modules AS m');
@@ -573,7 +578,7 @@ class Helix3Menu {
 			$query->where('m.position = "' . $mod . '"');
 		}
 
-		$date = JFactory::getDate();
+		$date = Factory::getDate();
 		$now = $date->toSql();
 		$nullDate = $db->getNullDate();
 
@@ -611,7 +616,7 @@ class Helix3Menu {
 			$module->client_id  = 1;
 			$module->position	= strtolower($module->position);
 			$clean[$module->id]	= $module;
-			echo JModuleHelper::renderModule($module, $options);
+			echo ModuleHelper::renderModule($module, $options);
 		}
 
 		$output = ob_get_clean();

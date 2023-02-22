@@ -6,13 +6,13 @@
  * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or later
 */
 
-use Joomla\CMS\Component\ComponentHelper;
-use Joomla\CMS\HTML\HTMLHelper;
-use Joomla\CMS\Plugin\PluginHelper;
+defined('_JEXEC') or die;
+
 use Joomla\CMS\Router\Route;
 use Joomla\CMS\Language\Text;
-
-defined('_JEXEC') or die;
+use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Plugin\PluginHelper;
+use Joomla\CMS\Component\ComponentHelper;
 
 HTMLHelper::_('behavior.keepalive');
 HTMLHelper::_('bootstrap.tooltip');
@@ -20,7 +20,7 @@ HTMLHelper::_('bootstrap.tooltip');
 $usersConfig = ComponentHelper::getParams('com_users');
 
 ?>
-<form action="<?php echo Route::_('index.php?option=com_users&task=user.login'); ?>" method="post" id="login-form">
+<form action="<?php echo Route::_('index.php', true, $params->get('usesecure', 0)); ?>" method="post" id="login-form">
 	<?php if ($params->get('pretext')) : ?>
 		<div class="form-group pretext">
 			<p><?php echo $params->get('pretext'); ?></p>
@@ -55,21 +55,23 @@ $usersConfig = ComponentHelper::getParams('com_users');
 		</div>
 	</div>
 	
-	<?php if (count($twofactormethods) > 1): ?>
-	<div id="form-login-secretkey" class="form-group mb-3">
-		<?php if (!$params->get('usetext')) : ?>
-			<div class="input-group">
-				<span class="input-group-text input-group-addon hasTooltip" title="<?php echo Text::_('JGLOBAL_SECRETKEY_HELP'); ?>">
-					<i class="icon-help"></i>
-				</span>
-				<input id="modlgn-secretkey" autocomplete="off" type="text" name="secretkey" class="form-control" tabindex="0" size="18" placeholder="<?php echo Text::_('JGLOBAL_SECRETKEY') ?>" />
-			</div>
-		<?php else: ?>
-			<div class="input-group">
-				<input id="modlgn-secretkey" autocomplete="off" type="text" name="secretkey" class="form-control" tabindex="0" size="18" placeholder="<?php echo Text::_('JGLOBAL_SECRETKEY') ?>" />
-			</div>
+	<?php if (version_compare(JVERSION, '4.2.0', '<')) : ?>
+		<?php if (count($twofactormethods) > 1): ?>
+		<div id="form-login-secretkey" class="form-group mb-3">
+			<?php if (!$params->get('usetext')) : ?>
+				<div class="input-group">
+					<span class="input-group-text input-group-addon hasTooltip" title="<?php echo Text::_('JGLOBAL_SECRETKEY_HELP'); ?>">
+						<i class="icon-help"></i>
+					</span>
+					<input id="modlgn-secretkey" autocomplete="off" type="text" name="secretkey" class="form-control" tabindex="0" size="18" placeholder="<?php echo Text::_('JGLOBAL_SECRETKEY') ?>" />
+				</div>
+			<?php else: ?>
+				<div class="input-group">
+					<input id="modlgn-secretkey" autocomplete="off" type="text" name="secretkey" class="form-control" tabindex="0" size="18" placeholder="<?php echo Text::_('JGLOBAL_SECRETKEY') ?>" />
+				</div>
+			<?php endif; ?>
+		</div>
 		<?php endif; ?>
-	</div>
 	<?php endif; ?>
 
 	<?php if (PluginHelper::isEnabled('system', 'remember')) : ?>

@@ -3,19 +3,6 @@
  *=======================================*/
 
 .layout-edit {
-	@import "legacy/variables";
-	@import "legacy/mixins";
-	@import "legacy/forms.less";
-	@import "legacy/wells.less";
-	@import "legacy/accordion.less";
-
-	//Edit
-	select.inputbox,
-	select {
-		width: 250px;
-		max-width: 100%;
-	}
-
 	.btn-toolbar {
 		margin-bottom: 20px;
 	}
@@ -34,6 +21,89 @@
 	}
 }
 
+/*======================================
+ *======= 	 jviewport   ============
+ *=====================================*/
+
+.jviewport-height10 {
+	height: 10vh;
+  }
+  .jviewport-height20 {
+	height: 20vh;
+  }
+  .jviewport-height30 {
+	height: 30vh;
+  }
+  .jviewport-height40 {
+	height: 40vh;
+  }
+  .jviewport-height50 {
+	height: 50vh;
+  }
+  .jviewport-height60 {
+	height: 60vh;
+  }
+  .jviewport-height70 {
+	height: 70vh;
+  }
+  .jviewport-height80 {
+	height: 80vh;
+  }
+  .jviewport-height90 {
+	height: 90vh;
+  }
+  .jviewport-height100 {
+	height: 100vh;
+  }
+  
+  [class*=jviewport-height] iframe {
+	height: 100%;
+  }
+
+  /*======= 	 modal-dialog   ============
+  *=====================================*/
+  
+.modal-dialog {
+	.jviewport-width10 {
+		width: 10vw;
+	}
+	.jviewport-width20 {
+		width: 20vw;
+		max-width: none;
+	}
+	.jviewport-width30 {
+	width: 30vw;
+	max-width: none;
+	}
+	.jviewport-width40 {
+		width: 40vw;
+		max-width: none;
+	}
+	.jviewport-width50 {
+		width: 50vw;
+		max-width: none;
+	}
+	.jviewport-width60 {
+		width: 60vw;
+		max-width: none;
+	}
+	.jviewport-width70 {
+		width: 70vw;
+		max-width: none;
+	}
+	.jviewport-width80 {
+		width: 80vw;
+		max-width: none;
+	}
+	.jviewport-width90 {
+		width: 90vw;
+		max-width: none;
+	}
+	.jviewport-width100 {
+		width: 100vw;
+		max-width: none;
+	}
+}
 /*======================================
  *======= 	 Media   ============
  *=====================================*/
@@ -109,6 +179,13 @@ svg {
 	}
 }
 
+//Choosen
+.chzn-container.chzn-container-multi {
+	input[type="text"] {
+		min-height: 30px;
+	}
+}
+
 #mailto-window {
 	margin: 20px;
 	> h2 {
@@ -118,32 +195,6 @@ svg {
 	input[type="text"],
 	input[type="email"] {
 		height: auto !important;
-	}
-}
-
-//Choosen
-.chzn-container.chzn-container-multi {
-	input[type="text"] {
-		min-height: 30px;
-	}
-}
-
-// Content edit
-.com-content-adminForm {
-	textarea {
-		width: 350px;
-		height: 100px;
-	}
-
-	.input-prepend.input-append {
-		.media-preview.add-on {
-			height: 34px;
-			line-height: 26px;
-		}
-		.modal.btn {
-			position: relative;
-			background: #ccc;
-		}
 	}
 }
 
@@ -171,13 +222,4 @@ svg {
 			}
 		}
 	}
-}
-
-/* *** Joomla 3.7 Compatibility *** */
-.edit.item-page .modal {
-	position: initial;
-}
-.edit.item-page .media-preview.add-on {
-	height: 34px;
-	line-height: 28px;
 }

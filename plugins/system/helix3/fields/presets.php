@@ -1,20 +1,21 @@
 <?php
+
 /**
-* @package Helix3 Framework
-* @author JoomShaper https://www.joomshaper.com
-* @copyright (c) 2010 - 2021 JoomShaper
-* @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
-*/
+ * @package Helix3 Framework
+ * @author JoomShaper https://www.joomshaper.com
+ * @copyright (c) 2010 - 2021 JoomShaper
+ * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
+ */
 
 //no direct accees
 defined ('_JEXEC') or die ('resticted aceess');
 
-jimport('joomla.form.formfield');
-jimport('joomla.filesystem.folder');
-jimport('joomla.filesystem.file');
+use Joomla\CMS\Factory;
+use Joomla\CMS\Filesystem\Folder;
+use Joomla\CMS\Form\FormField;
+use Joomla\CMS\Uri\Uri;
 
-
-class JFormFieldPresets extends JFormField {
+class JFormFieldPresets extends FormField {
 
   protected $type = 'Presets';
 
@@ -23,12 +24,12 @@ class JFormFieldPresets extends JFormField {
 
     $template = $this->form->getValue('template');
     $templatePresetsDir = JPATH_SITE.'/templates/'.$template.'/images/presets/';
-    $base_url = JURI::root(true).'/templates/'.$template.'/images/presets/';
+    $base_url = Uri::root(true).'/templates/'.$template.'/images/presets/';
     $root_path = JPATH_SITE.'/templates/'.$template.'/images/presets/';
-    $doc = JFactory::getDocument();
-    $helix_url = JURI::root(true).'/plugins/system/helix3/';
+    $doc = Factory::getDocument();
+    $helix_url = Uri::root(true).'/plugins/system/helix3/';
 
-    $folders = JFolder::folders($templatePresetsDir);
+    $folders = Folder::folders($templatePresetsDir);
 
     if( !defined('CURRENT_PRESET') ){
       define('CURRENT_PRESET', $this->value);
@@ -36,7 +37,7 @@ class JFormFieldPresets extends JFormField {
     }
 
     $html       = '';
-    $app        = JFactory::getApplication();
+    $app        = Factory::getApplication();
     $template   = $app->getTemplate('shaper_helix3');
     $params     = $template->params;
     $variable   = $params->get('variable');

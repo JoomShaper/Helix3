@@ -1,15 +1,19 @@
 <?php
 /**
-* @package Helix3 Framework
-* @author JoomShaper https://www.joomshaper.com
-* @copyright (c) 2010 - 2021 JoomShaper
-* @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
-*/
+ * @package Helix3 Framework
+ * @author JoomShaper https://www.joomshaper.com
+ * @copyright (c) 2010 - 2021 JoomShaper
+ * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
+ */
 
 //no direct accees
 defined ('_JEXEC') or die ('resticted aceess');
 
-JFormHelper::loadFieldClass('text');
+use Joomla\CMS\Factory;
+use Joomla\CMS\Form\FormHelper;
+use Joomla\CMS\HTML\HTMLHelper;
+
+FormHelper::loadFieldClass('text');
 
 /**
 * Supports a modal article picker.
@@ -36,7 +40,7 @@ class JFormFieldModPos extends JFormFieldText
   */
   protected function getInput()
   {
-    $db = JFactory::getDBO();
+    $db = Factory::getDBO();
     $query = 'SELECT `position` FROM `#__modules` WHERE  `client_id`=0 AND ( `published` !=-2 AND `published` !=0 ) GROUP BY `position` ORDER BY `position` ASC';
 
     $db->setQuery($query);
@@ -57,8 +61,8 @@ class JFormFieldModPos extends JFormFieldText
     $selectOption = array();
     sort($selectOption);
 
-    foreach($options as $option) $selectOption[] = JHTML::_( 'select.option',$option,$option );
+    foreach($options as $option) $selectOption[] = HTMLHelper::_( 'select.option',$option,$option );
 
-    return JHTML::_('select.genericlist', $selectOption, 'jform[params]['.$this->element['name'].']', 'class="form-select '.$this->element['class'].'"', 'value', 'text', $this->value, 'jform_params_helix_'.$this->element['name']);
+    return HTMLHelper::_('select.genericlist', $selectOption, 'jform[params]['.$this->element['name'].']', 'class="form-select '.$this->element['class'].'"', 'value', 'text', $this->value, 'jform_params_helix_'.$this->element['name']);
   }
 }

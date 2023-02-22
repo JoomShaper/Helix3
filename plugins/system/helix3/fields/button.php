@@ -9,9 +9,9 @@
 //no direct accees
 defined ('_JEXEC') or die ('resticted aceess');
 
-jimport('joomla.form.formfield');
+use Joomla\CMS\Form\FormField;
 
-class JFormFieldButton extends JFormField
+class JFormFieldButton extends FormField
 {
 	protected $type = 'Button';
 	protected function getInput() {

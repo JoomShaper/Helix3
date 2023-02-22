@@ -8,7 +8,9 @@
 
 defined('JPATH_BASE') or die;
 
-$params 	= JFactory::getApplication()->getTemplate(true)->params;
+use Joomla\CMS\Factory;
+
+$params 	= Factory::getApplication()->getTemplate(true)->params;
 $format = $displayData;
 
 if ($params->get('show_post_format')) : ?>
@@ -30,3 +32,4 @@ if ($params->get('show_post_format')) : ?>
 		<?php endif; ?>
 	</span>
 <?php endif; ?>
+

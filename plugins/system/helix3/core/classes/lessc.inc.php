@@ -65,6 +65,17 @@ class helix3_lessc {
 
     protected static $nextImportId = 0; // uniquely identify imports
 
+    public $parser;
+    public $count;
+    public $line;
+    public $env;
+    public $buffer;
+    public $seenComments;
+    public $inExp;
+    public $scope;
+    public $indentLevel;
+    public $formatter;
+
     // attempts to find the path of an import url, returns null for css files
     protected function findImport($url) {
         foreach ((array)$this->importDir as $dir) {
@@ -2424,6 +2435,12 @@ class helix3_lessc_parser {
 
     // caches preg escaped literals
     protected static $literalCache = array();
+    public $eatWhiteDefault;
+    public $lessc;
+    public $sourceName;
+    public $writeComments;
+    public $inExp;
+    public $indentLevel;
 
     public function __construct($lessc, $sourceName = null) {
         $this->eatWhiteDefault = true;
@@ -2447,6 +2464,12 @@ class helix3_lessc_parser {
             self::$whitePattern = '/'.$commentSingle.'[^\n]*\s*|('.self::$commentMulti.')\s*|\s+/Ais';
         }
     }
+
+    public $count;
+    public $line;
+    public $env;
+    public $buffer;
+    public $seenComments;
 
     public function parse($buffer) {
         $this->count = 0;
@@ -3780,6 +3803,7 @@ class helix3_lessc_formatter_classic {
     public $breakSelectors = false;
 
     public $compressColors = false;
+    public $indentLevel;
 
     public function __construct() {
         $this->indentLevel = 0;

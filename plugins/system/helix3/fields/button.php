@@ -10,6 +10,7 @@
 defined ('_JEXEC') or die ('resticted aceess');
 
 use Joomla\CMS\Form\FormField;
+use Joomla\CMS\Language\Text;
 
 class JFormFieldButton extends FormField
 {
@@ -21,6 +22,6 @@ class JFormFieldButton extends FormField
 		$text = !empty($this->element['text']) ? $this->element['text'] : 'Button';
 		$target = !empty($this->element['target']) ? $this->element['target'] : '_self';
 
-		return '<a id="'. $this->id .'" class="btn'. $class .'" href="'. $url .'" target="' . $target . '">'. JText::_($text) .'</a>';
+		return '<a id="'. $this->id .'" class="btn'. $class .'" href="'. $url .'" target="' . $target . '">'. Text::_($text) .'</a>';
 	}
 }

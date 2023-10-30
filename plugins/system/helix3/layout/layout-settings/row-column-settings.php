@@ -9,6 +9,7 @@
 //no direct accees
 defined ('_JEXEC') or die ('resticted aceess');
 
+use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Text;
 
 $rowSettings = array(
@@ -275,7 +276,7 @@ class RowColumnSettings{
 
 	public static function getTemplateName()
 	{
-		$db = JFactory::getDbo();
+		$db = Factory::getDbo();
 		$query = $db->getQuery(true);
 		$query->select($db->quoteName(array('template')));
 		$query->from($db->quoteName('#__template_styles'));
@@ -289,7 +290,7 @@ class RowColumnSettings{
 
 	public static function getPositionss() {
 
-	    $db = JFactory::getDBO();
+	    $db = Factory::getDBO();
 	    $query = 'SELECT `position` FROM `#__modules` WHERE  `client_id`=0 AND ( `published` !=-2 AND `published` !=0 ) GROUP BY `position` ORDER BY `position` ASC';
 
 	    $db->setQuery($query);

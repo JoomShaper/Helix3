@@ -7,13 +7,14 @@
 */
 
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 
 defined('JPATH_BASE') or die;
 
 ?>
 <dd class="create">
 	<i class="fa fa-clock-o" area-hidden="true"></i>
-	<time datetime="<?php echo HTMLHelper::_('date', $displayData['item']->created, 'c'); ?>" itemprop="dateCreated" data-toggle="tooltip" title="<?php echo JText::_('COM_CONTENT_CREATED_DATE'); ?>">
-		<?php echo HTMLHelper::_('date', $displayData['item']->created, JText::_('DATE_FORMAT_LC3')); ?>
+	<time datetime="<?php echo HTMLHelper::_('date', $displayData['item']->created, 'c'); ?>" itemprop="dateCreated" data-toggle="tooltip" title="<?php echo Text::_('COM_CONTENT_CREATED_DATE'); ?>">
+		<?php echo HTMLHelper::_('date', $displayData['item']->created, Text::_('DATE_FORMAT_LC3')); ?>
 	</time>
 </dd>

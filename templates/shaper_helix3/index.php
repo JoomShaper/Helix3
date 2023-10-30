@@ -24,7 +24,7 @@ $helix3_path = JPATH_PLUGINS . '/system/helix3/core/helix3.php';
 if (file_exists($helix3_path))
 {
 	require_once($helix3_path);
-	$this->helix3 = helix3::getInstance();
+	$helix3 = helix3::getInstance();
 }
 else
 {
@@ -32,7 +32,7 @@ else
 }
 
 //Coming Soon
-if ($this->helix3->getParam('comingsoon_mode'))
+if ($helix3->getParam('comingsoon_mode'))
 {
 	header("Location: " . Route::_(Uri::root(true) . "/index.php?tmpl=comingsoon", false));
 	exit();
@@ -40,12 +40,12 @@ if ($this->helix3->getParam('comingsoon_mode'))
 
 //Class Classes
 $body_classes = '';
-if ($this->helix3->getParam('sticky_header'))
+if ($helix3->getParam('sticky_header'))
 {
 	$body_classes .= ' sticky-header';
 }
 
-$body_classes .= ($this->helix3->getParam('boxed_layout', 0)) ? ' layout-boxed' : ' layout-fluid';
+$body_classes .= ($helix3->getParam('boxed_layout', 0)) ? ' layout-boxed' : ' layout-fluid';
 
 if (isset($menu) && $menu)
 {
@@ -58,26 +58,26 @@ if (isset($menu) && $menu)
 $body_classes .= ' off-canvas-menu-init';
 
 //Body Background Image
-if ($bg_image = $this->helix3->getParam('body_bg_image'))
+if ($bg_image = $helix3->getParam('body_bg_image'))
 {
 	$body_style = 'background-image: url(' . Uri::base(true) . '/' . $bg_image . ');';
-	$body_style .= 'background-repeat: ' . $this->helix3->getParam('body_bg_repeat') . ';';
-	$body_style .= 'background-size: ' . $this->helix3->getParam('body_bg_size') . ';';
-	$body_style .= 'background-attachment: ' . $this->helix3->getParam('body_bg_attachment') . ';';
-	$body_style .= 'background-position: ' . $this->helix3->getParam('body_bg_position') . ';';
+	$body_style .= 'background-repeat: ' . $helix3->getParam('body_bg_repeat') . ';';
+	$body_style .= 'background-size: ' . $helix3->getParam('body_bg_size') . ';';
+	$body_style .= 'background-attachment: ' . $helix3->getParam('body_bg_attachment') . ';';
+	$body_style .= 'background-position: ' . $helix3->getParam('body_bg_position') . ';';
 	$body_style = 'body.site {' . $body_style . '}';
 	
 	$doc->addStyledeclaration($body_style);
 }
 
 //Custom CSS
-if ($custom_css = $this->helix3->getParam('custom_css'))
+if ($custom_css = $helix3->getParam('custom_css'))
 {
 	$doc->addStyledeclaration($custom_css);
 }
 
 //Custom JS
-if ($custom_js = $this->helix3->getParam('custom_js'))
+if ($custom_js = $helix3->getParam('custom_js'))
 {
 	$doc->addScriptdeclaration($custom_js);
 }
@@ -92,23 +92,23 @@ $doc->addScriptdeclaration("\nvar sp_offanimation = '" . $this->params->get('off
 	<head>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<?php $this->helix3->loadHead(); ?>
+		<?php $helix3->loadHead(); ?>
 		<?php
-			$megabgcolor = ($this->helix3->PresetParam('_megabg')) ? $this->helix3->PresetParam('_megabg') : '#ffffff';
-			$megabgtx = ($this->helix3->PresetParam('_megatx')) ? $this->helix3->PresetParam('_megatx') : '#333333';
+			$megabgcolor = ($helix3->PresetParam('_megabg')) ? $helix3->PresetParam('_megabg') : '#ffffff';
+			$megabgtx = ($helix3->PresetParam('_megatx')) ? $helix3->PresetParam('_megatx') : '#333333';
 
-			$preloader_bg = ($this->helix3->getParam('preloader_bg')) ? $this->helix3->getParam('preloader_bg') : '#f5f5f5';
-			$preloader_tx = ($this->helix3->getParam('preloader_tx')) ? $this->helix3->getParam('preloader_tx') : '#f5f5f5';
+			$preloader_bg = ($helix3->getParam('preloader_bg')) ? $helix3->getParam('preloader_bg') : '#f5f5f5';
+			$preloader_tx = ($helix3->getParam('preloader_tx')) ? $helix3->getParam('preloader_tx') : '#f5f5f5';
 
 			// load css, less and js
-			$this->helix3->addCSS('bootstrap.min.css') // CSS Files
+			$helix3->addCSS('bootstrap.min.css') // CSS Files
 			->addCSS('joomla-fontawesome.min.css, font-awesome-v4-shims.min.css')
 			->addJS('bootstrap.min.js, jquery.sticky.js, main.js') // JS Files
 			->lessInit()->setLessVariables(array(
-				'preset' => $this->helix3->Preset(),
-				'bg_color' => $this->helix3->PresetParam('_bg'),
-				'text_color' => $this->helix3->PresetParam('_text'),
-				'major_color' => $this->helix3->PresetParam('_major'),
+				'preset' => $helix3->Preset(),
+				'bg_color' => $helix3->PresetParam('_bg'),
+				'text_color' => $helix3->PresetParam('_text'),
+				'major_color' => $helix3->PresetParam('_major'),
 				'megabg_color' => $megabgcolor,
 				'megatx_color' => $megabgtx,
 				'preloader_bg' => $preloader_bg,
@@ -119,24 +119,24 @@ $doc->addScriptdeclaration("\nvar sp_offanimation = '" . $this->params->get('off
 			//RTL
 			if ($this->direction == 'rtl')
 			{
-				$this->helix3->addCSS('bootstrap-rtl.min.css')
+				$helix3->addCSS('bootstrap-rtl.min.css')
 					->addLess('rtl', 'rtl');
 			}
 			
-			$this->helix3->addLess('presets', 'presets/' . $this->helix3->Preset(), array('class' => 'preset'));
+			$helix3->addLess('presets', 'presets/' . $helix3->Preset(), array('class' => 'preset'));
 			
 			//Before Head
-			if ($before_head = $this->helix3->getParam('before_head')) {
+			if ($before_head = $helix3->getParam('before_head')) {
 				echo $before_head . "\n";
 			}
 		?>
 	</head>
 	
-	<body class="<?php echo $this->helix3->bodyClass($body_classes); ?>">
+	<body class="<?php echo $helix3->bodyClass($body_classes); ?>">
 	
 		<div class="body-wrapper">
 			<div class="body-innerwrapper">
-				<?php $this->helix3->generatelayout(); ?>
+				<?php $helix3->generatelayout(); ?>
 			</div>
 		</div>
 		
@@ -144,7 +144,7 @@ $doc->addScriptdeclaration("\nvar sp_offanimation = '" . $this->params->get('off
 		<div class="offcanvas-menu">
 			<a href="#" class="close-offcanvas" aria-label="Close"><i class="fa fa-remove" aria-hidden="true" title="<?php echo Text::_('HELIX_CLOSE_MENU'); ?>"></i></a>
 			<div class="offcanvas-inner">
-				<?php if ($this->helix3->countModules('offcanvas')) : ?>
+				<?php if ($helix3->countModules('offcanvas')) : ?>
 					<jdoc:include type="modules" name="offcanvas" style="sp_xhtml"/>
 				<?php else : ?>
 					<p class="alert alert-warning">
@@ -157,18 +157,18 @@ $doc->addScriptdeclaration("\nvar sp_offanimation = '" . $this->params->get('off
 		<?php
 			if ($this->params->get('compress_css'))
 			{
-				$this->helix3->compressCSS();
+				$helix3->compressCSS();
 			}
 			
 			$tempOption    = $app->input->get('option');
 			
 			if ($this->params->get('compress_js') && $tempOption != 'com_config')
 			{
-				$this->helix3->compressJS($this->params->get('exclude_js'));
+				$helix3->compressJS($this->params->get('exclude_js'));
 			}
 			
 			//before body
-			if ($before_body = $this->helix3->getParam('before_body'))
+			if ($before_body = $helix3->getParam('before_body'))
 			{
 				echo $before_body . "\n";
 			}

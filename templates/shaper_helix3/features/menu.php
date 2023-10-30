@@ -14,6 +14,7 @@ use Joomla\CMS\Language\Text;
 class Helix3FeatureMenu {
 
 	private $helix3;
+	public $position;
 
 	public function __construct($helix3){
 		$this->helix3 = $helix3;

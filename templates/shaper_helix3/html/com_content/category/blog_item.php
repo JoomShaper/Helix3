@@ -13,6 +13,7 @@ use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Layout\LayoutHelper;
 use Joomla\CMS\Router\Route;
 use Joomla\CMS\Uri\Uri;
+use Joomla\Database\DatabaseInterface;
 
 defined('_JEXEC') or die;
 
@@ -32,7 +33,7 @@ $post_format = $post_attribs->get('post_format', 'standard');
 ?>
 
 <?php if ($this->item->state == 0 || strtotime(!empty($this->item->publish_up) ? $this->item->publish_up : '') > strtotime(Factory::getDate())
-	|| ((strtotime(!empty($this->item->publish_down) ? $this->item->publish_down : '') < strtotime(Factory::getDate())) && $this->item->publish_down != Factory::getDbo()->getNullDate())) : ?>
+	|| ((strtotime(!empty($this->item->publish_down) ? $this->item->publish_down : '') < strtotime(Factory::getDate())) && $this->item->publish_down != Factory::getContainer()->get(DatabaseInterface::class)->getNullDate())) : ?>
 	<div class="system-unpublished">
 <?php endif; ?>
 
@@ -88,7 +89,7 @@ $post_format = $post_attribs->get('post_format', 'standard');
 <?php endif; ?>
 
 <?php if ($this->item->state == 0 || strtotime(!empty($this->item->publish_up) ? $this->item->publish_up : '') > strtotime(Factory::getDate())
-	|| ((strtotime(!empty($this->item->publish_down) ? $this->item->publish_down : '') < strtotime(Factory::getDate())) && $this->item->publish_down != Factory::getDbo()->getNullDate())) : ?>
+	|| ((strtotime(!empty($this->item->publish_down) ? $this->item->publish_down : '') < strtotime(Factory::getDate())) && $this->item->publish_down != Factory::getContainer()->get(DatabaseInterface::class)->getNullDate())) : ?>
 </div>
 <?php endif; ?>
 

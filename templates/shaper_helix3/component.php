@@ -17,7 +17,7 @@ $helix3_path = JPATH_PLUGINS . '/system/helix3/core/helix3.php';
 if (file_exists($helix3_path))
 {
 	require_once($helix3_path);
-	$this->helix3 = helix3::getInstance();
+	$helix3 = helix3::getInstance();
 }
 else
 {
@@ -55,7 +55,7 @@ $body_class = $option;
         <link rel="stylesheet" href="<?php echo $this->baseurl; ?>/templates/<?php echo $this->template; ?>/css/template.css" type="text/css" />
         <link rel="stylesheet" href="<?php echo $this->baseurl; ?>/plugins/system/helix3/assets/css/system.j<?php echo JVERSION < 4 ? 3 : 4; ?>.min.css" type="text/css" />
     </head>
-    <body class="<?php echo $this->helix3->bodyClass($body_class); ?>">
+    <body class="<?php echo $helix3->bodyClass($body_class); ?>">
         <jdoc:include type="component" />
     </body>
 </html>

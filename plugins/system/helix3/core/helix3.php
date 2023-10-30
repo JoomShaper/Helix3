@@ -24,7 +24,6 @@ class Helix3
 	private $document;
 	private $importedFiles = array();
 	private $_less;
-
 	private $load_pos;
 
 	//initialize

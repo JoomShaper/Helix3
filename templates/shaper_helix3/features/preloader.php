@@ -15,6 +15,7 @@ use Joomla\CMS\Uri\Uri;
 class Helix3FeaturePreloader {
 
 	private $helix3;
+    public $position;
 
 	public function __construct($helix){
 		$this->helix3 = $helix;

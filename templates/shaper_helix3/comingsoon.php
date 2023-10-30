@@ -22,7 +22,7 @@ $helix3_path = JPATH_PLUGINS.'/system/helix3/core/helix3.php';
 if (file_exists($helix3_path))
 {
     require_once($helix3_path);
-    $this->helix3 = Helix3::getInstance();
+    $helix3 = Helix3::getInstance();
 }
 else
 {
@@ -73,41 +73,41 @@ HTMLHelper::_('jquery.framework');
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?php
-		if($favicon = $this->helix3->getParam('favicon'))
+		if($favicon = $helix3->getParam('favicon'))
 		{
 			$doc->addFavicon( Uri::base(true) . '/' .  $favicon);
 		}
 		else
 		{
-			$doc->addFavicon( $this->helix3->getTemplateUri() . '/images/favicon.ico' );
+			$doc->addFavicon( $helix3->getTemplateUri() . '/images/favicon.ico' );
 		}
     ?>
     <jdoc:include type="head" />
     <?php
-	$megabgcolor = ($this->helix3->PresetParam('_megabg')) ? $this->helix3->PresetParam('_megabg') : '#ffffff';
-	$megabgtx = ($this->helix3->PresetParam('_megatx')) ? $this->helix3->PresetParam('_megatx') : '#333333';
+	$megabgcolor = ($helix3->PresetParam('_megabg')) ? $helix3->PresetParam('_megabg') : '#ffffff';
+	$megabgtx = ($helix3->PresetParam('_megatx')) ? $helix3->PresetParam('_megatx') : '#333333';
 
-	$preloader_bg = ($this->helix3->getParam('preloader_bg')) ? $this->helix3->getParam('preloader_bg') : '#f5f5f5';
-	$preloader_tx = ($this->helix3->getParam('preloader_tx')) ? $this->helix3->getParam('preloader_tx') : '#f5f5f5';
-    $this->helix3->addCSS('bootstrap.min.css, joomla-fontawesome.min.css, font-awesome-v4-shims.min.css')
+	$preloader_bg = ($helix3->getParam('preloader_bg')) ? $helix3->getParam('preloader_bg') : '#f5f5f5';
+	$preloader_tx = ($helix3->getParam('preloader_tx')) ? $helix3->getParam('preloader_tx') : '#f5f5f5';
+    $helix3->addCSS('bootstrap.min.css, joomla-fontawesome.min.css, font-awesome-v4-shims.min.css')
 		->lessInit()->setLessVariables(array(
-			'preset' => $this->helix3->Preset(),
-			'bg_color' => $this->helix3->PresetParam('_bg'),
-			'text_color' => $this->helix3->PresetParam('_text'),
-			'major_color' => $this->helix3->PresetParam('_major'),
+			'preset' => $helix3->Preset(),
+			'bg_color' => $helix3->PresetParam('_bg'),
+			'text_color' => $helix3->PresetParam('_text'),
+			'major_color' => $helix3->PresetParam('_major'),
 			'megabg_color' => $megabgcolor,
 			'megatx_color' => $megabgtx,
 			'preloader_bg' => $preloader_bg,
 			'preloader_tx' => $preloader_tx,
 		))
         ->addLess('master', 'template')
-        ->addLess('presets',  'presets/'.$this->helix3->Preset())
+        ->addLess('presets',  'presets/'.$helix3->Preset())
     	->addJS('jquery.countdown.min.js');
 
     	// has exist custom.css then load it
     	if (file_exists($custom_css_path))
 		{
-			$this->helix3->addCSS('custom.css');
+			$helix3->addCSS('custom.css');
 		}
 
 		//background image

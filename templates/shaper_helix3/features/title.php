@@ -14,6 +14,7 @@ use Joomla\CMS\Uri\Uri;
 class Helix3FeatureTitle {
 
 	private $helix3;
+	public $position;
 
 	public function __construct($helix){
 		$this->helix3 = $helix;

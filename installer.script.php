@@ -9,6 +9,7 @@
 use Joomla\CMS\Factory;
 use Joomla\CMS\Filesystem\Folder;
 use Joomla\CMS\Installer\Installer;
+use Joomla\Database\DatabaseInterface;
 
 //no direct accees
 defined ('_JEXEC') or die ('resticted aceess');
@@ -18,7 +19,7 @@ class plgSystemTmp_helix3InstallerScript
 
     function postflight($type, $parent)
     {
-        $db = Factory::getDBO();
+        $db = Factory::getContainer()->get(DatabaseInterface::class);
         $status = new stdClass;
         $status->plugins = array();
 
@@ -42,7 +43,7 @@ class plgSystemTmp_helix3InstallerScript
 
             if ($result)
             {
-                $db = Factory::getDBO();
+                $db = Factory::getContainer()->get(DatabaseInterface::class);
                 $query = $db->getQuery(true);
                 $fields = array(
                     $db->quoteName('enabled') . ' = 1'

@@ -13,6 +13,7 @@ use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\Menu\SiteMenu;
 use Joomla\CMS\Uri\Uri;
+use Joomla\Database\DatabaseInterface;
 
 $current_menu_id = $this->form->getValue('id');
 
@@ -46,7 +47,7 @@ function menuItems()
 
 function getModuleNameId($id = 'all')
 {
-  $db = Factory::getDBO();
+  $db = Factory::getContainer()->get(DatabaseInterface::class);
 
   if ($id == 'all') {
     $query = 'SELECT id, title FROM `#__modules` WHERE ( `published` !=-2 AND `published` !=0 ) AND client_id = 0';
@@ -317,17 +318,17 @@ if($count > 4 && $count != 6)
       <div class="sp-modal-body">
         <ul class="menu-layout-list clearfix">
           <li><a href="#" class="layout12" data-layout="12" data-design="layout12"><img src="<?php echo Uri::root(true) . '/plugins/system/helix3/assets/images/megamenu/12.png'; ?>" alt="12"></a></li>
-          <li><a href="#" class="layout66" data-layout="6,6" data-design="layout66"><img src="<?php echo URI::root(true) . '/plugins/system/helix3/assets/images/megamenu/6-6.png'; ?>" alt="6+6"></a></li>
-          <li><a href="#" class="layout444" data-layout="4,4,4" data-design="layout444"><img src="<?php echo URI::root(true) . '/plugins/system/helix3/assets/images/megamenu/4-4-4.png'; ?>" alt="4+4+4"></a></li>
-          <li><a href="#" class="layout3333" data-layout="3,3,3,3" data-design="layout3333"><img src="<?php echo URI::root(true) . '/plugins/system/helix3/assets/images/megamenu/3-3-3-3.png'; ?>" alt="3+3+3+3"></a></li>
-          <li><a href="#" class="layout222222" data-layout="2,2,2,2,2,2" data-design="layout222222"><img src="<?php echo URI::root(true) . '/plugins/system/helix3/assets/images/megamenu/2-2-2-2-2-2.png'; ?>" alt="2+2+2+2+2+2"></a></li>
-          <li><a href="#" class="layout57" data-layout="5,7" data-design="layout57"><img src="<?php echo URI::root(true) . '/plugins/system/helix3/assets/images/megamenu/5-7.png'; ?>" alt="5+7"></a></li>
-          <li><a href="#" class="layout48" data-layout="4,8" data-design="layout48"><img src="<?php echo URI::root(true) . '/plugins/system/helix3/assets/images/megamenu/4-8.png'; ?>" alt="4+8"></a></li>
-          <li><a href="#" class="layout39" data-layout="3,9" data-design="layout39"><img src="<?php echo URI::root(true) . '/plugins/system/helix3/assets/images/megamenu/3-9.png'; ?>" alt="3+9"></a></li>
-          <li><a href="#" class="layout44412" data-layout="4,4,4,12" data-design="layout44412"><img src="<?php echo URI::root(true) . '/plugins/system/helix3/assets/images/megamenu/4-4-4-12.png'; ?>" alt="4+4+4+12"></a></li>
-          <li><a href="#" class="layout333312" data-layout="3,3,3,3,12" data-design="layout333312"><img src="<?php echo URI::root(true) . '/plugins/system/helix3/assets/images/megamenu/3-3-3-3-12.png'; ?>" alt="3+3+3+3+12"></a></li>
-          <li><a href="#" class="layout6612" data-layout="6,6,12" data-design="layout6612"><img src="<?php echo URI::root(true) . '/plugins/system/helix3/assets/images/megamenu/6-6-12.png'; ?>" alt="6+6+12"></a></li>
-          <li><a href="#" class="layout44466" data-layout="4,4,4,6,6" data-design="layout44466"><img src="<?php echo URI::root(true) . '/plugins/system/helix3/assets/images/megamenu/4-4-4-6-6.png'; ?>" alt="4+4+4+6+6"></a></li>
+          <li><a href="#" class="layout66" data-layout="6,6" data-design="layout66"><img src="<?php echo Uri::root(true) . '/plugins/system/helix3/assets/images/megamenu/6-6.png'; ?>" alt="6+6"></a></li>
+          <li><a href="#" class="layout444" data-layout="4,4,4" data-design="layout444"><img src="<?php echo Uri::root(true) . '/plugins/system/helix3/assets/images/megamenu/4-4-4.png'; ?>" alt="4+4+4"></a></li>
+          <li><a href="#" class="layout3333" data-layout="3,3,3,3" data-design="layout3333"><img src="<?php echo Uri::root(true) . '/plugins/system/helix3/assets/images/megamenu/3-3-3-3.png'; ?>" alt="3+3+3+3"></a></li>
+          <li><a href="#" class="layout222222" data-layout="2,2,2,2,2,2" data-design="layout222222"><img src="<?php echo Uri::root(true) . '/plugins/system/helix3/assets/images/megamenu/2-2-2-2-2-2.png'; ?>" alt="2+2+2+2+2+2"></a></li>
+          <li><a href="#" class="layout57" data-layout="5,7" data-design="layout57"><img src="<?php echo Uri::root(true) . '/plugins/system/helix3/assets/images/megamenu/5-7.png'; ?>" alt="5+7"></a></li>
+          <li><a href="#" class="layout48" data-layout="4,8" data-design="layout48"><img src="<?php echo Uri::root(true) . '/plugins/system/helix3/assets/images/megamenu/4-8.png'; ?>" alt="4+8"></a></li>
+          <li><a href="#" class="layout39" data-layout="3,9" data-design="layout39"><img src="<?php echo Uri::root(true) . '/plugins/system/helix3/assets/images/megamenu/3-9.png'; ?>" alt="3+9"></a></li>
+          <li><a href="#" class="layout44412" data-layout="4,4,4,12" data-design="layout44412"><img src="<?php echo Uri::root(true) . '/plugins/system/helix3/assets/images/megamenu/4-4-4-12.png'; ?>" alt="4+4+4+12"></a></li>
+          <li><a href="#" class="layout333312" data-layout="3,3,3,3,12" data-design="layout333312"><img src="<?php echo Uri::root(true) . '/plugins/system/helix3/assets/images/megamenu/3-3-3-3-12.png'; ?>" alt="3+3+3+3+12"></a></li>
+          <li><a href="#" class="layout6612" data-layout="6,6,12" data-design="layout6612"><img src="<?php echo Uri::root(true) . '/plugins/system/helix3/assets/images/megamenu/6-6-12.png'; ?>" alt="6+6+12"></a></li>
+          <li><a href="#" class="layout44466" data-layout="4,4,4,6,6" data-design="layout44466"><img src="<?php echo Uri::root(true) . '/plugins/system/helix3/assets/images/megamenu/4-4-4-6-6.png'; ?>" alt="4+4+4+6+6"></a></li>
         </ul>
       </div>
     </div>

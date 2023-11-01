@@ -16,7 +16,6 @@ use Joomla\CMS\Language\Text;
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Layout\FileLayout;
 use Joomla\CMS\Layout\LayoutHelper;
-use Joomla\Database\DatabaseInterface;
 
 if (version_compare(JVERSION, '4.0.0', '<'))
 {
@@ -67,7 +66,7 @@ if ($this->print)
 // status
 $currentDate   = Factory::getDate()->format('Y-m-d H:i:s');
 $isExpired  = JVERSION < 4
-	? (strtotime($this->item->publish_down) < strtotime(Factory::getDate())) && $this->item->publish_down != Factory::getContainer()->get(DatabaseInterface::class)->getNullDate()
+	? (strtotime($this->item->publish_down) < strtotime(Factory::getDate())) && $this->item->publish_down != Factory::getDbo()->getNullDate()
 	: !is_null($this->item->publish_down) && $this->item->publish_down < $currentDate;
 
 ?>

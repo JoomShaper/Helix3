@@ -13,6 +13,7 @@ use Joomla\CMS\Uri\Uri;
 use Joomla\CMS\Image\Image;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Router\Route;
 
 $doc = Factory::getDocument();
 $app = Factory::getApplication();
@@ -27,6 +28,12 @@ if (file_exists($helix3_path))
 else
 {
     die('Please install and activate helix plugin');
+}
+
+if (!$this->params->get('comingsoon_mode'))
+{
+	$redirectUrl = Route::_(Uri::base());
+	$app->redirect($re);
 }
 
 //custom css file
@@ -62,7 +69,7 @@ if ($comingsoon_title)
 	$doc->setTitle( $comingsoon_title . ' | ' . $app->get('sitename') );
 }
 
-$comingsoon_date = explode('-', $this->params->get("comingsoon_date"));
+$comingsoon_date = explode('-', $this->params->get("comingsoon_date") ?? '');
 
 //Load jQuery
 HTMLHelper::_('jquery.framework');
@@ -174,7 +181,7 @@ HTMLHelper::_('jquery.framework');
 							<?php endif; ?>
 
 							<?php if ($twitter) : ?>
-								<li><a target="_blank" href="<?php echo $twitter; ?>"><i class="fa fa-twitter" area-hidden="true"></i></a></li>
+								<li><a target="_blank" href="<?php echo $twitter; ?>"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor" style="width: 25px;position: relative;top: -1.5px;"><path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/></svg></a></li>
 							<?php endif; ?>
 
 							<?php if ($pinterest) : ?>

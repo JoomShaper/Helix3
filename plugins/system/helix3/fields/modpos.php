@@ -12,8 +12,17 @@ defined ('_JEXEC') or die ('resticted aceess');
 use Joomla\CMS\Factory;
 use Joomla\CMS\Form\FormHelper;
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Version;
 
 FormHelper::loadFieldClass('text');
+
+$version = new Version();
+$JoomlaVersion = $version->getShortVersion();
+
+if (version_compare($JoomlaVersion, '4.0.0', '>='))
+{
+	JLoader::registerAlias('JFormFieldText', 'Joomla\CMS\Form\Field\TextField');
+}
 
 /**
 * Supports a modal article picker.

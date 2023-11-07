@@ -16,7 +16,6 @@ use Joomla\Registry\Registry;
 use Joomla\CMS\Filesystem\File;
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Plugin\CMSPlugin;
-use Joomla\Database\DatabaseInterface;
 
 if (!class_exists('Helix3'))
 {
@@ -70,7 +69,7 @@ class  plgSystemHelix3 extends CMSPlugin
             else $template_style_id = (int) $activeMenu->template_style_id;
             if ($template_style_id > 0)
             {
-                $db = Factory::getContainer()->get(DatabaseInterface::class);
+                $db = Factory::getDbo();
                 $query = $db->getQuery(true);
                 $query->select(array('*'));
                 $query->from($db->quoteName('#__template_styles'));
@@ -169,7 +168,7 @@ class  plgSystemHelix3 extends CMSPlugin
                 $extra_query = 'joomshaper_email=' . urlencode($email);
                 $extra_query .='&amp;joomshaper_license_key=' . urlencode($license_key);
 
-                $db = Factory::getContainer()->get(DatabaseInterface::class);
+                $db = Factory::getDbo();
 
                 $fields = array(
                     $db->quoteName('extra_query') . '=' . $db->quote($extra_query),
@@ -207,7 +206,7 @@ class  plgSystemHelix3 extends CMSPlugin
 
             if ( strtolower( $option ) == 'com_templates' && $id && $helix3task == "export" )
             {
-                $db = Factory::getContainer()->get(DatabaseInterface::class);
+                $db = Factory::getDbo();
                 $query = $db->getQuery(true);
 
                 $query
@@ -237,7 +236,7 @@ class  plgSystemHelix3 extends CMSPlugin
 
     private function getTemplateName()
     {
-        $db = Factory::getContainer()->get(DatabaseInterface::class);
+        $db = Factory::getDbo();
         $query = $db->getQuery(true);
         $query->select($db->quoteName(array('template')));
         $query->from($db->quoteName('#__template_styles'));
@@ -266,7 +265,7 @@ class  plgSystemHelix3 extends CMSPlugin
 
     private static function getVersion()
 	{
-		$db = Factory::getContainer()->get(DatabaseInterface::class);
+		$db = Factory::getDbo();
 		$query = $db->getQuery(true);
 		$query
 			->select(array('*'))

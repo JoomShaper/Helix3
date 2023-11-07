@@ -13,7 +13,6 @@ use Joomla\CMS\Factory;
 use Joomla\CMS\Router\Route;
 use Joomla\CMS\Filter\OutputFilter;
 use Joomla\CMS\Helper\ModuleHelper;
-use Joomla\Database\DatabaseInterface;
 
 class Helix3Menu {
 
@@ -567,7 +566,7 @@ class Helix3Menu {
 		$lang 		= Factory::getLanguage()->getTag();
 		$clientId 	= (int) $app->getClientId();
 
-		$db	= Factory::getContainer()->get(DatabaseInterface::class);
+		$db	= Factory::getDbo();
 		$query = $db->getQuery(true);
 		$query->select('m.id, m.title, m.module, m.position, m.content, m.showtitle, m.params');
 		$query->from('#__modules AS m');

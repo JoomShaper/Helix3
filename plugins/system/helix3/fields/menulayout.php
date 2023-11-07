@@ -13,7 +13,6 @@ use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\Menu\SiteMenu;
 use Joomla\CMS\Uri\Uri;
-use Joomla\Database\DatabaseInterface;
 
 $current_menu_id = $this->form->getValue('id');
 
@@ -47,7 +46,7 @@ function menuItems()
 
 function getModuleNameId($id = 'all')
 {
-  $db = Factory::getContainer()->get(DatabaseInterface::class);
+  $db = Factory::getDbo();
 
   if ($id == 'all') {
     $query = 'SELECT id, title FROM `#__modules` WHERE ( `published` !=-2 AND `published` !=0 ) AND client_id = 0';

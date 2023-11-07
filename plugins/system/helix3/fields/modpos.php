@@ -12,9 +12,17 @@ defined ('_JEXEC') or die ('resticted aceess');
 use Joomla\CMS\Factory;
 use Joomla\CMS\Form\FormHelper;
 use Joomla\CMS\HTML\HTMLHelper;
-use Joomla\Database\DatabaseInterface;
+use Joomla\CMS\Version;
 
 FormHelper::loadFieldClass('text');
+
+$version = new Version();
+$JoomlaVersion = $version->getShortVersion();
+
+if (version_compare($JoomlaVersion, '4.0.0', '>='))
+{
+	JLoader::registerAlias('JFormFieldText', 'Joomla\CMS\Form\Field\TextField');
+}
 
 /**
 * Supports a modal article picker.
@@ -41,7 +49,7 @@ class JFormFieldModPos extends JFormFieldText
   */
   protected function getInput()
   {
-    $db = Factory::getContainer()->get(DatabaseInterface::class);
+    $db = Factory::getDbo();
     $query = 'SELECT `position` FROM `#__modules` WHERE  `client_id`=0 AND ( `published` !=-2 AND `published` !=0 ) GROUP BY `position` ORDER BY `position` ASC';
 
     $db->setQuery($query);

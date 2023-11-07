@@ -71,7 +71,7 @@ textarea.form-control {
 }
 .sp-megamenu-parent > li.sp-has-child > a:after,
 .sp-megamenu-parent > li.sp-has-child > span:after {
-  font-family: "Font Awesome 5 Free";
+  font-family: var(--fontAwesome--Version);
   font-weight: 700;
   content: " \f107";
 }
@@ -105,7 +105,7 @@ textarea.form-control {
   margin: 0;
 }
 .sp-megamenu-parent .sp-dropdown .sp-dropdown-items .sp-has-child > a:after {
-  font-family: "Font Awesome 5 Free";
+  font-family: var(--fontAwesome--Version);
   font-weight: 700;
   content: " \f105";
   float: right;
@@ -1266,7 +1266,7 @@ select {
 }
 .scrollup:before {
   content: " \f106";
-  font-family: "Font Awesome 5 Free";
+  font-family: var(--fontAwesome--Version);
   font-weight: 700;
   position: absolute;
   top: 0;
@@ -1501,7 +1501,7 @@ ul.social-icons > li a {
   background: none;
 }
 .sp-module ul > li > a:before {
-  font-family: "Font Awesome 5 Free";
+  font-family: var(--fontAwesome--Version);
   font-weight: 700;
   content: "\f105";
   margin-right: 8px;
@@ -1621,7 +1621,7 @@ article.item {
   display: inline-block;
 }
 .voting-symbol span.star {
-  font-family: "Font Awesome 5 Free";
+  font-family: var(--fontAwesome--Version);
   font-weight: normal;
   font-style: normal;
   display: inline-block;
@@ -1716,7 +1716,7 @@ article.item {
   width: 300px;
   height: 300px;
   content: "\f0c1";
-  font-family: "Font Awesome 5 Free";
+  font-family: var(--fontAwesome--Version);
   font-weight: 700;
   top: 0px;
   color: rgba(255,255,255,0.15);
@@ -1736,7 +1736,7 @@ article.item {
   width: 300px;
   height: 300px;
   content: "\f10e";
-  font-family: "Font Awesome 5 Free";
+  font-family: var(--fontAwesome--Version);
   font-weight: 700;
   transform: rotate(15deg);
   color: rgba(255,255,255,0.15);

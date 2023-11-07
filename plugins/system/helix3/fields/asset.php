@@ -13,7 +13,6 @@ use Joomla\CMS\Factory;
 use Joomla\CMS\Form\FormField;
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Uri\Uri;
-use Joomla\Database\DatabaseInterface;
 
 class JFormFieldAsset extends FormField
 {
@@ -59,7 +58,7 @@ class JFormFieldAsset extends FormField
 	
 	private function getVersion()
 	{
-		$db = Factory::getContainer()->get(DatabaseInterface::class);
+		$db = Factory::getDbo();
 		$query = $db->getQuery(true);
 		$query
 			->select(array('*'))

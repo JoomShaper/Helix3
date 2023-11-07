@@ -12,7 +12,6 @@ use Joomla\CMS\Factory;
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\Router\Route;
-use Joomla\Database\DatabaseInterface;
 
 // Create a shortcut for params.
 $params = $displayData->params;
@@ -21,7 +20,7 @@ HTMLHelper::addIncludePath(JPATH_COMPONENT.'/helpers/html');
 
 $currentDate   = Factory::getDate()->format('Y-m-d H:i:s');
 $isNotPublishedYet = $displayData->publish_up > $currentDate;
-$isExpired         = JVERSION < 4 ? $displayData->publish_down < $currentDate && $displayData->publish_down !== Factory::getContainer()->get(DatabaseInterface::class)->getNullDate() : !is_null($displayData->publish_down) && $displayData->publish_down < $currentDate;
+$isExpired         = JVERSION < 4 ? $displayData->publish_down < $currentDate && $displayData->publish_down !== Factory::getDbo()->getNullDate() : !is_null($displayData->publish_down) && $displayData->publish_down < $currentDate;
 ?>
 
 <?php if ($params->get('show_title') || $displayData->state == 0 || ($params->get('show_author') && !empty($displayData->author ))) : ?>

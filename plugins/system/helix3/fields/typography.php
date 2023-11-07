@@ -13,7 +13,6 @@ defined ('_JEXEC') or die ('resticted aceess');
 use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\Form\FormField;
-use Joomla\Database\DatabaseInterface;
 
 class JFormFieldTypography extends FormField
 {
@@ -145,7 +144,7 @@ class JFormFieldTypography extends FormField
   private static function getTemplate()
   {
     $id = (int) Factory::getApplication()->input->get('id', 0);
-    $db = Factory::getContainer()->get(DatabaseInterface::class);
+    $db = Factory::getDbo();
     $query = $db->getQuery(true);
     $query->select($db->quoteName(array('template')));
     $query->from($db->quoteName('#__template_styles'));

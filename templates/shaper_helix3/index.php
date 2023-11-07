@@ -13,6 +13,7 @@ use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\Router\Route;
 use Joomla\CMS\Uri\Uri;
+use Joomla\CMS\Version;
 
 $doc = Factory::getDocument();
 $app = Factory::getApplication();
@@ -101,9 +102,18 @@ $doc->addScriptdeclaration("\nvar sp_offanimation = '" . $this->params->get('off
 			$preloader_tx = ($helix3->getParam('preloader_tx')) ? $helix3->getParam('preloader_tx') : '#f5f5f5';
 
 			// load css, less and js
-			$helix3->addCSS('bootstrap.min.css') // CSS Files
-			->addCSS('joomla-fontawesome.min.css, font-awesome-v4-shims.min.css')
-			->addJS('bootstrap.min.js, jquery.sticky.js, main.js') // JS Files
+			$helix3->addCSS('bootstrap.min.css'); // CSS Files
+			
+			$version = new Version();
+			$JoomlaVersion = $version->getShortVersion();
+
+			if (version_compare($JoomlaVersion, '5.0.0', '<')) {
+				$helix3->addCSS('joomla-fontawesome.min.css, font-awesome-v4-shims.min.css');
+			} else {
+				$helix3->addCSS('fontawesome.min.css, font-awesome-v4-shims.min.css');
+			}
+
+			$helix3->addJS('bootstrap.min.js, jquery.sticky.js, main.js') // JS Files
 			->lessInit()->setLessVariables(array(
 				'preset' => $helix3->Preset(),
 				'bg_color' => $helix3->PresetParam('_bg'),

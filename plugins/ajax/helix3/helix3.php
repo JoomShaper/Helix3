@@ -22,7 +22,6 @@ use Joomla\CMS\Component\ComponentHelper;
 use Joomla\CMS\Helper\MediaHelper;
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Uri\Uri;
-use Joomla\Database\DatabaseInterface;
 
 require_once __DIR__ . '/classes/image.php';
 
@@ -133,7 +132,7 @@ class plgAjaxHelix3 extends CMSPlugin
         {
           $userIP = $_SERVER['REMOTE_ADDR'];
 
-          $db    = Factory::getContainer()->get(DatabaseInterface::class);
+          $db    = Factory::getDbo();
           $query = $db->getQuery(true);
 
           $query->select('*')
@@ -310,7 +309,7 @@ class plgAjaxHelix3 extends CMSPlugin
 
         $settings   = $data['settings'];
 
-        $db = Factory::getContainer()->get(DatabaseInterface::class);
+        $db = Factory::getDbo();
 
         $query = $db->getQuery(true);
 
@@ -340,7 +339,7 @@ class plgAjaxHelix3 extends CMSPlugin
   }
 
   static public function getItemRating($pk = 0){
-    $db    = Factory::getContainer()->get(DatabaseInterface::class);
+    $db    = Factory::getDbo();
     $query = $db->getQuery(true);
     $query->select('ROUND(rating_sum / rating_count, 0) AS rating, rating_count')
     ->from($db->quoteName('#__content_rating'))
@@ -611,7 +610,7 @@ class plgAjaxHelix3 extends CMSPlugin
   private static function getTemplate()
 	{
 
-      $db = Factory::getContainer()->get(DatabaseInterface::class);
+      $db = Factory::getDbo();
       $query = $db->getQuery(true);
       $query->select($db->quoteName(array('template', 'params')));
       $query->from($db->quoteName('#__template_styles'));

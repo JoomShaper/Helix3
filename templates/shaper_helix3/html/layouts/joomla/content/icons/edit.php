@@ -10,13 +10,12 @@ defined('_JEXEC') or die;
 
 use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Text;
-use Joomla\Database\DatabaseInterface;
 
 $article = $displayData['article'];
 
 $currentDate   = Factory::getDate()->format('Y-m-d H:i:s');
 $isUnpublished = ($article->publish_up > $currentDate)
-	|| ($article->publish_down < $currentDate && $article->publish_down !== Factory::getContainer()->get(DatabaseInterface::class)->getNullDate());
+	|| ($article->publish_down < $currentDate && $article->publish_down !== Factory::getDbo()->getNullDate());
 
 $icon = $article->state ? 'edit' : 'eye-close';
 

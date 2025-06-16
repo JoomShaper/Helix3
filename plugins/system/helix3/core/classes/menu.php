@@ -22,6 +22,10 @@ class Helix3Menu {
 	protected $menu = '';
 	public $_params 	= null;
 	public $menuname	= 'mainmenu';
+	public $app;
+	public $template;
+	public $extraclass;
+	public $children;
 
 	function __construct($class = '', $name = '')
 	{

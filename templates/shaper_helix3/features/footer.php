@@ -11,6 +11,8 @@ defined ('_JEXEC') or die('resticted aceess');
 class Helix3FeatureFooter {
 
 	private $helix3;
+	public $position;
+	public $load_pos;
 
 	public function __construct($helix3){
 		$this->helix3 = $helix3;

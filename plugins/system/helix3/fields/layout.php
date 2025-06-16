@@ -12,7 +12,6 @@ defined ('_JEXEC') or die ('resticted aceess');
 use Joomla\CMS\Factory;
 use Joomla\CMS\Form\FormField;
 
-
 class JFormFieldLayout extends FormField
 {
 

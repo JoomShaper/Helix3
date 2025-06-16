@@ -58,7 +58,7 @@ class JFormFieldAsset extends FormField
 	
 	private function getVersion()
 	{
-		$db = Factory::getDBO();
+		$db = Factory::getDbo();
 		$query = $db->getQuery(true);
 		$query
 			->select(array('*'))

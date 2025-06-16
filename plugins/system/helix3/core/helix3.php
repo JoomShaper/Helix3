@@ -24,7 +24,6 @@ class Helix3
 	private $document;
 	private $importedFiles = array();
 	private $_less;
-
 	private $load_pos;
 
 	//initialize
@@ -310,13 +309,13 @@ class Helix3
 
 		//Import Features
 		self::importFeatures();
-		$rows   = json_decode($params->get('layout'));
+		$rows   = json_decode($params->get('layout') ?? '');
 
 		//Load from file if not exists in database
 		if (empty($rows))
 		{
 			$layout_file = JPATH_SITE . '/templates/' . self::getTemplate() . '/layout/default.json';
-			if (!File::exists($layout_file))
+			if (is_null($layout_file) || !File::exists($layout_file))
 			{
 				die('Default Layout file is not exists! Please goto to template manager and create a new layout first.');
 			}
@@ -1041,7 +1040,7 @@ class Helix3
 		$families = array();
 		foreach ($fonts as $key => $value)
 		{
-			$value = json_decode($value);
+			$value = json_decode($value ?? '');
 
 			if (isset($value->fontWeight) && $value->fontWeight)
 			{
@@ -1058,7 +1057,7 @@ class Helix3
 		$selectors = array();
 		foreach ($fonts as $key => $value)
 		{
-			$value = json_decode($value);
+			$value = json_decode($value ?? '');
 
 			if (isset($value->fontFamily) && $value->fontFamily)
 			{
@@ -1083,7 +1082,7 @@ class Helix3
 
 			// Weight
 			if($webfonts) {
-				$fonts_array = self::object_to_array(json_decode($webfonts));
+				$fonts_array = self::object_to_array(json_decode($webfonts) ?? '{}');
 				$font_key = self::font_key_search($key, $fonts_array['items']);
 				$weight_array = $fonts_array['items'][$font_key]['variants'];
 				$output .= ':' . implode(',', $weight_array);

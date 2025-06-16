@@ -11,6 +11,7 @@ defined ('_JEXEC') or die('resticted aceess');
 class Helix3FeatureContact {
 
 	private $helix3;
+	public $position;
 
 	public function __construct($helix3){
 		$this->helix3 = $helix3;

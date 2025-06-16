@@ -5,6 +5,11 @@
  * @copyright Copyright (c) 2010 - 2017 JoomShaper
  * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or later
 */
+
+use Joomla\CMS\Factory;
+use Joomla\CMS\Filesystem\Folder;
+use Joomla\CMS\Installer\Installer;
+
 //no direct accees
 defined ('_JEXEC') or die ('resticted aceess');
 
@@ -13,7 +18,7 @@ class plgSystemTmp_helix3InstallerScript
 
     function postflight($type, $parent)
     {
-        $db = JFactory::getDBO();
+        $db = Factory::getDbo();
         $status = new stdClass;
         $status->plugins = array();
 
@@ -27,17 +32,17 @@ class plgSystemTmp_helix3InstallerScript
             $group = (string)$plugin->attributes()->group;
             $path = $src.'/plugins/'.$group;
 
-            if (JFolder::exists($src.'/plugins/'.$group.'/'.$name))
+            if (Folder::exists($src.'/plugins/'.$group.'/'.$name))
             {
                 $path = $src.'/plugins/'.$group.'/'.$name;
             }
 
-            $installer = new JInstaller;
+            $installer = new Installer();
             $result = $installer->install($path);
 
             if ($result)
             {
-                $db = JFactory::getDBO();
+                $db = Factory::getDbo();
                 $query = $db->getQuery(true);
                 $fields = array(
                     $db->quoteName('enabled') . ' = 1'
@@ -57,13 +62,13 @@ class plgSystemTmp_helix3InstallerScript
 
         $template_path = $src.'/template';
 
-        if (JFolder::exists( $template_path ))
+        if (Folder::exists( $template_path ))
         {
-            $installer = new JInstaller;
+            $installer = new Installer;
             $installer->install($template_path);
         }
 
-        $conf = JFactory::getConfig();
+        $conf = Factory::getConfig();
         $conf->set('debug', false);
         $parent->getParent()->abort();
     }
@@ -72,7 +77,7 @@ class plgSystemTmp_helix3InstallerScript
     {
         if ($msg)
         {
-            JError::raiseWarning(100, $msg);
+            Factory::getApplication()->enqueueMessage($msg, 'warning');
         }
 
         foreach ($this->packages as $package)

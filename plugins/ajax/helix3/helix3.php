@@ -23,7 +23,6 @@ use Joomla\CMS\Helper\MediaHelper;
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Uri\Uri;
 
-
 require_once __DIR__ . '/classes/image.php';
 
 class plgAjaxHelix3 extends CMSPlugin

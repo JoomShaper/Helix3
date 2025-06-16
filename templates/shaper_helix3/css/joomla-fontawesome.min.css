@@ -7,6 +7,9 @@
  * Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com
  * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
  */
+ :root {
+	--fontAwesome--Version: "Font Awesome 5 Free";
+}
  @font-face {
 	font-family: "Font Awesome 5 Free";
 	font-style: normal;

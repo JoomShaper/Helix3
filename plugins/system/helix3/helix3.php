@@ -265,7 +265,7 @@ class  plgSystemHelix3 extends CMSPlugin
 
     private static function getVersion()
 	{
-		$db = Factory::getDBO();
+		$db = Factory::getDbo();
 		$query = $db->getQuery(true);
 		$query
 			->select(array('*'))

@@ -128,7 +128,7 @@ HTMLHelper::_('jquery.framework');
     ?>
 </head>
 <body>
-	<div class="sp-comingsoon-wrap <?php echo $hascs_bg; ?>" style="background-image: url(<?php echo $comingsoon_bg; ?>);">	
+	<div class="sp-comingsoon-wrap <?php echo $hascs_bg; ?>"<?php if ($comingsoon_bg) : ?> style="background-image: url('<?php echo $comingsoon_bg; ?>');"<?php endif; ?>>	
 		<div class="container">
 			<div class="text-center">
 				<div id="sp-comingsoon">

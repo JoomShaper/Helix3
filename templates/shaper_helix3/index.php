@@ -31,23 +31,6 @@ if (file_exists($helix3_path)) {
 }
 
 //Coming Soon
-// $user = Factory::getUser();
-// $comingSoonMode = $helix3->getParam('comingsoon_mode');
-// $isOffline = $app->get('offline', 0);
-// $isGuest = $user->get('id') == 0;
-
-// if ($isOffline && $isGuest) {
-//     if ($comingSoonMode) {
-//         // Redirect to Coming Soon page
-//         header('Location: ' . Route::_(Uri::root(true) . '/index.php?tmpl=comingsoon', false));
-//         exit();
-//     } else {
-//         // Redirect to standard Offline page
-//         header('Location: ' . Route::_(Uri::root(true) . '/index.php?tmpl=offline', false));
-//         exit();
-//     }
-// }
-
 if ($helix3->getParam('comingsoon_mode'))
 {
 	header("Location: " . Route::_(Uri::root(true) . "/index.php?tmpl=comingsoon", false));

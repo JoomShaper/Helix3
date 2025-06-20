@@ -47,16 +47,16 @@ if (version_compare(JVERSION, '4.2.0', '<')) {
 
 <body>
 	<div class="container">
-		<div class="row">
+		<div class="row justify-content-center">
 			<div class="col-sm-6 col-sm-offset-3">
-				<div class="offline-inner">
+				<div class="offline-inner text-center">
 					<jdoc:include type="message" />
 
 					<div id="frame" class="outline">
-						<?php 
-							$offlineImage = $app->get('offline_image');
-							$offlineImagePath = explode('#', $offlineImage)[0]; 
-							$offlineImageFullPath = JPATH_ROOT . '/' . ltrim($offlineImagePath, '/');
+						<?php
+						$offlineImage = $app->get('offline_image');
+						$offlineImagePath = explode('#', $offlineImage)[0];
+						$offlineImageFullPath = JPATH_ROOT . '/' . ltrim($offlineImagePath, '/');
 						?>
 						<?php if ($offlineImage && file_exists($offlineImageFullPath)) : ?>
 							<img src="<?php echo $offlineImage; ?>" alt="<?php echo htmlspecialchars($app->get('sitename')); ?>" />
@@ -74,19 +74,19 @@ if (version_compare(JVERSION, '4.2.0', '<')) {
 							</p>
 						<?php endif; ?>
 						<form action="<?php echo Route::_('index.php', true); ?>" method="post" id="form-login">
-							<div class="form-group" id="form-login-username">
+							<div class="mb-3" id="form-login-username">
 								<input name="username" id="username" type="text" class="form-control" placeholder="<?php echo Text::_('JGLOBAL_USERNAME'); ?>" size="18" />
 							</div>
 
-							<div class="form-group" id="form-login-password">
+							<div class="mb-3" id="form-login-password">
 								<input type="password" name="password" class="form-control" size="18" placeholder="<?php echo Text::_('JGLOBAL_PASSWORD'); ?>" id="passwd" />
 							</div>
 							<?php if (count($twofactormethods) > 1) : ?>
-								<div class="form-group" id="form-login-secretkey">
+								<div class="mb-3" id="form-login-secretkey">
 									<input type="text" name="secretkey" class="form-control" size="18" placeholder="<?php echo Text::_('JGLOBAL_SECRETKEY'); ?>" id="secretkey" />
 								</div>
 							<?php endif; ?>
-							<div class="form-group" id="submit-buton">
+							<div class="mb-3 mt-3" id="submit-buton">
 								<input type="submit" name="Submit" class="btn btn-success login" value="<?php echo Text::_('JLOGIN'); ?>" />
 							</div>
 

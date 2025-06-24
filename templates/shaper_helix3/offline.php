@@ -55,7 +55,10 @@ if (version_compare(JVERSION, '4.2.0', '<')) {
 					<div id="frame" class="outline">
 						<?php
 						$offlineImage = $app->get('offline_image');
-						$offlineImagePath = explode('#', $offlineImage)[0];
+						$offlineImagePath = '';
+						if (is_string($offlineImage) && $offlineImage !== '') {
+							$offlineImagePath = explode('#', $offlineImage)[0];
+						}
 						$offlineImageFullPath = JPATH_ROOT . '/' . ltrim($offlineImagePath, '/');
 						?>
 						<?php if ($offlineImage && file_exists($offlineImageFullPath)) : ?>

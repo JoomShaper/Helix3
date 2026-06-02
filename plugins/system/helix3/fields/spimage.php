@@ -10,10 +10,17 @@
 defined ('_JEXEC') or die ('resticted aceess');
 
 use Joomla\CMS\Factory;
-use Joomla\CMS\Filesystem\File;
 use Joomla\CMS\Form\FormField;
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Uri\Uri;
+
+if (version_compare(JVERSION, '5.0', '>=')) {
+    if (!class_exists('Joomla\\CMS\\Filesystem\\File') && class_exists('Joomla\\Filesystem\\File')) {
+        class_alias('Joomla\\Filesystem\\File', 'Joomla\\CMS\\Filesystem\\File');
+    }
+}
+
+use Joomla\CMS\Filesystem\File;
 
 class JFormFieldSpimage extends FormField
 {

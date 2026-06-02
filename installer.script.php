@@ -7,8 +7,15 @@
 */
 
 use Joomla\CMS\Factory;
-use Joomla\CMS\Filesystem\Folder;
 use Joomla\CMS\Installer\Installer;
+
+if (version_compare(JVERSION, '5.0', '>=')) {
+    if (!class_exists('Joomla\\CMS\\Filesystem\\Folder') && class_exists('Joomla\\Filesystem\\Folder')) {
+        class_alias('Joomla\\Filesystem\\Folder', 'Joomla\\CMS\\Filesystem\\Folder');
+    }
+}
+
+use Joomla\CMS\Filesystem\Folder;
 
 //no direct accees
 defined ('_JEXEC') or die ('resticted aceess');

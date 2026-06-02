@@ -9,9 +9,15 @@
 defined('_JEXEC') or die;
 
 use Joomla\CMS\Factory;
-use Joomla\CMS\Filesystem\File;
 use Joomla\CMS\Router\Route;
 use Joomla\CMS\Uri\Uri;
+if (version_compare(JVERSION, '5.0', '>=')) {
+    if (!class_exists('Joomla\\CMS\\Filesystem\\File') && class_exists('Joomla\\Filesystem\\File')) {
+        class_alias('Joomla\\Filesystem\\File', 'Joomla\\CMS\\Filesystem\\File');
+    }
+}
+
+use Joomla\CMS\Filesystem\File;
 
 $tplParams 		= Factory::getApplication()->getTemplate(true)->params;
 $params  		= $displayData->params;

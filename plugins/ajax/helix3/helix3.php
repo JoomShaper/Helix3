@@ -14,14 +14,25 @@ use Joomla\CMS\Http\Http;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\Menu\SiteMenu;
 use Joomla\Registry\Registry;
-use Joomla\CMS\Filesystem\File;
 use Joomla\CMS\Session\Session;
 use Joomla\CMS\Plugin\CMSPlugin;
-use Joomla\CMS\Filesystem\Folder;
 use Joomla\CMS\Component\ComponentHelper;
 use Joomla\CMS\Helper\MediaHelper;
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Uri\Uri;
+
+if (version_compare(JVERSION, '5.0', '>=')) {
+    if (!class_exists('Joomla\\CMS\\Filesystem\\File') && class_exists('Joomla\\Filesystem\\File')) {
+        class_alias('Joomla\\Filesystem\\File', 'Joomla\\CMS\\Filesystem\\File');
+    }
+
+    if (!class_exists('Joomla\\CMS\\Filesystem\\Folder') && class_exists('Joomla\\Filesystem\\Folder')) {
+        class_alias('Joomla\\Filesystem\\Folder', 'Joomla\\CMS\\Filesystem\\Folder');
+    }
+}
+
+use Joomla\CMS\Filesystem\File;
+use Joomla\CMS\Filesystem\Folder;
 
 require_once __DIR__ . '/classes/image.php';
 

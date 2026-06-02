@@ -13,9 +13,16 @@ use Joomla\CMS\Factory;
 use Joomla\CMS\Uri\Uri;
 use Joomla\CMS\Form\Form;
 use Joomla\Registry\Registry;
-use Joomla\CMS\Filesystem\File;
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Plugin\CMSPlugin;
+
+if (version_compare(JVERSION, '5.0', '>=')) {
+    if (!class_exists('Joomla\\CMS\\Filesystem\\File') && class_exists('Joomla\\Filesystem\\File')) {
+        class_alias('Joomla\\Filesystem\\File', 'Joomla\\CMS\\Filesystem\\File');
+    }
+}
+
+use Joomla\CMS\Filesystem\File;
 
 if (!class_exists('Helix3'))
 {

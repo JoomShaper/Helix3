@@ -10,12 +10,23 @@
 defined('_JEXEC') or die ('restricted access');
 
 use Joomla\CMS\Factory;
-use Joomla\CMS\Filesystem\File;
-use Joomla\CMS\Filesystem\Folder;
 use Joomla\CMS\Filter\OutputFilter;
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Layout\FileLayout;
 use Joomla\CMS\Uri\Uri;
+
+if (version_compare(JVERSION, '5.0', '>=')) {
+    if (!class_exists('Joomla\\CMS\\Filesystem\\File') && class_exists('Joomla\\Filesystem\\File')) {
+        class_alias('Joomla\\Filesystem\\File', 'Joomla\\CMS\\Filesystem\\File');
+    }
+
+    if (!class_exists('Joomla\\CMS\\Filesystem\\Folder') && class_exists('Joomla\\Filesystem\\Folder')) {
+        class_alias('Joomla\\Filesystem\\Folder', 'Joomla\\CMS\\Filesystem\\Folder');
+    }
+}
+
+use Joomla\CMS\Filesystem\File;
+use Joomla\CMS\Filesystem\Folder;
 
 class Helix3
 {

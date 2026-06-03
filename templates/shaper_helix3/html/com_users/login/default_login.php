@@ -59,7 +59,7 @@ HTMLHelper::_('behavior.keepalive');
 					<?php endif; ?>
 				<?php endforeach; ?>
 
-				<?php if ($this->tfa): ?>
+				<?php if (!empty($this->tfa)): ?>
 					<div class="mb-3">
 						<?php echo $this->form->getField('secretkey')->input; ?>
 					</div>

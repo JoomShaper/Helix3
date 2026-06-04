@@ -1,19 +1,19 @@
 <?php
-/**
+    /**
  * @package Helix3 Framework
  * @author JoomShaper https://www.joomshaper.com
- * @copyright (c) 2010 - 2021 JoomShaper
+ * @copyright (c) 2010 - 2026 JoomShaper
  * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or later
-*/
+ */
 
-defined('_JEXEC') or die;
+    defined('_JEXEC') or die;
 
-use Joomla\CMS\Language\Text;
-use Joomla\CMS\HTML\HTMLHelper;
+    use Joomla\CMS\HTML\HTMLHelper;
+    use Joomla\CMS\Language\Text;
 
 ?>
 <div class="latestnews">
-<?php foreach ($list as $item) :  ?>
+<?php foreach ($list as $item): ?>
 	<div itemscope itemtype="http://schema.org/Article">
 		<a href="<?php echo $item->link; ?>" itemprop="url">
 			<span itemprop="name">

@@ -1,7 +1,7 @@
 /**
  * @package Helix Framework
  * @author JoomShaper https://www.joomshaper.com
- * @copyright (c) 2010 - 2021 JoomShaper
+ * @copyright (c) 2010 - 2026 JoomShaper
  * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or later
 */
 .form-control {
@@ -17,15 +17,25 @@
   border-radius: 4px;
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-  -webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-  -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-  transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+  -webkit-transition:
+    border-color ease-in-out 0.15s,
+    box-shadow ease-in-out 0.15s;
+  -o-transition:
+    border-color ease-in-out 0.15s,
+    box-shadow ease-in-out 0.15s;
+  transition:
+    border-color ease-in-out 0.15s,
+    box-shadow ease-in-out 0.15s;
 }
 .form-control:focus {
   border-color: #66afe9;
   outline: 0;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, 0.6);
-  box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, 0.6);
+  -webkit-box-shadow:
+    inset 0 1px 1px rgba(0, 0, 0, 0.075),
+    0 0 8px rgba(102, 175, 233, 0.6);
+  box-shadow:
+    inset 0 1px 1px rgba(0, 0, 0, 0.075),
+    0 0 8px rgba(102, 175, 233, 0.6);
 }
 .form-control::-moz-placeholder {
   color: #999;
@@ -69,8 +79,12 @@ body.rtl .close-offcanvas {
   left: 10px;
 }
 body.rtl .offcanvas-menu {
-  -webkit-transition: opacity 400ms cubic-bezier(0.7, 0, 0.3, 1), left 400ms cubic-bezier(0.7, 0, 0.3, 1);
-  transition: opacity 400ms cubic-bezier(0.7, 0, 0.3, 1), left 400ms cubic-bezier(0.7, 0, 0.3, 1);
+  -webkit-transition:
+    opacity 400ms cubic-bezier(0.7, 0, 0.3, 1),
+    left 400ms cubic-bezier(0.7, 0, 0.3, 1);
+  transition:
+    opacity 400ms cubic-bezier(0.7, 0, 0.3, 1),
+    left 400ms cubic-bezier(0.7, 0, 0.3, 1);
 }
 body.rtl .body-innerwrapper:after {
   left: 0;
@@ -93,7 +107,12 @@ body.rtl .sp-megamenu-parent > li.sp-has-child > a:before {
   font-weight: 700;
   margin-right: 5px;
 }
-body.rtl .sp-megamenu-parent .sp-dropdown .sp-dropdown-items .sp-has-child > a:after {
+body.rtl
+  .sp-megamenu-parent
+  .sp-dropdown
+  .sp-dropdown-items
+  .sp-has-child
+  > a:after {
   float: left;
   content: " \f104";
 }

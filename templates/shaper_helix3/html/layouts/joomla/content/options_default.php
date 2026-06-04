@@ -1,51 +1,48 @@
 <?php
-/**
+    /**
  * @package Helix3 Framework
  * @author JoomShaper https://www.joomshaper.com
- * @copyright (c) 2010 - 2021 JoomShaper
+ * @copyright (c) 2010 - 2026 JoomShaper
  * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or later
-*/
+ */
 
-defined('_JEXEC') or die;
+    defined('_JEXEC') or die;
 
-use Joomla\CMS\HTML\HTMLHelper;
+    use Joomla\CMS\HTML\HTMLHelper;
 
-HTMLHelper::_('behavior.framework');
+    HTMLHelper::_('behavior.framework');
 
 ?>
-<fieldset class="<?php echo !empty($displayData->formclass) ? $displayData->formclass : 'form-horizontal'; ?>">
+<fieldset class="<?php echo ! empty($displayData->formclass) ? $displayData->formclass : 'form-horizontal'; ?>">
 	<legend><?php echo $displayData->name ?></legend>
-	<?php if (!empty($displayData->description)): ?>
+	<?php if (! empty($displayData->description)): ?>
 		<p><?php echo $displayData->description; ?></p>
 	<?php endif; ?>
 	<?php
-	$fieldsnames = explode(',', $displayData->fieldsname);
-	foreach($fieldsnames as $fieldname)
-	{
-		foreach ($displayData->form->getFieldset($fieldname) as $field)
-		{
-			$classnames = 'control-group';
-			$rel = '';
-			$showon = $displayData->form->getFieldAttribute($field->fieldname, 'showon');
-			if (!empty($showon))
-			{
-				HTMLHelper::_('jquery.framework');
-				HTMLHelper::_('script', 'jui/cms.js', false, true);
+        $fieldsnames = explode(',', $displayData->fieldsname);
+        foreach ($fieldsnames as $fieldname) {
+            foreach ($displayData->form->getFieldset($fieldname) as $field) {
+        $classnames = 'control-group';
+        $rel        = '';
+        $showon     = $displayData->form->getFieldAttribute($field->fieldname, 'showon');
+        if (! empty($showon)) {
+            HTMLHelper::_('jquery.framework');
+            HTMLHelper::_('script', 'jui/cms.js', false, true);
 
-				$id = $displayData->form->getFormControl();
-				$showon = explode(':', $showon, 2);
-				$classnames .= ' showon_' . implode(' showon_', explode(',', $showon[1]));
-				$rel = ' rel="showon_' . $id . '['. $showon[0] . ']"';
-			}
-	?>
+            $id          = $displayData->form->getFormControl();
+            $showon      = explode(':', $showon, 2);
+            $classnames .= ' showon_' . implode(' showon_', explode(',', $showon[1]));
+            $rel         = ' rel="showon_' . $id . '[' . $showon[0] . ']"';
+        }
+        ?>
 		<div class="<?php echo $classnames; ?>"<?php echo $rel; ?>>
-			<?php if (!isset($displayData->showlabel) || $displayData->showlabel): ?>
+			<?php if (! isset($displayData->showlabel) || $displayData->showlabel): ?>
 				<div class="control-label"><?php echo $field->label; ?></div>
 			<?php endif; ?>
 			<div class="controls"><?php echo $field->input; ?></div>
 		</div>
 	<?php
-		}
-	}
-?>
+        }
+        }
+    ?>
 </fieldset>

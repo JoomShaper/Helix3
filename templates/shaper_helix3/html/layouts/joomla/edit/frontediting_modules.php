@@ -2,11 +2,11 @@
 /**
  * @package Helix3 Framework
  * @author JoomShaper https://www.joomshaper.com
- * @copyright (c) 2010 - 2021 JoomShaper
+ * @copyright (c) 2010 - 2026 JoomShaper
  * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or later
-*/
+ */
 
-defined ('JPATH_BASE') or die();
+defined('JPATH_BASE') or die();
 
 use Joomla\CMS\Component\ComponentHelper;
 use Joomla\CMS\Factory;
@@ -24,50 +24,46 @@ $redirectUri  = '&return=' . urlencode(base64_encode(Uri::getInstance()->toStrin
 $target       = '_blank';
 $itemid       = Factory::getApplication()->input->get('Itemid', '0', 'int');
 
-if (preg_match('/<(?:div|span|nav|ul|ol|h\d) [^>]*class="[^"]* jmoddiv"/', $moduleHtml))
-{
-	// Module has already module edit button:
-	return;
+if (preg_match('/<(?:div|span|nav|ul|ol|h\d) [^>]*class="[^"]* jmoddiv"/', $moduleHtml)) {
+    // Module has already module edit button:
+    return;
 }
 
 // Add css class jmoddiv and data attributes for module-editing URL and for the tooltip:
 $editUrl = Uri::base() . 'administrator/index.php?option=com_modules&task=module.edit&id=' . (int) $mod->id;
 
-if ($parameters->get('redirect_edit', 'site') === 'site')
-{
-	$editUrl = JVERSION < 4
-		? Uri::base() . 'index.php?option=com_config&controller=config.display.modules&id=' . (int) $mod->id . $redirectUri
-		: Uri::base() . 'index.php?option=com_config&view=modules&id=' . (int) $mod->id . '&Itemid=' . $itemid . $redirectUri;
-	$target  = '_self';
+if ($parameters->get('redirect_edit', 'site') === 'site') {
+    $editUrl = JVERSION < 4
+        ? Uri::base() . 'index.php?option=com_config&controller=config.display.modules&id=' . (int) $mod->id . $redirectUri
+        : Uri::base() . 'index.php?option=com_config&view=modules&id=' . (int) $mod->id . '&Itemid=' . $itemid . $redirectUri;
+    $target = '_self';
 }
 
 // Add class, editing URL and tooltip, and if module of type menu, also the tooltip for editing the menu item:
-$count = 0;
+$count      = 0;
 $moduleHtml = preg_replace(
-	// Replace first tag of module with a class
-	'/^(\s*<(?:div|span|nav|ul|ol|h\d|section|aside|nav|address|article) [^>]*class="[^"]*)"/',
-	// By itself, adding class jmoddiv and data attributes for the URL and tooltip:
-	'\\1 jmoddiv" data-jmodediturl="' . $editUrl . '" data-target="' . $target . '" data-jmodtip="'
-	.	HTMLHelper::_('tooltipText',
-			Text::_('JLIB_HTML_EDIT_MODULE'),
-			htmlspecialchars($mod->title, ENT_COMPAT, 'UTF-8') . '<br />' . sprintf(Text::_('JLIB_HTML_EDIT_MODULE_IN_POSITION'), htmlspecialchars($position, ENT_COMPAT, 'UTF-8')),
-			0
-		)
-	. '"'
-	// And if menu editing is enabled and allowed and it's a menu module, add data attributes for menu editing:
-	.	($menusEditing && $mod->module === 'mod_menu' ?
-			'" data-jmenuedittip="' . HTMLHelper::_('tooltipText', 'JLIB_HTML_EDIT_MENU_ITEM', 'JLIB_HTML_EDIT_MENU_ITEM_ID') . '"'
-			:
-			''
-		),
-	$moduleHtml,
-	1,
-	$count
+    // Replace first tag of module with a class
+    '/^(\s*<(?:div|span|nav|ul|ol|h\d|section|aside|nav|address|article) [^>]*class="[^"]*)"/',
+    // By itself, adding class jmoddiv and data attributes for the URL and tooltip:
+    '\\1 jmoddiv" data-jmodediturl="' . $editUrl . '" data-target="' . $target . '" data-jmodtip="'
+    . HTMLHelper::_('tooltipText',
+        Text::_('JLIB_HTML_EDIT_MODULE'),
+        htmlspecialchars($mod->title, ENT_COMPAT, 'UTF-8') . '<br />' . sprintf(Text::_('JLIB_HTML_EDIT_MODULE_IN_POSITION'), htmlspecialchars($position, ENT_COMPAT, 'UTF-8')),
+        0
+    )
+    . '"'
+    // And if menu editing is enabled and allowed and it's a menu module, add data attributes for menu editing:
+    . ($menusEditing && $mod->module === 'mod_menu' ?
+        '" data-jmenuedittip="' . HTMLHelper::_('tooltipText', 'JLIB_HTML_EDIT_MENU_ITEM', 'JLIB_HTML_EDIT_MENU_ITEM_ID') . '"'
+            :
+        ''
+    ),
+    $moduleHtml,
+    1,
+    $count
 );
 
-
-if ($count)
-{
-	helix3::addLess('frontend-edit', 'frontend-edit');
+if ($count) {
+    helix3::addLess('frontend-edit', 'frontend-edit');
     helix3::addJS('frontend-edit.js');
 }

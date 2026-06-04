@@ -1,25 +1,25 @@
 <?php
-/**
+    /**
  * @package Helix3 Framework
  * @author JoomShaper https://www.joomshaper.com
- * @copyright (c) 2010 - 2021 JoomShaper
+ * @copyright (c) 2010 - 2026 JoomShaper
  * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or later
-*/
+ */
 
-defined('JPATH_BASE') or die;
+    defined('JPATH_BASE') or die;
 
-$list = $displayData['list'];
+    $list = $displayData['list'];
 
-$startDisabled = $list['start']['active'] ? '' : ' disabled'; 
-$prevDisabled  = $list['previous']['active'] ? '' : ' disabled'; 
-$nextDisabled  = $list['next']['active'] ? '' : ' disabled'; 
-$endDisabled   = $list['end']['active'] ? '' : ' disabled'; 
+    $startDisabled = $list['start']['active'] ? '' : ' disabled';
+    $prevDisabled  = $list['previous']['active'] ? '' : ' disabled';
+    $nextDisabled  = $list['next']['active'] ? '' : ' disabled';
+    $endDisabled   = $list['end']['active'] ? '' : ' disabled';
 
 ?>
 <ul class="pagination ms-0 mb-4">
 	<li class="pagination-start<?php echo $startDisabled; ?> page-item"><?php echo $list['start']['data']; ?></li>
 	<li class="pagination-prev<?php echo $prevDisabled; ?> page-item"><?php echo $list['previous']['data']; ?></li>
-	<?php foreach ($list['pages'] as $page) : ?>
+	<?php foreach ($list['pages'] as $page): ?>
 		<?php $disabled = $page['active'] ? '' : ' disabled'; ?>
 		<?php echo '<li class="page-item' . $disabled . '">' . $page['data'] . '</li>'; ?>
 	<?php endforeach; ?>

@@ -1,78 +1,67 @@
 <?php
-/**
-* @package Helix3 Framework
-* @author JoomShaper https://www.joomshaper.com
-* @copyright (c) 2010 - 2021 JoomShaper
-* @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or later
-*/
+    /**
+ * @package Helix3 Framework
+ * @author JoomShaper https://www.joomshaper.com
+ * @copyright (c) 2010 - 2026 JoomShaper
+ * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or later
+ */
 
-defined('_JEXEC') or die;
+    defined('_JEXEC') or die;
 
-use Joomla\CMS\Factory;
-use Joomla\CMS\Uri\Uri;
-use Joomla\CMS\Image\Image;
-use Joomla\CMS\Language\Text;
-use Joomla\CMS\HTML\HTMLHelper;
-use Joomla\CMS\Router\Route;
+    use Joomla\CMS\Factory;
+    use Joomla\CMS\HTML\HTMLHelper;
+    use Joomla\CMS\Image\Image;
+    use Joomla\CMS\Language\Text;
+    use Joomla\CMS\Router\Route;
+    use Joomla\CMS\Uri\Uri;
 
-$doc = Factory::getDocument();
-$app = Factory::getApplication();
+    $doc = Factory::getDocument();
+    $app = Factory::getApplication();
 
-//Load Helix
-$helix3_path = JPATH_PLUGINS.'/system/helix3/core/helix3.php';
-if (file_exists($helix3_path))
-{
-    require_once($helix3_path);
+    //Load Helix
+    $helix3_path = JPATH_PLUGINS . '/system/helix3/core/helix3.php';
+    if (file_exists($helix3_path)) {
+    require_once $helix3_path;
     $helix3 = Helix3::getInstance();
-}
-else
-{
+    } else {
     die('Please install and activate helix plugin');
-}
+    }
 
-if (!$this->params->get('comingsoon_mode'))
-{
-	$redirectUrl = Route::_(Uri::base());
-	$app->redirect($re);
-}
+    if (! $this->params->get('comingsoon_mode')) {
+    $redirectUrl = Route::_(Uri::base());
+    $app->redirect($re);
+    }
 
-//custom css file
-$custom_css_path = JPATH_ROOT . '/templates/' . $this->template . '/css/custom.css';
+    //custom css file
+    $custom_css_path = JPATH_ROOT . '/templates/' . $this->template . '/css/custom.css';
 
-//Comingsoon Logo
-if ($logo_image = $this->params->get('comingsoon_logo'))
-{
-	$logo = Uri::root() . '/' .  $logo_image;
-	$path = JPATH_ROOT . '/' .  $logo_image;
-}
-else
-{
-    $logo 		= $this->baseurl . '/templates/' . $this->template . '/images/presets/preset1/logo.png';
-    $path 		= JPATH_ROOT . '/templates/' . $this->template . '/images/presets/preset1/logo.png';
-}
+    //Comingsoon Logo
+    if ($logo_image = $this->params->get('comingsoon_logo')) {
+    $logo = Uri::root() . '/' . $logo_image;
+    $path = JPATH_ROOT . '/' . $logo_image;
+    } else {
+    $logo = $this->baseurl . '/templates/' . $this->template . '/images/presets/preset1/logo.png';
+    $path = JPATH_ROOT . '/templates/' . $this->template . '/images/presets/preset1/logo.png';
+    }
 
-if (file_exists($path))
-{
-	$image 		 = new Image( $path );
-	$logo_width  = $image->getWidth();
-	$logo_height = $image->getHeight();
-}
-else
-{
-	$logo_width 	= '';
-	$logo_height = '';
-}
+    if (file_exists($path)) {
+    $image       = new Image($path);
+    $logo_width  = $image->getWidth();
+    $logo_height = $image->getHeight();
+    } else {
+    $logo_width  = '';
+    $logo_height = '';
+    }
 
-$comingsoon_title = $this->params->get('comingsoon_title');
-if ($comingsoon_title)
-{
-	$doc->setTitle( $comingsoon_title . ' | ' . $app->get('sitename') );
-}
+    $comingsoon_title = $this->params->get('comingsoon_title');
+    if ($comingsoon_title) {
+    $doc->setTitle($comingsoon_title . ' | ' . $app->get('sitename'));
+    }
 
-$comingsoon_date = explode('-', $this->params->get("comingsoon_date") ?? '');
+    $comingsoon_date = explode('-', $this->params->get("comingsoon_date") ?? '');
 
-//Load jQuery
-HTMLHelper::_('jquery.framework');
+    //Load jQuery
+    HTMLHelper::_('jquery.framework');
 ?>
 <!DOCTYPE html>
 <html class="sp-comingsoon" xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo $this->language; ?>" lang="<?php echo $this->language; ?>" dir="<?php echo $this->direction; ?>">
@@ -80,73 +69,68 @@ HTMLHelper::_('jquery.framework');
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?php
-		if($favicon = $helix3->getParam('favicon'))
-		{
-			$doc->addFavicon( Uri::base(true) . '/' .  $favicon);
-		}
-		else
-		{
-			$doc->addFavicon( $helix3->getTemplateUri() . '/images/favicon.ico' );
-		}
+        if ($favicon = $helix3->getParam('favicon')) {
+            $doc->addFavicon(Uri::base(true) . '/' . $favicon);
+        } else {
+            $doc->addFavicon($helix3->getTemplateUri() . '/images/favicon.ico');
+        }
     ?>
     <jdoc:include type="head" />
     <?php
-	$megabgcolor = ($helix3->PresetParam('_megabg')) ? $helix3->PresetParam('_megabg') : '#ffffff';
-	$megabgtx = ($helix3->PresetParam('_megatx')) ? $helix3->PresetParam('_megatx') : '#333333';
+        $megabgcolor = ($helix3->PresetParam('_megabg')) ? $helix3->PresetParam('_megabg') : '#ffffff';
+        $megabgtx    = ($helix3->PresetParam('_megatx')) ? $helix3->PresetParam('_megatx') : '#333333';
 
-	$preloader_bg = ($helix3->getParam('preloader_bg')) ? $helix3->getParam('preloader_bg') : '#f5f5f5';
-	$preloader_tx = ($helix3->getParam('preloader_tx')) ? $helix3->getParam('preloader_tx') : '#f5f5f5';
-    $helix3->addCSS('bootstrap.min.css, joomla-fontawesome.min.css, font-awesome-v4-shims.min.css')
-		->lessInit()->setLessVariables(array(
-			'preset' => $helix3->Preset(),
-			'bg_color' => $helix3->PresetParam('_bg'),
-			'text_color' => $helix3->PresetParam('_text'),
-			'major_color' => $helix3->PresetParam('_major'),
-			'megabg_color' => $megabgcolor,
-			'megatx_color' => $megabgtx,
-			'preloader_bg' => $preloader_bg,
-			'preloader_tx' => $preloader_tx,
-		))
-        ->addLess('master', 'template')
-        ->addLess('presets',  'presets/'.$helix3->Preset())
-    	->addJS('jquery.countdown.min.js');
+        $preloader_bg = ($helix3->getParam('preloader_bg')) ? $helix3->getParam('preloader_bg') : '#f5f5f5';
+        $preloader_tx = ($helix3->getParam('preloader_tx')) ? $helix3->getParam('preloader_tx') : '#f5f5f5';
+        $helix3->addCSS('bootstrap.min.css, joomla-fontawesome.min.css, font-awesome-v4-shims.min.css')
+            ->lessInit()->setLessVariables([
+            'preset'       => $helix3->Preset(),
+            'bg_color'     => $helix3->PresetParam('_bg'),
+            'text_color'   => $helix3->PresetParam('_text'),
+            'major_color'  => $helix3->PresetParam('_major'),
+            'megabg_color' => $megabgcolor,
+            'megatx_color' => $megabgtx,
+            'preloader_bg' => $preloader_bg,
+            'preloader_tx' => $preloader_tx,
+        ])
+            ->addLess('master', 'template')
+            ->addLess('presets', 'presets/' . $helix3->Preset())
+            ->addJS('jquery.countdown.min.js');
 
-    	// has exist custom.css then load it
-    	if (file_exists($custom_css_path))
-		{
-			$helix3->addCSS('custom.css');
-		}
+        // has exist custom.css then load it
+        if (file_exists($custom_css_path)) {
+            $helix3->addCSS('custom.css');
+        }
 
-		//background image
-		$comingsoon_bg = '';
-		$hascs_bg = '';
-		if ($cs_bg = $this->params->get('comingsoon_bg'))
-		{
-			$comingsoon_bg 	= Uri::root() . $cs_bg;
-			$hascs_bg 		= 'has-background';
-		}
+        //background image
+        $comingsoon_bg = '';
+        $hascs_bg      = '';
+        if ($cs_bg = $this->params->get('comingsoon_bg')) {
+            $comingsoon_bg = Uri::root() . $cs_bg;
+            $hascs_bg      = 'has-background';
+        }
     ?>
 </head>
 <body>
-	<div class="sp-comingsoon-wrap <?php echo $hascs_bg; ?>"<?php if ($comingsoon_bg) : ?> style="background-image: url('<?php echo $comingsoon_bg; ?>');"<?php endif; ?>>	
+	<div class="sp-comingsoon-wrap <?php echo $hascs_bg; ?>"<?php if ($comingsoon_bg): ?> style="background-image: url('<?php echo $comingsoon_bg; ?>');"<?php endif; ?>>
 		<div class="container">
 			<div class="text-center">
 				<div id="sp-comingsoon">
 					<div class="comingsoon-page-logo">
-						<?php if($comingsoon_logo = $this->params->get('comingsoon_logo')) : ?>
+						<?php if ($comingsoon_logo = $this->params->get('comingsoon_logo')): ?>
 							<img class="comingsoon-logo" alt="logo" src="<?php echo $logo; ?>" />
-						<?php else : ?>
+						<?php else: ?>
 							<img class="sp-default-logo comingsoon-logo" alt="logo" src="<?php echo $logo; ?>" />
 						<?php endif; ?>
 					</div>
 
-					<?php if ($comingsoon_title) : ?>
+					<?php if ($comingsoon_title): ?>
 						<h1 class="sp-comingsoon-title">
 							<?php echo $comingsoon_title; ?>
 						</h1>
 					<?php endif; ?>
 
-					<?php if ($this->params->get('comingsoon_content')) : ?>
+					<?php if ($this->params->get('comingsoon_content')): ?>
 						<div class="sp-comingsoon-content">
 							<?php echo $this->params->get('comingsoon_content'); ?>
 						</div>
@@ -154,65 +138,65 @@ HTMLHelper::_('jquery.framework');
 
 					<div id="sp-comingsoon-countdown" class="sp-comingsoon-countdown"></div>
 
-					<?php if($this->countModules('comingsoon')) : ?>
+					<?php if ($this->countModules('comingsoon')): ?>
 					<div class="sp-position-comingsoon">
 						<jdoc:include type="modules" name="comingsoon" style="sp_xhtml" />
 					</div>
 					<?php endif; ?>
 
 					<?php
-					//Social Icons
-					$facebook 	= $this->params->get('facebook');
-					$twitter  	= $this->params->get('twitter');
-					$pinterest 	= $this->params->get('pinterest');
-					$youtube 	= $this->params->get('youtube');
-					$linkedin 	= $this->params->get('linkedin');
-					$dribbble 	= $this->params->get('dribbble');
-					$behance 	= $this->params->get('behance');
-					$skype 		= $this->params->get('skype');
-					$flickr 	= $this->params->get('flickr');
-					$vk 		= $this->params->get('vk');
+                        //Social Icons
+                        $facebook  = $this->params->get('facebook');
+                        $twitter   = $this->params->get('twitter');
+                        $pinterest = $this->params->get('pinterest');
+                        $youtube   = $this->params->get('youtube');
+                        $linkedin  = $this->params->get('linkedin');
+                        $dribbble  = $this->params->get('dribbble');
+                        $behance   = $this->params->get('behance');
+                        $skype     = $this->params->get('skype');
+                        $flickr    = $this->params->get('flickr');
+                        $vk        = $this->params->get('vk');
 
-					if ($this->params->get('show_social_icons') && ($facebook || $twitter || $pinterest || $youtube || $linkedin || $dribbble || $behance || $skype || $flickr || $vk)) :
-					?>
+                        if ($this->params->get('show_social_icons') && ($facebook || $twitter || $pinterest || $youtube || $linkedin || $dribbble || $behance || $skype || $flickr || $vk)):
+                    ?>
 						<ul class="social-icons">
-							<?php if ($facebook) : ?>
+							<?php if ($facebook): ?>
 								<li><a target="_blank" href="<?php echo $facebook; ?>"><i class="fa fa-facebook" area-hidden="true"></i></a></li>
 							<?php endif; ?>
 
-							<?php if ($twitter) : ?>
+							<?php if ($twitter): ?>
 								<li><a target="_blank" href="<?php echo $twitter; ?>"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor" style="width: 25px;position: relative;top: -1.5px;"><path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/></svg></a></li>
 							<?php endif; ?>
 
-							<?php if ($pinterest) : ?>
+							<?php if ($pinterest): ?>
 								<li><a target="_blank" href="<?php echo $pinterest; ?>"><i class="fa fa-pinterest" area-hidden="true"></i></a></li>
 							<?php endif; ?>
 
-							<?php if ($youtube) : ?>
+							<?php if ($youtube): ?>
 								<li><a target="_blank" href="<?php echo $youtube; ?>"><i class="fa fa-youtube" area-hidden="true"></i></a></li>
 							<?php endif; ?>
 
-							<?php if ($linkedin ) : ?>
+							<?php if ($linkedin): ?>
 								<li><a target="_blank" href="<?php echo $linkedin; ?>"><i class="fa fa-linkedin" area-hidden="true"></i></a></li>
 							<?php endif; ?>
 
-							<?php if ($dribbble) : ?>
+							<?php if ($dribbble): ?>
 								<li><a target="_blank" href="<?php echo $dribbble; ?>"><i class="fa fa-dribbble" area-hidden="true"></i></a></li>
 							<?php endif; ?>
 
-							<?php if ($behance) : ?>
+							<?php if ($behance): ?>
 								<li><a target="_blank" href="<?php echo $behance; ?>"><i class="fa fa-behance" area-hidden="true"></i></a></li>
 							<?php endif; ?>
 
-							<?php if ($flickr) : ?>
+							<?php if ($flickr): ?>
 								<li><a target="_blank" href="<?php echo $flickr; ?>"><i class="fa fa-flickr" area-hidden="true"></i></a></li>
 							<?php endif; ?>
 
-							<?php if ($vk) : ?>
+							<?php if ($vk): ?>
 								<li><a target="_blank" href="<?php echo $vk; ?>"><i class="fa fa-vk" area-hidden="true"></i></a></li>
 							<?php endif; ?>
 
-							<?php if ($skype) : ?>
+							<?php if ($skype): ?>
 								<li><a href="skype:<?php echo $skype; ?>'?chat"><i class="fa fa-skype" area-hidden="true"></i></a></li>
 							<?php endif; ?>
 						<ul>

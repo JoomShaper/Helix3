@@ -1,50 +1,48 @@
 <?php
 /**
-* @package Helix3 Framework
-* @author JoomShaper https://www.joomshaper.com
-* @copyright (c) 2010 - 2021 JoomShaper
-* @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
-*/
+ * @package Helix3 Framework
+ * @author JoomShaper https://www.joomshaper.com
+ * @copyright (c) 2010 - 2026 JoomShaper
+ * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
+ */
 
 use Joomla\CMS\Filter\OutputFilter;
 
 defined('_JEXEC') or die('Restricted Access');
 
 //helper & model
-$menu_class   = JPATH_ROOT . '/plugins/system/helix3/core/classes/helix3.php';
+$menu_class = JPATH_ROOT . '/plugins/system/helix3/core/classes/helix3.php';
 
-if (file_exists($menu_class))
-{
-    require_once($menu_class);
+if (file_exists($menu_class)) {
+    require_once $menu_class;
 }
 
 $data = $displayData;
 
-$output ='';
+$output = '';
 
-    $output .= '<div id="sp-' . OutputFilter::stringURLSafe($data->settings->name) . '" class="' . $data->className . '">';
+$output .= '<div id="sp-' . OutputFilter::stringURLSafe($data->settings->name) . '" class="' . $data->className . '">';
 
-        $output .= '<div class="sp-column ' . ($data->settings->custom_class) . '">';
+$output .= '<div class="sp-column ' . ($data->settings->custom_class) . '">';
 
-        $features = (Helix3::hasFeature($data->settings->name))? helix3::getInstance()->loadFeature[$data->settings->name] : array();
+$features = (Helix3::hasFeature($data->settings->name)) ? helix3::getInstance()->loadFeature[$data->settings->name] : [];
 
-            foreach ($features as $key => $feature){
-                if (isset($feature['feature']) && $feature['load_pos'] == 'before' ) {
-                    $output .= $feature['feature'];
-                }
-            }
+foreach ($features as $key => $feature) {
+    if (isset($feature['feature']) && $feature['load_pos'] == 'before') {
+        $output .= $feature['feature'];
+    }
+}
 
-            $output .= '<jdoc:include type="modules" name="' . $data->settings->name . '" style="sp_xhtml" />';
+$output .= '<jdoc:include type="modules" name="' . $data->settings->name . '" style="sp_xhtml" />';
 
-            foreach ($features as $key => $feature){
-                if (isset($feature['feature']) && $feature['load_pos'] != 'before' ) {
-                    $output .= $feature['feature'];
-                }
-            }
+foreach ($features as $key => $feature) {
+    if (isset($feature['feature']) && $feature['load_pos'] != 'before') {
+        $output .= $feature['feature'];
+    }
+}
 
-        $output .= '</div>'; //.sp-column
+$output .= '</div>'; //.sp-column
 
-    $output .= '</div>'; //.sp-
-
+$output .= '</div>'; //.sp-
 
 echo $output;

@@ -1,135 +1,125 @@
 <?php
-/**
-* @package Helix3 Framework
-* @author JoomShaper https://www.joomshaper.com
-* @copyright (c) 2010 - 2021 JoomShaper
-* @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
-*/
+    /**
+ * @package Helix3 Framework
+ * @author JoomShaper https://www.joomshaper.com
+ * @copyright (c) 2010 - 2026 JoomShaper
+ * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
+ */
 
-//no direct accees
-defined ('_JEXEC') or die ('resticted aceess');
+    //no direct accees
+    defined('_JEXEC') or die('resticted aceess');
 
-use Joomla\CMS\Factory;
-use Joomla\CMS\Language\Text;
-use Joomla\CMS\Menu\SiteMenu;
-use Joomla\CMS\Uri\Uri;
+    use Joomla\CMS\Factory;
+    use Joomla\CMS\Language\Text;
+    use Joomla\CMS\Menu\SiteMenu;
+    use Joomla\CMS\Uri\Uri;
 
-$current_menu_id = $this->form->getValue('id');
+    $current_menu_id = $this->form->getValue('id');
 
-function create_menu($current_menu_id)
-{
-  $items = menuItems();
-  $menus = new SiteMenu();
-
-  if (isset($items[$current_menu_id]))
-  {
-    $item = $items[$current_menu_id];
-    foreach ($item as $key => $item_id)
+    function create_menu($current_menu_id)
     {
-      echo '<li>';
-      echo $menus->getItem($item_id)->title;
-      echo '</li>';
+    $items = menuItems();
+    $menus = new SiteMenu();
+
+    if (isset($items[$current_menu_id])) {
+        $item = $items[$current_menu_id];
+        foreach ($item as $key => $item_id) {
+            echo '<li>';
+            echo $menus->getItem($item_id)->title;
+            echo '</li>';
+        }
     }
-  }
-}
+    }
 
-function menuItems()
-{
-  $menus = new SiteMenu();
-  $menus = $menus->getMenu();
-  $new = array();
-  foreach ($menus as $item) {
-    $new[$item->parent_id][] = $item->id;
-  }
-  return $new;
-}
+    function menuItems()
+    {
+    $menus = new SiteMenu();
+    $menus = $menus->getMenu();
+    $new   = [];
+    foreach ($menus as $item) {
+        $new[$item->parent_id][] = $item->id;
+    }
+    return $new;
+    }
 
-function getModuleNameId($id = 'all')
-{
-  $db = Factory::getDbo();
+    function getModuleNameId($id = 'all')
+    {
+    $db = Factory::getDbo();
 
-  if ($id == 'all') {
-    $query = 'SELECT id, title FROM `#__modules` WHERE ( `published` !=-2 AND `published` !=0 ) AND client_id = 0';
-  } else {
-    $query = 'SELECT id, title FROM `#__modules` WHERE ( `published` !=-2 AND `published` !=0 ) AND id = ' . $id;
-  }
+    if ($id == 'all') {
+        $query = 'SELECT id, title FROM `#__modules` WHERE ( `published` !=-2 AND `published` !=0 ) AND client_id = 0';
+    } else {
+        $query = 'SELECT id, title FROM `#__modules` WHERE ( `published` !=-2 AND `published` !=0 ) AND id = ' . $id;
+    }
 
-  $db->setQuery($query);
+    $db->setQuery($query);
 
-  return $db->loadObjectList();
-}
+    return $db->loadObjectList();
+    }
 
-$modules = getModuleNameId();
+    $modules = getModuleNameId();
 ?>
 
 <?php
-$menu_width = 600;
-$align = 'right';
-$layout = '';
+    $menu_width = 600;
+    $align      = 'right';
+    $layout     = '';
 
-if (isset($menu_data->width))
-{
-  $menu_width = $menu_data->width;
-}
+    if (isset($menu_data->width)) {
+    $menu_width = $menu_data->width;
+    }
 
-if (isset($menu_data->menuAlign))
-{
-  $align = $menu_data->menuAlign;
-}
+    if (isset($menu_data->menuAlign)) {
+    $align = $menu_data->menuAlign;
+    }
 
-if (isset($menu_data->layout))
-{
-  $layout = $menu_data->layout;
-}
+    if (isset($menu_data->layout)) {
+    $layout = $menu_data->layout;
+    }
 ?>
 
 <?php
-$items = menuItems();
-$item = array();
-if (isset($items[$current_menu_id]) && !empty($items[$current_menu_id])) {
-  $item = $items[$current_menu_id];
-}
+    $items = menuItems();
+    $item  = [];
+    if (isset($items[$current_menu_id]) && ! empty($items[$current_menu_id])) {
+    $item = $items[$current_menu_id];
+    }
 
-$menuItems = new SiteMenu();
+    $menuItems = new SiteMenu();
 
-$no_child = true;
-$count = 0;
-$x_key = 0;
-$y_key = 0;
-$check_child = 0;
-$item_array = array();
+    $no_child    = true;
+    $count       = 0;
+    $x_key       = 0;
+    $y_key       = 0;
+    $check_child = 0;
+    $item_array  = [];
 
-foreach ($item as $key => $id)
-{
-  $status = 0;
-  if (isset($items[$id]) && is_array($items[$id]))
-  {
-    $no_child = false;
-    $count = $count + 1;
-    $check_child = $check_child+1;
-    $status = 1;
-  }
+    foreach ($item as $key => $id) {
+    $status = 0;
+    if (isset($items[$id]) && is_array($items[$id])) {
+        $no_child    = false;
+        $count       = $count + 1;
+        $check_child = $check_child + 1;
+        $status      = 1;
+    }
 
-  if ($check_child === 2)
-  {
-    $y_key = 0;
-    $x_key = $x_key + 1;
-    $check_child = 1;
-  }
+    if ($check_child === 2) {
+        $y_key       = 0;
+        $x_key       = $x_key + 1;
+        $check_child = 1;
+    }
 
-  $item_array[$x_key][$y_key] = array($id,$status);
-  $y_key = $y_key + 1;
-}
+    $item_array[$x_key][$y_key] = [$id, $status];
+    $y_key                      = $y_key + 1;
+    }
 
-if ($no_child === true)
-{
-  $count = 1;
-}
+    if ($no_child === true) {
+    $count = 1;
+    }
 
-if($count > 4 && $count != 6)
-{
-  $count = 4;
-}
+    if ($count > 4 && $count != 6) {
+    $count = 4;
+    }
 ?>
 
 
@@ -139,11 +129,11 @@ if($count > 4 && $count != 6)
     <h3 class="sidebar-title"><?php echo Text::_('HELIX_MENU_DRAG_MODULE'); ?></h3>
     <div class="modules-list">
       <?php
-      $modules = getModuleNameId();
-      if($modules) {
-        foreach($modules as $module){
-          echo '<div class="draggable-module" data-mod_id="' . $module->id . '">' . $module->title . '<i class="fa fa-remove"></i><i class="fa fa-arrows"></i></div>';
-        }
+          $modules = getModuleNameId();
+          if ($modules) {
+              foreach ($modules as $module) {
+                  echo '<div class="draggable-module" data-mod_id="' . $module->id . '">' . $module->title . '<i class="fa fa-remove"></i><i class="fa fa-arrows"></i></div>';
+              }
       }?>
     </div>
   </div>
@@ -157,10 +147,10 @@ if($count > 4 && $count != 6)
         </li>
         <li id="sizeShape"><a href="#" class="add-layout btn btn-primary"><i class="fa fa-plus"></i> <?php echo Text::_('HELIX_MENU_MANAGE_LAYOUT'); ?></a></li>
         <li class="btn-group d-inline-flex">
-          <a class="alignment btn btn-default <?php echo ($align == 'left') ? 'active' : ''; ?>" data-al_flag="left" href="#"><?php echo Text::_('HELIX_GLOBAL_LEFT'); ?></a>
-          <a class="alignment btn btn-default <?php echo ($align == 'center') ? 'active' : ''; ?>" data-al_flag="center" href="#"><?php echo Text::_('HELIX_GLOBAL_CENTER'); ?></a>
-          <a class="alignment btn btn-default <?php echo ($align == 'right') ? 'active' : ''; ?>" data-al_flag="right" href="#"><?php echo Text::_('HELIX_GLOBAL_RIGHT'); ?></a>
-          <a class="alignment btn btn-default <?php echo ($align == 'full') ? 'active' : ''; ?>" data-al_flag="full" href="#"><?php echo Text::_('HELIX_GLOBAL_FULL'); ?></a>
+          <a class="alignment btn btn-default <?php echo($align == 'left') ? 'active' : ''; ?>" data-al_flag="left" href="#"><?php echo Text::_('HELIX_GLOBAL_LEFT'); ?></a>
+          <a class="alignment btn btn-default <?php echo($align == 'center') ? 'active' : ''; ?>" data-al_flag="center" href="#"><?php echo Text::_('HELIX_GLOBAL_CENTER'); ?></a>
+          <a class="alignment btn btn-default <?php echo($align == 'right') ? 'active' : ''; ?>" data-al_flag="right" href="#"><?php echo Text::_('HELIX_GLOBAL_RIGHT'); ?></a>
+          <a class="alignment btn btn-default <?php echo($align == 'full') ? 'active' : ''; ?>" data-al_flag="full" href="#"><?php echo Text::_('HELIX_GLOBAL_FULL'); ?></a>
         </li>
         <li class="btn-group">
           <a class="layout-reset btn btn-success"href="#" data-current_item="<?php echo $current_menu_id; ?>"><i class="fa fa-refresh"></i> <?php echo Text::_('HELIX_GLOBAL_RESET'); ?></a>
@@ -172,132 +162,122 @@ if($count > 4 && $count != 6)
 
       <?php
 
-      if ($layout) {
+          if ($layout) {
 
-        foreach ($layout as $key => $row) {
+              foreach ($layout as $key => $row) {
 
-          ?>
+              ?>
 
           <div class="menu-section">
             <span class="row-move"><i class="fa fa-bars"></i></span>
             <div class="spmenu sp-row">
 
-              <?php foreach ($row->attr as $key => $column){ ?>
+              <?php foreach ($row->attr as $key => $column) {?>
 
                 <div class="column sp-col-sm-<?php echo $column->colGrid; ?>" data-column="<?php echo $column->colGrid; ?>">
                   <div class="column-items-wrap">
 
                     <?php
-                    $menus_id = $column->menuParentId;
-                    $modId = $column->moduleId;
+                        $menus_id = $column->menuParentId;
+                                    $modId    = $column->moduleId;
 
-                    if ( $menus_id )
-                    {
-                      $menu_id_array = explode(',',$menus_id);
-                      foreach ($menu_id_array as $menuId) {
-                        ?>
-                        <?php if(in_array( $menuId , $item)) { ?>
+                                    if ($menus_id) {
+                                        $menu_id_array = explode(',', $menus_id);
+                                        foreach ($menu_id_array as $menuId) {
+                                        ?>
+                        <?php if (in_array($menuId, $item)) {?>
 
                           <h4 data-current_child="<?php echo $menuId; ?>" ><?php echo $menuItems->getItem($menuId)->title; ?></h4>
-                        <?php }else if($current_menu_id != $menuId){ ?>
+                        <?php } else if ($current_menu_id != $menuId) {?>
                           <h4 style="display:none" data-current_child="<?php echo $menuId; ?>" ><?php echo $menuItems->getItem($current_menu_id)->title; ?></h4>
-                        <?php }else if (isset($menuId)) { ?>
+                        <?php } else if (isset($menuId)) {?>
                           <h4 style="display:none" data-current_child="<?php echo $menuId; ?>" ><?php echo $menuItems->getItem($menuId)->title; ?></h4>
-                        <?php } ?>
+                        <?php }?>
                         <?php if (isset($items[$menuId])) {?>
 
                           <ul class="child-menu-items">
                             <?php echo create_menu($menuId); ?>
                           </ul>
-                        <?php } ?>
+                        <?php }?>
                         <?php
-                      }
-                    }
+                            }
+                                        }
 
-                    ?>
+                                    ?>
 
-                    <div class="modules-container"><?php if ($modId){
-                      $modArray = explode(',',$modId);
-                      foreach ($modArray as $mod_id)
-                      {
-                        $modules = getModuleNameId($mod_id);
+                    <div class="modules-container"><?php if ($modId) {
+                                                                       $modArray = explode(',', $modId);
+                                                                       foreach ($modArray as $mod_id) {
+                                                                           $modules = getModuleNameId($mod_id);
 
-                        if ($modules) {
-                          $module = $modules[0];
-                          ?>
+                                                                           if ($modules) {
+                                                                               $module = $modules[0];
+                                                                           ?>
                           <div class='draggable-module' data-mod_id="<?php echo $module->id; ?>"><?php echo $module->title; ?><i class="fa fa-remove"></i><i class="fa fa-arrows"></i></div>
                           <?php
-                        }
-                      }
-                    }?></div>
+                              }
+                                          }
+                                      }?></div>
 
                   </div>
                 </div>
 
-              <?php } ?>
+              <?php }?>
 
             </div>
           </div>
 
           <?php
-        }
-      }
-      else if($no_child === true)
-      {
-        echo '<div class="menu-section">';
-        echo '<span class="row-move"><i class="fa fa-bars"></i></span>';
-        echo '<div class="spmenu sp-row">';
-        echo '<div class="column sp-col-md-12" data-column="12">';
-        echo '<div class="column-items-wrap">';
-        echo '<h4 style="display:none" data-current_child="'.$current_menu_id.'" >'.$menuItems->getItem($current_menu_id)->title.'</h4>';
-        echo '<ul class="child-menu-items">';
+              }
+              } else if ($no_child === true) {
+                  echo '<div class="menu-section">';
+                  echo '<span class="row-move"><i class="fa fa-bars"></i></span>';
+                  echo '<div class="spmenu sp-row">';
+                  echo '<div class="column sp-col-md-12" data-column="12">';
+                  echo '<div class="column-items-wrap">';
+                  echo '<h4 style="display:none" data-current_child="' . $current_menu_id . '" >' . $menuItems->getItem($current_menu_id)->title . '</h4>';
+                  echo '<ul class="child-menu-items">';
 
-        foreach ($item as $key => $id)
-        {
-          echo '<li>'.$menuItems->getItem($id)->title.'</li>';
-        }
-        echo '</ul>';
-        echo '<div class="modules-container">';
-        echo '</div>';
-        echo '</div>';
-        echo '</div>';
-        echo '</div>';
-        echo '</div>';
-      }
-      else
-      {
-        echo '<div class="menu-section">';
-        echo '<span class="row-move"><i class="fa fa-bars"></i></span>';
-        echo '<div class="spmenu sp-row">';
+                  foreach ($item as $key => $id) {
+                      echo '<li>' . $menuItems->getItem($id)->title . '</li>';
+                  }
+                  echo '</ul>';
+                  echo '<div class="modules-container">';
+                  echo '</div>';
+                  echo '</div>';
+                  echo '</div>';
+                  echo '</div>';
+                  echo '</div>';
+              } else {
+                  echo '<div class="menu-section">';
+                  echo '<span class="row-move"><i class="fa fa-bars"></i></span>';
+                  echo '<div class="spmenu sp-row">';
 
-        $columnNumber = 12 / $count;
-        foreach ($item_array as $key => $item_array)
-        {
-          echo '<div class="column sp-col-md-'.$columnNumber.'" data-column="'.$columnNumber.'">';
-          echo '<div class="column-items-wrap">';
+                  $columnNumber = 12 / $count;
+                  foreach ($item_array as $key => $item_array) {
+                      echo '<div class="column sp-col-md-' . $columnNumber . '" data-column="' . $columnNumber . '">';
+                      echo '<div class="column-items-wrap">';
 
-          foreach ($item_array as $key => $item)
-          {
-            $id = $item[0];
-            echo '<h4 data-current_child="'.$id.'" >'.$menuItems->getItem($id)->title.'</h4>';
+                      foreach ($item_array as $key => $item) {
+                          $id = $item[0];
+                          echo '<h4 data-current_child="' . $id . '" >' . $menuItems->getItem($id)->title . '</h4>';
 
-            if ($item[1])
-            {
-              echo '<ul class="child-menu-items">';
-              echo create_menu($id);
-              echo '</ul>';
-            }
+                          if ($item[1]) {
+                              echo '<ul class="child-menu-items">';
+                              echo create_menu($id);
+                              echo '</ul>';
+                          }
 
-          }
+                      }
 
-          echo '<div class="modules-container"></div>';
-          echo '</div>';
-          echo '</div>';
-        }
+                      echo '<div class="modules-container"></div>';
+                      echo '</div>';
+                      echo '</div>';
+                  }
 
-        echo '</div>';
-        echo '</div>';
-      } ?>
+                  echo '</div>';
+                  echo '</div>';
+          }?>
 
     </div>
   </div>
@@ -307,9 +287,9 @@ if($count > 4 && $count != 6)
   <div class="sp-modal-dialog">
     <div class="sp-modal-content">
       <div class="sp-modal-header">
-		<?php if(JVERSION < 4) : ?>
+		<?php if (JVERSION < 4): ?>
         	<button type="button" class="close" data-dismiss="spmodal" aria-hidden="true">&times;</button>
-		<?php else : ?>
+		<?php else: ?>
 			<button type="button" class="btn-close" data-dismiss="spmodal" aria-hidden="true"></button>
 		<?php endif; ?>
         <h3 class="sp-modal-title" id="modal-label"><?php echo Text::_('HELIX_MENU_CHOOSE_LAYOUT'); ?></h3>

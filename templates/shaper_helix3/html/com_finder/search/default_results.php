@@ -1,40 +1,40 @@
 <?php
-/**
+    /**
  * @package Helix3 Framework
  * @author JoomShaper https://www.joomshaper.com
- * @copyright (c) 2010 - 2021 JoomShaper
+ * @copyright (c) 2010 - 2026 JoomShaper
  * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or later
-*/
+ */
 
-defined ('_JEXEC') or die();
+    defined('_JEXEC') or die();
 
-use Joomla\CMS\Factory;
-use Joomla\CMS\HTML\HTMLHelper;
-use Joomla\CMS\Language\Text;
-use Joomla\CMS\Router\Route;
-use Joomla\CMS\Uri\Uri;
+    use Joomla\CMS\Factory;
+    use Joomla\CMS\HTML\HTMLHelper;
+    use Joomla\CMS\Language\Text;
+    use Joomla\CMS\Router\Route;
+    use Joomla\CMS\Uri\Uri;
 
 ?>
 <?php // Display the suggested search if it is different from the current search. ?>
-<?php if (($this->suggested && $this->params->get('show_suggested_query', 1)) || ($this->explained && $this->params->get('show_explained_query', 1))) : ?>
+<?php if (($this->suggested && $this->params->get('show_suggested_query', 1)) || ($this->explained && $this->params->get('show_explained_query', 1))): ?>
 	<div id="search-query-explained" class="com-finder__explained">
 		<?php // Display the suggested search query. ?>
-		<?php if ($this->suggested && $this->params->get('show_suggested_query', 1)) : ?>
+		<?php if ($this->suggested && $this->params->get('show_suggested_query', 1)): ?>
 			<?php // Replace the base query string with the suggested query string. ?>
 			<?php $uri = Uri::getInstance($this->query->toUri()); ?>
 			<?php $uri->setVar('q', $this->suggested); ?>
 			<?php // Compile the suggested query link. ?>
-			<?php $linkUrl = Route::_($uri->toString(array('path', 'query'))); ?>
-			<?php $link = '<a href="' . $linkUrl . '">' . $this->escape($this->suggested) . '</a>'; ?>
+			<?php $linkUrl = Route::_($uri->toString(['path', 'query'])); ?>
+			<?php $link    = '<a href="' . $linkUrl . '">' . $this->escape($this->suggested) . '</a>'; ?>
 			<?php echo Text::sprintf('COM_FINDER_SEARCH_SIMILAR', $link); ?>
-		<?php elseif ($this->explained && $this->params->get('show_explained_query', 1)) : ?>
+		<?php elseif ($this->explained && $this->params->get('show_explained_query', 1)): ?>
 			<?php // Display the explained search query. ?>
 			<?php echo $this->explained; ?>
 		<?php endif; ?>
 	</div>
 <?php endif; ?>
 <?php // Display the 'no results' message and exit the template. ?>
-<?php if (($this->total === 0) || ($this->total === null)) : ?>
+<?php if (($this->total === 0) || ($this->total === null)): ?>
 	<div id="search-result-empty">
 		<h2><?php echo Text::_('COM_FINDER_SEARCH_NO_RESULTS_HEADING'); ?></h2>
 		<?php $multilang = Factory::getApplication()->getLanguageFilter() ? '_MULTILANG' : ''; ?>
@@ -44,32 +44,29 @@ use Joomla\CMS\Uri\Uri;
 	<?php return; ?>
 <?php endif; ?>
 <?php // Activate the highlighter if enabled. ?>
-<?php if (!empty($this->query->highlight) && $this->params->get('highlight_terms', 1)) : ?>
+<?php if (! empty($this->query->highlight) && $this->params->get('highlight_terms', 1)): ?>
 	<?php
-		if (JVERSION < 4) 
-		{
-			HTMLHelper::_('behavior.highlighter', $this->query->highlight);
-		}
-		else 
-		{
-			$this->document->getWebAssetManager()->useScript('highlight');
-			$this->document->addScriptOptions(
-				'highlight',
-				[[
-					'class'      => 'js-highlight',
-					'highLight'  => $this->query->highlight,
-				]]
-			);
-		}
+        if (JVERSION < 4) {
+            HTMLHelper::_('behavior.highlighter', $this->query->highlight);
+        } else {
+            $this->document->getWebAssetManager()->useScript('highlight');
+            $this->document->addScriptOptions(
+        'highlight',
+        [[
+            'class'     => 'js-highlight',
+            'highLight' => $this->query->highlight,
+        ]]
+            );
+        }
     ?>
 <?php endif; ?>
 <?php // Display a list of results ?>
 <br id="highlighter-start" />
 <ul id="search-result-list" class="search-results list-striped js-highlight com-finder__results-list">
-	<?php $this->baseUrl = Uri::getInstance()->toString(array('scheme', 'host', 'port')); ?>
-	<?php foreach ($this->results as $result) : ?>
+	<?php $this->baseUrl = Uri::getInstance()->toString(['scheme', 'host', 'port']); ?>
+	<?php foreach ($this->results as $result): ?>
 		<?php $this->result = &$result; ?>
-		<?php $layout = $this->getLayoutFile($this->result->layout); ?>
+		<?php $layout       = $this->getLayoutFile($this->result->layout); ?>
 		<?php echo $this->loadTemplate($layout); ?>
 	<?php endforeach; ?>
 </ul>

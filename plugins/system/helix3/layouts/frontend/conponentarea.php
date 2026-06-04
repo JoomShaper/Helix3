@@ -1,10 +1,10 @@
 <?php
 /**
-* @package Helix3 Framework
-* @author JoomShaper https://www.joomshaper.com
-* @copyright (c) 2010 - 2021 JoomShaper
-* @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
-*/
+ * @package Helix3 Framework
+ * @author JoomShaper https://www.joomshaper.com
+ * @copyright (c) 2010 - 2026 JoomShaper
+ * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
+ */
 defined('_JEXEC') or die('Restricted Access');
 
 //Helix3
@@ -13,7 +13,7 @@ helix3::addJS('frontend-edit.js');
 
 $data = $displayData;
 
-$output ='';
+$output = '';
 
 $output .= '<div id="sp-component" class="' . $data->className . '">';
 
@@ -23,6 +23,5 @@ $output .= '<jdoc:include type="component" />';
 $output .= '</div>';
 
 $output .= '</div>';
-
 
 echo $output;

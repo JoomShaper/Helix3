@@ -1,15 +1,15 @@
 <?php
-/**
+    /**
  * @package Helix3 Framework
  * @author JoomShaper https://www.joomshaper.com
- * @copyright (c) 2010 - 2021 JoomShaper
+ * @copyright (c) 2010 - 2026 JoomShaper
  * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or later
-*/
+ */
 
-//no direct access
-defined('_JEXEC') or die('Restricted Access');
+    //no direct access
+    defined('_JEXEC') or die('Restricted Access');
 
-if ($displayData['params']->get('fb_appID') != '') : ?>
+if ($displayData['params']->get('fb_appID') != ''): ?>
 	<div id="fb-root"></div>
 	<script>
 		(function(d, s, id) {

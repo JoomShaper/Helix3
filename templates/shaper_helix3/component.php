@@ -1,34 +1,31 @@
 <?php
-/**
+    /**
  * @package Helix3 Framework
  * @author JoomShaper https://www.joomshaper.com
- * @copyright (c) 2010 - 2021 JoomShaper
+ * @copyright (c) 2010 - 2026 JoomShaper
  * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or later
-*/
-//no direct accees
-defined ('_JEXEC') or die ('resticted aceess');
+ */
+    //no direct accees
+    defined('_JEXEC') or die('resticted aceess');
 
-use Joomla\CMS\Factory;
-use Joomla\CMS\Uri\Uri;
+    use Joomla\CMS\Factory;
+    use Joomla\CMS\Uri\Uri;
 
-//Load Helix
-$helix3_path = JPATH_PLUGINS . '/system/helix3/core/helix3.php';
+    //Load Helix
+    $helix3_path = JPATH_PLUGINS . '/system/helix3/core/helix3.php';
 
-if (file_exists($helix3_path))
-{
-	require_once($helix3_path);
-	$helix3 = helix3::getInstance();
-}
-else
-{
-	die('Please install and activate helix plugin');
-}
+    if (file_exists($helix3_path)) {
+    require_once $helix3_path;
+    $helix3 = helix3::getInstance();
+    } else {
+    die('Please install and activate helix plugin');
+    }
 
-$app = Factory::getApplication();
-$input = $app->input;
-$option = str_replace('_', '-', $input->get('option', '', 'STRING'));
+    $app    = Factory::getApplication();
+    $input  = $app->input;
+    $option = str_replace('_', '-', $input->get('option', '', 'STRING'));
 
-$body_class = $option;
+    $body_class = $option;
 
 ?>
 <!DOCTYPE html>
@@ -38,13 +35,10 @@ $body_class = $option;
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <?php
             $doc = Factory::getDocument();
-            if ($favicon = $this->params->get('favicon'))
-            {
-                $doc->addFavicon( Uri::base(true) . '/' .  $favicon);
-            }
-            else
-            {
-                $doc->addFavicon( $this->baseurl . '/templates/'. $this->template .'/images/favicon.ico' );
+            if ($favicon = $this->params->get('favicon')) {
+                $doc->addFavicon(Uri::base(true) . '/' . $favicon);
+            } else {
+                $doc->addFavicon($this->baseurl . '/templates/' . $this->template . '/images/favicon.ico');
             }
         ?>
 

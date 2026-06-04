@@ -1,26 +1,26 @@
 <?php
-/**
+    /**
  * @package Helix3 Framework
  * @author JoomShaper https://www.joomshaper.com
- * @copyright (c) 2010 - 2021 JoomShaper
+ * @copyright (c) 2010 - 2026 JoomShaper
  * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or later
-*/
+ */
 
-use Joomla\CMS\Factory;
-use Joomla\CMS\Language\Text;
-use Joomla\CMS\Router\Route;
-use Joomla\CMS\Uri\Uri;
+    use Joomla\CMS\Factory;
+    use Joomla\CMS\Language\Text;
+    use Joomla\CMS\Router\Route;
+    use Joomla\CMS\Uri\Uri;
 
-defined('JPATH_BASE') or die;
+    defined('JPATH_BASE') or die;
 
-$url  	=  Route::_(version_compare(JVERSION, '4.0.0', '<') ? ContentHelperRoute::getArticleRoute($displayData->id . ':' . $displayData->alias, $displayData->catid, $displayData->language) : Joomla\Component\Content\Site\Helper\RouteHelper::getArticleRoute($displayData->id . ':' . $displayData->alias, $displayData->catid, $displayData->language));
-$root 	= Uri::base();
-$root 	= new Uri($root);
-$url  	= $root->getScheme() . '://' . $root->getHost() . $url;
+    $url  = Route::_(version_compare(JVERSION, '4.0.0', '<') ? ContentHelperRoute::getArticleRoute($displayData->id . ':' . $displayData->alias, $displayData->catid, $displayData->language) : Joomla\Component\Content\Site\Helper\RouteHelper::getArticleRoute($displayData->id . ':' . $displayData->alias, $displayData->catid, $displayData->language));
+    $root = Uri::base();
+    $root = new Uri($root);
+    $url  = $root->getScheme() . '://' . $root->getHost() . $url;
 
-$params = Factory::getApplication()->getTemplate(true)->params;
+    $params = Factory::getApplication()->getTemplate(true)->params;
 
-if ($params->get('social_share')) : ?>
+if ($params->get('social_share')): ?>
 	<div class="helix-social-share">
 		<div class="helix-social-share-icon">
 			<ul>
@@ -39,7 +39,7 @@ if ($params->get('social_share')) : ?>
 						</a>
 					</div>
 				</li>
-				
+
 				<li>
 					<div class="linkedin">
 						<a class="linkedin" data-toggle="tooltip" data-placement="top" title="<?php echo Text::_('HELIX_SHARE_LINKEDIN'); ?>" onClick="window.open('https://www.linkedin.com/shareArticle?mini=true&url=<?php echo $url; ?>','Linkedin','width=585,height=666,left='+(screen.availWidth/2-292)+',top='+(screen.availHeight/2-333)+''); return false;" href="https://www.linkedin.com/shareArticle?mini=true&url=<?php echo $url; ?>" >
@@ -48,6 +48,6 @@ if ($params->get('social_share')) : ?>
 					</div>
 				</li>
 			</ul>
-		</div>		
+		</div>
 	</div>
 <?php endif; ?>

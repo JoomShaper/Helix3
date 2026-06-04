@@ -4,50 +4,62 @@ use Joomla\CMS\Language\Text;
 /**
  * @package Helix3 Framework
  * @author JoomShaper https://www.joomshaper.com
- * @copyright (c) 2010 - 2021 JoomShaper
+ * @copyright (c) 2010 - 2026 JoomShaper
  * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or later
-*/
+ */
 
 //no direct accees
-defined ('_JEXEC') or die ('resticted aceess');
+defined('_JEXEC') or die('resticted aceess');
 
 function pagination_list_render($list)
 {
-	// Initialize variables
-	$html = '<ul class="pagination">';
+    // Initialize variables
+    $html = '<ul class="pagination">';
 
-	if ($list['start']['active']==1)   $html .= $list['start']['data'];
-	if ($list['previous']['active']==1) $html .= $list['previous']['data'];
+    if ($list['start']['active'] == 1) {
+        $html .= $list['start']['data'];
+    }
 
-	foreach ($list['pages'] as $page) {
-		$html .= $page['data'];
-	}
+    if ($list['previous']['active'] == 1) {
+        $html .= $list['previous']['data'];
+    }
 
-	if ($list['next']['active']==1) $html .= $list['next']['data'];
-	if ($list['end']['active']==1)  $html .= $list['end']['data'];
+    foreach ($list['pages'] as $page) {
+        $html .= $page['data'];
+    }
 
-	$html .= '</ul>';
+    if ($list['next']['active'] == 1) {
+        $html .= $list['next']['data'];
+    }
 
-	return $html;
+    if ($list['end']['active'] == 1) {
+        $html .= $list['end']['data'];
+    }
+
+    $html .= '</ul>';
+
+    return $html;
 }
 
 function pagination_item_active(&$item)
 {
 
-	$cls = '';
+    $cls = '';
 
-    if ($item->text == Text::_('Next')) { $item->text = '&raquo;'; $cls = "next";}
-    if ($item->text == Text::_('Prev')) { $item->text = '&laquo;'; $cls = "previous";}
+    if ($item->text == Text::_('Next')) {$item->text = '&raquo;';
+        $cls                                   = "next";}
+    if ($item->text == Text::_('Prev')) {$item->text = '&laquo;';
+        $cls                                   = "previous";}
 
-	if ($item->text == Text::_('First')) { $cls = "first";}
-    if ($item->text == Text::_('Last'))   { $cls = "last";}
+    if ($item->text == Text::_('First')) {$cls = "first";}
+    if ($item->text == Text::_('Last')) {$cls = "last";}
 
     return '<li class="page-item"><a class="page-link ' . $cls . '" href="' . $item->link . '" title="' . $item->text . '">' . $item->text . '</a></li>';
 }
 
-function pagination_item_inactive( &$item )
+function pagination_item_inactive(&$item)
 {
-	$cls = 'page-item';
-	$cls .= (int)$item->text > 0 ? ' active': ' disabled';
-	return '<li class="' . $cls . '"><a class="page-link">' . $item->text . '</a></li>';
+    $cls  = 'page-item';
+    $cls .= (int) $item->text > 0 ? ' active' : ' disabled';
+    return '<li class="' . $cls . '"><a class="page-link">' . $item->text . '</a></li>';
 }

@@ -1,6 +1,20 @@
+const fs = require("fs");
 const { src, dest, series } = require("gulp");
 const zip = require("gulp-zip");
 const clean = require("gulp-clean");
+
+function getVersion() {
+	const xml = fs.readFileSync("./templates/shaper_helix3/templateDetails.xml", "utf8");
+	const match = xml.match(/<version>([^<]+)<\/version>/);
+
+	if (!match) {
+		throw new Error("Version not found in templateDetails.xml");
+	}
+
+	return match[1];
+}
+
+const version = getVersion().replace(/\./g, "_");
 
 // Create a build
 function cleanBuild() {
@@ -38,15 +52,15 @@ function copy_installer() {
 }
 
 function makeTemplateZip() {
-	return src("./dist/build/**/*.*").pipe(zip("helix3_template.zip")).pipe(dest("./dist/"));
+	return src("./dist/build/**/*.*").pipe(zip(`helix3_template_${version}.zip`)).pipe(dest("./dist/"));
 }
 
 function makeSystemPluginZip() {
-	return src("./dist/build/plugins/system/**/*.*").pipe(zip("plg_system_helix.zip")).pipe(dest("./dist/"));
+	return src("./dist/build/plugins/system/**/*.*").pipe(zip(`plg_system_helix_${version}.zip`)).pipe(dest("./dist/"));
 }
 
 function makeAjaxPluginZip() {
-	return src("./dist/build/plugins/ajax/**/*.*").pipe(zip("plg_ajax_helix.zip")).pipe(dest("./dist/"));
+	return src("./dist/build/plugins/ajax/**/*.*").pipe(zip(`plg_ajax_helix_${version}.zip`)).pipe(dest("./dist/"));
 }
 
 exports.copy = series(

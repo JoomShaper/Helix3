@@ -17,17 +17,31 @@ class Helix3Image
 
         list($originalWidth, $originalHeight) = getimagesize($src);
 
+        $img = null;
+
         switch ($ext) {
-            case 'bmp':$img = imagecreatefromwbmp($src);
+            case 'bmp':
+                $img = imagecreatefromwbmp($src);
                 break;
-            case 'gif':$img = imagecreatefromgif($src);
+            case 'gif':
+                $img = imagecreatefromgif($src);
                 break;
-            case 'jpg':$img = imagecreatefromjpeg($src);
+            case 'jpg':
+            case 'jpeg':
+                $img = imagecreatefromjpeg($src);
                 break;
-            case 'jpeg':$img = imagecreatefromjpeg($src);
+            case 'png':
+                $img = imagecreatefrompng($src);
                 break;
-            case 'png':$img = imagecreatefrompng($src);
+            case 'webp':
+                if (function_exists('imagecreatefromwebp')) {
+                    $img = imagecreatefromwebp($src);
+                }
                 break;
+        }
+
+        if (!$img) {
+            return false;
         }
 
         if (count($sizes)) {
@@ -57,7 +71,7 @@ class Helix3Image
 
                 $new = imagecreatetruecolor($targetWidth, $targetHeight);
 
-                if ($ext == "gif" or $ext == "png") {
+                if ($ext === 'gif' || $ext === 'png' || $ext === 'webp') {
                     imagecolortransparent($new, imagecolorallocatealpha($new, 0, 0, 0, 100));
                     imagealphablending($new, false);
                     imagesavealpha($new, true);
@@ -73,15 +87,23 @@ class Helix3Image
                 }
 
                 switch ($ext) {
-                    case 'bmp':imagewbmp($new, $dest);
+                    case 'bmp':
+                        imagewbmp($new, $dest);
                         break;
-                    case 'gif':imagegif($new, $dest);
+                    case 'gif':
+                        imagegif($new, $dest);
                         break;
-                    case 'jpg':imagejpeg($new, $dest, 100);
+                    case 'jpg':
+                    case 'jpeg':
+                        imagejpeg($new, $dest, 100);
                         break;
-                    case 'jpeg':imagejpeg($new, $dest, 100);
+                    case 'png':
+                        imagepng($new, $dest);
                         break;
-                    case 'png':imagepng($new, $dest);
+                    case 'webp':
+                        if (function_exists('imagewebp')) {
+                            imagewebp($new, $dest, 100);
+                        }
                         break;
                 }
             }

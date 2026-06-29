@@ -1,27 +1,28 @@
 <?php
-    /**
+
+/**
  * @package Helix3 Framework
  * @author JoomShaper https://www.joomshaper.com
  * @copyright (c) 2010 - 2026 JoomShaper
  * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
  */
 
-    //no direct accees
-    defined('_JEXEC') or die('resticted aceess');
+//no direct accees
+defined('_JEXEC') or die('resticted aceess');
 
-    use Joomla\CMS\Component\ComponentHelper;
-    use Joomla\CMS\Factory;
-    use Joomla\CMS\Filesystem\File;
-    use Joomla\CMS\Filesystem\Folder;
-    use Joomla\CMS\Helper\MediaHelper;
-    use Joomla\CMS\HTML\HTMLHelper;
-    use Joomla\CMS\Http\Http;
-    use Joomla\CMS\Language\Text;
-    use Joomla\CMS\Menu\SiteMenu;
-    use Joomla\CMS\Plugin\CMSPlugin;
-    use Joomla\CMS\Session\Session;
+use Joomla\CMS\Component\ComponentHelper;
+use Joomla\CMS\Factory;
+use Joomla\CMS\Filesystem\File;
+use Joomla\CMS\Filesystem\Folder;
+use Joomla\CMS\Helper\MediaHelper;
+use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Http\Http;
+use Joomla\CMS\Language\Text;
+use Joomla\CMS\Menu\SiteMenu;
+use Joomla\CMS\Plugin\CMSPlugin;
+use Joomla\CMS\Session\Session;
 
-    if (version_compare(JVERSION, '5.0', '>=')) {
+if (version_compare(JVERSION, '5.0', '>=')) {
     if (! class_exists('Joomla\\CMS\\Filesystem\\File') && class_exists('Joomla\\Filesystem\\File')) {
         class_alias('Joomla\\Filesystem\\File', 'Joomla\\CMS\\Filesystem\\File');
     }
@@ -29,15 +30,15 @@
     if (! class_exists('Joomla\\CMS\\Filesystem\\Folder') && class_exists('Joomla\\Filesystem\\Folder')) {
         class_alias('Joomla\\Filesystem\\Folder', 'Joomla\\CMS\\Filesystem\\Folder');
     }
-    }
+}
 
-    use Joomla\CMS\Uri\Uri;
-    use Joomla\Registry\Registry;
+use Joomla\CMS\Uri\Uri;
+use Joomla\Registry\Registry;
 
-    require_once __DIR__ . '/classes/image.php';
+require_once __DIR__ . '/classes/image.php';
 
-    class plgAjaxHelix3 extends CMSPlugin
-    {
+class plgAjaxHelix3 extends CMSPlugin
+{
 
     public function onAjaxHelix3()
     {
@@ -151,8 +152,7 @@
 
                         $db->setQuery($query);
 
-                        try
-                        {
+                        try {
                             $rating = $db->loadObject();
                         } catch (RuntimeException $e) {
                             return json_encode($report);
@@ -167,8 +167,7 @@
 
                             $db->setQuery($query);
 
-                            try
-                            {
+                            try {
                                 $db->execute();
 
                                 $data   = self::getItemRating($pk);
@@ -193,8 +192,7 @@
 
                                 $db->setQuery($query);
 
-                                try
-                                {
+                                try {
                                     $db->execute();
 
                                     $data   = self::getItemRating($pk);
@@ -327,12 +325,10 @@
 
                     die();
                     break;
-
             }
 
             return json_encode($report);
         }
-
     }
 
     public static function getItemRating($pk = 0)
@@ -515,286 +511,286 @@
                     $name = $row->settings->name;
                 }
                 ?>
-        <div class="layoutbuilder-section" <?php echo $rowSettings; ?>>
-          <div class="settings-section clearfix">
-            <div class="settings-left pull-left">
-              <a class="row-move" href="#"><i class="fa fa-arrows"></i></a>
-              <strong class="section-title"><?php echo $name; ?></strong>
-            </div>
-            <div class="settings-right pull-right">
-              <ul class="button-group">
-                <li>
-                  <a class="btn btn-default btn-small btn-sm add-columns" href="#"><i class="fa fa-columns"></i> <?php echo Text::_('HELIX_ADD_COLUMNS'); ?></a>
-                  <ul class="column-list">
-                    <?php
-                        $_active = '';
+                <div class="layoutbuilder-section" <?php echo $rowSettings; ?>>
+                    <div class="settings-section clearfix">
+                        <div class="settings-left pull-left">
+                            <a class="row-move" href="#"><i class="fa fa-arrows"></i></a>
+                            <strong class="section-title"><?php echo $name; ?></strong>
+                        </div>
+                        <div class="settings-right pull-right">
+                            <ul class="button-group">
+                                <li>
+                                    <a class="btn btn-default btn-small btn-sm add-columns" href="#"><i class="fa fa-columns"></i> <?php echo Text::_('HELIX_ADD_COLUMNS'); ?></a>
+                                    <ul class="column-list">
+                                        <?php
+                                        $_active = '';
                                         foreach ($colGrid as $key => $grid) {
                                             if ($key == $row->layout) {
                                                 $_active = 'active';
                                             }
                                             echo '<li><a href="#" class="column-layout column-layout-' . $key . ' ' . $_active . '" data-layout="' . $grid . '"></a></li>';
                                             $_active = '';
-                                    }?>
-                    <?php
-                        $active       = '';
+                                        } ?>
+                                        <?php
+                                        $active       = '';
                                         $customLayout = '';
                                         if (! isset($colGrid[$row->layout])) {
                                             $active       = 'active';
                                             $split        = str_split($row->layout);
                                             $customLayout = implode(',', $split);
                                         }
+                                        ?>
+                                        <li><a href="#" class="hasTooltip column-layout-custom column-layout custom <?php echo $active; ?>" data-layout="<?php echo $customLayout; ?>" data-type='custom' data-original-title="<strong>Custom Layout</strong>"></a></li>
+                                    </ul>
+                                </li>
+                                <li><a class="btn btn-small add-row" href="#"><i class="fa fa-bars"></i> <?php echo Text::_('HELIX_ADD_ROW'); ?></a></li>
+                                <li><a class="btn btn-small row-ops-set" href="#"><i class="fa fa-gears"></i> <?php echo Text::_('HELIX_SETTINGS'); ?></a></li>
+                                <li><a class="btn btn-danger btn-small remove-row" href="#"><i class="fa fa-times"></i> <?php echo Text::_('HELIX_REMOVE'); ?></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="row ui-sortable">
+                        <?php foreach ($row->attr as $column) {
+                            $colSettings = self::getSettings($column->settings); ?>
+                            <div class="<?php echo $column->className; ?>" <?php echo $colSettings; ?>>
+                                <div class="column">
+                                    <?php if (isset($column->settings->column_type) && $column->settings->column_type) {
+                                        echo '<h6 class="col-title pull-left">Component</h6>';
+                                    } else {
+                                        if (! isset($column->settings->name)) {
+                                            $column->settings->name = 'none';
+                                        }
+                                        echo '<h6 class="col-title pull-left">' . $column->settings->name . '</h6>';
+                                    }
                                     ?>
-                    <li><a href="#" class="hasTooltip column-layout-custom column-layout custom <?php echo $active; ?>" data-layout="<?php echo $customLayout; ?>" data-type='custom' data-original-title="<strong>Custom Layout</strong>"></a></li>
-                  </ul>
-                </li>
-                <li><a class="btn btn-small add-row" href="#"><i class="fa fa-bars"></i> <?php echo Text::_('HELIX_ADD_ROW'); ?></a></li>
-                <li><a class="btn btn-small row-ops-set" href="#"><i class="fa fa-gears"></i> <?php echo Text::_('HELIX_SETTINGS'); ?></a></li>
-                <li><a class="btn btn-danger btn-small remove-row" href="#"><i class="fa fa-times"></i> <?php echo Text::_('HELIX_REMOVE'); ?></a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="row ui-sortable">
-            <?php foreach ($row->attr as $column) {$colSettings = self::getSettings($column->settings); ?>
-              <div class="<?php echo $column->className; ?>" <?php echo $colSettings; ?>>
-                <div class="column">
-                  <?php if (isset($column->settings->column_type) && $column->settings->column_type) {
-                                          echo '<h6 class="col-title pull-left">Component</h6>';
-                                      } else {
-                                          if (! isset($column->settings->name)) {
-                                              $column->settings->name = 'none';
-                                          }
-                                          echo '<h6 class="col-title pull-left">' . $column->settings->name . '</h6>';
-                                      }
-                                      ?>
-                  <a class="col-ops-set pull-right" href="#" ><i class="fa fa-gears"></i></a>
+                                    <a class="col-ops-set pull-right" href="#"><i class="fa fa-gears"></i></a>
+                                </div>
+                            </div>
+                        <?php } ?>
+                    </div>
                 </div>
-              </div>
-              <?php }?>
-            </div>
-          </div>
-          <?php
-              }
-                      }
-                      $items = ob_get_contents();
-                      ob_end_clean();
+            <?php
+            }
+        }
+        $items = ob_get_contents();
+        ob_end_clean();
 
-                      return $items;
+        return $items;
+    }
 
-                  }
+    public static function getSettings($config = null)
+    {
+        $data = '';
 
-                  public static function getSettings($config = null)
-                  {
-                      $data = '';
+        if (count((array) $config)) {
+            foreach ($config as $key => $value) {
+                $data .= ' data-' . $key . '="' . $value . '"';
+            }
+        }
 
-                      if (count((array) $config)) {
-                          foreach ($config as $key => $value) {
-                              $data .= ' data-' . $key . '="' . $value . '"';
-                          }
-                      }
+        return $data;
+    }
 
-                      return $data;
-                  }
+    //Get template name
+    private static function getTemplate()
+    {
 
-                  //Get template name
-                  private static function getTemplate()
-                  {
+        $db    = Factory::getDbo();
+        $query = $db->getQuery(true);
+        $query->select($db->quoteName(['template', 'params']));
+        $query->from($db->quoteName('#__template_styles'));
+        $query->where($db->quoteName('client_id') . ' = ' . $db->quote(0));
+        $query->where($db->quoteName('home') . ' = ' . $db->quote(1));
+        $db->setQuery($query);
 
-                      $db    = Factory::getDbo();
-                      $query = $db->getQuery(true);
-                      $query->select($db->quoteName(['template', 'params']));
-                      $query->from($db->quoteName('#__template_styles'));
-                      $query->where($db->quoteName('client_id') . ' = ' . $db->quote(0));
-                      $query->where($db->quoteName('home') . ' = ' . $db->quote(1));
-                      $db->setQuery($query);
+        return $db->loadObject();
+    }
 
-                      return $db->loadObject();
-                  }
+    // Upload File
+    private function upload_image()
+    {
+        $input     = Factory::getApplication()->input;
+        $image     = $input->files->get('image');
+        $imageonly = $input->post->get('imageonly', false, 'BOOLEAN');
 
-                  // Upload File
-                  private function upload_image()
-                  {
-                      $input     = Factory::getApplication()->input;
-                      $image     = $input->files->get('image');
-                      $imageonly = $input->post->get('imageonly', false, 'BOOLEAN');
+        $tplRegistry = new Registry();
+        $tplParams   = $tplRegistry->loadString(self::getTemplate()->params);
 
-                      $tplRegistry = new Registry();
-                      $tplParams   = $tplRegistry->loadString(self::getTemplate()->params);
+        $report = [];
 
-                      $report = [];
+        // User is not authorised
+        if (! Factory::getUser()->authorise('core.create', 'com_media')) {
+            $report['status'] = false;
+            $report['output'] = Text::_('You are not authorised to upload file.');
+            echo json_encode($report);
+            die;
+        }
 
-                      // User is not authorised
-                      if (! Factory::getUser()->authorise('core.create', 'com_media')) {
-                          $report['status'] = false;
-                          $report['output'] = Text::_('You are not authorised to upload file.');
-                          echo json_encode($report);
-                          die;
-                      }
+        if (count($image)) {
 
-                      if (count($image)) {
+            if ($image['error'] == UPLOAD_ERR_OK) {
 
-                          if ($image['error'] == UPLOAD_ERR_OK) {
+                $error = false;
 
-                              $error = false;
+                $params = ComponentHelper::getParams('com_media');
 
-                              $params = ComponentHelper::getParams('com_media');
+                // Total length of post back data in bytes.
+                $contentLength = (int) $_SERVER['CONTENT_LENGTH'];
 
-                              // Total length of post back data in bytes.
-                              $contentLength = (int) $_SERVER['CONTENT_LENGTH'];
+                // Instantiate the media helper
+                $mediaHelper = new MediaHelper;
 
-                              // Instantiate the media helper
-                              $mediaHelper = new MediaHelper;
+                // Maximum allowed size of post back data in MB.
+                $postMaxSize = $mediaHelper->toBytes(ini_get('post_max_size'));
 
-                              // Maximum allowed size of post back data in MB.
-                              $postMaxSize = $mediaHelper->toBytes(ini_get('post_max_size'));
+                // Maximum allowed size of script execution in MB.
+                $memoryLimit = $mediaHelper->toBytes(ini_get('memory_limit'));
 
-                              // Maximum allowed size of script execution in MB.
-                              $memoryLimit = $mediaHelper->toBytes(ini_get('memory_limit'));
+                // Check for the total size of post back data.
+                if (($postMaxSize > 0 && $contentLength > $postMaxSize) || ($memoryLimit != -1 && $contentLength > $memoryLimit)) {
+                    $report['status'] = false;
+                    $report['output'] = Text::_('Total size of upload exceeds the limit.');
+                    $error            = true;
+                    echo json_encode($report);
+                    die;
+                }
 
-                              // Check for the total size of post back data.
-                              if (($postMaxSize > 0 && $contentLength > $postMaxSize) || ($memoryLimit != -1 && $contentLength > $memoryLimit)) {
-                                  $report['status'] = false;
-                                  $report['output'] = Text::_('Total size of upload exceeds the limit.');
-                                  $error            = true;
-                                  echo json_encode($report);
-                                  die;
-                              }
+                $uploadMaxSize     = $params->get('upload_maxsize', 0) * 1024 * 1024;
+                $uploadMaxFileSize = $mediaHelper->toBytes(ini_get('upload_max_filesize'));
 
-                              $uploadMaxSize     = $params->get('upload_maxsize', 0) * 1024 * 1024;
-                              $uploadMaxFileSize = $mediaHelper->toBytes(ini_get('upload_max_filesize'));
+                if (($image['error'] == 1) || ($uploadMaxSize > 0 && $image['size'] > $uploadMaxSize) || ($uploadMaxFileSize > 0 && $image['size'] > $uploadMaxFileSize)) {
+                    $report['status'] = false;
+                    $report['output'] = Text::_('This file is too large to upload.');
+                    $error            = true;
+                }
 
-                              if (($image['error'] == 1) || ($uploadMaxSize > 0 && $image['size'] > $uploadMaxSize) || ($uploadMaxFileSize > 0 && $image['size'] > $uploadMaxFileSize)) {
-                                  $report['status'] = false;
-                                  $report['output'] = Text::_('This file is too large to upload.');
-                                  $error            = true;
-                              }
+                // Upload if no error found
+                if (! $error) {
+                    // Organised folder structure
+                    $date   = Factory::getDate();
+                    $folder = HTMLHelper::_('date', $date, 'Y') . '/' . HTMLHelper::_('date', $date, 'm') . '/' . HTMLHelper::_('date', $date, 'd');
 
-                              // Upload if no error found
-                              if (! $error) {
-                                  // Organised folder structure
-                                  $date   = Factory::getDate();
-                                  $folder = HTMLHelper::_('date', $date, 'Y') . '/' . HTMLHelper::_('date', $date, 'm') . '/' . HTMLHelper::_('date', $date, 'd');
+                    if (! file_exists(JPATH_ROOT . '/images/' . $folder)) {
+                        Folder::create(JPATH_ROOT . '/images/' . $folder, 0755);
+                    }
 
-                                  if (! file_exists(JPATH_ROOT . '/images/' . $folder)) {
-                                      Folder::create(JPATH_ROOT . '/images/' . $folder, 0755);
-                                  }
+                    $name = $image['name'];
+                    $path = $image['tmp_name'];
 
-                                  $name = $image['name'];
-                                  $path = $image['tmp_name'];
+                    // Do no override existing file
+                    $file = pathinfo($name);
+                    $i    = 0;
+                    do {
+                        $base_name  = $file['filename'] . ($i ? "$i" : "");
+                        $ext        = $file['extension'];
+                        $image_name = $base_name . "." . $ext;
+                        $i++;
+                        $dest     = JPATH_ROOT . '/images/' . $folder . '/' . $image_name;
+                        $src      = 'images/' . $folder . '/' . $image_name;
+                        $data_src = 'images/' . $folder . '/' . $image_name;
+                    } while (file_exists($dest));
+                    // End Do not override
 
-                                  // Do no override existing file
-                                  $file = pathinfo($name);
-                                  $i    = 0;
-                                  do {
-                                      $base_name  = $file['filename'] . ($i ? "$i" : "");
-                                      $ext        = $file['extension'];
-                                      $image_name = $base_name . "." . $ext;
-                                      $i++;
-                                      $dest     = JPATH_ROOT . '/images/' . $folder . '/' . $image_name;
-                                      $src      = 'images/' . $folder . '/' . $image_name;
-                                      $data_src = 'images/' . $folder . '/' . $image_name;
-                                  } while (file_exists($dest));
-                                  // End Do not override
+                    if (File::upload($path, $dest)) {
 
-                                  if (File::upload($path, $dest)) {
+                        $sizes = [];
 
-                                      $sizes = [];
+                        if ($tplParams->get('image_small', 0)) {
+                            $sizes['small'] = explode('x', strtolower($tplParams->get('image_small_size', '100X100')));
+                        }
 
-                                      if ($tplParams->get('image_small', 0)) {
-                                          $sizes['small'] = explode('x', strtolower($tplParams->get('image_small_size', '100X100')));
-                                      }
+                        if ($tplParams->get('image_thumbnail', 1)) {
+                            $sizes['thumbnail'] = explode('x', strtolower($tplParams->get('image_thumbnail_size', '200X200')));
+                        }
 
-                                      if ($tplParams->get('image_thumbnail', 1)) {
-                                          $sizes['thumbnail'] = explode('x', strtolower($tplParams->get('image_thumbnail_size', '200X200')));
-                                      }
+                        if ($tplParams->get('image_medium', 0)) {
+                            $sizes['medium'] = explode('x', strtolower($tplParams->get('image_medium_size', '300X300')));
+                        }
 
-                                      if ($tplParams->get('image_medium', 0)) {
-                                          $sizes['medium'] = explode('x', strtolower($tplParams->get('image_medium_size', '300X300')));
-                                      }
+                        if ($tplParams->get('image_large', 0)) {
+                            $sizes['large'] = explode('x', strtolower($tplParams->get('image_large_size', '600X600')));
+                        }
 
-                                      if ($tplParams->get('image_large', 0)) {
-                                          $sizes['large'] = explode('x', strtolower($tplParams->get('image_large_size', '600X600')));
-                                      }
+                        $sources = Helix3Image::createThumbs($dest, $folder, $base_name, $ext, $sizes);
 
-                                      $sources = Helix3Image::createThumbs($dest, $folder, $base_name, $ext, $sizes);
+                        if (file_exists(JPATH_ROOT . '/images/' . $folder . '/' . $base_name . '_thumbnail.' . $ext)) {
+                            $src = 'images/' . $folder . '/' . $base_name . '_thumbnail.' . $ext;
+                        }
 
-                                      if (file_exists(JPATH_ROOT . '/images/' . $folder . '/' . $base_name . '_thumbnail.' . $ext)) {
-                                          $src = 'images/' . $folder . '/' . $base_name . '_thumbnail.' . $ext;
-                                      }
+                        $report['status'] = true;
 
-                                      $report['status'] = true;
+                        if ($imageonly) {
+                            $report['output'] = '<img src="' . Uri::root(true) . '/' . $src . '" data-src="' . $data_src . '" alt="">';
+                        } else {
+                            $report['output'] = '<li data-src="' . $data_src . '"><a href="#" class="btn btn-mini btn-danger btn-remove-image">Delete</a><img src="' . Uri::root(true) . '/' . $src . '" alt=""></li>';
+                        }
+                    }
+                }
+            }
+        } else {
+            $report['status'] = false;
+            $report['output'] = Text::_('Upload Failed!');
+        }
 
-                                      if ($imageonly) {
-                                          $report['output'] = '<img src="' . Uri::root(true) . '/' . $src . '" data-src="' . $data_src . '" alt="">';
-                                      } else {
-                                          $report['output'] = '<li data-src="' . $data_src . '"><a href="#" class="btn btn-mini btn-danger btn-remove-image">Delete</a><img src="' . Uri::root(true) . '/' . $src . '" alt=""></li>';
-                                      }
-                                  }
-                              }
-                          }
-                      } else {
-                          $report['status'] = false;
-                          $report['output'] = Text::_('Upload Failed!');
-                      }
+        echo json_encode($report);
 
-                      echo json_encode($report);
+        die;
+    }
 
-                      die;
-                  }
+    // Delete File
+    private function remove_image()
+    {
+        $report = [];
 
-                  // Delete File
-                  private function remove_image()
-                  {
-                      $report = [];
+        if (! Factory::getUser()->authorise('core.delete', 'com_media')) {
+            $report['status'] = false;
+            $report['output'] = Text::_('You are not authorised to delete file.');
+            echo json_encode($report);
+            die;
+        }
 
-                      if (! Factory::getUser()->authorise('core.delete', 'com_media')) {
-                          $report['status'] = false;
-                          $report['output'] = Text::_('You are not authorised to delete file.');
-                          echo json_encode($report);
-                          die;
-                      }
+        $input = Factory::getApplication()->input;
+        $src   = $input->post->get('src', '', 'STRING');
 
-                      $input = Factory::getApplication()->input;
-                      $src   = $input->post->get('src', '', 'STRING');
+        $path = JPATH_ROOT . '/' . $src;
 
-                      $path = JPATH_ROOT . '/' . $src;
+        if (file_exists($path)) {
 
-                      if (file_exists($path)) {
+            if (File::delete($path)) {
 
-                          if (File::delete($path)) {
+                $basename  = basename($src);
+                $small     = JPATH_ROOT . '/' . dirname($src) . '/' . File::stripExt($basename) . '_small.' . File::getExt($basename);
+                $thumbnail = JPATH_ROOT . '/' . dirname($src) . '/' . File::stripExt($basename) . '_thumbnail.' . File::getExt($basename);
+                $medium    = JPATH_ROOT . '/' . dirname($src) . '/' . File::stripExt($basename) . '_medium.' . File::getExt($basename);
+                $large     = JPATH_ROOT . '/' . dirname($src) . '/' . File::stripExt($basename) . '_large.' . File::getExt($basename);
 
-                              $basename  = basename($src);
-                              $small     = JPATH_ROOT . '/' . dirname($src) . '/' . File::stripExt($basename) . '_small.' . File::getExt($basename);
-                              $thumbnail = JPATH_ROOT . '/' . dirname($src) . '/' . File::stripExt($basename) . '_thumbnail.' . File::getExt($basename);
-                              $medium    = JPATH_ROOT . '/' . dirname($src) . '/' . File::stripExt($basename) . '_medium.' . File::getExt($basename);
-                              $large     = JPATH_ROOT . '/' . dirname($src) . '/' . File::stripExt($basename) . '_large.' . File::getExt($basename);
+                if (file_exists($small)) {
+                    File::delete($small);
+                }
 
-                              if (file_exists($small)) {
-                                  File::delete($small);
-                              }
+                if (file_exists($thumbnail)) {
+                    File::delete($thumbnail);
+                }
 
-                              if (file_exists($thumbnail)) {
-                                  File::delete($thumbnail);
-                              }
+                if (file_exists($medium)) {
+                    File::delete($medium);
+                }
 
-                              if (file_exists($medium)) {
-                                  File::delete($medium);
-                              }
+                if (file_exists($large)) {
+                    File::delete($large);
+                }
 
-                              if (file_exists($large)) {
-                                  File::delete($large);
-                              }
+                $report['status'] = true;
+            } else {
+                $report['status'] = false;
+                $report['output'] = Text::_('Delete failed');
+            }
+        } else {
+            $report['status'] = true;
+        }
 
-                              $report['status'] = true;
-                          } else {
-                              $report['status'] = false;
-                              $report['output'] = Text::_('Delete failed');
-                          }
-                      } else {
-                          $report['status'] = true;
-                      }
+        echo json_encode($report);
 
-                      echo json_encode($report);
-
-                      die;
-              }
-          }
+        die;
+    }
+}

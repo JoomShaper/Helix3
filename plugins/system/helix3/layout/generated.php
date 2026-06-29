@@ -1,52 +1,50 @@
 <?php
-/**
+    /**
  * @package Helix3 Framework
  * @author JoomShaper https://www.joomshaper.com
- * @copyright (c) 2010 - 2021 JoomShaper
+ * @copyright (c) 2010 - 2026 JoomShaper
  * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
  */
 
-//no direct accees
-defined ('_JEXEC') or die ('resticted aceess');
+    //no direct accees
+    defined('_JEXEC') or die('resticted aceess');
 
-use Joomla\CMS\Language\Text;
-if (version_compare(JVERSION, '5.0', '>=')) {
-    if (!class_exists('Joomla\\CMS\\Filesystem\\Folder') && class_exists('Joomla\\Filesystem\\Folder')) {
+    use Joomla\CMS\Filesystem\Folder;
+    if (version_compare(JVERSION, '5.0', '>=')) {
+    if (! class_exists('Joomla\\CMS\\Filesystem\\Folder') && class_exists('Joomla\\Filesystem\\Folder')) {
         class_alias('Joomla\\Filesystem\\Folder', 'Joomla\\CMS\\Filesystem\\Folder');
     }
-}
-use Joomla\CMS\Filesystem\Folder;
+    }
+    use Joomla\CMS\Language\Text;
 
-$types = Folder::files( dirname( __FILE__ ) . '/types', '\.php$', false, true);
+    $types = Folder::files(dirname(__FILE__) . '/types', '\.php$', false, true);
 
+    foreach ($types as $type) {
+    require_once $type;
+    }
 
-foreach ($types as $type)
-{
-  require_once $type;
-}
+    // require_once 'layout-settings/fields-helper.php';
+    require_once 'layout-settings/row-column-settings.php';
 
-// require_once 'layout-settings/fields-helper.php';
-require_once 'layout-settings/row-column-settings.php';
+    echo RowColumnSettings::getRowSettings($rowSettings);
+    echo RowColumnSettings::getColumnSettings($columnSettings);
 
-echo RowColumnSettings::getRowSettings($rowSettings);
-echo RowColumnSettings::getColumnSettings($columnSettings);
-
-$colGrid = array(
-  '12'        => '12',
-  '66'        => '6,6',
-  '444'       => '4,4,4',
-  '3333'      => '3,3,3,3',
-  '48'        => '4,8',
-  '39'        => '3,9',
-  '363'       => '3,6,3',
-  '264'       => '2,6,4',
-  '210'       => '2,10',
-  '57'        => '5,7',
-  '237'       => '2,3,7',
-  '255'       => '2,5,5',
-  '282'       => '2,8,2',
-  '2442'      => '2,4,4,2',
-);
+    $colGrid = [
+    '12'   => '12',
+    '66'   => '6,6',
+    '444'  => '4,4,4',
+    '3333' => '3,3,3,3',
+    '48'   => '4,8',
+    '39'   => '3,9',
+    '363'  => '3,6,3',
+    '264'  => '2,6,4',
+    '210'  => '2,10',
+    '57'   => '5,7',
+    '237'  => '2,3,7',
+    '255'  => '2,5,5',
+    '282'  => '2,8,2',
+    '2442' => '2,4,4,2',
+    ];
 
 ?>
 <div class="hidden">
@@ -93,11 +91,11 @@ $colGrid = array(
             <a class="btn btn-default btn-small btn-sm add-columns" href="#"><i class="fa fa-columns"></i> <?php echo Text::_('HELIX_ADD_COLUMNS'); ?></a>
             <ul class="column-list">
               <?php
-              foreach ($colGrid as $key => $grid){
-                $active = ($key==12) ? ' active' : '';
-                echo '<li><a href="#" class="column-layout hasTooltip column-layout-' .$key. $active .'" data-layout="'.$grid.'" data-original-title="<strong>'.$grid.'</strong>"></a></li>';
-                $active = '';
-              }
+                  foreach ($colGrid as $key => $grid) {
+                      $active = ($key == 12) ? ' active' : '';
+                      echo '<li><a href="#" class="column-layout hasTooltip column-layout-' . $key . $active . '" data-layout="' . $grid . '" data-original-title="<strong>' . $grid . '</strong>"></a></li>';
+                      $active = '';
+                  }
               ?>
               <li><a href="#" class="hasTooltip column-layout-custom column-layout custom <?php echo $active; ?>" data-layout="" data-type='custom' data-original-title="<strong>Custom Layout</strong>"></a></li>
             </ul>
@@ -126,15 +124,15 @@ $colGrid = array(
 <div id="helix-layout-builder" >
   <?php
 
-  if ($layout_data) {
-    foreach ($layout_data as $row) {
-      $rowSettings = RowColumnSettings::getSettings($row->settings);
-      $name = Text::_('HELIX_SECTION_TITLE');
+      if ($layout_data) {
+          foreach ($layout_data as $row) {
+              $rowSettings = RowColumnSettings::getSettings($row->settings);
+              $name        = Text::_('HELIX_SECTION_TITLE');
 
-      if (isset($row->settings->name)) {
-        $name = $row->settings->name;
-      }
-      ?>
+              if (isset($row->settings->name)) {
+            $name = $row->settings->name;
+              }
+        ?>
       <div class="layoutbuilder-section" <?php echo $rowSettings; ?>>
         <div class="settings-section clearfix">
           <div class="settings-left pull-left">
@@ -148,23 +146,23 @@ $colGrid = array(
                 <a class="btn btn-default btn-small btn-sm add-columns" href="#"><i class="fa fa-columns"></i> <?php echo Text::_('HELIX_ADD_COLUMNS'); ?></a>
                 <ul class="column-list">
                   <?php
-                  $active = '';
-                  foreach ($colGrid as $key => $grid){
-                    if($key == $row->layout){
-                      $active = 'active';
-                    }
-                    echo '<li><a href="#" class="column-layout hasTooltip column-layout-' .$key. ' '.$active.'" data-layout="'.$grid.'" data-original-title="<strong>'.$grid.'</strong>"></a></li>';
-                    $active ='';
-                  } ?>
+                      $active = '';
+                              foreach ($colGrid as $key => $grid) {
+                                  if ($key == $row->layout) {
+                                      $active = 'active';
+                                  }
+                                  echo '<li><a href="#" class="column-layout hasTooltip column-layout-' . $key . ' ' . $active . '" data-layout="' . $grid . '" data-original-title="<strong>' . $grid . '</strong>"></a></li>';
+                                  $active = '';
+                          }?>
 
                   <?php
-                  $customLayout = '';
-                  if (!isset($colGrid[$row->layout])) {
-                    $active = 'active';
-                    $split = str_split($row->layout);
-                    $customLayout = implode(',',$split);
-                  }
-                  ?>
+                      $customLayout = '';
+                              if (! isset($colGrid[$row->layout])) {
+                                  $active       = 'active';
+                                  $split        = str_split($row->layout);
+                                  $customLayout = implode(',', $split);
+                              }
+                          ?>
                   <li><a href="#" class="hasTooltip column-layout-custom column-layout custom <?php echo $active; ?>" data-layout="<?php echo $customLayout; ?>" data-type='custom' data-original-title="<strong>Custom Layout</strong>"></a></li>
                 </ul>
               </li>
@@ -175,28 +173,28 @@ $colGrid = array(
           </div>
         </div>
         <div class="row ui-sortable">
-          <?php foreach ($row->attr as $column) { $colSettings = RowColumnSettings::getSettings($column->settings); ?>
+          <?php foreach ($row->attr as $column) {$colSettings = RowColumnSettings::getSettings($column->settings); ?>
             <div class="<?php echo $column->className; ?>" <?php echo $colSettings; ?>>
               <div class="column">
                 <?php if (isset($column->settings->column_type) && $column->settings->column_type) {
-                  echo '<h6 class="col-title pull-left">Component</h6>';
-                }else{
-                  if (!isset($column->settings->name)) {
-                    $column->settings->name = 'none';
-                  }
-                  echo '<h6 class="col-title pull-left">'.$column->settings->name.'</h6>';
-                }
-                ?>
+                                echo '<h6 class="col-title pull-left">Component</h6>';
+                            } else {
+                                if (! isset($column->settings->name)) {
+                                    $column->settings->name = 'none';
+                                }
+                                echo '<h6 class="col-title pull-left">' . $column->settings->name . '</h6>';
+                            }
+                            ?>
                 <a class="col-ops-set pull-right" href="#" ><i class="fa fa-gears"></i></a>
               </div>
             </div>
-          <?php } ?>
+          <?php }?>
         </div>
       </div>
       <?php
-    }
-  }
-  ?>
+          }
+          }
+      ?>
 </div>
 
 <div class="clearfix"></div>

@@ -1,27 +1,27 @@
 <?php
-/**
+    /**
  * @package Helix3 Framework
  * @author JoomShaper https://www.joomshaper.com
- * @copyright (c) 2010 - 2021 JoomShaper
+ * @copyright (c) 2010 - 2026 JoomShaper
  * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or later
-*/
+ */
 
-defined('_JEXEC') or die;
+    defined('_JEXEC') or die;
 
-use Joomla\CMS\Router\Route;
-use Joomla\CMS\Language\Text;
-use Joomla\CMS\HTML\HTMLHelper;
+    use Joomla\CMS\HTML\HTMLHelper;
+    use Joomla\CMS\Language\Text;
+    use Joomla\CMS\Router\Route;
 
-HTMLHelper::_('behavior.keepalive');
+    HTMLHelper::_('behavior.keepalive');
 ?>
 <form action="<?php echo Route::_('index.php', true, $params->get('usesecure', 0)); ?>" method="post" id="login-form">
-<?php if ($params->get('greeting')) : ?>
+<?php if ($params->get('greeting')): ?>
 	<div class="login-greeting">
-	<?php if ($params->get('name') == 0) : {
-		echo Text::sprintf('MOD_LOGIN_HINAME', htmlspecialchars($user->get('name')));
-	} else : {
-		echo Text::sprintf('MOD_LOGIN_HINAME', htmlspecialchars($user->get('username')));
-	} endif; ?>
+	<?php if ($params->get('name') == 0): {
+        echo Text::sprintf('MOD_LOGIN_HINAME', htmlspecialchars($user->get('name')));
+            } else : {
+        echo Text::sprintf('MOD_LOGIN_HINAME', htmlspecialchars($user->get('username')));
+    }endif; ?>
 	</div>
 <?php endif; ?>
 	<div class="logout-button">

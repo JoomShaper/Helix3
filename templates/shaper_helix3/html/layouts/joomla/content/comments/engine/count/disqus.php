@@ -1,31 +1,28 @@
 <?php
-/**
+    /**
  * @package Helix3 Framework
  * @author JoomShaper https://www.joomshaper.com
- * @copyright (c) 2010 - 2021 JoomShaper
+ * @copyright (c) 2010 - 2026 JoomShaper
  * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or later
-*/
+ */
 
-//no direct access
-defined('_JEXEC') or die('Restricted Access');
+    //no direct access
+    defined('_JEXEC') or die('Restricted Access');
 
-use Joomla\CMS\Factory;
+    use Joomla\CMS\Factory;
 
-if ($displayData['params']->get('disqus_subdomain') != '')
-{
-	$doc = Factory::getDocument();
+    if ($displayData['params']->get('disqus_subdomain') != '') {
+    $doc = Factory::getDocument();
 
-	if (!defined('HELIX_COMMENTS_DISQUS_COUNT'))
-	{
-		ob_start();
+    if (! defined('HELIX_COMMENTS_DISQUS_COUNT')) {
+        ob_start();
 
-		$devmode = $displayData['params']->get('disqus_devmode');
-		
-		if ($devmode)
-		{
-			echo 'var disqus_developer = "1";';
-		}
-		?>
+        $devmode = $displayData['params']->get('disqus_devmode');
+
+        if ($devmode) {
+            echo 'var disqus_developer = "1";';
+        }
+        ?>
 
 		var disqus_shortname = '<?php echo $displayData['params']->get("disqus_subdomain"); ?>';
 		(function () {
@@ -36,14 +33,14 @@ if ($displayData['params']->get('disqus_subdomain') != '')
 		}());
 
 		<?php
-		$output = ob_get_clean();
-		$doc->addScriptdeclaration( $output );
-		define('HELIX_COMMENTS_DISQUS_COUNT', 1);
-	}
+            $output = ob_get_clean();
+                    $doc->addScriptdeclaration($output);
+                    define('HELIX_COMMENTS_DISQUS_COUNT', 1);
+                }
 
-	?>
+            ?>
 	<span class="comments-anchor">
 		<a href="<?php echo $displayData['url']; ?>#disqus_thread"></a>
 	</span>
 	<?php
-}
+    }

@@ -5,6 +5,38 @@
  * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
  */
 jQuery(function ($) {
+  function helix3GetCsrfTokenName($context) {
+    var tokenName = $context.data("csrf-name");
+
+    if (tokenName) {
+      return tokenName;
+    }
+
+    var $tokenInput = $context
+      .closest("form")
+      .find('input[type="hidden"]')
+      .filter(function () {
+        return /^[a-f0-9]{32}$/.test(this.name);
+      })
+      .first();
+
+    return $tokenInput.length ? $tokenInput.attr("name") : null;
+  }
+
+  function helix3AppendCsrfToken(data, $context) {
+    var tokenName = helix3GetCsrfTokenName($context);
+
+    if (tokenName) {
+      if (data instanceof FormData) {
+        data.append(tokenName, "1");
+      } else {
+        data[tokenName] = "1";
+      }
+    }
+
+    return tokenName;
+  }
+
   $(".sp-gallery-field").each(function (index, el) {
     var $field = $(el);
 
@@ -49,6 +81,7 @@ jQuery(function ($) {
 
       if (file.type.match(/image.*/)) {
         data.append("image", file);
+        helix3AppendCsrfToken(data, $field);
 
         $.ajax({
           type: "POST",
@@ -130,6 +163,7 @@ jQuery(function ($) {
         src: $(this).parent().data("src"),
         format: "json",
       };
+      helix3AppendCsrfToken(request, $this.closest(".sp-gallery-field"));
 
       $.ajax({
         type: "POST",

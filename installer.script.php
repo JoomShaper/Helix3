@@ -43,7 +43,9 @@ class plgSystemTmp_helix3InstallerScript
             }
 
             $installer = new Installer();
-            $installer->setDatabase(Factory::getContainer()->get(DatabaseInterface::class));
+            if (version_compare(JVERSION, '5.0', '>=')) {
+                $installer->setDatabase(Factory::getContainer()->get(DatabaseInterface::class));
+            }
 
             $result = $installer->install($path);
 
@@ -70,7 +72,10 @@ class plgSystemTmp_helix3InstallerScript
 
         if (Folder::exists($template_path)) {
             $installer = new Installer;
-            $installer->setDatabase(Factory::getContainer()->get(DatabaseInterface::class));
+            if (version_compare(JVERSION, '5.0', '>=')) {
+                $installer->setDatabase(Factory::getContainer()->get(DatabaseInterface::class));
+            }
+
             $installer->install($template_path);
         }
 

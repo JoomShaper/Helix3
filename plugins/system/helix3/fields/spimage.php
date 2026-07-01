@@ -13,6 +13,7 @@ use Joomla\CMS\Factory;
 use Joomla\CMS\Filesystem\File;
 use Joomla\CMS\Form\FormField;
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Session\Session;
 
 if (version_compare(JVERSION, '5.0', '>=')) {
     if (! class_exists('Joomla\\CMS\\Filesystem\\File') && class_exists('Joomla\\Filesystem\\File')) {
@@ -45,7 +46,7 @@ class JFormFieldSpimage extends FormField
             $class2 = ' hide';
         }
 
-        $output  = '<div class="sp-image-field clearfix">';
+        $output  = '<div class="sp-image-field clearfix" data-csrf-name="' . Session::getFormToken() . '">';
         $output .= '<div class="sp-image-upload-wrapper">';
 
         if ($this->value) {

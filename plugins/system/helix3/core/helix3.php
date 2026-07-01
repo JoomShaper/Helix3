@@ -87,11 +87,13 @@ class Helix3
         $view   = $app->input->get('view', '');
         $layout = $app->input->get('layout', '');
 
-        // Favicon
-        if ($favicon = self::getParam('favicon')) {
-            $doc->addFavicon(Uri::base(true) . '/' . $favicon);
-        } else {
-            $doc->addFavicon(self::getTemplateUri() . '/images/favicon.ico');
+        // Favicon (HtmlDocument only — not available on JsonDocument during AJAX)
+        if (method_exists($doc, 'addFavicon')) {
+            if ($favicon = self::getParam('favicon')) {
+                $doc->addFavicon(Uri::base(true) . '/' . $favicon);
+            } else {
+                $doc->addFavicon(self::getTemplateUri() . '/images/favicon.ico');
+            }
         }
 
         // load legacy css

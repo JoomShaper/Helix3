@@ -35,10 +35,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <?php
             $doc = Factory::getDocument();
-            if ($favicon = $this->params->get('favicon')) {
-                $doc->addFavicon(Uri::base(true) . '/' . $favicon);
-            } else {
-                $doc->addFavicon($this->baseurl . '/templates/' . $this->template . '/images/favicon.ico');
+            if (method_exists($doc, 'addFavicon')) {
+                if ($favicon = $this->params->get('favicon')) {
+                    $doc->addFavicon(Uri::base(true) . '/' . $favicon);
+                } else {
+                    $doc->addFavicon($this->baseurl . '/templates/' . $this->template . '/images/favicon.ico');
+                }
             }
         ?>
 

@@ -14,6 +14,7 @@ use Joomla\CMS\Factory;
 use Joomla\CMS\Filesystem\File;
 use Joomla\CMS\Form\FormField;
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Session\Session;
 if (version_compare(JVERSION, '5.0', '>=')) {
     if (! class_exists('Joomla\\CMS\\Filesystem\\File') && class_exists('Joomla\\Filesystem\\File')) {
         class_alias('Joomla\\Filesystem\\File', 'Joomla\\CMS\\Filesystem\\File');
@@ -49,7 +50,7 @@ class JFormFieldSpgallery extends FormField
             $values = [];
         }
 
-        $output  = '<div class="sp-gallery-field">';
+        $output  = '<div class="sp-gallery-field" data-csrf-name="' . Session::getFormToken() . '">';
         $output .= '<ul class="sp-gallery-items clearfix">';
 
         if (is_array($values) && $values) {

@@ -70,11 +70,11 @@ class plgAjaxHelix3 extends CMSPlugin
     $action = $input->post->get('action', '', 'STRING');
 
     if($action === 'upload_image') {
-      $this->requireAuthorisedAdminRequest();
+      $this->requireValidToken();
       $this->upload_image();
       return;
     } else if($action === 'remove_image') {
-      $this->requireAuthorisedAdminRequest();
+      $this->requireValidToken();
       $this->remove_image();
       return;
     }
@@ -345,9 +345,14 @@ class plgAjaxHelix3 extends CMSPlugin
     $app->close();
   }
 
+  private function getCurrentUser()
+  {
+    return Factory::getUser();
+  }
+
   private function requireAuthorisedAdminRequest()
   {
-    $user = Factory::getApplication()->getIdentity();
+    $user = $this->getCurrentUser();
 
     if ($user->guest || (!$user->authorise('core.admin') && !$user->authorise('core.manage', 'com_templates'))) {
       $this->sendJsonError(Text::_('JERROR_ALERTNOAUTHOR'), 403);
@@ -954,7 +959,7 @@ class plgAjaxHelix3 extends CMSPlugin
       $report = array();
 
       // User is not authorised
-      if (!Factory::getApplication()->getIdentity()->authorise('core.create', 'com_media'))
+      if (!$this->getCurrentUser()->authorise('core.create', 'com_media'))
       {
         $report['status'] = false;
         $report['output'] = Text::_('You are not authorised to upload file.');
@@ -1090,7 +1095,7 @@ class plgAjaxHelix3 extends CMSPlugin
 	{
       $report = array();
 
-      if (!Factory::getApplication()->getIdentity()->authorise('core.delete', 'com_media'))
+      if (!$this->getCurrentUser()->authorise('core.delete', 'com_media'))
       {
         $report['status'] = false;
         $report['output'] = Text::_('You are not authorised to delete file.');

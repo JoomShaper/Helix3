@@ -97,7 +97,7 @@ class Helix3
         }
 
         // load legacy css
-        if (($view == 'form' && $layout == 'edit') || ($option = 'com_config' && $view == 'modules')) {
+        if (($view == 'form' && $layout == 'edit') || ($option == 'com_config' && $view == 'modules')) {
             if (JVERSION < 4) {
                 $doc->addStylesheet(Uri::base(true) . '/plugins/system/helix3/assets/css/system.j3.min.css');
             } else {
@@ -353,7 +353,7 @@ class Helix3
                 }
 
                 if (! empty($row->settings->custom_class)) {
-                    $row_class .= ' ' . $row->settings->custom_class;
+                    $row_class .= ' ' . htmlspecialchars($row->settings->custom_class, ENT_QUOTES, 'UTF-8');
                 }
 
                 if ($row_class) {
@@ -370,36 +370,36 @@ class Helix3
                     $row_css .= 'background-image:url("' . Uri::base(true) . '/' . htmlspecialchars((JVERSION < 4 ? $row->settings->background_image : HTMLHelper::cleanImageURL($row->settings->background_image)->url), ENT_COMPAT, 'UTF-8') . '");';
 
                     if (! empty($row->settings->background_repeat)) {
-                        $row_css .= 'background-repeat:' . $row->settings->background_repeat . ';';
+                        $row_css .= 'background-repeat:' . preg_replace('/[^a-zA-Z0-9#%(),.\/\- ]/', '', $row->settings->background_repeat) . ';';
                     }
 
                     if (! empty($row->settings->background_size)) {
-                        $row_css .= 'background-size:' . $row->settings->background_size . ';';
+                        $row_css .= 'background-size:' . preg_replace('/[^a-zA-Z0-9#%(),.\/\- ]/', '', $row->settings->background_size) . ';';
                     }
 
                     if (! empty($row->settings->background_attachment)) {
-                        $row_css .= 'background-attachment:' . $row->settings->background_attachment . ';';
+                        $row_css .= 'background-attachment:' . preg_replace('/[^a-zA-Z0-9#%(),.\/\- ]/', '', $row->settings->background_attachment) . ';';
                     }
 
                     if (! empty($row->settings->background_position)) {
-                        $row_css .= 'background-position:' . $row->settings->background_position . ';';
+                        $row_css .= 'background-position:' . preg_replace('/[^a-zA-Z0-9#%(),.\/\- ]/', '', $row->settings->background_position) . ';';
                     }
                 }
 
                 if (! empty($row->settings->background_color)) {
-                    $row_css .= 'background-color:' . $row->settings->background_color . ';';
+                    $row_css .= 'background-color:' . preg_replace('/[^a-zA-Z0-9#%(),.\/\- ]/', '', $row->settings->background_color) . ';';
                 }
 
                 if (! empty($row->settings->color)) {
-                    $row_css .= 'color:' . $row->settings->color . ';';
+                    $row_css .= 'color:' . preg_replace('/[^a-zA-Z0-9#%(),.\/\- ]/', '', $row->settings->color) . ';';
                 }
 
                 if (! empty($row->settings->padding)) {
-                    $row_css .= 'padding:' . $row->settings->padding . ';';
+                    $row_css .= 'padding:' . preg_replace('/[^a-zA-Z0-9#%(),.\/\- ]/', '', $row->settings->padding) . ';';
                 }
 
                 if (! empty($row->settings->margin)) {
-                    $row_css .= 'margin:' . $row->settings->margin . ';';
+                    $row_css .= 'margin:' . preg_replace('/[^a-zA-Z0-9#%(),.\/\- ]/', '', $row->settings->margin) . ';';
                 }
 
                 if ($row_css) {
@@ -408,12 +408,12 @@ class Helix3
 
                 //Link Color
                 if (! empty($row->settings->link_color)) {
-                    $doc->addStyledeclaration('#' . $id . ' a{color:' . $row->settings->link_color . ';}');
+                    $doc->addStyledeclaration('#' . $id . ' a{color:' . preg_replace('/[^a-zA-Z0-9#%(),.\/\- ]/', '', $row->settings->link_color) . ';}');
                 }
 
                 //Link Hover Color
                 if (! empty($row->settings->link_hover_color)) {
-                    $doc->addStyledeclaration('#' . $id . ' a:hover{color:' . $row->settings->link_hover_color . ';}');
+                    $doc->addStyledeclaration('#' . $id . ' a:hover{color:' . preg_replace('/[^a-zA-Z0-9#%(),.\/\- ]/', '', $row->settings->link_hover_color) . ';}');
                 }
 
                 // set html5 stracture
@@ -734,10 +734,13 @@ class Helix3
         $cacheFile = $cachePath . '/' . basename($css . ".cache");
 
         if (file_exists($cacheFile)) {
-            $cache = unserialize(file_get_contents($cacheFile));
+            $cache = json_decode(file_get_contents($cacheFile), true);
+            if (!is_array($cache)) {
+                $cache = $less;
+            }
 
             //If root changed then do not compile
-            if (isset($cache['root']) && $cache['root']) {
+            if (is_array($cache) && isset($cache['root']) && $cache['root']) {
                 if ($cache['root'] != $less) {
                     return self::getInstance();
                 }
@@ -755,7 +758,7 @@ class Helix3
                 Folder::create($cachePath, 0755);
             }
 
-            file_put_contents($cacheFile, serialize($newCache));
+            file_put_contents($cacheFile, json_encode($newCache));
             file_put_contents($css, $newCache['compiled']);
         }
 
@@ -800,7 +803,7 @@ class Helix3
 
     private static function resetCookie($name)
     {
-        if (JRequest::getVar('reset', '', 'get') == 1) {
+        if (Factory::getApplication()->input->get('reset', 0, 'int') == 1) {
             setcookie($name, '', time() - 3600, '/');
         }
     }

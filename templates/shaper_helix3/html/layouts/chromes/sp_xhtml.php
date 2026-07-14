@@ -25,7 +25,7 @@ $headerClass   = htmlspecialchars(! empty($params->get('header_class', 'sp-modul
 if ($module->content) {
     echo '<' . $moduleTag . ' class="sp-module ' . htmlspecialchars(! empty($params->get('moduleclass_sfx')) ? $params->get('moduleclass_sfx') : '', ENT_COMPAT, 'UTF-8') . $moduleClass . '">';
     if ($module->showtitle) {
-        echo '<' . $headerTag . ' class="' . $headerClass . '">' . $module->title . '</' . $headerTag . '>';
+        echo '<' . $headerTag . ' class="' . $headerClass . '">' . htmlspecialchars($module->title, ENT_QUOTES, 'UTF-8') . '</' . $headerTag . '>';
     }
     echo '<div class="sp-module-content">';
     echo $module->content;

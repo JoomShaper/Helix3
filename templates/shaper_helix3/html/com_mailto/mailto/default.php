@@ -64,7 +64,7 @@ Factory::getDocument()->addScriptDeclaration("
 		<input type="hidden" name="option" value="com_mailto" />
 		<input type="hidden" name="task" value="send" />
 		<input type="hidden" name="tmpl" value="component" />
-		<input type="hidden" name="link" value="<?php echo $this->link; ?>" />
+		<input type="hidden" name="link" value="<?php echo htmlspecialchars($this->link, ENT_QUOTES, 'UTF-8'); ?>" />
 		<?php echo HTMLHelper::_('form.token'); ?>
 	</form>
 	<?php } else {?>
@@ -99,11 +99,11 @@ Factory::getDocument()->addScriptDeclaration("
 				</button>
 			</div>
 
-			<input type="hidden" name="layout" value="<?php echo $this->getLayout();?>" />
+			<input type="hidden" name="layout" value="<?php echo htmlspecialchars($this->getLayout(), ENT_QUOTES, 'UTF-8');?>" />
 			<input type="hidden" name="option" value="com_mailto" />
 			<input type="hidden" name="task" value="send" />
 			<input type="hidden" name="tmpl" value="component" />
-			<input type="hidden" name="link" value="<?php echo $data->link; ?>" />
+			<input type="hidden" name="link" value="<?php echo htmlspecialchars($data->link, ENT_QUOTES, 'UTF-8'); ?>" />
 			<?php echo HTMLHelper::_('form.token'); ?>
 		</form>
 	<?php } ?>

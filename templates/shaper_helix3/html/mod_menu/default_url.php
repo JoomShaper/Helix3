@@ -16,15 +16,15 @@
 
     if ($item->menu_image) {
     $item->getParams()->get('menu_text', 1) ?
-    $linktype = '<img src="' . $item->menu_image . '" alt="' . $item->title . '" /><span class="image-title">' . $item->title . '</span> ' :
-    $linktype = '<img src="' . $item->menu_image . '" alt="' . $item->title . '" />';
+    $linktype = '<img src="' . htmlspecialchars($item->menu_image, ENT_QUOTES, 'UTF-8') . '" alt="' . htmlspecialchars($item->title, ENT_QUOTES, 'UTF-8') . '" /><span class="image-title">' . htmlspecialchars($item->title, ENT_QUOTES, 'UTF-8') . '</span> ' :
+    $linktype = '<img src="' . htmlspecialchars($item->menu_image, ENT_QUOTES, 'UTF-8') . '" alt="' . htmlspecialchars($item->title, ENT_QUOTES, 'UTF-8') . '" />';
     } else {
-    $linktype = $item->title;
+    $linktype = htmlspecialchars($item->title, ENT_QUOTES, 'UTF-8');
     }
 
     $icon = '';
     if (isset($item_decode->icon) && $item_decode->icon) {
-    $icon = ' <i class="fa ' . $item_decode->icon . '"></i>';
+    $icon = ' <i class="fa ' . htmlspecialchars($item_decode->icon, ENT_QUOTES, 'UTF-8') . '"></i>';
     }
 
     $flink = $item->flink;
@@ -45,11 +45,11 @@
         break;
         case 2:
             // Use JavaScript "window.open"
-        $options = 'toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,' . $params->get('window_open');
+        $options = htmlspecialchars('toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,' . $params->get('window_open'), ENT_QUOTES, 'UTF-8');
         ?><a <?php echo $class; ?>href="<?php echo $flink; ?>" onclick="window.open(this.href,'targetWindow','<?php echo $options; ?>');return false;" <?php echo $title; ?>><?php echo $icon . ' ' . $linktype; ?></a><?php
         break;
             endswitch;
 
             if (($module->position == 'offcanvas') && ($item->deeper)) {
-                echo '<span class="offcanvas-menu-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#collapse-menu-' . $item->id . '"><i class="open-icon fa fa-angle-down"></i><i class="close-icon fa fa-angle-up"></i></span>';
+                echo '<span class="offcanvas-menu-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#collapse-menu-' . (int) $item->id . '"><i class="open-icon fa fa-angle-down"></i><i class="close-icon fa fa-angle-up"></i></span>';
         }

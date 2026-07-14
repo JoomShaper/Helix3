@@ -190,7 +190,7 @@ class plgSystemHelix3 extends CMSPlugin
         if ($japps->isClient('administrator')) {
             $user = Factory::getUser();
 
-            if (! in_array(8, $user->groups)) {
+            if (!$user->authorise('core.manage', 'com_templates') && !$user->authorise('core.admin')) {
                 return false;
             }
 
@@ -201,6 +201,9 @@ class plgSystemHelix3 extends CMSPlugin
             $helix3task = $inputs->get('helix3task', '');
 
             if (strtolower($option) == 'com_templates' && $id && $helix3task == "export") {
+                // Verify CSRF Token
+                \JSession::checkToken('get') or jexit(\JText::_('JINVALID_TOKEN'));
+
                 $db    = Factory::getDbo();
                 $query = $db->getQuery(true);
 

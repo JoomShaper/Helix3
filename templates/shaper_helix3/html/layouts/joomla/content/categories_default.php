@@ -11,7 +11,7 @@
     use Joomla\CMS\HTML\HTMLHelper;
 
 ?>
-<div class="categories-list<?php echo $displayData->pageclass_sfx; ?>">
+<div class="categories-list<?php echo htmlspecialchars($displayData->pageclass_sfx, ENT_QUOTES, 'UTF-8'); ?>">
 	<?php if ($displayData->params->get('show_page_heading')): ?>
 		<h1>
 			<?php echo $displayData->escape($displayData->params->get('page_heading')); ?>

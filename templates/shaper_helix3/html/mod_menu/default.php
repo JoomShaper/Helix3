@@ -21,7 +21,7 @@
      $tag = '';
 
      if ($params->get('tag_id') != null) {
-         $tag = $params->get('tag_id') . '';
+         $tag = htmlspecialchars($params->get('tag_id'), ENT_QUOTES, 'UTF-8');
          echo ' id="' . $tag . '"';
  }
  ?>>
@@ -86,7 +86,7 @@
     // The next item is deeper.
     if ($item->deeper) {
             if ($module->position == 'offcanvas') {
-                echo '<ul class="collapse" id="collapse-menu-' . $item->id . '">';
+                echo '<ul class="collapse" id="collapse-menu-' . (int) $item->id . '">';
             } else {
                 echo '<ul>';
             }

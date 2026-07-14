@@ -40,21 +40,42 @@ class helix3j3securitypatchInstallerScript
             // Calculate the relative path from the "files" directory
             $relativePath = str_replace($sourcePath, '', $file);
 
-            // Determine the destination path in the root directory
-            $destPath = $rootPath . '/' . $relativePath;
+            // Clean up directory separator and leading slashes
+            $relativePath = str_replace('\\', '/', $relativePath);
+            $cleanRelativePath = ltrim($relativePath, '/');
 
-            // Check if the target file exists in the destination path
+            // Determine the destination path in the root directory
+            $destPath = $rootPath . '/' . $cleanRelativePath;
+
+            // Find the extension base path (e.g. plugins/system/helix3)
+            $parts = explode('/', $cleanRelativePath);
+            $extensionBase = '';
+            if (count($parts) >= 3) {
+                if ($parts[0] === 'plugins') {
+                    $extensionBase = $parts[0] . '/' . $parts[1] . '/' . $parts[2];
+                } elseif ($parts[0] === 'templates') {
+                    $extensionBase = $parts[0] . '/' . $parts[1];
+                }
+            }
+
+            // Check if the extension base folder exists in the target site
             // (we only patch existing installations of Helix3 and shaper_helix3)
-            if (File::exists($destPath)) {
+            if ($extensionBase && Folder::exists($rootPath . '/' . $extensionBase)) {
+                // Ensure the target directory exists
+                $targetDir = dirname($destPath);
+                if (!Folder::exists($targetDir)) {
+                    Folder::create($targetDir, 0755);
+                }
+
                 if (!File::copy($file, $destPath, '', false)) {
-                    Factory::getApplication()->enqueueMessage("Failed to replace $relativePath", 'error');
+                    Factory::getApplication()->enqueueMessage("Failed to replace $cleanRelativePath", 'error');
                 } else {
                     // Log success message
-                    Factory::getApplication()->enqueueMessage("Patched: $relativePath", 'message');
+                    Factory::getApplication()->enqueueMessage("Patched: $cleanRelativePath", 'message');
                 }
             } else {
-                // If the file doesn't exist, we skip it or raise a warning
-                Factory::getApplication()->enqueueMessage("Target file not found (skipped): $relativePath", 'notice');
+                // If the extension folder doesn't exist, we skip it
+                Factory::getApplication()->enqueueMessage("Target extension not found (skipped): $cleanRelativePath", 'notice');
             }
         }
 

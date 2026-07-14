@@ -54,12 +54,12 @@ function pagination_item_active(&$item)
     if ($item->text == Text::_('First')) {$cls = "first";}
     if ($item->text == Text::_('Last')) {$cls = "last";}
 
-    return '<li class="page-item"><a class="page-link ' . $cls . '" href="' . $item->link . '" title="' . $item->text . '">' . $item->text . '</a></li>';
+    return '<li class="page-item"><a class="page-link ' . htmlspecialchars($cls, ENT_QUOTES, 'UTF-8') . '" href="' . htmlspecialchars($item->link, ENT_QUOTES, 'UTF-8') . '" title="' . htmlspecialchars($item->text, ENT_QUOTES, 'UTF-8') . '">' . htmlspecialchars($item->text, ENT_QUOTES, 'UTF-8') . '</a></li>';
 }
 
 function pagination_item_inactive(&$item)
 {
     $cls  = 'page-item';
     $cls .= (int) $item->text > 0 ? ' active' : ' disabled';
-    return '<li class="' . $cls . '"><a class="page-link">' . $item->text . '</a></li>';
+    return '<li class="' . htmlspecialchars($cls, ENT_QUOTES, 'UTF-8') . '"><a class="page-link">' . htmlspecialchars($item->text, ENT_QUOTES, 'UTF-8') . '</a></li>';
 }

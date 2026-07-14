@@ -27,7 +27,7 @@
 	<?php if ($params->get('show_title')): ?>
 		<h2 itemprop="name">
 			<?php if ($params->get('link_titles') && $params->get('access-view')): ?>
-				<a href="<?php echo Route::_(version_compare(JVERSION, '4.0.0', '<') ? ContentHelperRoute::getArticleRoute($displayData->slug, $displayData->catid, $displayData->language) : Joomla\Component\Content\Site\Helper\RouteHelper::getArticleRoute($displayData->slug, $displayData->catid, $displayData->language)); ?>" itemprop="url">
+				<a href="<?php echo htmlspecialchars(Route::_(version_compare(JVERSION, '4.0.0', '<') ? ContentHelperRoute::getArticleRoute($displayData->slug, $displayData->catid, $displayData->language) : Joomla\Component\Content\Site\Helper\RouteHelper::getArticleRoute($displayData->slug, $displayData->catid, $displayData->language)), ENT_QUOTES, 'UTF-8'); ?>" itemprop="url">
 				<?php echo $this->escape($displayData->title); ?></a>
 			<?php else: ?>
 				<?php echo $this->escape($displayData->title); ?>

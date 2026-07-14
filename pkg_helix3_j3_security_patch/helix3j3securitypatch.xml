@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extension type="file" version="3.10" method="upgrade">
+    <name>Helix3 and Shaper_Helix3 J3 Security Patch</name>
+    <author>JoomShaper Development Team (Security Backport)</author>
+    <creationDate>2026-07-14</creationDate>
+    <version>1.0.0</version>
+    <description><![CDATA[This package applies critical security patches for the Helix3 System Plugin and the shaper_helix3 template on Joomla 3.10.x. After successfully copying and overwriting the patched files, this installer package will automatically uninstall itself to leave no trace.]]></description>
+    <scriptfile>script.php</scriptfile>
+    <fileset>
+        <files>
+            <filename file="helix3j3securitypatch.xml">helix3j3securitypatch.xml</filename>
+            <filename file="script.php">script.php</filename>
+        </files>
+    </fileset>
+</extension>

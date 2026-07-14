@@ -2,7 +2,8 @@
 	"name": "helix3",
 	"description": "[![Join the chat at https://gitter.im/JoomShaper/Helix3](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/JoomShaper/Helix3?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)",
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1"
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"build:patch": "mkdir -p dist && (cd pkg_helix3_j3_security_patch && zip -r ../dist/pkg_helix3_j3_security_patch.zip . -x '*.DS_Store' -x '**/.DS_Store')"
 	},
 	"repository": {
 		"type": "git",

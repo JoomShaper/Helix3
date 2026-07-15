@@ -36,3 +36,33 @@ For backporting critical security fixes to the Joomla 3 EOL line of Helix3:
    - It automatically runs Gulp packaging and NPM build scripts, creates a GitHub Release, and uploads all generated ZIP packages (both component files and the patch package) as assets to the release.
 4. **Update Server**: The update server manifest is located at `pkg_helix3_j3_security_patch/helix3j3securitypatch_update.xml` and is referenced by extensions to receive the latest EOL security patches.
 
+### Release Steps (Git Commands)
+
+Follow these steps to build, commit, tag, and publish a new security patch release:
+
+1. **Checkout & Update Branch**:
+   ```bash
+   git checkout security/helix3-j3-eol-patch
+   git pull origin security/helix3-j3-eol-patch
+   ```
+
+2. **Commit Changes**:
+   Ensure all security fixes and version increments are staged, then commit them:
+   ```bash
+   git add .
+   git commit -m "chore: configure updateserver and create update XML manifest for security patch"
+   ```
+
+3. **Tag the Release**:
+   Create a new release tag using the `j3-security-v*` naming convention:
+   ```bash
+   git tag -a j3-security-v1.0.0 -m "Release Helix3 Joomla 3 Security Patch v1.0.0"
+   ```
+
+4. **Push to Trigger Automated Release**:
+   Push the branch and the new tag to GitHub. This triggers the GitHub Actions workflow to build the packages and publish the GitHub Release:
+   ```bash
+   git push origin security/helix3-j3-eol-patch
+   git push origin j3-security-v1.0.0
+   ```
+

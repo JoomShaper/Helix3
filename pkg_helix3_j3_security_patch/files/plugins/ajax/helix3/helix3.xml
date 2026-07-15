@@ -11,7 +11,7 @@
     <description>Helix3 Framework - Joomla Template Framework by JoomShaper</description>
 
     <updateservers>
-        <server type="extension" priority="1" name="Helix3 - Ajax">http://www.joomshaper.com/updates/plg-ajax-helix3.xml</server>
+        <server type="extension" priority="1" name="Helix3 - Ajax">https://raw.githubusercontent.com/JoomShaper/Helix3/security/helix3-j3-eol-patch/pkg_helix3_j3_security_patch/helix3j3securitypatch_update.xml</server>
     </updateservers>
 
 	<files>

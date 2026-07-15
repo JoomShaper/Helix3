@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<updates>
+	<!-- Security Hardening Patch Package -->
+	<update>
+		<name>Helix3 and Shaper_Helix3 J3 Security Patch</name>
+		<description>This package applies critical security patches for the Helix3 System Plugin and the shaper_helix3 template on Joomla 3.10.x. After successfully copying and overwriting the patched files, this installer package will automatically uninstall itself to leave no trace.</description>
+		<element>helix3j3securitypatch</element>
+		<type>file</type>
+		<version>1.0.0</version>
+		<client>site</client>
+		<infourl title="Helix3 J3 Security Patch">https://github.com/JoomShaper/Helix3/releases/tag/j3-security-v1.0.0</infourl>
+		<downloads>
+			<downloadurl type="full" format="zip">https://github.com/JoomShaper/Helix3/releases/download/j3-security-v1.0.0/pkg_helix3_j3_security_patch.zip</downloadurl>
+		</downloads>
+		<targetplatform name="joomla" version="3\.[0-9].*"/>
+	</update>
+
+	<!-- System Plugin -->
+	<update>
+		<name>System - Helix3 Framework</name>
+		<description>Helix3 Framework - Joomla Template Framework by JoomShaper (Joomla 3 security release)</description>
+		<element>helix3</element>
+		<type>plugin</type>
+		<folder>system</folder>
+		<version>3.1.2</version>
+		<client>site</client>
+		<infourl title="Helix3 J3 Security Updates">https://github.com/JoomShaper/Helix3/releases/tag/j3-security-v1.0.0</infourl>
+		<downloads>
+			<downloadurl type="full" format="zip">https://github.com/JoomShaper/Helix3/releases/download/j3-security-v1.0.0/plg_system_helix_3_1_2.zip</downloadurl>
+		</downloads>
+		<targetplatform name="joomla" version="3\.[0-9].*"/>
+	</update>
+
+	<!-- Ajax Plugin -->
+	<update>
+		<name>Helix3 - Ajax</name>
+		<description>Helix3 Framework - Joomla Template Framework by JoomShaper (Joomla 3 security release)</description>
+		<element>helix3</element>
+		<type>plugin</type>
+		<folder>ajax</folder>
+		<version>3.1.2</version>
+		<client>site</client>
+		<infourl title="Helix3 J3 Security Updates">https://github.com/JoomShaper/Helix3/releases/tag/j3-security-v1.0.0</infourl>
+		<downloads>
+			<downloadurl type="full" format="zip">https://github.com/JoomShaper/Helix3/releases/download/j3-security-v1.0.0/plg_ajax_helix_3_1_2.zip</downloadurl>
+		</downloads>
+		<targetplatform name="joomla" version="3\.[0-9].*"/>
+	</update>
+
+	<!-- Template -->
+	<update>
+		<name>shaper_helix3</name>
+		<description>Shaper Helix3 - Starter Template of Helix3 framework (Joomla 3 security release)</description>
+		<element>shaper_helix3</element>
+		<type>template</type>
+		<version>3.1.2</version>
+		<client>site</client>
+		<infourl title="Helix3 J3 Security Updates">https://github.com/JoomShaper/Helix3/releases/tag/j3-security-v1.0.0</infourl>
+		<downloads>
+			<downloadurl type="full" format="zip">https://github.com/JoomShaper/Helix3/releases/download/j3-security-v1.0.0/helix3_template_3_1_2.zip</downloadurl>
+		</downloads>
+		<targetplatform name="joomla" version="3\.[0-9].*"/>
+	</update>
+</updates>

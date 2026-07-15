@@ -9,6 +9,9 @@
 	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or later</license>
     <version>1.0.0</version>
     <description><![CDATA[This package applies critical security patches for the Helix3 System Plugin and the shaper_helix3 template on Joomla 3.10.x. After successfully copying and overwriting the patched files, this installer package will automatically uninstall itself to leave no trace.]]></description>
+    <updateservers>
+        <server type="extension" priority="1" name="Helix3 and Shaper_Helix3 J3 Security Patch">https://raw.githubusercontent.com/JoomShaper/Helix3/security/helix3-j3-eol-patch/pkg_helix3_j3_security_patch/helix3j3securitypatch_update.xml</server>
+    </updateservers>
     <scriptfile>script.php</scriptfile>
     <fileset>
         <files>

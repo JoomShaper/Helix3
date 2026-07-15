@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+## [3.1.2] - 2026-07-15
+
 ### Security — Helix3 Ajax plugin (`plugins/ajax/helix3`)
 
 #### Authentication and authorization

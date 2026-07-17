@@ -7,15 +7,15 @@
     <license>http://www.gnu.org/licenses/gpl-2.0.html GPLv2 or later</license>
     <authorEmail>support@joomshaper.com</authorEmail>
     <authorUrl>http://www.joomshaper.com</authorUrl>
-    <version>3.1.1</version>
+    <version>3.1.3</version>
     <description>Helix3 Framework - Joomla Template Framework by JoomShaper</description>
 
     <updateservers>
         <server type="extension" priority="1" name="System - Helix3 Framework">https://www.joomshaper.com/updates/plg-system-helix3.xml</server>
     </updateservers>
 
-    <languages>
-        <language tag="en-GB">language/en-GB.plg_system_helix3.ini</language>
+    <languages folder="language">
+        <language tag="en-GB">en-GB/en-GB.plg_system_helix3.ini</language>
     </languages>
 
     <files>
@@ -27,6 +27,7 @@
         <folder plugin="helix3">layout</folder>
         <folder plugin="helix3">layouts</folder>
 		<folder plugin="helix3">params</folder>
+		<folder plugin="helix3">language</folder>
     </files>
     <fieldset addfieldpath="/plugins/system/helix3/fields"></fieldset>
 </extension>

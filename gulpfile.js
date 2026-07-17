@@ -39,7 +39,7 @@ function copy_system_plugin() {
 
 function copy_system_plugin_lang() {
 	return src("./administrator/language/en-GB/en-GB.plg_system_helix3.ini").pipe(
-		dest("dist/build/plugins/system/language")
+		dest("dist/build/plugins/system/language/en-GB")
 	);
 }
 

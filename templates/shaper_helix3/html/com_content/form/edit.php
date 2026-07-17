@@ -14,10 +14,28 @@ use Joomla\CMS\Router\Route;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Layout\LayoutHelper;
+use Joomla\CMS\Form\Form;
+use Joomla\CMS\Uri\Uri;
 
 
 HTMLHelper::_('behavior.keepalive');
 HTMLHelper::_('behavior.formvalidator');
+
+$helix3PlgPath = JPATH_PLUGINS . '/system/helix3';
+Factory::getLanguage()->load('plg_system_helix3', $helix3PlgPath);
+Factory::getLanguage()->load('plg_system_helix3', JPATH_ADMINISTRATOR);
+
+if (!$this->form->getField('spfeatured_image', 'attribs')) {
+	Form::addFormPath($helix3PlgPath . '/params');
+	Form::addFieldPath($helix3PlgPath . '/fields');
+	$this->form->loadFile('post-formats', false);
+
+	HTMLHelper::_('jquery.framework');
+	$doc = Factory::getDocument();
+	$plgUri = Uri::root(true) . '/plugins/system/helix3';
+	$doc->addStyleSheet($plgUri . '/assets/css/font-awesome.min.css');
+	$doc->addScript($plgUri . '/assets/js/post-formats.js');
+}
 
 
 if (JVERSION < 4)
@@ -81,6 +99,7 @@ if (!$params->exists('show_publishing_options')) {
 			<?php echo HTMLHelper::_((JVERSION < 4 ? 'bootstrap' : 'uitab') . '.addTab', $this->tab_name, 'sppostformats', Text::_('BLOG_OPTIONS')); ?>
 				<?php $attribs = json_decode(is_null($this->item->attribs) ? '' : $this->item->attribs); ?>
 				<?php echo $this->form->renderField('spfeatured_image','attribs', (isset($attribs->spfeatured_image)? $attribs->spfeatured_image: '')); ?>
+				<?php echo $this->form->renderField('spfeatured_image_alt','attribs', (isset($attribs->spfeatured_image_alt)? $attribs->spfeatured_image_alt: '')); ?>
 				<?php echo $this->form->renderField('post_format','attribs', (isset($attribs->post_format)? $attribs->post_format: 'standard')); ?>
 				<?php echo $this->form->renderField('gallery','attribs', (isset($attribs->gallery)? $attribs->gallery: '')); ?>
 				<?php echo $this->form->renderField('audio','attribs', (isset($attribs->audio)? $attribs->audio: '')); ?>

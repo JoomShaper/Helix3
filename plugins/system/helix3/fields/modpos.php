@@ -2,7 +2,7 @@
 /**
  * @package Helix3 Framework
  * @author JoomShaper https://www.joomshaper.com
- * @copyright (c) 2010 - 2021 JoomShaper
+ * @copyright (c) 2010 - 2026 JoomShaper
  * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
  */
 
@@ -11,8 +11,8 @@ defined ('_JEXEC') or die ('resticted aceess');
 
 use Joomla\CMS\Factory;
 use Joomla\CMS\Form\FormHelper;
+use Joomla\CMS\Form\Field\TextField;
 use Joomla\CMS\HTML\HTMLHelper;
-use Joomla\Database\DatabaseInterface;
 
 FormHelper::loadFieldClass('text');
 
@@ -23,7 +23,7 @@ FormHelper::loadFieldClass('text');
 * @subpackage	com_modules
 * @since		1.6
 */
-class JFormFieldModPos extends JFormFieldText
+class JFormFieldModPos extends TextField
 {
   /**
   * The form field type.
@@ -41,7 +41,7 @@ class JFormFieldModPos extends JFormFieldText
   */
   protected function getInput()
   {
-    $db = Factory::getContainer()->get(DatabaseInterface::class);
+    $db    = Factory::getDbo();
     $query = 'SELECT `position` FROM `#__modules` WHERE  `client_id`=0 AND ( `published` !=-2 AND `published` !=0 ) GROUP BY `position` ORDER BY `position` ASC';
 
     $db->setQuery($query);

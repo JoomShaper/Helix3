@@ -7,10 +7,18 @@
  */
 
     defined('JPATH_BASE') or die;
+
+    $attribs = $displayData['item']->attribs ?? null;
+    $attribs = is_string($attribs) ? json_decode($attribs) : $attribs;
+
+    $audio = $displayData['params']->get('audio');
+    if (empty($audio)) {
+        $audio = $attribs->audio ?? '';
+    }
 ?>
 
-<?php if ($displayData['params']->get('audio')): ?>
+<?php if (!empty($audio)): ?>
 	<div class="entry-audio ratio ratio-16x9">
-		<?php echo $displayData['params']->get('audio'); ?>
+		<?php echo $audio; ?>
 	</div>
 <?php endif; ?>

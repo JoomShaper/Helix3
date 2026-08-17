@@ -9,27 +9,44 @@
     defined('JPATH_BASE') or die;
 
     $video_src = '';
-    if ($displayData['params']->get('video')) {
-    $video = parse_url($displayData['params']->get('video'));
-
-    switch ($video['host']) {
-        case 'youtu.be':
-            $video_id  = trim($video['path'], '/');
-            $video_src = '//www.youtube.com/embed/' . $video_id;
-            break;
-
-        case 'www.youtube.com':
-        case 'youtube.com':
-            parse_str($video['query'], $query);
-            $video_id  = $query['v'];
-            $video_src = '//www.youtube.com/embed/' . $video_id;
-            break;
-
-        case 'vimeo.com':
-        case 'www.vimeo.com':
-            $video_id  = trim($video['path'], '/');
-            $video_src = "//player.vimeo.com/video/" . $video_id;
+    $video = $displayData['params']->get('video');
+    if (empty($video)) {
+        $attribs = $displayData['item']->attribs ?? null;
+        $attribs = is_string($attribs) ? json_decode($attribs) : $attribs;
+        $video = $attribs->video ?? '';
     }
+
+    if (!empty($video)) {
+        $video = parse_url($video);
+        $host  = $video['host'] ?? '';
+        $path  = $video['path'] ?? '';
+
+        switch ($host) {
+            case 'youtu.be':
+                $video_id  = trim($path, '/');
+                $video_src = '//www.youtube.com/embed/' . $video_id;
+                break;
+
+            case 'www.youtube.com':
+            case 'youtube.com':
+                $video_id = '';
+
+                if (preg_match('#^/(?:embed|v)/([A-Za-z0-9_-]{11})#', $path, $matches)) {
+                    $video_id = $matches[1];
+                }
+                elseif (!empty($video['query'])) {
+                    parse_str($video['query'], $query);
+                    $video_id = $query['v'] ?? '';
+                }
+
+                $video_src = !empty($video_id) ? '//www.youtube.com/embed/' . $video_id : '';
+                break;
+
+            case 'vimeo.com':
+            case 'www.vimeo.com':
+                $video_id  = trim($path, '/');
+                $video_src = "//player.vimeo.com/video/" . $video_id;
+        }
     }
 ?>
 

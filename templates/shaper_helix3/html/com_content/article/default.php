@@ -56,7 +56,13 @@ if ($article_image) {
 	$document->addCustomTag('<meta property="og:image:height" content="315" />');
 }
 
-$post_format = $params->get('post_format', 'standard');
+$post_format = $params->get('post_format');
+if (empty($post_format)) {
+    $attribs = is_string($this->item->attribs ?? null)
+        ? json_decode($this->item->attribs)
+        : ($this->item->attribs ?? null);
+    $post_format = $attribs->post_format ?? 'standard';
+}
 $has_post_format = $tpl_params->get('show_post_format');
 if ($this->print)
 {

@@ -44,6 +44,11 @@ jQuery(function ($) {
       format: "json",
     };
 
+    var csrfToken = Joomla.getOptions("csrf.token");
+    if (csrfToken) {
+      request[csrfToken] = 1;
+    }
+
     $.ajax({
       type: "POST",
       data: request,
@@ -113,6 +118,11 @@ jQuery(function ($) {
         data: data,
         format: "raw",
       };
+
+    var csrfToken = Joomla.getOptions("csrf.token");
+    if (csrfToken) {
+      request[csrfToken] = 1;
+    }
 
       $.ajax({
         type: "POST",
@@ -383,6 +393,11 @@ jQuery(function ($) {
           data: data,
           format: "json",
         };
+
+        var csrfToken = Joomla.getOptions("csrf.token");
+        if (csrfToken) {
+          request[csrfToken] = 1;
+        }
 
         $.ajax({
           type: "POST",

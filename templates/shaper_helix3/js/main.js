@@ -223,6 +223,10 @@ jQuery(function ($) {
       data: data,
       format: "json",
     };
+    var csrfToken = Joomla.getOptions("csrf.token");
+    if (csrfToken) {
+      request[csrfToken] = 1;
+    }
 
     $.ajax({
       type: "POST",

@@ -7,11 +7,19 @@
  */
 
     defined('JPATH_BASE') or die;
+
+    $attribs = $displayData['item']->attribs ?? null;
+    $attribs = is_string($attribs) ? json_decode($attribs) : $attribs;
+
+    $gallery = $displayData['params']->get('gallery');
+    if (empty($gallery)) {
+        $gallery = $attribs->gallery ?? '';
+    }
 ?>
 
-<?php if ($displayData['params']->get('gallery')): ?>
-	<?php $images = json_decode($displayData['params']->get('gallery')); ?>
-	<?php if (count($images->gallery_images)): ?>
+<?php if (!empty($gallery)): ?>
+	<?php $images = json_decode($gallery); ?>
+	<?php if (!empty($images->gallery_images) && count($images->gallery_images)): ?>
 		<div id="carousel-gallery-<?php echo $displayData['item']->id; ?>" class="entry-gallery carousel slide" data-ride="carousel">
 			<div class="carousel-inner">
 				<?php foreach ($images->gallery_images as $key => $image): ?>

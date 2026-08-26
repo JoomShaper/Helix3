@@ -7,14 +7,27 @@
  */
 
     defined('JPATH_BASE') or die;
+
+    $attribs = $displayData['item']->attribs ?? null;
+    $attribs = is_string($attribs) ? json_decode($attribs) : $attribs;
+
+    $quote_text = $displayData['params']->get('quote_text');
+    if (empty($quote_text)) {
+        $quote_text = $attribs->quote_text ?? '';
+    }
+
+    $quote_author = $displayData['params']->get('quote_author');
+    if (empty($quote_author)) {
+        $quote_author = $attribs->quote_author ?? '';
+    }
 ?>
 
-<?php if ($displayData['params']->get('quote_text')): ?>
+<?php if (!empty($quote_text)): ?>
 	<div class="entry-quote">
 		<blockquote>
-			<p><?php echo $displayData['params']->get('quote_text'); ?></p>
-			<?php if ($displayData['params']->get('quote_author')): ?>
-				<small><?php echo $displayData['params']->get('quote_author'); ?></small>
+			<p><?php echo $quote_text; ?></p>
+			<?php if (!empty($quote_author)): ?>
+				<small><?php echo $quote_author; ?></small>
 			<?php endif; ?>
 		</blockquote>
 	</div>

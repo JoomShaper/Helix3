@@ -6,6 +6,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+## [3.1.4] - 2026-08-31
+
+### Fixed
+- **CSRF Protection**: Added CSRF token handling across template layout actions, template copy, menu generator, webfont management, and frontend scripts.
+- **Language Strings**: Resolved language string definition issues for template settings import and export.
+- **Blog Embed Video**: Resolved embed video display issues for Joomla content articles and blog post format layouts.
+- **Post Formats**: Added `attribs` fallback parameter handling across Joomla post formats (audio, gallery, link, quote, and status).
+
+## [3.1.3] - 2026-07-15
+
 ### Security — Helix3 Ajax plugin (`plugins/ajax/helix3`)
 
 #### Authentication and authorization

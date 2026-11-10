@@ -33,11 +33,9 @@ class JFormFieldSpgallery extends FormField
         $doc = Factory::getDocument();
 
         HTMLHelper::_('jquery.framework');
-        // $doc->addScript($plg_path . '/assets/js/jquery.ui.core.min.js');
-        // $doc->addScript($plg_path . '/assets/js/jquery.ui.sortable.min.js');
 
         $plg_path = Uri::root(true) . '/plugins/system/helix3';
-        $doc->addScript($plg_path . '/assets/js/jquery-ui.min.js');
+        $doc->addScript($plg_path . '/assets/js/jquery-ui.min.js', ['version' => 'auto']);
         $doc->addScript($plg_path . '/assets/js/spgallery.js');
         $doc->addStyleSheet($plg_path . '/assets/css/spgallery.css');
 

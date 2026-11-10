@@ -33,10 +33,10 @@ class JFormFieldAsset extends FormField
         $jVersion = JVERSION < 4 ? '' : '.j4';
 
         if (JVERSION < 4) {
-            HTMLHelper::_('jquery.ui', ['core', 'sortable']);
+            $doc->addScript($helix_plg_url . '/assets/js/jquery.ui.sortable.min.js', ['version' => 'auto']);
             HTMLHelper::_('formbehavior.chosen', 'select');
         } else {
-            $doc->addScript($helix_plg_url . '/assets/js/jquery-ui.min.js?' . $v);
+            $doc->addScript($helix_plg_url . '/assets/js/jquery-ui.min.js', ['version' => 'auto']);
         }
 
         $doc->addScript($helix_plg_url . '/assets/js/helper' . $jVersion . '.js?' . $v);

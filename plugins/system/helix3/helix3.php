@@ -112,10 +112,10 @@ class plgSystemHelix3 extends CMSPlugin
                 HTMLHelper::_('jquery.framework');
 
                 if (JVERSION < 4) {
-                    HTMLHelper::_('jquery.ui', ['core', 'more', 'sortable']);
-                    $doc->addScript($plg_path . '/assets/js/jquery-ui.draggable.min.js?' . $v);
+                    $doc->addScript($plg_path . '/assets/js/jquery.ui.sortable.min.js', ['version' => 'auto']);
+                    $doc->addScript($plg_path . '/assets/js/jquery-ui.draggable.min.js', ['version' => 'auto']);
                 } else {
-                    $doc->addScript($plg_path . '/assets/js/jquery-ui.min.js?' . $v);
+                    $doc->addScript($plg_path . '/assets/js/jquery-ui.min.js', ['version' => 'auto']);
                 }
                 $doc->addScript($plg_path . '/assets/js/modal.js?' . $v);
                 $doc->addScript($plg_path . '/assets/js/menu.generator.js?' . $v);
